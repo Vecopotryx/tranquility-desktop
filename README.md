@@ -1,4 +1,4 @@
-#Retro Desktop Environment
+# Retro Desktop Environment
 
 ![Screenshot_20200414_121135](docs/screenshot_20200414_121135.jpg)
 
