@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>Retro Desktop Environment</title>
+	<link href="style.css" rel="stylesheet">
+	<link href="favicon.ico" rel="icon" type="image/x-icon">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js""></script>
+	<script src="source/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+	<script src="workingscript.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+    <div class="frameOverlay"></div>
+    
+	<div id="menubar">
+        <button id="appMenuClick">Applications</button> 
+        <button id="fileMenuClick">File</button> 
+        <button id="optionMenuClick">Options</button> 
+        <button id="arrangeToDefault">Arrange</button> 
+        <a id="dateAndTime">00:00</a>
+    </div>
+    
+	<div id="appMenuContent">
+        <a id="pathfinderText"><img src="source/img/Pathfinder.png" width="15cm"> Pathfinder</a> 
+        <a id="chipText"><img src="source/img/chip.png" width="15cm"> Chip Player</a> 
+        <a id="ballText"><img src="source/img/ball.png" width="15cm"> Amiga Demo</a> 
+        <a id="notesText"><img src="source/img/notes.png" width="15cm"> Notes</a> 
+		<a id="terminalText"><img src="source/img/terminal.png" width="15cm"> Terminal</a>
+    </div>
+    
+	<div id="fileMenuContent">
+		<a id="aboutText">About</a>
+    </div>
+    
+	<div id="optionMenuContent">
+		<a id="backgroundMenuClick">Background</a>
+    </div>
+    
+	<div id="mainContent">
+		<div id="desktopIcons">
+            <img id="trashIcon" src="source/img/trash.png"> <a>Wastebin</a> 
+            <img id="chipIcon" src="source/img/chip.png"> <a>Chip Player</a> 
+            <img id="ballIcon" src="source/img/ball.png"> <a>Amiga Demo</a> 
+            <img id="notesIcon" src="source/img/notes.png"> <a>Notes</a>
+        </div>
+        
+		<div class="application" id="mediaplayer">
+			<div class="windowFrameOverlay"></div>
+			<div class="titlebar">
+				<button class="closeWindow" id="closeMedia">×</button> 
+                <a>Chip Player JS</a> 
+                <button class="uncollapseWindow" id="uncollapseMedia">▼</button> 
+                <button class="collapseWindow" id="collapseMedia">▲</button>
+            </div>
+            <iframe height="93%" id="mediaContent" name="mediaContent" src="https://mmontag.github.io/chip-player-js/browse/ModArchives/?play=ModArchives%2Fsweetdre.xm" width="99.7%">
+			<p>Your browser does not support iframes.</p></iframe>
+        </div>
+        
+		<div class="application" id="bouncingballs">
+			<div class="windowFrameOverlay"></div>
+			<div class="titlebar">
+                <button class="closeWindow" id="closeBounce">×</button> 
+                <a>Amiga Demo</a> 
+                <button class="uncollapseWindow" id="uncollapseBounce">▼</button> 
+                <button class="collapseWindow" id="collapseBounce">▲</button>
+            </div>
+            <iframe height="94%" id="bouncingContent" name="bouncingContent" src="http://www.coffeevortex.net/" width="99%">
+			<p>Your browser does not support iframes.</p></iframe>
+        </div>
+        
+		<div class="application" id="notes">
+			<div class="titlebar">
+                <button class="closeWindow" id="closeNotes">×</button> 
+                <a>Notes</a> 
+                <button class="uncollapseWindow" id="uncollapseNotes">▼</button> 
+                <button class="collapseWindow" id="collapseNotes">▲</button>
+			</div>
+			<div id="notesContent">
+				<h1>Work in Progress</h1><a>This is still a work in progress project. Expect bugs and unfinished features!</a><br>
+				<a>Current version: 2020-03-26</a><br>
+				<h2>Changelog</h2><a><b>2020-03-26:</b></a>
+				<p>Added support for touch devices</p>
+				<p>Fixed a bug that caused the dragging and resizing of certain windows to glitch</p>
+				<p>Added the terminal</p>
+				<p>Code has been partially rewritten and restructured</p>
+                <p>Vastly improved display scaling</p>
+                <a href="changelog.html" target="_blank"><b>Full changelog</b></a> 
+                <br>
+                <br>
+                <a>/ Jesper</a>
+			</div>
+        </div>
+        
+		<div class="application" id="backgroundPicker">
+			<div class="titlebar">
+                <button class="closeWindow" id="closeBackPicker">×</button> 
+                <a>Background Picker</a> 
+                <button class="uncollapseWindow" id="uncollapseBackPicker">▼</button> 
+                <button class="collapseWindow" id="collapseBackPicker">▲</button>
+			</div>
+			<div id="backgroundContainer">
+				<div id="defaultBackground" style="background-color: blue;"></div>
+				<div id="secondBackground" style="background-image: url('source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg'); background-position: center; background-size: cover;"></div>
+				<div id="thirdBackground" style="background-image: url('source/img/KDE Plasma Scenery 64 NO LOGO.jpg'); background-position: center; background-size: cover;"></div>
+				<div id="fourthBackground" style="background-image: url('source/img/andreas-gucklhorn-X3420VR5T9w-unsplash.jpg'); background-position: center; background-size: cover;"></div>
+				<div id="fifthBackground" style="background-image: url('source/img/noaa-99F4mC79j1I-unsplash.jpg'); background-position: center; background-size: cover;"></div>
+				<div id="sixthBackground" style="background-image: url('source/img/leon-ephraim-xV8uGe9gd6k-unsplash.jpg'); background-position: center; background-size: cover;"></div>
+			</div>
+        </div>
+        
+		<div class="application" id="pathfinder">
+			<div class="windowFrameOverlay"></div>
+			<div class="titlebar">
+                <button class="closeWindow" id="closePathfinder">×</button> 
+                <a>Documents - Pathfinder</a> 
+                <button class="uncollapseWindow" id="uncollapsePathfinder">▼</button> 
+                <button class="collapseWindow" id="collapsePathfinder">▲</button>
+            </div>
+            <iframe height="90%" id="pathfinderContent" name="pathfinderContent" src="pathfinder.html" width="99.5%">
+			<p>Your browser does not support iframes.</p></iframe>
+		</div>
+		<div class="application" id="terminal">
+			<div class="windowFrameOverlay"></div>
+			<div class="titlebar">
+                <button class="closeWindow" id="closeTerminal">×</button>
+                <a>Terminal</a> <button class="uncollapseWindow" id="uncollapseTerminal" onclick="unCollapse(terminal, terminalContent, collapseTerminal, uncollapseTerminal, 400)">▼</button> 
+                <button class="collapseWindow" id="collapseTerminal" onclick="collapse(terminal, terminalContent, collapseTerminal, uncollapseTerminal, 0)">▲</button>
+            </div>
+            <iframe height="90%" id="terminalContent" name="terminalContent" src="terminal.html" width="99.5%">
+			<p>Your browser does not support iframes.</p></iframe>
+		</div>
+		<div class="application" id="about">
+			<div class="titlebar">
+                <button class="closeWindow" id="closeAbout">×</button> 
+                <a>About project</a>
+			</div>
+			<div id="aboutContainer">
+				<div id="aboutImage"><img src="source/img/iconSideViewFaviconCC.png" width="75%"></div>
+				<div id="aboutContent">
+                    <h1>Retro Desktop Environment</h1>
+                    <a>Retro Desktop Environment is a project which aims to provide a somewhat similar experience to older computer operating systems.</a> 
+                    <a>Inspiration comes from systems like Macintosh System 7, Amiga Workbench, Windows 3.1 & GEM Desktop.</a> 
+                    <a></a>
+                    <br>
+					<br>
+					<a>Credit:</a>
+					<p>&#8226 Me :)</p>
+					<p>&#8226 Matt Montag - Chip Player JS</p>
+                    <p>&#8226 John Mattsson - Amiga Boing Balls</p>
+                    <a>&#8226</a> 
+                    <a href="credits.html" style="color: black;" target="_blank">More (Icons and backgrounds)</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
