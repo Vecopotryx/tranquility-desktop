@@ -531,6 +531,9 @@ body {
 	padding-left: 0.5%;
 	padding-right: 0.5%;
 	display: none;
+	width: 0.35cm;
+	transform: scale(1.1);
+	vertical-align: middle;
 }
 
 
@@ -542,4 +545,9 @@ body {
 .closeWindow:hover, .collapseWindow:hover, .uncollapseWindow:hover {
 	transform: scale(1.4);
 	transition: transform 0.1s;
+}
+
+#windowListTopContainer, #windowListBottomContainer {
+	display: inline;
+	max-width: 20%;
 }

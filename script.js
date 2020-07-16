@@ -9,7 +9,7 @@ var _appInterfaceTextColor = "#000000";
 var _unfocusedAppInterfaceTextColor = "#808080";
 var _menubarTextColor = "#000000";
 var _menubarBackgroundColor = "#FFFFFF";
-var _bottomMenuBarEnabled = true;
+var _bottomMenuBarEnabled = false;
 
 // focus releated stuff:
 var currentlyFocused;
@@ -165,7 +165,6 @@ $(document).ready(function () {
     unfocusNotes();
     unfocusMediaplayer();
     unfocusBounce();
-    updateInterface(); // JUST FOR TESTING
     $('#windowListNotes').show();
     $('#windowListChip').show();
     $('#windowListBall').show();
@@ -1619,6 +1618,10 @@ function updateInterface() {
         $('#menubar').css('display', 'none');
         $('#bottombar').css('display', 'inline-block');
         $('.inMenubar').hide();
+        windowListBottomContainer.appendChild(openWindowList);
+        $('#openWindowList > img').css('width', '0.45cm');
+
+
     } else {
         $('#bottomMenuContent').css('display', 'none');
         $('#bottombar').css('display', 'none');
@@ -1626,6 +1629,8 @@ function updateInterface() {
         $('#menubar>button').css('color', _menubarTextColor);
         $('#menubar').css('color', _menubarTextColor);
         $('#menubar').css('background-color', _menubarBackgroundColorOut);
+        windowListTopContainer.appendChild(openWindowList);
+        $('#openWindowList > img').css('width', '0.35cm');
     }
 
 
