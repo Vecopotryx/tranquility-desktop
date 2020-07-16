@@ -443,7 +443,7 @@ body {
 	border-radius: 2px;
 }
 
-#generalWindowSettings, #titlebarSettings, #translucencySettings, #colorSettings {
+#generalWindowSettings, #titlebarSettings, #translucencySettings, #colorSettings, #menubarSettings {
 	text-align: center;
 	margin-left: 1%;
 	display: none;
@@ -466,3 +466,51 @@ body {
 	width: 50%;
 }
 
+#bottombar {
+	width: 99.1%;
+	height: 0.55cm;
+	border-bottom: 1px solid black;
+	background-color: white;
+	font-size: 150%;
+	position: absolute;
+	bottom: 0;
+	padding: 0;
+	margin: 0;
+	display: none;
+}
+
+#bottombar>button {
+	background: none;
+	border: none;
+	padding-right: 2px;
+	cursor: pointer;
+	font-size: 20px;
+	font-family: perfect-dos;
+	color: black;
+}
+
+#bottomMenuContent {
+	background-color: white;
+	display: inline;
+	position: absolute;
+	font-size: 1vw;
+	text-align: left;
+	padding: 0.5%;
+	z-index: 9999;
+	max-width: 10%;
+	bottom: 0.57cm;
+	border-bottom: 1px solid black;
+	display: none;
+}
+#bottomMenuContent>a {
+	margin-bottom: 2%;
+	display: block;
+	cursor: pointer;
+}
+
+#bottomDateAndTime {
+	padding-right: 10px;
+	float: right;
+	font-size: 22px;
+	font-family: perfect-dos;
+}

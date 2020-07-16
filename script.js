@@ -9,6 +9,7 @@ var _appInterfaceTextColor = "#000000";
 var _unfocusedAppInterfaceTextColor = "#808080";
 var _menubarTextColor = "#000000";
 var _menubarBackgroundColor = "#FFFFFF";
+var _bottomMenuBarEnabled = false;
 
 // focus releated stuff:
 var currentlyFocused;
@@ -921,7 +922,7 @@ function maximizeBrowser() {
     }
 }
 
-// Execute maximize code on hover
+// Execute maximize code on doubleclick
 $(function () {
     $('#mediaplayer').draggable().dblclick(function () {
         maximizeMedia();
@@ -1045,7 +1046,11 @@ $(function () {
             hour: '2-digit',
             minute: '2-digit'
         });
-        $("#dateAndTime").html(day + " " + time);
+        if(_bottomMenuBarEnabled){
+            $("#bottomDateAndTime").html(day + " " + time);
+        } else {
+            $("#dateAndTime").html(day + " " + time);
+        }
     }, 1000);
 
 });
@@ -1061,7 +1066,11 @@ $(document).keydown(function (e) {
         }
         // If pressing Alt + A, show the applications menu
         if (down[0] === 18 && down[1] === 65) {
-            $("#appMenuClick").click();
+            if(_bottomMenuBarEnabled){
+                $("#bottomMenuClick").click();
+            } else {
+                $("#appMenuClick").click();
+            }
         }
         // If pressing Alt + Q, then close the currently focused window
         if (down[0] === 18 && down[1] === 81) {
@@ -1403,6 +1412,7 @@ $(function () {
             $('#showWindowSettings').prop('disabled', false);
             $('#showTitlebarSettins').prop('disabled', false);
             $('#showTranslucencySettings').prop('disabled', false);
+            $('#showMenubarSettings').prop('disabled', false);
             $('#colorSettings').css('display', 'inline-block');
             $('#generalWindowSettings').css('display', 'none');
             $('#titlebarSettings').css('display', 'none');
@@ -1414,6 +1424,7 @@ $(function () {
             $('#showWindowSettings').prop('disabled', true);
             $('#showTitlebarSettins').prop('disabled', true);
             $('#showTranslucencySettings').prop('disabled', true);
+            $('#showMenubarSettings').prop('disabled', true);
             $('#colorSettings').css('display', 'none');
             $('#generalWindowSettings').css('display', 'none');
             $('#titlebarSettings').css('display', 'none');
@@ -1435,6 +1446,7 @@ $(function () {
         setBorderRadius(4);
         setTitlebarGradientSwitch(false);
         updateButtonPlacement("RDE");
+        _bottomMenuBarEnabled = false;
         updateInterface();
     })
 
@@ -1450,6 +1462,7 @@ $(function () {
         setBorderRadius(4);
         setTitlebarGradientSwitch(false);
         updateButtonPlacement("RDE");
+        _bottomMenuBarEnabled = false;
         updateInterface();
     })
 
@@ -1467,6 +1480,7 @@ $(function () {
         $('#boxShadowSwitch').prop('checked', true);
         $('#boxShadowSwitch').click();
         updateButtonPlacement("redmond");
+        _bottomMenuBarEnabled = true;
         updateInterface();
     })
 
@@ -1574,9 +1588,22 @@ function updateInterface() {
     $('.titlebar').css('color', _titlebarTextColor);
 
     // menubar
-    $('#menubar>button').css('color', _menubarTextColor);
-    $('#menubar').css('color', _menubarTextColor);
-    $('#menubar').css('background-color', _menubarBackgroundColorOut);
+    if(_bottomMenuBarEnabled){
+        $('#bottombar>button').css('color', _menubarTextColor);
+        $('#bottombar').css('color', _menubarTextColor);
+        $('#bottombar').css('background-color', _menubarBackgroundColorOut);
+        $('#menubar').css('display', 'none');
+        $('#bottombar').css('display', 'inline-block');
+        $('.inMenubar').hide();
+    } else {
+        $('#bottomMenuContent').css('display', 'none');
+        $('#bottombar').css('display', 'none');
+        $('#menubar').css('display', 'inline-block');
+        $('#menubar>button').css('color', _menubarTextColor);
+        $('#menubar').css('color', _menubarTextColor);
+        $('#menubar').css('background-color', _menubarBackgroundColorOut);
+    }
+
 
     // menubar subsidiaries
     $('.inMenubar').css('background-color', _menubarBackgroundColorOut);
@@ -1816,6 +1843,7 @@ $(function () {
         $('#generalWindowSettings').css('display', 'none');
         $('#titlebarSettings').css('display', 'none');
         $('#translucencySettings').css('display', 'none');
+        $('#menubarSettings').css('display', 'none');
     })
 
     $('#showWindowSettings').click(function () {
@@ -1823,6 +1851,7 @@ $(function () {
         $('#colorSettings').css('display', 'none');
         $('#titlebarSettings').css('display', 'none');
         $('#translucencySettings').css('display', 'none');
+        $('#menubarSettings').css('display', 'none');
     })
 
     $('#showTitlebarSettins').click(function () {
@@ -1830,6 +1859,7 @@ $(function () {
         $('#colorSettings').css('display', 'none');
         $('#generalWindowSettings').css('display', 'none');
         $('#translucencySettings').css('display', 'none');
+        $('#menubarSettings').css('display', 'none');
     })
 
     $('#showTranslucencySettings').click(function () {
@@ -1837,6 +1867,20 @@ $(function () {
         $('#colorSettings').css('display', 'none');
         $('#generalWindowSettings').css('display', 'none');
         $('#titlebarSettings').css('display', 'none');
+        $('#menubarSettings').css('display', 'none');
+    })
+
+    $('#showMenubarSettings').click(function () {
+        $('#menubarSettings').css('display', 'inline-block');
+        $('#colorSettings').css('display', 'none');
+        $('#generalWindowSettings').css('display', 'none');
+        $('#titlebarSettings').css('display', 'none');
+        $('#translucencySettings').css('display', 'none');
+        if(_bottomMenuBarEnabled){
+            $('#bottomMenuBarSwitch').prop('checked', true);
+        } else {
+            $('#bottomMenuBarSwitch').prop('checked', false);
+        }
     })
 });
 
@@ -1853,6 +1897,73 @@ function convertHex(hex, opacity) {
     return result;
 }
 
+
+
+var isBottomMenuBarVisisble
+
+$(function () {
+    $('#bottomPathfinderText').click(function () {
+        $('#pathfinderText').click();
+    })
+
+    $('#bottomChipText').click(function () {
+        $('#chipText').click();
+    })
+    
+    $('#bottomBallText').click(function () {
+        $('#ballText').click();
+    })
+    
+    $('#bottomNotesText').click(function () {
+        $('#notesText').click();
+    })
+    
+    $('#bottomTerminalText').click(function () {
+        $('#terminalText').click();
+    })
+    
+    $('#bottomBrowserText').click(function () {
+        $('#browserText').click();
+    })
+    
+    $('#bottomAboutText').click(function () {
+        $('#aboutText').click();
+    })
+    
+    $('#bottomBackgroundMenuClick').click(function () {
+        $('#backgroundMenuClick').click();
+    })
+
+    $('#bottomCustomizationMenuClick').click(function () {
+        $('#customizationMenuClick').click();
+    })
+
+    $('#bottomArrangeToDefault').click(function () {
+        $('#arrangeToDefault').click();
+    })
+
+    $('#bottomHelpMenuClick').click(function () {
+        $('#helpMenuClick').click();
+    })
+
+    $("#bottomMenuClick").click(function () {
+        if ($("#bottomMenuContent").is(":visible")) {
+            $('#bottomMenuContent').hide();
+        } else {
+            $('#bottomMenuContent').show();
+        }
+    })
+
+    $('#bottomMenuBarSwitch').click(function () {
+        if ($(this).is(':checked')) {
+            _bottomMenuBarEnabled = true;
+            updateInterface();
+        } else {
+            _bottomMenuBarEnabled = false;
+            updateInterface();
+        }
+    })
+});
 
 
 
