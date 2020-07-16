@@ -9,7 +9,6 @@ var _appInterfaceTextColor = "#000000";
 var _unfocusedAppInterfaceTextColor = "#808080";
 var _menubarTextColor = "#000000";
 var _menubarBackgroundColor = "#FFFFFF";
-var _bottomMenuBarEnabled = true;
 
 // focus releated stuff:
 var currentlyFocused;
@@ -165,10 +164,6 @@ $(document).ready(function () {
     unfocusNotes();
     unfocusMediaplayer();
     unfocusBounce();
-    updateInterface(); // JUST FOR TESTING
-    $('#windowListNotes').show();
-    $('#windowListChip').show();
-    $('#windowListBall').show();
 });
 
 function unfocusMediaplayer() {
@@ -458,31 +453,26 @@ $(function () {
     $("#closeMedia").click(function () {
         $("#mediaContent").attr('src', '');
         $('#mediaplayer').hide();
-        $('#windowListChip').hide();
         mediaClosed = true;
     })
 
     $("#closeBounce").click(function () {
         $("#bouncingContent").attr('src', '');
         $('#bouncingballs').hide();
-        $('#windowListBall').hide();
         demoClosed = true;
     })
 
     $("#closeNotes").click(function () {
         $('#notes').hide();
-        $('#windowListNotes').hide();
     })
 
     $("#closePathfinder").click(function () {
         $('#pathfinder').hide();
-        $('#windowListPathfinder').hide();
     })
 
     $("#closeTerminal").click(function () {
         $('#terminalContent').attr('src', '');
         $('#terminal').hide();
-        $('#windowListTerminal').hide();
     })
 
     $("#closeBrowser").click(function () {
@@ -490,27 +480,22 @@ $(function () {
         $('#browserInfo').show();
         $('#browserContent').attr('src', '');
         $('#browserWindow').hide();
-        $('#windowListBrowser').hide();
     })
 
     $("#closeAbout").click(function () {
         $('#about').hide();
-        $('#windowListAbout').hide();
     })
 
     $("#closeHelp").click(function () {
         $('#help').hide();
-        $('#windowListHelp').hide();
     })
 
     $("#closeBackPicker").click(function () {
         $('#backgroundPicker').hide();
-        $('#windowListBackPicker').hide();
     })
 
     $("#closeCustomization").click(function () {
         $('#customizationSettings').hide();
-        $('#windowListCustom').hide();
     })
 });
 
@@ -527,7 +512,6 @@ $(function () {
         isBouncingCollapsed = false;
         demoClosed = false;
         focusBouncingballs();
-        $('#windowListBall').show();
     })
 
     // (Chip Player JS / Mediaplayer)
@@ -541,7 +525,6 @@ $(function () {
         isMediaCollapsed = false;
         mediaClosed = false;
         focusMediaplayer();
-        $('#windowListChip').show();
     })
 
     // (Notes)
@@ -550,7 +533,6 @@ $(function () {
         $("#appMenuContent").hide();
         $("#uncollapseNotes").click();
         focusNotes();
-        $('#windowListNotes').show();
     })
 
     // (Pathfinder / File explorer)
@@ -559,7 +541,6 @@ $(function () {
         $("#appMenuContent").hide();
         $("#uncollapsePathfinder").click();
         focusPathfinder();
-        $('#windowListPathfinder').show();
     })
 
     // (Terminal)
@@ -570,7 +551,6 @@ $(function () {
         $('#terminal').css('height', '50%');
         $("#appMenuContent").hide();
         focusTerminal();
-        $('#windowListTerminal').show();
     })
 
     // (Getpost Gavinator)
@@ -583,7 +563,6 @@ $(function () {
         $("#collapseBrowser").css('display', 'inline');
         $("#appMenuContent").hide();
         focusBrowser();
-        $('#windowListBrowser').show();
         loadingDots();
         $('#browserInfo').delay(2000).fadeOut("slow");
         $('#browserContent').delay(2500).fadeIn("slow");
@@ -596,7 +575,6 @@ $(function () {
         $("#fileMenuContent").hide();
         $("#appMenuContent").hide();
         focusAbout();
-        $('#windowListAbout').show();
     })
 
     // (Background Picker)
@@ -605,7 +583,6 @@ $(function () {
         $('#optionMenuContent').hide();
         $('#fileMenuContent').hide();
         focusBackgroundPicker();
-        $('#windowListBackPicker').show();
     })
 
     // (Help window)
@@ -616,7 +593,6 @@ $(function () {
         $('#optionMenuContent').hide();
         $('#fileMenuContent').hide();
         focusHelp();
-        $('#windowListHelp').show();
     })
 
     // (Customization window)
@@ -625,7 +601,6 @@ $(function () {
         $('#optionMenuContent').hide();
         $('#fileMenuContent').hide();
         focusCustomizationSettings();
-        $('#windowListCustom').show();
     })
 });
 
@@ -946,7 +921,7 @@ function maximizeBrowser() {
     }
 }
 
-// Execute maximize code on doubleclick
+// Execute maximize code on hover
 $(function () {
     $('#mediaplayer').draggable().dblclick(function () {
         maximizeMedia();
@@ -1013,7 +988,7 @@ $(function () {
         $('#closeBackPicker').click();
         $('#closeTerminal').click();
         $('#closeBrowser').click();
-        $('#closeHelp').click();
+        $('#closeHelp').hide();
         $('#closePathfinder').click();
         $('#closeAbout').click();
         $('#closeCustomization').click();
@@ -1070,11 +1045,7 @@ $(function () {
             hour: '2-digit',
             minute: '2-digit'
         });
-        if(_bottomMenuBarEnabled){
-            $("#bottomDateAndTime").html(day + " " + time);
-        } else {
-            $("#dateAndTime").html(day + " " + time);
-        }
+        $("#dateAndTime").html(day + " " + time);
     }, 1000);
 
 });
@@ -1090,11 +1061,7 @@ $(document).keydown(function (e) {
         }
         // If pressing Alt + A, show the applications menu
         if (down[0] === 18 && down[1] === 65) {
-            if(_bottomMenuBarEnabled){
-                $("#bottomMenuClick").click();
-            } else {
-                $("#appMenuClick").click();
-            }
+            $("#appMenuClick").click();
         }
         // If pressing Alt + Q, then close the currently focused window
         if (down[0] === 18 && down[1] === 81) {
@@ -1436,7 +1403,6 @@ $(function () {
             $('#showWindowSettings').prop('disabled', false);
             $('#showTitlebarSettins').prop('disabled', false);
             $('#showTranslucencySettings').prop('disabled', false);
-            $('#showMenubarSettings').prop('disabled', false);
             $('#colorSettings').css('display', 'inline-block');
             $('#generalWindowSettings').css('display', 'none');
             $('#titlebarSettings').css('display', 'none');
@@ -1448,7 +1414,6 @@ $(function () {
             $('#showWindowSettings').prop('disabled', true);
             $('#showTitlebarSettins').prop('disabled', true);
             $('#showTranslucencySettings').prop('disabled', true);
-            $('#showMenubarSettings').prop('disabled', true);
             $('#colorSettings').css('display', 'none');
             $('#generalWindowSettings').css('display', 'none');
             $('#titlebarSettings').css('display', 'none');
@@ -1470,7 +1435,6 @@ $(function () {
         setBorderRadius(4);
         setTitlebarGradientSwitch(false);
         updateButtonPlacement("RDE");
-        _bottomMenuBarEnabled = false;
         updateInterface();
     })
 
@@ -1486,7 +1450,6 @@ $(function () {
         setBorderRadius(4);
         setTitlebarGradientSwitch(false);
         updateButtonPlacement("RDE");
-        _bottomMenuBarEnabled = false;
         updateInterface();
     })
 
@@ -1504,7 +1467,6 @@ $(function () {
         $('#boxShadowSwitch').prop('checked', true);
         $('#boxShadowSwitch').click();
         updateButtonPlacement("redmond");
-        _bottomMenuBarEnabled = true;
         updateInterface();
     })
 
@@ -1612,22 +1574,9 @@ function updateInterface() {
     $('.titlebar').css('color', _titlebarTextColor);
 
     // menubar
-    if(_bottomMenuBarEnabled){
-        $('#bottombar>button').css('color', _menubarTextColor);
-        $('#bottombar').css('color', _menubarTextColor);
-        $('#bottombar').css('background-color', _menubarBackgroundColorOut);
-        $('#menubar').css('display', 'none');
-        $('#bottombar').css('display', 'inline-block');
-        $('.inMenubar').hide();
-    } else {
-        $('#bottomMenuContent').css('display', 'none');
-        $('#bottombar').css('display', 'none');
-        $('#menubar').css('display', 'inline-block');
-        $('#menubar>button').css('color', _menubarTextColor);
-        $('#menubar').css('color', _menubarTextColor);
-        $('#menubar').css('background-color', _menubarBackgroundColorOut);
-    }
-
+    $('#menubar>button').css('color', _menubarTextColor);
+    $('#menubar').css('color', _menubarTextColor);
+    $('#menubar').css('background-color', _menubarBackgroundColorOut);
 
     // menubar subsidiaries
     $('.inMenubar').css('background-color', _menubarBackgroundColorOut);
@@ -1867,7 +1816,6 @@ $(function () {
         $('#generalWindowSettings').css('display', 'none');
         $('#titlebarSettings').css('display', 'none');
         $('#translucencySettings').css('display', 'none');
-        $('#menubarSettings').css('display', 'none');
     })
 
     $('#showWindowSettings').click(function () {
@@ -1875,7 +1823,6 @@ $(function () {
         $('#colorSettings').css('display', 'none');
         $('#titlebarSettings').css('display', 'none');
         $('#translucencySettings').css('display', 'none');
-        $('#menubarSettings').css('display', 'none');
     })
 
     $('#showTitlebarSettins').click(function () {
@@ -1883,7 +1830,6 @@ $(function () {
         $('#colorSettings').css('display', 'none');
         $('#generalWindowSettings').css('display', 'none');
         $('#translucencySettings').css('display', 'none');
-        $('#menubarSettings').css('display', 'none');
     })
 
     $('#showTranslucencySettings').click(function () {
@@ -1891,20 +1837,6 @@ $(function () {
         $('#colorSettings').css('display', 'none');
         $('#generalWindowSettings').css('display', 'none');
         $('#titlebarSettings').css('display', 'none');
-        $('#menubarSettings').css('display', 'none');
-    })
-
-    $('#showMenubarSettings').click(function () {
-        $('#menubarSettings').css('display', 'inline-block');
-        $('#colorSettings').css('display', 'none');
-        $('#generalWindowSettings').css('display', 'none');
-        $('#titlebarSettings').css('display', 'none');
-        $('#translucencySettings').css('display', 'none');
-        if(_bottomMenuBarEnabled){
-            $('#bottomMenuBarSwitch').prop('checked', true);
-        } else {
-            $('#bottomMenuBarSwitch').prop('checked', false);
-        }
     })
 });
 
@@ -1923,172 +1855,6 @@ function convertHex(hex, opacity) {
 
 
 
-var isBottomMenuBarVisisble
-
-$(function () {
-    $('#bottomPathfinderText').click(function () {
-        $('#pathfinderText').click();
-    })
-
-    $('#bottomChipText').click(function () {
-        $('#chipText').click();
-    })
-    
-    $('#bottomBallText').click(function () {
-        $('#ballText').click();
-    })
-    
-    $('#bottomNotesText').click(function () {
-        $('#notesText').click();
-    })
-    
-    $('#bottomTerminalText').click(function () {
-        $('#terminalText').click();
-    })
-    
-    $('#bottomBrowserText').click(function () {
-        $('#browserText').click();
-    })
-    
-    $('#bottomAboutText').click(function () {
-        $('#aboutText').click();
-    })
-    
-    $('#bottomBackgroundMenuClick').click(function () {
-        $('#backgroundMenuClick').click();
-    })
-
-    $('#bottomCustomizationMenuClick').click(function () {
-        $('#customizationMenuClick').click();
-    })
-
-    $('#bottomArrangeToDefault').click(function () {
-        $('#arrangeToDefault').click();
-    })
-
-    $('#bottomHelpMenuClick').click(function () {
-        $('#helpMenuClick').click();
-    })
-
-    $("#bottomMenuClick").click(function () {
-        if ($("#bottomMenuContent").is(":visible")) {
-            $('#bottomMenuContent').hide();
-        } else {
-            $('#bottomMenuContent').show();
-        }
-    })
-
-    $('#bottomMenuBarSwitch').click(function () {
-        if ($(this).is(':checked')) {
-            _bottomMenuBarEnabled = true;
-            updateInterface();
-        } else {
-            _bottomMenuBarEnabled = false;
-            updateInterface();
-        }
-    })
-});
-
-$(function () {
-    $('#windowListChip').hover(function () {
-        focusMediaplayer();
-        $("#uncollapseMedia").click();
-    })
-
-    $('#windowListBall').hover(function () {
-        focusBouncingballs();
-        $("#uncollapseBounce").click();
-    })
-
-    $('#windowListNotes').hover(function () {
-        focusNotes();
-        $("#uncollapseNotes").click();
-    })
-
-    $('#windowListPathfinder').hover(function () {
-        focusPathfinder();
-        $("#uncollapsePathfinder").click();
-    })
-
-    $('#windowListTerminal').hover(function () {
-        focusTerminal();
-        $("#uncollapseTerminal").click();
-    })
-
-    $('#windowListBrowser').hover(function () {
-        focusBrowser();
-        $("#uncollapseBrowser").click();
-    })
-
-    $('#windowListAbout').hover(function () {
-        focusAbout();
-    })
-
-    $('#windowListBackPicker').hover(function () {
-        focusBackgroundPicker();
-        $("#uncollapseBackPicker").click();
-    })
-
-    $('#windowListCustom').hover(function () {
-        focusCustomizationSettings();
-        $("#uncollapseCustomization").click();
-    })
-
-    $('#windowListHelp').hover(function () {
-        focusHelp();
-        $("#uncollapseHelp").click();
-    })
-});
-
-$(function () {
-    $('#windowListChip').click(function () {
-        $("#closeMedia").click();
-    })
-
-    $('#windowListBall').click(function () {
-        $("#closeBounce").click();
-    })
-
-    $('#windowListNotes').click(function () {
-        focusNotes();
-        $("#closeNotes").click();
-    })
-
-    $('#windowListPathfinder').click(function () {
-        focusPathfinder();
-        $("#closePathfinder").click();
-    })
-
-    $('#windowListTerminal').click(function () {
-        focusTerminal();
-        $("#closeTerminal").click();
-    })
-
-    $('#windowListBrowser').click(function () {
-        focusBrowser();
-        $("#closeBrowser").click();
-    })
-
-    $('#windowListAbout').click(function () {
-        focusAbout();
-        $("#closeAbout").click();
-    })
-
-    $('#windowListBackPicker').click(function () {
-        focusBackgroundPicker();
-        $("#closeBackPicker").click();
-    })
-
-    $('#windowListCustom').click(function () {
-        focusCustomizationSettings();
-        $("#closeCustomization").click();
-    })
-
-    $('#windowListHelp').click(function () {
-        focusHelp();
-        $("#closeHelp").click();
-    })
-});
 
 // (I am very well aware about the fact that this javascript file is a mess, but I only started working with JS about one-two months ago)
 // (I decided to go for jQuery since that was the first results I got when I searched for a framework for DOM manipulation. I am considering perhaps moving from jQuery to something more modern)

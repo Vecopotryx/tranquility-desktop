@@ -443,7 +443,7 @@ body {
 	border-radius: 2px;
 }
 
-#generalWindowSettings, #titlebarSettings, #translucencySettings, #colorSettings, #menubarSettings {
+#generalWindowSettings, #titlebarSettings, #translucencySettings, #colorSettings {
 	text-align: center;
 	margin-left: 1%;
 	display: none;
@@ -466,80 +466,3 @@ body {
 	width: 50%;
 }
 
-#bottombar {
-	width: 99.1%;
-	height: 0.75cm;
-	border-bottom: 1px solid black;
-	background-color: white;
-	font-size: 150%;
-	position: absolute;
-	bottom: 0;
-	padding: 0;
-	margin: 0;
-	display: none;
-}
-
-#bottombar>button {
-	background: none;
-	border: none;
-	padding-right: 2px;
-	cursor: pointer;
-	font-size: 20px;
-	font-family: perfect-dos;
-	color: black;
-}
-
-#bottomMenuClick:hover {
-	transform: scale(1.1);
-	transition: transform 0.2s;
-}
-
-#bottomMenuContent {
-	background-color: white;
-	display: inline;
-	position: absolute;
-	font-size: 1vw;
-	text-align: left;
-	padding: 0.5%;
-	z-index: 9999;
-	max-width: 10%;
-	bottom: 0.77cm;
-	border-bottom: 1px solid black;
-	display: none;
-}
-#bottomMenuContent>a {
-	margin-bottom: 2%;
-	display: block;
-	cursor: pointer;
-}
-
-#bottomDateAndTime {
-	padding-right: 10px;
-	float: right;
-	font-size: 22px;
-	font-family: perfect-dos;
-}
-
-#openWindowList {
-	display: inline;
-	max-width: 20%;
-	margin: auto;
-}
-
-#openWindowList > img {
-	margin: 0;
-	padding-left: 0.5%;
-	padding-right: 0.5%;
-	display: none;
-}
-
-
-#openWindowList > img:hover {
-	transform: scale(1.5);
-	transition: transform 0.2s;
-}
-
-.closeWindow:hover, .collapseWindow:hover, .uncollapseWindow:hover {
-	transform: scale(1.4);
-	transition: transform 0.1s;
-}

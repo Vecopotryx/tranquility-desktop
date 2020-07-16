@@ -26,38 +26,6 @@
 		<a id="dateAndTime">00:00</a>
 	</div>
 
-	<div id="bottombar">
-		<button id="bottomMenuClick"><img src="favicon.ico" width="15cm"> Menu</button>
-		<div id="openWindowList">
-			<img id="windowListNotes" src="source/img/notes.png" width="20cm">
-			<img id="windowListChip" src="source/img/chip.png" width="20cm">
-			<img id="windowListBall" src="source/img/ball.png" width="20cm">
-			<img id="windowListPathfinder" src="source/img/Pathfinder.png" width="20cm">
-			<img id="windowListTerminal" src="source/img/terminal.png" width="20cm">
-			<img id="windowListBrowser" src="source/img/browser.ico" width="20cm">
-			<img id="windowListAbout" src="favicon.ico" width="20cm">
-			<img id="windowListBackPicker" src="source/img/backpicker.png" width="20cm">
-			<img id="windowListCustom" src="source/img/customize.png" width="20cm">
-			<img id="windowListHelp" src="source/img/help.png" width="20cm">
-
-		</div>
-		<a id="bottomDateAndTime">00:00</a>
-	</div>
-
-	<div id="bottomMenuContent" class="inMenubar">
-		<a id="bottomPathfinderText"><img src="source/img/Pathfinder.png" width="15cm"> Pathfinder</a>
-		<a id="bottomChipText"><img src="source/img/chip.png" width="15cm"> Chip Player</a>
-		<a id="bottomBallText"><img src="source/img/ball.png" width="15cm"> Amiga Demo</a>
-		<a id="bottomNotesText"><img src="source/img/notes.png" width="15cm"> Notes</a>
-		<a id="bottomTerminalText"><img src="source/img/terminal.png" width="15cm"> Terminal</a>
-		<a id="bottomBrowserText"><img src="source/img/browser.ico" width="15cm"> Internet</a>
-		<a id="bottomAboutText">About</a>
-		<a id="bottomBackgroundMenuClick">Background</a>
-		<a id="bottomCustomizationMenuClick">Customize</a>
-		<a id="bottomArrangeToDefault">Arrange</a>
-		<a id="bottomHelpMenuClick">Help</a>
-	</div>
-
 	<div id="appMenuContent" class="inMenubar">
 		<a id="pathfinderText"><img src="source/img/Pathfinder.png" width="15cm"> Pathfinder</a>
 		<a id="chipText"><img src="source/img/chip.png" width="15cm"> Chip Player</a>
@@ -93,7 +61,7 @@
 				<button class="collapseWindow" id="collapseMedia">▲</button>
 			</div>
 			<iframe height="93%" id="mediaContent" name="mediaContent"
-				src="https://mmontag.github.io/chip-player-js/browse/ModArchives?play=ModArchives%2Fan-path.xm"
+				src="https://mmontag.github.io/chip-player-js/browse/ModArchives/?play=ModArchives%2FDEADLOCK.XM"
 				width="99.6%">
 				<p>Your browser does not support iframes.</p>
 			</iframe>
@@ -125,13 +93,18 @@
 				<h1>Work in Progress</h1>
 				<a>Current version: </a>
 				<br>
-				<a> 2020-07-16</a>
+				<a> 2020-04-12</a>
 				<br>
 				<h2>Changelog</h2>
-				<a><b>2020-07-16:</b></a>
-				<p>&#8226; Added a list of icons to show open windows in the bottom bar</p>
-				<p>&#8226; Added the ability to disable the top menubar in favor of having a bar at the bottom</p>
-				<p>&#8226; Moved from point releases to more of a rolling release (as part of the move to GitHub)</p>
+				<a><b>2020-04-12:</b></a>
+				<p>Lots of changes, so here's a summary:</p>
+				<p>&#8226; Added several keyboard shortcuts</p>
+				<p>&#8226; Added the ability to maximize windows</p>
+				<p>&#8226; Added the customization window (including dark mode)</p>
+				<p>&#8226; The background picker has been reworked</p>
+				<p>&#8226; Added Getpost Gavinator and the help menu</p>
+				<p>&#8226; Fixed a few major bugs</p>
+				<p>(Read the full changelog for more info)</p>
 				<a href="changelog.html" target="_blank"><b>Full changelog</b></a>
 				<br>
 				<br>
@@ -266,7 +239,7 @@
 					<p>&#8226 Matt Montag - <a href="https://github.com/mmontag/chip-player-js" target="_blank">Chip Player JS</a></p>
 					<p>&#8226 John Mattsson - <a href="https://experiments.withgoogle.com/amiga-boing-balls" target="_blank">Amiga Boing Balls</a></p>
 					<a>&#8226</a>
-					<a href="source/img/credits.html" style="color: black;" target="_blank">More (Icons and backgrounds)</a>
+					<a href="credits.html" style="color: black;" target="_blank">More (Icons and backgrounds)</a>
 				</div>
 			</div>
 		</div>
@@ -296,8 +269,8 @@
 		<div class="application" id="help">
 			<div class="windowFrameOverlay"></div>
 			<div class="titlebar">
-				<button class="closeWindow" id="closeHelp">×</button>
 				<a>How to use RDE</a>
+				<button class="closeWindow" id="closeHelp">×</button>
 				<button class="uncollapseWindow" id="uncollapseHelp">▼</button>
 				<button class="collapseWindow" id="collapseHelp">▲</button>
 			</div>
@@ -361,8 +334,6 @@
 						<button id="showTitlebarSettins">Titlebar settings</button>
 						<br>
 						<button id="showTranslucencySettings">Translucency settings</button>
-						<br>
-						<button id="showMenubarSettings">Menubar settings</button>
 					</div>
 					<br>
 					<a><i>These settings are still experimental, expect bugs</i></a>
@@ -507,7 +478,7 @@
 						<label for="generalOpacityAmount" id="generalOpacityText">1</label>
 					</div>
 					<hr>
-					<div id="menubarTranslucencySettings">
+					<div id="menubarSettings">
 						<h2>Menubar</h2>
 						<label for="menubarShareTranslucencySwitch">Control translucency individually?</label>
 						<input type="checkbox" id="menubarShareTranslucencySwitch">
@@ -516,18 +487,7 @@
 						<label for="menubarTranslucency" id="menubarTranslucencyText">1</label>
 					</div>
 				</div>
-
-				<div id="menubarSettings">
-					<h1>Menubar</h1>
-					<div id="generalTranslucency">
-						<h2>General</h2>
-						<label for="bottomMenuBarSwitch">Enable bottom menubar?</label>
-						<input type="checkbox" id="bottomMenuBarSwitch">
-					</div>
-				</div>
 			</div>
-
-			
 		</div>
 	</div>
 </body>
