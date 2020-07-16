@@ -989,7 +989,7 @@ $(function () {
         $('#closeBackPicker').click();
         $('#closeTerminal').click();
         $('#closeBrowser').click();
-        $('#closeHelp').hide();
+        $('#closeHelp').click();
         $('#closePathfinder').click();
         $('#closeAbout').click();
         $('#closeCustomization').click();
