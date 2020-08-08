@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <title>Terminal</title>
     <META HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="*">
     <style>
@@ -60,29 +60,10 @@
                         $("#rmrfNoRoot").css('display', 'none');
                         $("#unameR").css('display', 'none');
                         break;
-                    case 'rm -rf / --no-preserve-root':
-                        $("#neofetch").css('display', 'none');
-                        $("#rmrfNoRoot").css('display', 'block');
-                        $("#help").css('display', 'none');
-                        $("#ls").css('display', 'none');
-                        $("#notFound").css('display', 'none');
-                        $("#unameR").css('display', 'none');
-                        break;
-                    case 'sudo rm -rf / --no-preserve-root':
-                        $("#neofetch").css('display', 'none');
-                        $("#notFound").css('display', 'none');
-                        $("#ls").css('display', 'none');
-                        $("#help").css('display', 'none');
-                        $("#unameR").css('display', 'none');
-                        alert('🦀 Terminal is gone 🦀');
-                        $('body').css('background-color', 'red');
-                        $("#input").css('display', 'none');
-                        break;
                     case 'uname -r':
                         $("#unameR").css('display', 'block');
                         $("#neofetch").css('display', 'none');
                         $("#notFound").css('display', 'none');
-                        $("#rmrfNoRoot").css('display', 'none');
                         $("#ls").css('display', 'none');
                         break;
                     case 'neofetch':
@@ -99,12 +80,6 @@
                         $("#notFound").css('display', 'none');
                         $("#unameR").css('display', 'none');
                         break;
-                    case 'rpt update':
-                        alert('Still working on this feature');
-                        break;
-                    case 'echo':
-                        alert('Not yet implemeted');
-                        break;
                     case 'exit':
                         alert('Not implemented yet');
                         break;
@@ -113,7 +88,6 @@
                         $("#ls").css('display', 'none');
                         $("#help").css('display', 'none');
                         $("#neofetch").css('display', 'none');
-                        $("#response").html("Unrecognized command");
                         $("#unameR").css('display', 'none');
                 }
             }
@@ -133,8 +107,8 @@
 |[]|              |[]|      --------
 |  |              |  |      OS: Retro Desktop Enviornment
 |  |              |  |      Host: Waygate Miga ST 340
-|  |              |  |      Kernel: 0.0.2
-|  |______________|  |      Packages: 8 (rpt)
+|  |              |  |      Kernel: 0.0.4
+|  |______________|  |      Packages: 7 (rpt)
 |                    |      Shell: /system/rdsh
 |     ____________   |      DE: RDE
 |    | __      |  |  |      WM: RWM
@@ -144,10 +118,6 @@
 </pre>
     <pre id="ls">                
 note.txt   note2.txt   note3.txt
-    </pre>
-
-    <pre id="rmrfNoRoot">
-This command can only be run as root!
     </pre>
 
     <pre id="help">
@@ -160,7 +130,7 @@ neofetch - display system information
 Unrecognized command
     </pre>
     <pre id="unameR">
-Retro Kernel 0.0.1
+Retro Kernel 0.0.4
     </pre>
 </body>
 
