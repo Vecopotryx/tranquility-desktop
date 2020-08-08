@@ -42,11 +42,6 @@ body {
 	min-height: 0.66cm;
 	min-width: 10%;
 	border-radius: 4px;
-
-}
-#bouncingballs {
-	position: absolute;
-	background-color: #A9A8AE;
 }
 
 .application {
@@ -214,12 +209,6 @@ body {
 	width: 50%;
 	height: 60%;
 }
-#bouncingballs {
-	margin-top: 0.25cm;
-	margin-left: 62%;
-	width: 25%;
-	height: 50%;
-}
 #pathfinder {
 	margin-top: 15vh;
 	margin-left: 28%;
@@ -347,7 +336,7 @@ body {
 	display: none;
 }
 
-#terminalContent, #bouncingContent, #mediaContent, #browserContent, #pathfinderContent {
+#terminalContent, #mediaContent, #browserContent, #pathfinderContent {
 	border:none;
 }
 .frameOverlay {

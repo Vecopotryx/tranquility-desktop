@@ -14,7 +14,6 @@ var _bottomMenuBarEnabled = false;
 // focus releated stuff:
 var currentlyFocused;
 var mediaIndex;
-var bouncingIndex;
 var notesIndex;
 var backpickerIndex;
 var pathfinderIndex;
@@ -31,8 +30,6 @@ var demoClosed = false;
 // releated to collapsing functionality (helps keep track of required information):
 var mediaplayerHeight;
 var isMediaplayerCollapsed;
-var bouncingHeight;
-var isBouncingCollapsed;
 var notesHeight;
 var isNotesCollapsed;
 var pathfinderHeight;
@@ -64,14 +61,6 @@ var notesMarginLeft;
 var notesPositionTop;
 var notesPositionLeft;
 var isNotesMaximised;
-// bounce
-var bouncingHeightBeforeMax;
-var bouncingWidthBeforeMax;
-var bouncingMarginTop;
-var bouncingMarginLeft;
-var bouncingPositionTop;
-var bouncingPositionLeft;
-var isBouncingMaximised;
 // terminal
 var terminalHeightBeforeMax;
 var terminalWidthBeforeMax;
@@ -164,10 +153,8 @@ $(function () {
 $(document).ready(function () {
     unfocusNotes();
     unfocusMediaplayer();
-    unfocusBounce();
     $('#windowListNotes').show();
     $('#windowListChip').show();
-    $('#windowListBall').show();
 });
 
 function unfocusMediaplayer() {
@@ -175,13 +162,6 @@ function unfocusMediaplayer() {
     $('#mediaplayer .titlebar>a').css('color', _unfocusedTitlebarTextColor);
     $('#mediaplayer').css('filter', 'grayscale(60%)');
     $('#mediaplayer>.titlebar').css('background', _unfocusedTitlebarColor);
-}
-
-function unfocusBounce() {
-    $('#bouncingballs a').css('color', _unfocusedAppInterfaceTextColor);
-    $('#bouncingballs .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#bouncingballs').css('filter', 'grayscale(60%)');
-    $('#bouncingballs>.titlebar').css('background', _unfocusedTitlebarColor);
 }
 
 function unfocusNotes() {
@@ -249,7 +229,6 @@ function unfocusCustomizationSettings() {
 
 // (Unfocus everything)
 function unfocusAll() {
-    unfocusBounce();
     unfocusMediaplayer();
     unfocusNotes();
     unfocusBackPick();
@@ -263,7 +242,6 @@ function unfocusAll() {
 
 // *index stuff*
 function updateIndex() {
-    bouncingIndex = $('#bouncingballs').css('z-index');
     mediaIndex = $('#mediaplayer').css('z-index');
     notesIndex = $('#notes').css('z-index');
     backpickerIndex = $('#backgroundPicker').css('z-index');
@@ -276,7 +254,7 @@ function updateIndex() {
 }
 
 function getHighestIndex() {
-    return Math.max(mediaIndex, bouncingIndex, notesIndex, backpickerIndex, pathfinderIndex, terminalIndex, browserIndex, helpIndex, aboutIndex, customizeIndex);
+    return Math.max(mediaIndex, notesIndex, backpickerIndex, pathfinderIndex, terminalIndex, browserIndex, helpIndex, aboutIndex, customizeIndex);
 }
 
 // *focus windows*
@@ -289,18 +267,6 @@ function focusMediaplayer() {
     $('#mediaplayer>.titlebar').css('background', _titlebarFocusColor);
     $('#mediaplayer').css('filter', 'grayscale(0%)');
     currentlyFocused = "mediaplayer";
-}
-
-
-function focusBouncingballs() {
-    unfocusAll();
-    updateIndex();
-    bouncingIndex = getHighestIndex() + 1;
-    $('#bouncingballs').css('z-index', bouncingIndex);
-    $('#bouncingballs a').css('color', _titlebarTextColor);
-    $('#bouncingballs>.titlebar').css('background', _titlebarFocusColor);
-    $('#bouncingballs').css('filter', 'grayscale(0%)');
-    currentlyFocused = "bouncingballs";
 }
 
 function focusNotes() {
@@ -411,10 +377,6 @@ $(function () {
         focusMediaplayer();
     })
 
-    $('#bouncingballs').hover(function () {
-        focusBouncingballs();
-    })
-
     $('#notes').hover(function () {
         focusNotes();
     })
@@ -459,13 +421,6 @@ $(function () {
         $('#mediaplayer').hide();
         $('#windowListChip').hide();
         mediaClosed = true;
-    })
-
-    $("#closeBounce").click(function () {
-        $("#bouncingContent").attr('src', '');
-        $('#bouncingballs').hide();
-        $('#windowListBall').hide();
-        demoClosed = true;
     })
 
     $("#closeNotes").click(function () {
@@ -515,20 +470,6 @@ $(function () {
 
 // **opening functionality**
 $(function () {
-    // (Amiga demo / Bouncingballs)
-    $("#ballIcon, #ballText").click(function () {
-        $('#bouncingballs').show();
-        if (demoClosed) {
-            $('#bouncingContent').attr('src', 'http://www.coffeevortex.net/');
-        }
-        $("#uncollapseBouncing").click();
-        $('#bouncingballs').css('height', '50%');
-        isBouncingCollapsed = false;
-        demoClosed = false;
-        focusBouncingballs();
-        $('#windowListBall').show();
-    })
-
     // (Chip Player JS / Mediaplayer)
     $("#chipIcon, #chipText").click(function () {
         $('#mediaplayer').show();
@@ -641,17 +582,6 @@ $(function () {
         $('#uncollapseMedia').css('display', 'inline');
     })
 
-    // (Amiga demo / Bouncingballs)
-    $("#collapseBounce").click(function () {
-        isBouncingCollapsed = true;
-        bouncingHeight = $("#bouncingballs").css('height');
-        $('#bouncingContent').hide();
-        $('#bouncingballs').height(0);
-        $('#bouncingballs').resizable('disable');
-        $('#collapseBounce').css('display', 'none');
-        $('#uncollapseBounce').css('display', 'inline');
-    })
-
     $("#collapseNotes").click(function () {
         isNotesCollapsed = true;
         notesHeight = $("#notes").css('height');
@@ -736,18 +666,6 @@ $(function () {
             $('#uncollapseMedia').css('display', 'none');
         }
         isMediaplayerCollapsed = false;
-    })
-
-    // (Amiga demo / Bouncingballs)
-    $("#uncollapseBounce").click(function () {
-        if (isBouncingCollapsed) {
-            $('#bouncingContent').show();
-            $('#bouncingballs').height(bouncingHeight);
-            $('#bouncingballs').resizable('enable');
-            $('#collapseBounce').css('display', 'inline');
-            $('#uncollapseBounce').css('display', 'none');
-        }
-        isBouncingCollapsed = false;
     })
 
     $("#uncollapseNotes").click(function () {
@@ -870,31 +788,6 @@ function maximizeNotes() {
     }
 }
 
-function maximizeBounce() {
-    if (isBouncingMaximised) {
-        $('#bouncingballs').css('height', bouncingHeightBeforeMax);
-        $('#bouncingballs').css('width', bouncingWidthBeforeMax);
-        $('#bouncingballs').css('margin-top', bouncingMarginTop);
-        $('#bouncingballs').css('margin-left', bouncingMarginLeft);
-        $('#bouncingballs').css('top', bouncingPositionTop);
-        $('#bouncingballs').css('left', bouncingPositionLeft);
-        isBouncingMaximised = false;
-    } else {
-        bouncingHeightBeforeMax = $("#bouncingballs").css('height');
-        bouncingWidthBeforeMax = $("#bouncingballs").css('width');
-        bouncingMarginTop = $("#bouncingballs").css('margin-top');
-        bouncingMarginLeft = $("#bouncingballs").css('margin-left');
-        bouncingPositionTop = $("#bouncingballs").css('top');
-        bouncingPositionLeft = $("#bouncingballs").css('left');
-        $('#bouncingballs').css('top', '0.78cm')
-        $('#bouncingballs').css('left', '0.3%')
-        $('#bouncingballs').css('margin-left', '0.1%');
-        $('#bouncingballs').css('height', '95%');
-        $('#bouncingballs').css('width', '99%');
-        isBouncingMaximised = true;
-    }
-}
-
 function maximizeTerminal() {
     if (isTerminalMaximised) {
         $('#terminal').css('height', terminalHeightBeforeMax);
@@ -949,10 +842,6 @@ function maximizeBrowser() {
 $(function () {
     $('#mediaplayer').draggable().dblclick(function () {
         maximizeMedia();
-    });
-
-    $('#bouncingballs').draggable().dblclick(function () {
-        maximizeBounce();
     });
 
     $('#notes').draggable().dblclick(function () {
@@ -1017,7 +906,6 @@ $(function () {
         $('#closeAbout').click();
         $('#closeCustomization').click();
         // Show default applications
-        $('#bouncingballs').show();
         $('#mediaplayer').show();
         $('#notes').show();
         // Set default sizes
@@ -1027,9 +915,6 @@ $(function () {
         // mediaplayer
         $('#mediaplayer').css('width', '50%')
         $('#mediaplayer').css('height', '60%');
-        // bouncingballs
-        $('#bouncingballs').css('width', '25%')
-        $('#bouncingballs').css('height', '50%');
         // Set default position
         // notes
         $('#notes').css('top', '0.78cm')
@@ -1037,16 +922,9 @@ $(function () {
         // mediaplayer
         $('#mediaplayer').css('top', '0.78cm')
         $('#mediaplayer').css('left', '0.4%');
-        // bouncingballs
-        $('#bouncingballs').css('top', '0.78cm')
-        $('#bouncingballs').css('left', '0.4%');
         // populate iframes if empty
         if (mediaClosed) {
             $("#mediaContent").attr('src', 'https://mmontag.github.io/chip-player-js/');
-        }
-
-        if (demoClosed) {
-            $('#bouncingContent').attr('src', 'http://www.coffeevortex.net/');
         }
 
         // show iframes if collapsed
@@ -1054,11 +932,6 @@ $(function () {
             $("#uncollapseMedia").click
         }
         isMediaCollapsed = false;
-
-        if (isBouncingCollapsed) {
-            $("#collapseBounce").click
-        }
-        isBouncingCollapsed = false;
     })
 
     // Responsible for updating clock
@@ -1122,9 +995,6 @@ function closeCurrentlyFocused() {
         case 'mediaplayer':
             $('#closeMedia').click();
             break;
-        case 'bouncingballs':
-            $('#closeBounce').click();
-            break;
         case 'notes':
             $('#closeNotes').click();
             break;
@@ -1160,13 +1030,6 @@ function collapseCurrentlyFocused() {
                 $('#uncollapseMedia').click();
             } else {
                 $('#collapseMedia').click();
-            }
-            break;
-        case 'bouncingballs':
-            if (isBouncingCollapsed) {
-                $('#uncollapseBounce').click();
-            } else {
-                $('#collapseBounce').click();
             }
             break;
         case 'notes':
@@ -1225,9 +1088,6 @@ function maximizeCurrentlyFocused() {
     switch (currentlyFocused) {
         case 'mediaplayer':
             maximizeMedia();
-            break;
-        case 'bouncingballs':
-            maximizeBounce();
             break;
         case 'notes':
             maximizeNotes();
@@ -1939,10 +1799,6 @@ $(function () {
         $('#chipText').click();
     })
     
-    $('#bottomBallText').click(function () {
-        $('#ballText').click();
-    })
-    
     $('#bottomNotesText').click(function () {
         $('#notesText').click();
     })
@@ -2000,11 +1856,6 @@ $(function () {
         $("#uncollapseMedia").click();
     })
 
-    $('#windowListBall').hover(function () {
-        focusBouncingballs();
-        $("#uncollapseBounce").click();
-    })
-
     $('#windowListNotes').hover(function () {
         focusNotes();
         $("#uncollapseNotes").click();
@@ -2050,10 +1901,6 @@ $(function () {
         $("#closeMedia").click();
     })
 
-    $('#windowListBall').click(function () {
-        $("#closeBounce").click();
-    })
-
     $('#windowListNotes').click(function () {
         focusNotes();
         $("#closeNotes").click();
@@ -2094,7 +1941,3 @@ $(function () {
         $("#closeHelp").click();
     })
 });
-
-// (I am very well aware about the fact that this javascript file is a mess, but I only started working with JS about one-two months ago)
-// (I decided to go for jQuery since that was the first results I got when I searched for a framework for DOM manipulation. I am considering perhaps moving from jQuery to something more modern)
-// (Commented on April 14, 2020)
