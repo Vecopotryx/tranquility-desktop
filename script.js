@@ -25,7 +25,6 @@ var customizeIndex;
 
 // related to closing functionality
 var mediaClosed = false;
-var demoClosed = false;
 
 // releated to collapsing functionality (helps keep track of required information):
 var mediaplayerHeight;
@@ -190,7 +189,6 @@ function unfocusPathfinder() {
 }
 
 function unfocusTerminal() {
-    $('#terminal a').css('color', _unfocusedAppInterfaceTextColor);
     $('#terminal .titlebar>a').css('color', _unfocusedTitlebarTextColor);
     $('#terminal').css('filter', 'grayscale(60%');
     $('#terminal>.titlebar').css('background', _unfocusedTitlebarColor);
@@ -311,10 +309,10 @@ function focusTerminal() {
     updateIndex();
     terminalIndex = getHighestIndex() + 1;
     $('#terminal').css('z-index', terminalIndex);
-    $('#terminal a').css('color', _appInterfaceTextColor);
     $('#terminal .titlebar>a').css('color', _titlebarTextColor);
     $('#terminal>.titlebar').css('background', _titlebarFocusColor);
     $('#terminal').css('filter', 'grayscale(0%)');
+    $("#terminalInput").focus();
     currentlyFocused = "terminal";
 }
 
@@ -413,7 +411,6 @@ $(function () {
 
 // **closing functionality**
 var mediaClosed = false;
-var demoClosed = false;
 
 $(function () {
     $("#closeMedia").click(function () {
@@ -1147,10 +1144,10 @@ function loadingDots() {
 
 // *Background Picker*
 $(function () {
-    $(document).on("keypress", "input[type=text]", function (e) {
-        if (e.which == 13) {
-            $('#randomFromUnsplash').click();
-        }
+   $('#randomSearchTerm').on('keypress', function (e) {
+    if(e.which === 13){
+        $('#randomFromUnsplash').click();
+    }
     });
 
     $('#randomFromUnsplash').click(function () {
@@ -1272,6 +1269,9 @@ function updateTerminalBackground() {
     $('#terminal').css('background-color', convertHex(terminalHexColor, terminalOpacityValue));
 }
 
+function updateTerminalTextColor(terminalTextColorIn) {
+    $('#terminalContent > *').css('color', terminalTextColorIn);
+}
 
 
 // *Customization window*
@@ -1940,4 +1940,61 @@ $(function () {
         focusHelp();
         $("#closeHelp").click();
     })
+});
+
+// terminal stuff
+$(function () {
+    $('#terminalInput').on('keypress', function (e) {
+        if(e.which === 13){
+            var terminalInput = $('#terminalInput').val().toLowerCase();
+            switch (terminalInput) {
+                case 'ls':
+                    $("#terminalHelp").css('display', 'none');
+                    $("#terminalLs").css('display', 'block');
+                    $("#terminalNeofetch").css('display', 'none');
+                    $("#terminalNotFound").css('display', 'none');
+                    $("#terminalUnameR").css('display', 'none');
+                    break;
+                case 'uname -r':
+                    $("#terminalHelp").css('display', 'none');
+                    $("#terminalLs").css('display', 'none');
+                    $("#terminalNeofetch").css('display', 'none');
+                    $("#terminalNotFound").css('display', 'none');
+                    $("#terminalUnameR").css('display', 'block');
+                    break;
+                case 'neofetch':
+                    $("#terminalHelp").css('display', 'none');
+                    $("#terminalLs").css('display', 'none');
+                    $("#terminalNeofetch").css('display', 'block');
+                    $("#terminalNotFound").css('display', 'none');
+                    $("#terminalUnameR").css('display', 'none');
+                    break;
+                case 'help':
+                    $("#terminalHelp").css('display', 'block');
+                    $("#terminalLs").css('display', 'none');
+                    $("#terminalNeofetch").css('display', 'none');
+                    $("#terminalNotFound").css('display', 'none');
+                    $("#terminalUnameR").css('display', 'none');
+                    break;
+                case 'exit':
+                    $('#terminalInput').val('');
+                    $('#closeTerminal').click();
+                    break;
+                case 'clear':
+                    $('#terminalInput').val('');
+                    $("#terminalHelp").css('display', 'none');
+                    $("#terminalLs").css('display', 'none');
+                    $("#terminalNeofetch").css('display', 'none');
+                    $("#terminalNotFound").css('display', 'none');
+                    $("#terminalUnameR").css('display', 'none');
+                    break;
+                default:
+                    $("#terminalHelp").css('display', 'none');
+                    $("#terminalLs").css('display', 'none');
+                    $("#terminalNeofetch").css('display', 'none');
+                    $("#terminalNotFound").css('display', 'block');
+                    $("#terminalUnameR").css('display', 'none');
+            }
+        }
+    });
 });
