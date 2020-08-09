@@ -27,6 +27,7 @@ var customizeIndex;
 var mediaClosed = false;
 
 // releated to collapsing functionality (helps keep track of required information):
+/*
 var mediaplayerHeight;
 var isMediaplayerCollapsed;
 var notesHeight;
@@ -43,6 +44,7 @@ var backpickerHeight;
 var isBackpickerCollapsed;
 var customizationHeight;
 var isCustomizationCollapsed;
+*/
 
 // related to maximize functionality (helps keep track of required infromation)
 var mediaHeightBeforeMax;
@@ -210,6 +212,7 @@ function focusWindow(){
 }
 
 var previousFocus;
+var currentlyFocusedCapitalized;
 
 function getActive(activeIn){
     previousFocus = currentlyFocused;
@@ -226,7 +229,6 @@ $(function () {
         getActive(this.id);
     });
 
-    var currentlyFocusedList;
     
     $(".closeWindow").on('click', function(event){
         if(currentlyFocused == "mediaplayer"){
@@ -242,14 +244,24 @@ $(function () {
                 $('#windowListBrowser').hide();
         } else {
             $('#' + currentlyFocused).hide();
-            currentlyFocusedList = currentlyFocused.substring(0, 1).toUpperCase() + currentlyFocused.substring(1);
-            $('#windowList' + currentlyFocusedList).hide();
-            console.log(currentlyFocusedList);
+            capitalizeString(currentlyFocused);
+            $('#windowList' + capitalizeString(currentlyFocused)).hide();
         }
     });
 
 
 });
+
+function capitalizeString(stringIn){
+    return stringIn.substring(0, 1).toUpperCase() + stringIn.substring(1);
+}
+
+/*
+function openWindow(windowIn){
+    $('#' + windowIn).show();
+
+}
+*/
 
 // **opening functionality**
 $(function () {
@@ -263,7 +275,7 @@ $(function () {
         $('#mediaplayer').css('height', '60%');
         isMediaCollapsed = false;
         mediaClosed = false;
-        focusMediaplayer();
+        getActive("mediaplayer");
         $('#windowListChip').show();
     })
 
@@ -352,95 +364,73 @@ $(function () {
     })
 });
 
+// I won't implement collapse functionality for background picker and customization settings right now.
+// They will remain broken for now.
+// But I am planning on combining them into one reworked settings window. Which will get proper collapse functionality.
+// I've removed the collapse buttons on these windows.
+
+function collapseWindow(windowIn){
+    if(currentlyFocused == "mediaplayer"){
+        $('#mediaContent').hide();
+    } else if(currentlyFocused == "pathfinder"){
+        $('#pathfinderContent').hide();
+    } else if(currentlyFocused == "browserWindow"){
+        $('#browserContent').hide();
+    }
+    /*
+    *Will revisit this later
+    mediaplayerHeight = $("#mediaplayer").css('height');
+    notesHeight = $("#notes").css('height');
+    pathfinderHeight = $("#pathfinder").css('height');
+    terminalHeight = $("#terminal").css('height');
+    browserHeight = $("#browserWindow").css('height');
+    helpHeight = $("#help").css('height');
+    */
+    $('#' + windowIn).height(0);
+    $('#' + windowIn).resizable('disable');
+    $('#collapse' + capitalizeString(windowIn)).css('display', 'none');
+    $('#uncollapse' + capitalizeString(windowIn)).css('display', 'inline');
+    console.log("this = " + '#uncollapse' + capitalizeString(windowIn));
+}
+
+function uncollapseWindow(windowIn){
+    if(currentlyFocused == "mediaplayer"){
+        $('#mediaContent').show();
+    } else if(currentlyFocused == "pathfinder"){
+        $('#pathfinderContent').show();
+    } else if(currentlyFocused == "browserWindow"){
+        $('#browserContent').show();
+    }
+    $('#' + windowIn).height("50%");
+    $('#' + windowIn).resizable('disable');
+    $('#collapse' + capitalizeString(windowIn)).css('display', 'none');
+    // $('#uncollapse' + capitalizeString(windowIn)).css('display', 'inline');
+}
+
 // **Collapsing functionality**
 $(function () {
-    // (Chip Player JS / Mediaplayer)
-    $("#collapseMedia").click(function () {
-        isMediaplayerCollapsed = true;
-        mediaplayerHeight = $("#mediaplayer").css('height');
-        $('#mediaContent').hide();
-        $('#mediaplayer').height(0);
-        $('#mediaplayer').resizable('disable');
-        $('#collapseMedia').css('display', 'none');
-        $('#uncollapseMedia').css('display', 'inline');
-    })
+    $('.collapseWindow').click(function () {
+        if(this.innerHTML == "▲▲"){
+            // collapseWindow(currentlyFocused);
+            this.innerHTML = "▼▼";
+        } else {
+            this.innerHTML = "▲▲";
+        }
 
-    $("#collapseNotes").click(function () {
-        isNotesCollapsed = true;
-        notesHeight = $("#notes").css('height');
-        $('#notes').height(0);
-        $('#notes').resizable('disable');
-        $('#collapseNotes').css('display', 'none');
-        $('#uncollapseNotes').css('display', 'inline');
-    })
+        // By doing this I could use the same button to collapse it and uncollapse it.
+        
+    });
 
-    $("#collapsePathfinder").click(function () {
-        isPathfinderCollapsed = true;
-        pathfinderHeight = $("#pathfinder").css('height');
-        $('#pathfinderContent').hide();
-        $('#pathfinder').height(0);
-        $('#pathfinder').resizable('disable');
-        $('#collapsePathfinder').css('display', 'none');
-        $('#uncollapsePathfinder').css('display', 'inline');
-    })
-
-    $("#collapseTerminal").click(function () {
-        isTerminalCollapsed = true;
-        terminalHeight = $("#terminal").css('height');
-        $('#terminalContent').hide();
-        $('#terminal').height(0);
-        $('#terminal').resizable('disable');
-        $('#collapseTerminal').css('display', 'none');
-        $('#uncollapseTerminal').css('display', 'inline');
-    })
-
-    $("#collapseBrowser").click(function () {
-        isBrowserCollapsed = true;
-        browserHeight = $("#browserWindow").css('height');
-        $('#browserContent').hide();
-        $('#browserWindow').height(0);
-        $('#browserWindow').resizable('disable');
-        $('#collapseBrowser').css('display', 'none');
-        $('#uncollapseBrowser').css('display', 'inline');
-    })
-
-    $("#collapseHelp").click(function () {
-        isHelpCollapsed = true;
-        helpHeight = $("#help").css('height');
-        $('#helpContent').hide();
-        $('#help').height(0);
-        $('#help').resizable('disable');
-        $('#collapseHelp').css('display', 'none');
-        $('#uncollapseHelp').css('display', 'inline');
-    })
-
-    $("#collapseBackPicker").click(function () {
-        isBackpickerCollapsed = true;
-        backpickerHeight = $("#backgroundPicker").css('height');
-        $('#backgroundContainer').hide();
-        $('#backgroundPicker').css('min-height', '0px');
-        $('#backgroundPicker').css('min-width', '0px');
-        $('#backgroundPicker').height(0);
-        $('#backgroundPicker').resizable('disable');
-        $('#collapseBackPicker').css('display', 'none');
-        $('#uncollapseBackPicker').css('display', 'inline');
-    })
-
-    $("#collapseCustomization").click(function () {
-        isCustomizationCollapsed = true;
-        customizationHeight = $("#customizationSettings").css('height');
-        $('#windowSettings').hide();
-        $('#customizationSettings').height(0);
-        $('#customizationSettings').resizable('disable');
-        $('#collapseCustomization').css('display', 'none');
-        $('#uncollapseCustomization').css('display', 'inline');
-    })
+    $('.uncollapseWindow').click(function () {
+        collapseWindow(currentlyFocused);
+    });
 });
 
 // **Uncollapse**
 $(function () {
+    /*
     // (Chip Player JS / Mediaplayer)
-    $("#uncollapseMedia").click(function () {
+    $("#uncollapseMediaplayer").click(function () {
         if (isMediaplayerCollapsed) {
             $('#mediaContent').show();
             $('#mediaplayer').height(mediaplayerHeight);
@@ -516,6 +506,7 @@ $(function () {
         }
         isCustomizationCollapsed = false;
     })
+    */
 });
 
 
@@ -805,6 +796,7 @@ function closeCurrentlyFocused() {
     }
 }
 
+// Broken after changes to collapse functionality. It needs to be reworked.
 // Utilized by the keyboard shortcut Alt + W. Emulates click on collapse/uncollapse buttons
 function collapseCurrentlyFocused() {
     switch (currentlyFocused) {

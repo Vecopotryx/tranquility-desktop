@@ -89,8 +89,8 @@
 			<div class="titlebar">
 				<button class="closeWindow">×</button>
 				<a>Chip Player JS</a>
-				<button class="uncollapseWindow">▼</button>
-				<button class="collapseWindow">▲</button>
+				<button class="uncollapseWindow" id="uncollapseMediaplayer">▼</button>
+				<button class="collapseWindow" id="collapseMediaplayer">▲</button>
 			</div>
 			<iframe height="93%" id="mediaContent" name="mediaContent"
 				src="https://mmontag.github.io/chip-player-js/browse/ModArchives?play=ModArchives%2Fan-path.xm"
@@ -104,8 +104,8 @@
 			<div class="titlebar">
 				<button class="closeWindow">×</button>
 				<a>Notes</a>
-				<button class="uncollapseWindow">▼</button>
-				<button class="collapseWindow">▲</button>
+				<button class="uncollapseWindow" id="uncollapseNotes">▼</button>
+				<button class="collapseWindow" id="collapseNotes">▲</button>
 			</div>
 			<div id="notesContent">
 				<h1>Work in Progress</h1>
@@ -129,8 +129,6 @@
 			<div class="titlebar">
 				<button class="closeWindow">×</button>
 				<a>Background Picker</a>
-				<button class="uncollapseWindow">▼</button>
-				<button class="collapseWindow">▲</button>
 			</div>
 			<div id="backgroundContainer">
 				<div id="backgroundPick">
@@ -195,8 +193,8 @@
 			<div class="titlebar">
 				<button class="closeWindow">×</button>
 				<a>Documents - Pathfinder</a>
-				<button class="uncollapseWindow">▼</button>
-				<button class="collapseWindow">▲</button>
+				<button class="uncollapseWindow" id="collapsePathfinder">▼</button>
+				<button class="collapseWindow" id="uncollapsePathfinder">▲</button>
 			</div>
 			<iframe height="90%" id="pathfinderContent" name="pathfinderContent" src="pathfinder.html" width="99.5%">
 				<p>Your browser does not support iframes.</p>
@@ -209,8 +207,8 @@
 				<button class="closeWindow">×</button>
 				<button class="closeWindow" id="customizeTerminal">&#9874;</button>
 				<a>Terminal</a>
-				<button class="uncollapseWindow">▼</button>
-				<button class="collapseWindow">▲</button>
+				<button class="uncollapseWindow" id="uncollapseTerminal">▼</button>
+				<button class="collapseWindow" id="collapseTerminal">▲</button>
 			</div>
 			<div id="terminalSettings">
 				<label for="terminalTransparencySwitch">Enable transparency?</label>
@@ -294,8 +292,8 @@ Retro Kernel 0.0.4
 				<button class="closeWindow">×</button>
 				<button class="closeWindow" id="customPicker" style="font-size: 75%;">&#9776;</button>
 				<a>Getpost Gavinator</a>
-				<button class="uncollapseWindow">▼</button>
-				<button class="collapseWindow">▲</button>
+				<button class="uncollapseWindow" id="uncollapseBrowserWindow">▼</button>
+				<button class="collapseWindow" id="collapseBrowserWindow">▲</button>
 			</div>
 			<div id="browserInfo">
 				<img src="source/img/Icon_16.ico" width="40vw">
@@ -314,8 +312,8 @@ Retro Kernel 0.0.4
 			<div class="titlebar">
 				<button class="closeWindow">×</button>
 				<a>How to use RDE</a>
-				<button class="uncollapseWindow">▼</button>
-				<button class="collapseWindow">▲</button>
+				<button class="uncollapseWindow" id="uncollapseHelp">▼</button>
+				<button class="collapseWindow" id="collapseHelp">▲</button>
 			</div>
 			<div id="helpContent">
 				<h1>How to use Retro Desktop Environment</h1>
@@ -349,8 +347,6 @@ Retro Kernel 0.0.4
 			<div class="titlebar">
 				<button class="closeWindow">×</button>
 				<a>Customize</a>
-				<button class="uncollapseWindow">▼</button>
-				<button class="collapseWindow">▲</button>
 			</div>
 			<div id="windowSettings">
 				<div id="generalInterface">
