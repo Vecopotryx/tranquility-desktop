@@ -46,6 +46,7 @@ var customizationHeight;
 var isCustomizationCollapsed;
 */
 
+/*
 // related to maximize functionality (helps keep track of required infromation)
 var mediaHeightBeforeMax;
 var mediaWidthBeforeMax;
@@ -78,6 +79,7 @@ var browserMarginLeft;
 var browserPositionTop;
 var browserPositionLeft;
 var isBrowserMaximised;
+*/
 
 // for clock
 var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -388,9 +390,6 @@ function collapseWindow(windowIn){
     */
     $('#' + windowIn).height(0);
     $('#' + windowIn).resizable('disable');
-    $('#collapse' + capitalizeString(windowIn)).css('display', 'none');
-    $('#uncollapse' + capitalizeString(windowIn)).css('display', 'inline');
-    console.log("this = " + '#uncollapse' + capitalizeString(windowIn));
 }
 
 function uncollapseWindow(windowIn){
@@ -401,115 +400,25 @@ function uncollapseWindow(windowIn){
     } else if(currentlyFocused == "browserWindow"){
         $('#browserContent').show();
     }
-    $('#' + windowIn).height("50%");
-    $('#' + windowIn).resizable('disable');
-    $('#collapse' + capitalizeString(windowIn)).css('display', 'none');
-    // $('#uncollapse' + capitalizeString(windowIn)).css('display', 'inline');
+    // currently using fixed height on uncollapse. Will try to reimplement some effective way to store previous height.
+    $('#' + windowIn).height("75%");
+    $('#' + windowIn).resizable('enable');
 }
 
 // **Collapsing functionality**
 $(function () {
     $('.collapseWindow').click(function () {
-        if(this.innerHTML == "▲▲"){
-            // collapseWindow(currentlyFocused);
-            this.innerHTML = "▼▼";
+        if(this.innerHTML == "▲"){
+            collapseWindow(currentlyFocused);
+            this.innerHTML = "▼";
         } else {
-            this.innerHTML = "▲▲";
-        }
-
-        // By doing this I could use the same button to collapse it and uncollapse it.
-        
-    });
-
-    $('.uncollapseWindow').click(function () {
-        collapseWindow(currentlyFocused);
+            this.innerHTML = "▲";
+            uncollapseWindow(currentlyFocused);
+        }        
     });
 });
 
-// **Uncollapse**
-$(function () {
-    /*
-    // (Chip Player JS / Mediaplayer)
-    $("#uncollapseMediaplayer").click(function () {
-        if (isMediaplayerCollapsed) {
-            $('#mediaContent').show();
-            $('#mediaplayer').height(mediaplayerHeight);
-            $('#mediaplayer').resizable('enable');
-            $('#collapseMedia').css('display', 'inline');
-            $('#uncollapseMedia').css('display', 'none');
-        }
-        isMediaplayerCollapsed = false;
-    })
-
-    $("#uncollapseNotes").click(function () {
-        if (isNotesCollapsed) {
-            $('#notes').height(notesHeight);
-            $('#notes').resizable('enable');
-            $('#collapseNotes').css('display', 'inline');
-            $('#uncollapseNotes').css('display', 'none');
-        }
-        isNotesCollapsed = false;
-    })
-
-    $("#uncollapsePathfinder").click(function () {
-        if (isPathfinderCollapsed) {
-            $('#pathfinderContent').show();
-            $('#pathfinder').height(pathfinderHeight);
-            $('#pathfinder').resizable('enable');
-            $('#collapsePathfinder').css('display', 'inline');
-            $('#uncollapsePathfinder').css('display', 'none');
-        }
-        isPathfinderCollapsed = false;
-    })
-
-
-    $("#uncollapseTerminal").click(function () {
-        if (isTerminalCollapsed) {
-            $('#terminalContent').show();
-            $('#terminal').height(terminalHeight);
-            $('#terminal').resizable('enable');
-            $('#collapseTerminal').css('display', 'inline');
-            $('#uncollapseTerminal').css('display', 'none');
-        }
-        isTerminalCollapsed = false;
-    })
-
-    $("#uncollapseBrowser").click(function () {
-        if (isBrowserCollapsed) {
-            $('#browserContent').show();
-            $('#browserWindow').height(browserHeight);
-            $('#browserWindow').resizable('enable');
-            $('#collapseBrowser').css('display', 'inline');
-            $('#uncollapseBrowser').css('display', 'none');
-        }
-        isBrowserCollapsed = false;
-    })
-
-    $("#uncollapseHelp").click(function () {
-        if (isHelpCollapsed) {
-            $('#helpContent').show();
-            $('#help').height(helpHeight);
-            $('#help').resizable('enable');
-            $('#collapseHelp').css('display', 'inline');
-            $('#uncollapseHelp').css('display', 'none');
-        }
-        isHelpCollapsed = false;
-    })
-
-    $("#uncollapseCustomization").click(function () {
-        if (isCustomizationCollapsed) {
-            $('#customizationSettings').height(customizationHeight);
-            $('#customizationSettings').resizable('enable');
-            $('#windowSettings').show();
-            $('#uncollapseCustomization').css('display', 'inline');
-            $('#collapseCustomization').css('display', 'none');
-        }
-        isCustomizationCollapsed = false;
-    })
-    */
-});
-
-
+/*
 // **Maximise functionality**
 
 function maximizeMedia() {
@@ -630,6 +539,7 @@ $(function () {
         maximizeBrowser();
     });
 });
+*/
 
 // **Menubar**
 $(function () {
