@@ -214,12 +214,10 @@ function focusWindow(){
 }
 
 var previousFocus;
-var currentlyFocusedCapitalized;
 
 function getActive(activeIn){
     previousFocus = currentlyFocused;
     currentlyFocused = activeIn;
-    console.log(currentlyFocused);
     focusWindow();
 }
 
@@ -233,25 +231,27 @@ $(function () {
 
     
     $(".closeWindow").on('click', function(event){
-        if(currentlyFocused == "mediaplayer"){
-            $("#mediaContent").attr('src', '');
-            $('#mediaplayer').hide();
-            $('#windowListChip').hide();
-            mediaClosed = true;
-        } else if(currentlyFocused == "browserWindow") {
-                $('#browserContent').hide();
-                $('#browserInfo').show();
-                $('#browserContent').attr('src', '');
-                $('#browserWindow').hide();
-                $('#windowListBrowser').hide();
-        } else {
-            $('#' + currentlyFocused).hide();
-        }
-        $('#windowList' + capitalizeString(currentlyFocused)).hide();
+        closeWindow(currentlyFocused);
     });
-
-
 });
+
+function closeWindow(windowIn){
+    if(windowIn == "mediaplayer"){
+        $("#mediaContent").attr('src', '');
+        $('#mediaplayer').hide();
+        $('#windowListChip').hide();
+        mediaClosed = true;
+    } else if(windowIn == "browserWindow") {
+            $('#browserContent').hide();
+            $('#browserInfo').show();
+            $('#browserContent').attr('src', '');
+            $('#browserWindow').hide();
+            $('#windowListBrowser').hide();
+    } else {
+        $('#' + windowIn).hide();
+    }
+    $('#windowList' + capitalizeString(windowIn)).hide();
+}
 
 function capitalizeString(stringIn){
     return stringIn.substring(0, 1).toUpperCase() + stringIn.substring(1);
@@ -621,16 +621,18 @@ $(document).keydown(function (e) {
         }
         // If pressing Alt + Q, then close the currently focused window
         if (down[0] === 18 && down[1] === 81) {
-            closeCurrentlyFocused();
+            closeWindow(currentlyFocused);
         }
         // If pressing Alt + W, then collapse the currently focused window
         if (down[0] === 18 && down[1] === 87) {
-            collapseCurrentlyFocused();
+            $('#' + currentlyFocused).find('.collapseWindow').click();
         }
+        /*
         // If pressing Alt + F, then maximize the currently focused window (If supported)
         if (down[0] === 18 && down[1] === 70) {
             maximizeCurrentlyFocused();
         }
+        */
     }
     map[e.keyCode] = true;
 }).keyup(function (e) {
@@ -639,120 +641,6 @@ $(document).keydown(function (e) {
     $('.frameOverlay').fadeOut('fast');
     $('.windowFrameOverlay').fadeOut('fast');
 });
-
-// Utilized by the keyboard shortcut Alt + Q. Emulates click on close buttons
-function closeCurrentlyFocused() {
-    switch (currentlyFocused) {
-        case 'mediaplayer':
-            $('#closeMedia').click();
-            break;
-        case 'notes':
-            $('#closeNotes').click();
-            break;
-        case 'backgroundPicker':
-            $('#closeBackPicker').click();
-            break;
-        case 'pathfinder':
-            $('#closePathfinder').click();
-            break;
-        case 'terminal':
-            $('#closeTerminal').click();
-            break;
-        case 'browser':
-            $('#closeBrowser').click();
-            break;
-        case 'help':
-            $('#closeHelp').click();
-            break;
-        case 'about':
-            $('#closeAbout').click();
-            break;
-        case 'customization':
-            $('#closeCustomization').click();
-            break;
-    }
-}
-
-// Broken after changes to collapse functionality. It needs to be reworked.
-// Utilized by the keyboard shortcut Alt + W. Emulates click on collapse/uncollapse buttons
-function collapseCurrentlyFocused() {
-    switch (currentlyFocused) {
-        case 'mediaplayer':
-            if (isMediaplayerCollapsed) {
-                $('#uncollapseMedia').click();
-            } else {
-                $('#collapseMedia').click();
-            }
-            break;
-        case 'notes':
-            if (isNotesCollapsed) {
-                $('#uncollapseNotes').click();
-            } else {
-                $('#collapseNotes').click();
-            }
-            break;
-        case 'backgroundPicker':
-            if (isBackpickerCollapsed) {
-                $('#uncollapseBackPicker').click();
-            } else {
-                $('#collapseBackPicker').click();
-            }
-            break;
-        case 'pathfinder':
-            if (isPathfinderCollapsed) {
-                $('#uncollapsePathfinder').click();
-            } else {
-                $('#collapsePathfinder').click();
-            }
-            break;
-        case 'terminal':
-            if (isTerminalCollapsed) {
-                $('#uncollapseTerminal').click();
-            } else {
-                $('#collapseTerminal').click();
-            }
-            break;
-        case 'browser':
-            if (isBrowserCollapsed) {
-                $('#uncollapseBrowser').click();
-            } else {
-                $('#collapseBrowser').click();
-            }
-            break;
-        case 'help':
-            if (isMediaplayerCollapsed) {
-                $('#uncollapseMedia').click();
-            } else {
-                $('#collapseMedia').click();
-            }
-            break;
-        case 'help':
-            if (isCustomizationCollapsed) {
-                $('#uncollapseCustomization').click();
-            } else {
-                $('#collapseCustomization').click();
-            }
-            break;
-    }
-}
-
-function maximizeCurrentlyFocused() {
-    switch (currentlyFocused) {
-        case 'mediaplayer':
-            maximizeMedia();
-            break;
-        case 'notes':
-            maximizeNotes();
-            break;
-        case 'terminal':
-            maximizeTerminal();
-            break;
-        case 'browser':
-            maximizeBrowser();
-            break;
-    }
-}
-
 
 // **Application stuff**
 
