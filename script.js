@@ -150,92 +150,30 @@ $(function () {
 // *unfocus*
 // unfocus applications on load
 $(document).ready(function () {
-    unfocusNotes();
-    unfocusMediaplayer();
+    previousFocus = "notes";
+    unfocusWindow();
+    previousFocus = "mediaplayer";
+    unfocusWindow();
     $('#windowListNotes').show();
     $('#windowListChip').show();
 });
 
-function unfocusMediaplayer() {
-    $('#mediaplayer a').css('color', _unfocusedAppInterfaceTextColor);
-    $('#mediaplayer .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#mediaplayer').css('filter', 'grayscale(60%)');
-    $('#mediaplayer>.titlebar').css('background', _unfocusedTitlebarColor);
-}
+function unfocusWindow(){
+    $('#' + previousFocus).css('filter', 'grayscale(60%)');
+    $('#' + previousFocus).css('color', _unfocusedAppInterfaceTextColor);
+    $('#' + previousFocus + ' .titlebar>a').css('color', _unfocusedTitlebarTextColor);
+    $('#' + previousFocus + '>.titlebar').css('background', _unfocusedTitlebarColor);
 
-function unfocusNotes() {
-    $('#notes a').css('color', _unfocusedAppInterfaceTextColor);
-    $('#notes .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#notesContent a').css('color', _unfocusedAppInterfaceTextColor);
-    $('#notesContent h1').css('color', _unfocusedAppInterfaceTextColor);
-    $('#notesContent h2').css('color', _unfocusedAppInterfaceTextColor);
-    $('#notesContent p').css('color', _unfocusedAppInterfaceTextColor);
-    $('#notes').css('filter', 'grayscale(10%)');
-    $('#notes>.titlebar').css('background', _unfocusedTitlebarColor);
-}
+    if(previousFocus == "about" || previousFocus == "help" || previousFocus == "notes"){
+        $('#' + previousFocus + ' h1').css('color', _unfocusedAppInterfaceTextColor);
+        $('#' + previousFocus + ' h2').css('color', _unfocusedAppInterfaceTextColor);
+        $('#' + previousFocus + ' p').css('color', _unfocusedAppInterfaceTextColor);
+        $('#' + previousFocus + ' a').css('color', _unfocusedAppInterfaceTextColor);
+    }
 
-function unfocusBackPick() {
-    $('#backgroundPicker a').css('color', _unfocusedAppInterfaceTextColor);
-    $('#backgroundPicker .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#backgroundPicker').css('filter', 'grayscale(60%)');
-    $('#backgroundPicker>.titlebar').css('background', _unfocusedTitlebarColor);
-}
-
-function unfocusPathfinder() {
-    $('#pathfinder a').css('color', _unfocusedAppInterfaceTextColor);
-    $('#pathfinder .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#pathfinder').css('filter', 'grayscale(60%');
-    $('#pathfinder>.titlebar').css('background', _unfocusedTitlebarColor);
-}
-
-function unfocusTerminal() {
-    $('#terminal .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#terminal').css('filter', 'grayscale(60%');
-    $('#terminal>.titlebar').css('background', _unfocusedTitlebarColor);
-}
-
-function unfocusBrowser() {
-    $('#browserWindow a').css('color', _unfocusedAppInterfaceTextColor);
-    $('#browserWindow .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#browserWindow').css('filter', 'grayscale(60%');
-    $('#browserWindow>.titlebar').css('background', _unfocusedTitlebarColor);
-}
-
-function unfocusHelp() {
-    $('#help a').css('color', _unfocusedAppInterfaceTextColor);
-    $('#help .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#help p').css('color', _unfocusedAppInterfaceTextColor);
-    $('#help h1').css('color', _unfocusedAppInterfaceTextColor);
-    $('#help h2').css('color', _unfocusedAppInterfaceTextColor);
-    $('#help').css('filter', 'grayscale(60%');
-    $('#help>.titlebar').css('background', _unfocusedTitlebarColor);
-}
-
-function unfocusAbout() {
-    $('#about a').css('color', _unfocusedTitlebarTextColor);
-    $('#about .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#about').css('filter', 'grayscale(60%');
-    $('#about p').css('color', _unfocusedTitlebarTextColor);
-    $('#about>.titlebar').css('background', _unfocusedTitlebarColor);
-}
-
-function unfocusCustomizationSettings() {
-    $('#customizationSettings .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#customizationSettings').css('filter', 'grayscale(60%');
-    $('#customizationSettings>.titlebar').css('background', _unfocusedTitlebarColor);
-}
-
-// (Unfocus everything)
-function unfocusAll() {
-    unfocusMediaplayer();
-    unfocusNotes();
-    unfocusBackPick();
-    unfocusPathfinder();
-    unfocusTerminal();
-    unfocusBrowser();
-    unfocusHelp();
-    unfocusAbout();
-    unfocusCustomizationSettings();
+    if(previousFocus == "notes"){
+        $('#notes').css('filter', 'grayscale(10%)');
+    }
 }
 
 // *index stuff*
@@ -256,9 +194,8 @@ function getHighestIndex() {
 }
 
 function focusWindow(){
-    unfocusAll();
+    unfocusWindow();
     updateIndex();
-    console.log('#' + currentlyFocused);
     $('#' + currentlyFocused).css('filter', 'grayscale(0%)');
     $('#' + currentlyFocused).css('z-index', getHighestIndex() + 1);
     $('#' + currentlyFocused).css('color', _appInterfaceTextColor);
@@ -270,7 +207,15 @@ function focusWindow(){
         $('#' + currentlyFocused + ' p').css('color', _appInterfaceTextColor);
         $('#' + currentlyFocused + ' a').css('color', _appInterfaceTextColor);
     }
+}
 
+var previousFocus;
+
+function getActive(activeIn){
+    previousFocus = currentlyFocused;
+    currentlyFocused = activeIn;
+    console.log(currentlyFocused);
+    focusWindow();
 }
 
 // **closing functionality**
@@ -278,9 +223,7 @@ var mediaClosed = false;
 
 $(function () {
     $('.application').mouseover(function () {
-        currentlyFocused = this.id;
-        console.log(currentlyFocused);
-        focusWindow();
+        getActive(this.id);
     });
 
     var currentlyFocusedList;
@@ -303,7 +246,6 @@ $(function () {
             $('#windowList' + currentlyFocusedList).hide();
             console.log(currentlyFocusedList);
         }
-
     });
 
 
