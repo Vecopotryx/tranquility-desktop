@@ -159,7 +159,7 @@ $(document).ready(function () {
     previousFocus = "mediaplayer";
     unfocusWindow();
     $('#windowListNotes').show();
-    $('#windowListChip').show();
+    $('#windowListMediaplayer').show();
 });
 
 function unfocusWindow(){
@@ -246,9 +246,8 @@ $(function () {
                 $('#windowListBrowser').hide();
         } else {
             $('#' + currentlyFocused).hide();
-            capitalizeString(currentlyFocused);
-            $('#windowList' + capitalizeString(currentlyFocused)).hide();
         }
+        $('#windowList' + capitalizeString(currentlyFocused)).hide();
     });
 
 
@@ -258,69 +257,52 @@ function capitalizeString(stringIn){
     return stringIn.substring(0, 1).toUpperCase() + stringIn.substring(1);
 }
 
-/*
+
 function openWindow(windowIn){
+    $("#appMenuContent").hide();
+    $("#fileMenuContent").hide();
     $('#' + windowIn).show();
+    uncollapseWindow(windowIn);
+    if(windowIn == "mediaplayer"){
+        if (mediaClosed) {
+            $("#mediaContent").attr('src', 'https://mmontag.github.io/chip-player-js/');
+        }
+        $('#mediaplayer').css('height', '60%');
+        mediaClosed = false;
+
+    }
+    getActive(windowIn);
+    $('#windowList' + capitalizeString(windowIn)).show();
 
 }
-*/
+
 
 // **opening functionality**
 $(function () {
     // (Chip Player JS / Mediaplayer)
     $("#chipIcon, #chipText").click(function () {
-        $('#mediaplayer').show();
-        if (mediaClosed) {
-            $("#mediaContent").attr('src', 'https://mmontag.github.io/chip-player-js/');
-        }
-        $("#uncollapseMedia").click();
-        $('#mediaplayer').css('height', '60%');
-        isMediaCollapsed = false;
-        mediaClosed = false;
-        getActive("mediaplayer");
-        $('#windowListChip').show();
+        openWindow("mediaplayer");
     })
 
     // (Notes)
     $("#notesIcon, #notesText").click(function () {
-        $('#notes').show();
-        $("#appMenuContent").hide();
-        $("#uncollapseNotes").click();
-        focusNotes();
-        $('#windowListNotes').show();
+        openWindow("notes");
     })
 
     // (Pathfinder / File explorer)
     $("#pathfinderText").click(function () {
-        $('#pathfinder').show();
-        $("#appMenuContent").hide();
-        $("#uncollapsePathfinder").click();
-        focusPathfinder();
-        $('#windowListPathfinder').show();
+        openWindow("pathfinder");
     })
 
     // (Terminal)
     $("#terminalText").click(function () {
-        $("#uncollapseTerminal").click();
-        $('#terminalContent').attr('src', 'terminal.html');
-        $('#terminal').show();
-        $('#terminal').css('height', '50%');
-        $("#appMenuContent").hide();
-        focusTerminal();
-        $('#windowListTerminal').show();
+        openWindow("terminal");
     })
 
     // (Getpost Gavinator)
     $("#browserText").click(function () {
         $('#browserContent').attr('src', 'http://theoldnet.com/browser');
-        $('#browserWindow').show();
-        $('#browserWindow').css('height', '50%');
-        $("#browserWindow").resizable('enable');
-        $("#uncollapseBrowser").css('display', 'none');
-        $("#collapseBrowser").css('display', 'inline');
-        $("#appMenuContent").hide();
-        focusBrowser();
-        $('#windowListBrowser').show();
+        openWindow("browserWindow");
         loadingDots();
         $('#browserInfo').delay(2000).fadeOut("slow");
         $('#browserContent').delay(2500).fadeIn("slow");
@@ -328,12 +310,7 @@ $(function () {
 
     // (About)
     $("#aboutText").click(function () {
-        $('#about').show();
-        $("#about").resizable('disable');
-        $("#fileMenuContent").hide();
-        $("#appMenuContent").hide();
-        focusAbout();
-        $('#windowListAbout').show();
+        openWindow("about");
     })
 
     // (Background Picker)
@@ -341,28 +318,18 @@ $(function () {
         $('#backgroundPicker').show();
         $('#optionMenuContent').hide();
         $('#fileMenuContent').hide();
-        focusBackgroundPicker();
+        getActive("backgroundPicker")
         $('#windowListBackPicker').show();
     })
 
     // (Help window)
     $("#helpMenuClick").click(function () {
-        $("#uncollapseHelp").click();
-        $('#help').show();
-        $('#appMenuContent').hide();
-        $('#optionMenuContent').hide();
-        $('#fileMenuContent').hide();
-        focusHelp();
-        $('#windowListHelp').show();
+        openWindow("help");
     })
 
     // (Customization window)
     $("#customizationMenuClick").click(function () {
-        $('#customizationSettings').show();
-        $('#optionMenuContent').hide();
-        $('#fileMenuContent').hide();
-        focusCustomizationSettings();
-        $('#windowListCustom').show();
+        openWindow("customizationSettings");
     })
 });
 
