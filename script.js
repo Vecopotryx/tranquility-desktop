@@ -202,6 +202,7 @@ function updateIndex() {
     helpIndex = $('#help').css('z-index');
     aboutIndex = $('#about').css('z-index');
     customizeIndex = $('#customizationSettings').css('z-index');
+    $('.frameOverlay').css('z-index', getHighestIndex() + 1);
 }
 
 function getHighestIndex() {
