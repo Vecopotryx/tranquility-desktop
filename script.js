@@ -426,55 +426,22 @@ $(function () {
             $('#mediaplayer').hide();
             $('#windowListChip').hide();
             mediaClosed = true;
+        } else if(currentlyFocused == "browserWindow") {
+                $('#browserContent').hide();
+                $('#browserInfo').show();
+                $('#browserContent').attr('src', '');
+                $('#browserWindow').hide();
+                $('#windowListBrowser').hide();
         } else {
             $('#' + currentlyFocused).hide();
             currentlyFocusedList = currentlyFocused.substring(0, 1).toUpperCase() + currentlyFocused.substring(1);
             $('#windowList' + currentlyFocusedList).hide();
             console.log(currentlyFocusedList);
-
         }
 
     });
 
 
-    $("#closePathfinder").click(function () {
-        $('#pathfinder').hide();
-        $('#windowListPathfinder').hide();
-    })
-
-    $("#closeTerminal").click(function () {
-        $('#terminalContent').attr('src', '');
-        $('#terminal').hide();
-        $('#windowListTerminal').hide();
-    })
-
-    $("#closeBrowser").click(function () {
-        $('#browserContent').hide();
-        $('#browserInfo').show();
-        $('#browserContent').attr('src', '');
-        $('#browserWindow').hide();
-        $('#windowListBrowser').hide();
-    })
-
-    $("#closeAbout").click(function () {
-        $('#about').hide();
-        $('#windowListAbout').hide();
-    })
-
-    $("#closeHelp").click(function () {
-        $('#help').hide();
-        $('#windowListHelp').hide();
-    })
-
-    $("#closeBackPicker").click(function () {
-        $('#backgroundPicker').hide();
-        $('#windowListBackPicker').hide();
-    })
-
-    $("#closeCustomization").click(function () {
-        $('#customizationSettings').hide();
-        $('#windowListCustom').hide();
-    })
 });
 
 // **opening functionality**
