@@ -413,17 +413,29 @@ $(function () {
 var mediaClosed = false;
 
 $(function () {
-    $("#closeMedia").click(function () {
-        $("#mediaContent").attr('src', '');
-        $('#mediaplayer').hide();
-        $('#windowListChip').hide();
-        mediaClosed = true;
-    })
+    $('.application').mouseover(function () {
+        currentlyFocused = this.id;
+        console.log(currentlyFocused);
+    });
 
-    $("#closeNotes").click(function () {
-        $('#notes').hide();
-        $('#windowListNotes').hide();
-    })
+    var currentlyFocusedList;
+    
+    $(".closeWindow").on('click', function(event){
+        if(currentlyFocused == "mediaplayer"){
+            $("#mediaContent").attr('src', '');
+            $('#mediaplayer').hide();
+            $('#windowListChip').hide();
+            mediaClosed = true;
+        } else {
+            $('#' + currentlyFocused).hide();
+            currentlyFocusedList = currentlyFocused.substring(0, 1).toUpperCase() + currentlyFocused.substring(1);
+            $('#windowList' + currentlyFocusedList).hide();
+            console.log(currentlyFocusedList);
+
+        }
+
+    });
+
 
     $("#closePathfinder").click(function () {
         $('#pathfinder').hide();
