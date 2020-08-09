@@ -255,159 +255,23 @@ function getHighestIndex() {
     return Math.max(mediaIndex, notesIndex, backpickerIndex, pathfinderIndex, terminalIndex, browserIndex, helpIndex, aboutIndex, customizeIndex);
 }
 
-// *focus windows*
-function focusMediaplayer() {
+function focusWindow(){
     unfocusAll();
     updateIndex();
-    mediaIndex = getHighestIndex() + 1;
-    $('#mediaplayer').css('z-index', mediaIndex);
-    $('#mediaplayer .titlebar>a').css('color', _titlebarTextColor);
-    $('#mediaplayer>.titlebar').css('background', _titlebarFocusColor);
-    $('#mediaplayer').css('filter', 'grayscale(0%)');
-    currentlyFocused = "mediaplayer";
+    console.log('#' + currentlyFocused);
+    $('#' + currentlyFocused).css('filter', 'grayscale(0%)');
+    $('#' + currentlyFocused).css('z-index', getHighestIndex() + 1);
+    $('#' + currentlyFocused).css('color', _appInterfaceTextColor);
+    $('#' + currentlyFocused + ' .titlebar>a').css('color', _titlebarTextColor);
+    $('#' + currentlyFocused + '>.titlebar').css('background', _titlebarFocusColor);
+    if(currentlyFocused == "about" || currentlyFocused == "help" || currentlyFocused == "notes"){
+        $('#' + currentlyFocused + ' h1').css('color', _appInterfaceTextColor);
+        $('#' + currentlyFocused + ' h2').css('color', _appInterfaceTextColor);
+        $('#' + currentlyFocused + ' p').css('color', _appInterfaceTextColor);
+        $('#' + currentlyFocused + ' a').css('color', _appInterfaceTextColor);
+    }
+
 }
-
-function focusNotes() {
-    unfocusAll();
-    updateIndex();
-    notesIndex = getHighestIndex() + 1;
-    $('#notes').css('z-index', notesIndex);
-    $('#notes .titlebar>a').css('color', _titlebarTextColor);
-    $('#notesContent a').css('color', 'black');
-    $('#notesContent h1').css('color', 'black');
-    $('#notesContent h2').css('color', 'black');
-    $('#notesContent p').css('color', 'black');
-    $('#notes>.titlebar').css('background', _titlebarFocusColor);
-    $('#notes').css('filter', 'grayscale(0%)');
-    currentlyFocused = "notes";
-}
-
-function focusBackgroundPicker() {
-    unfocusAll();
-    updateIndex();
-    backpickerIndex = getHighestIndex() + 1;
-    $('#backgroundPicker').css('z-index', backpickerIndex);
-    $('#backgroundPicker .titlebar>a').css('color', _titlebarTextColor);
-    $('#backgroundPicker>.titlebar').css('background', _titlebarFocusColor);
-    $('#backgroundPicker').css('filter', 'grayscale(0%)');
-    currentlyFocused = "backgroundPicker";
-}
-
-function focusPathfinder() {
-    unfocusAll();
-    updateIndex();
-    pathfinderIndex = getHighestIndex() + 1;
-    $('#pathfinder').css('z-index', pathfinderIndex);
-    $('#pathfinder .titlebar>a').css('color', _titlebarTextColor);
-    $('#pathfinder>.titlebar').css('background', _titlebarFocusColor);
-    $('#pathfinder').css('filter', 'grayscale(0%)');
-    currentlyFocused = "pathfinder";
-}
-
-function focusTerminal() {
-    unfocusAll();
-    updateIndex();
-    terminalIndex = getHighestIndex() + 1;
-    $('#terminal').css('z-index', terminalIndex);
-    $('#terminal .titlebar>a').css('color', _titlebarTextColor);
-    $('#terminal>.titlebar').css('background', _titlebarFocusColor);
-    $('#terminal').css('filter', 'grayscale(0%)');
-    $("#terminalInput").focus();
-    currentlyFocused = "terminal";
-}
-
-function focusBrowser() {
-    unfocusAll();
-    updateIndex();
-    browserIndex = getHighestIndex() + 1;
-    $('#browserWindow').css('z-index', browserIndex);
-    $('#browserWindow .titlebar>a').css('color', _titlebarTextColor);
-    $('#browserWindow>.titlebar').css('background', _titlebarFocusColor);
-    $('#browserWindow').css('filter', 'grayscale(0%)');
-    currentlyFocused = "browser";
-}
-
-function focusHelp() {
-    unfocusAll();
-    updateIndex();
-    helpIndex = getHighestIndex() + 1;
-    $('#help').css('z-index', helpIndex);
-    $('#help a').css('color', _appInterfaceTextColor);
-    $('#help p').css('color', _appInterfaceTextColor);
-    $('#help h1').css('color', _appInterfaceTextColor);
-    $('#help h2').css('color', _appInterfaceTextColor);
-    $('#help .titlebar>a').css('color', _titlebarTextColor);
-    $('#help>.titlebar').css('background', _titlebarFocusColor);
-    $('#help').css('filter', 'grayscale(0%)');
-    currentlyFocused = "help";
-}
-
-function focusAbout() {
-    unfocusAll();
-    updateIndex();
-    aboutIndex = getHighestIndex() + 1;
-    $('#about').css('z-index', aboutIndex);
-    $('#about h1').css('color', _appInterfaceTextColor);
-    $('#about p').css('color', _appInterfaceTextColor);
-    $('#about a').css('color', _appInterfaceTextColor);
-    $('#about .titlebar>a').css('color', _titlebarTextColor);
-    $('#about>.titlebar').css('background', _titlebarFocusColor);
-    $('#about').css('filter', 'grayscale(0%)');
-    currentlyFocused = "about";
-}
-
-function focusCustomizationSettings() {
-    unfocusAll();
-    updateIndex();
-    customizeIndex = getHighestIndex() + 1;
-    $('#customizationSettings').css('z-index', customizeIndex);
-    $('#customizationSettings').css('color', _appInterfaceTextColor);
-    $('#customizationSettings .titlebar>a').css('color', _titlebarTextColor);
-    $('#customizationSettings>.titlebar').css('background', _titlebarFocusColor);
-    $('#customizationSettings').css('filter', 'grayscale(0%)');
-    currentlyFocused = "customization";
-}
-
-
-// *execute focus code on hover*
-$(function () {
-    $('#mediaplayer').hover(function () {
-        focusMediaplayer();
-    })
-
-    $('#notes').hover(function () {
-        focusNotes();
-    })
-
-    $('#backgroundPicker').hover(function () {
-        focusBackgroundPicker();
-    })
-
-    $('#pathfinder').hover(function () {
-        focusPathfinder();
-    })
-
-    $('#terminal').hover(function () {
-        focusTerminal();
-    })
-
-    $('#browserWindow').hover(function () {
-        focusBrowser();
-    })
-
-    $('#help').hover(function () {
-        focusHelp();
-    })
-
-    $('#about').hover(function () {
-        focusAbout();
-    })
-
-    $('#customizationSettings').hover(function () {
-        focusCustomizationSettings();
-    })
-});
-
 
 // **closing functionality**
 var mediaClosed = false;
@@ -416,6 +280,7 @@ $(function () {
     $('.application').mouseover(function () {
         currentlyFocused = this.id;
         console.log(currentlyFocused);
+        focusWindow();
     });
 
     var currentlyFocusedList;
