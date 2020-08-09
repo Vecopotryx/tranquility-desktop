@@ -162,22 +162,33 @@ $(document).ready(function () {
     $('#windowListMediaplayer').show();
 });
 
-function unfocusWindow(){
-    $('#' + previousFocus).css('filter', 'grayscale(60%)');
-    $('#' + previousFocus).css('color', _unfocusedAppInterfaceTextColor);
-    $('#' + previousFocus + ' .titlebar>a').css('color', _unfocusedTitlebarTextColor);
-    $('#' + previousFocus + '>.titlebar').css('background', _unfocusedTitlebarColor);
+function unfocusWindow(windowIn){
+    $('#' + windowIn).css('filter', 'grayscale(60%)');
+    $('#' + windowIn).css('color', _unfocusedAppInterfaceTextColor);
+    $('#' + windowIn + ' .titlebar>a').css('color', _unfocusedTitlebarTextColor);
+    $('#' + windowIn + '>.titlebar').css('background', _unfocusedTitlebarColor);
 
-    if(previousFocus == "about" || previousFocus == "help" || previousFocus == "notes"){
-        $('#' + previousFocus + ' h1').css('color', _unfocusedAppInterfaceTextColor);
-        $('#' + previousFocus + ' h2').css('color', _unfocusedAppInterfaceTextColor);
-        $('#' + previousFocus + ' p').css('color', _unfocusedAppInterfaceTextColor);
-        $('#' + previousFocus + ' a').css('color', _unfocusedAppInterfaceTextColor);
+    if(windowIn == "about" || windowIn == "help" || windowIn == "notes"){
+        $('#' + windowIn + ' h1').css('color', _unfocusedAppInterfaceTextColor);
+        $('#' + windowIn + ' h2').css('color', _unfocusedAppInterfaceTextColor);
+        $('#' + windowIn + ' p').css('color', _unfocusedAppInterfaceTextColor);
+        $('#' + windowIn + ' a').css('color', _unfocusedAppInterfaceTextColor);
     }
 
-    if(previousFocus == "notes"){
+    if(windowIn == "notes"){
         $('#notes').css('filter', 'grayscale(10%)');
     }
+}
+
+function unfocusAll(){
+    unfocusWindow("mediaplayer")
+    unfocusWindow("notes");
+    unfocusWindow("backgroundPicker");
+    unfocusWindow("pathfinder");
+    unfocusWindow("terminal");
+    unfocusWindow("browserWindow");
+    unfocusWindow("about")
+    unfocusWindow("customizationSettings")
 }
 
 // *index stuff*
@@ -198,7 +209,7 @@ function getHighestIndex() {
 }
 
 function focusWindow(){
-    unfocusWindow();
+    unfocusWindow(previousFocus);
     updateIndex();
     $('#' + currentlyFocused).css('filter', 'grayscale(0%)');
     $('#' + currentlyFocused).css('z-index', getHighestIndex() + 1);
@@ -262,7 +273,7 @@ function openWindow(windowIn){
     $("#appMenuContent").hide();
     $("#fileMenuContent").hide();
     $('#' + windowIn).show();
-    uncollapseWindow(windowIn);
+    // uncollapseWindow(windowIn);
     if(windowIn == "mediaplayer"){
         if (mediaClosed) {
             $("#mediaContent").attr('src', 'https://mmontag.github.io/chip-player-js/');
@@ -1047,7 +1058,7 @@ function updateInterface() {
     $('#customizationSettings').css('background-color', _appBackgroundColorOut);
     $('#generalInterface').css('border-right', '1px solid ' + _appInterfaceTextColor);
 
-    focusCustomizationSettings();
+    getActive("customizationSettings");
 }
 
 
@@ -1092,7 +1103,7 @@ function updateFocusedTitlebarColor(){
     $("#titlebarColorOnePicker").val(_titlebarColorOne);
 
     unfocusAll(); // unfocus everything to apply settings
-    focusCustomizationSettings();
+    getActive("customizationSettings");
 }
 
 function updateUnfocusedTitlebarColor(){
@@ -1106,7 +1117,7 @@ function updateUnfocusedTitlebarColor(){
     $("#unfocusedTitlebarColorOnePicker").val(_unfocusedTitlebarColorOne);
 
     unfocusAll(); // unfocus everything to apply settings
-    focusCustomizationSettings();
+    getActive("customizationSettings");
 }
 
 function updateTitlebarColorOne(titlebarColorOneIn){
@@ -1394,94 +1405,83 @@ $(function () {
 });
 
 $(function () {
-    $('#windowListChip').hover(function () {
-        focusMediaplayer();
-        $("#uncollapseMedia").click();
+    $('#windowListMediaplayer').hover(function () {
+        getActive("mediaplayer");
+        uncollapseWindow("mediaplayer");
     })
 
     $('#windowListNotes').hover(function () {
-        focusNotes();
-        $("#uncollapseNotes").click();
+        getActive("notes");
+        uncollapseWindow("notes");
     })
 
     $('#windowListPathfinder').hover(function () {
-        focusPathfinder();
-        $("#uncollapsePathfinder").click();
+        getActive("pathfinder");
+        uncollapseWindow("pathfinder");
     })
 
     $('#windowListTerminal').hover(function () {
-        focusTerminal();
-        $("#uncollapseTerminal").click();
+        getActive("terminal");
+        uncollapseWindow("terminal");
     })
 
     $('#windowListBrowser').hover(function () {
-        focusBrowser();
-        $("#uncollapseBrowser").click();
+        getActive("browserWindow");
+        uncollapseWindow("browserWindow");
     })
 
     $('#windowListAbout').hover(function () {
-        focusAbout();
+        getActive("about");
     })
 
     $('#windowListBackPicker').hover(function () {
-        focusBackgroundPicker();
-        $("#uncollapseBackPicker").click();
+        getActive("backgroundPicker");
     })
 
-    $('#windowListCustom').hover(function () {
-        focusCustomizationSettings();
-        $("#uncollapseCustomization").click();
+    $('#windowListCustomizationSettings').hover(function () {
+        getActive("customizationSettings");
     })
 
     $('#windowListHelp').hover(function () {
         focusHelp();
-        $("#uncollapseHelp").click();
     })
 });
 
 $(function () {
-    $('#windowListChip').click(function () {
-        $("#closeMedia").click();
+    $('#windowListMediaplayer').click(function () {
+        closeWindow("mediaplayer");
     })
 
     $('#windowListNotes').click(function () {
-        focusNotes();
-        $("#closeNotes").click();
+        closeWindow("notes");
     })
 
     $('#windowListPathfinder').click(function () {
-        focusPathfinder();
-        $("#closePathfinder").click();
+        closeWindow("pathfinder");
     })
 
     $('#windowListTerminal').click(function () {
-        focusTerminal();
-        $("#closeTerminal").click();
+        closeWindow("terminal");
     })
 
     $('#windowListBrowser').click(function () {
-        focusBrowser();
-        $("#closeBrowser").click();
+        closeWindow("browserWindow");
     })
 
     $('#windowListAbout').click(function () {
-        focusAbout();
-        $("#closeAbout").click();
+        closeWindow("about");
     })
 
     $('#windowListBackPicker').click(function () {
-        focusBackgroundPicker();
-        $("#closeBackPicker").click();
+        closeWindow("backgroundPicker");
     })
 
-    $('#windowListCustom').click(function () {
-        focusCustomizationSettings();
-        $("#closeCustomization").click();
+    $('#windowListCustomizationSettings').click(function () {
+        closeWindow("customizationSettings");
     })
 
     $('#windowListHelp').click(function () {
-        focusHelp();
-        $("#closeHelp").click();
+        closeWindow("help");
     })
 });
 
