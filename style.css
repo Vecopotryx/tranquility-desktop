@@ -641,7 +641,7 @@ body {
 
 }
 
-.closeWindowDud {
+.closeWindowDemo {
 	float: left;
 	background: none;
 	border: none;
@@ -651,7 +651,7 @@ body {
 	font-size: 18px;
 }
 
-.collapseWindowDud {
+.collapseWindowDemo {
 	float: right;
 	background: none;
 	border: none;
@@ -661,7 +661,7 @@ body {
 	font-size: 18px;
 }
 
-.fakeWindow {
+.demoWindow {
 	background-color: white;
 	box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
 	transition: filter 0.5s;
@@ -672,11 +672,23 @@ body {
 	height: 80%;
 }
 
-#fakeWindowContainer {
+#demoWindowContent {
+	height: 100%;
+	cursor: crosshair;
+}
+
+#demoWindowContainer {
 	width: 75%;
 	background-color: darkgray;
 	padding: 1%;
 	padding-right: 2%;
 	height: 4cm;
 	overflow: hidden;
+}
+
+.settingsAction {
+	margin: 1%;
+	position: fixed;
+    bottom: 0;
+    right: 0;
 }

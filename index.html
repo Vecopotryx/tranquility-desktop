@@ -54,9 +54,6 @@
 		<a id="bottomNotesText"><img src="source/img/notes.png" width="15cm"> Notes</a>
 		<a id="bottomTerminalText"><img src="source/img/terminal.png" width="15cm"> Terminal</a>
 		<a id="bottomBrowserText"><img src="source/img/browser.ico" width="15cm"> Internet</a>
-		<a id="bottomAboutText">About</a>
-		<a id="bottomBackgroundMenuClick">Background</a>
-		<a id="bottomCustomizationMenuClick">Customize</a>
 		<a id="bottomArrangeToDefault">Arrange</a>
 		<a id="bottomHelpMenuClick">Help</a>
 	</div>
@@ -74,7 +71,7 @@
 	</div>
 
 	<div id="optionMenuContent" class="inMenubar">
-		<a id="customizationMenuClick">Customize</a>
+		<a id="settingsMenuClick">Settings</a>
 	</div>
 
 	<div id="mainContent">
@@ -246,157 +243,6 @@ Retro Kernel 0.0.5
 			</div>
 		</div>
 
-
-		<div class="application" id="customizationSettings">
-			<div class="windowFrameOverlay"></div>
-			<div class="titlebar">
-				<button class="closeWindow">×</button>
-				<a>Customize</a>
-			</div>
-			<div id="windowSettings">
-				<div id="generalInterface">
-					<h2>Presets:</h2>
-					<div id="presets">
-						<div id="default">
-							<h2>Default</h2>
-						</div>
-						<div id="darkmode">
-							<h2>Dark</h2>
-						</div>
-						<div id="classic">
-							<h2>Classic</h2>
-						</div>
-					</div>
-					<hr>
-					<label for="manualControlSwitch">Enable manual control:</label>
-					<input type="checkbox" id="manualControlSwitch" checked>
-					<div id="manualControls">
-						<button id="showColorSettings">Color settings</button>
-						<br>
-						<button id="showWindowSettings">Window settings</button>
-						<br>
-						<button id="showTitlebarSettins">Titlebar settings</button>
-						<br>
-						<button id="showTranslucencySettings">Translucency settings</button>
-						<br>
-						<button id="showMenubarSettings">Menubar settings</button>
-					</div>
-					<br>
-					<a><i>These settings are still experimental, expect bugs</i></a>
-				</div>
-				<div id="colorSettings">
-					<h1>Color settings</h1>
-					<div id="interfaceColors">
-						<input type="color" id="appBackgroundColorPicker" value="#FAFAFA"
-							onchange="appBackgroundColorUpdate(this.value);">
-						<label for="appBackgroundColorPicker">Application background color</label>
-						<br>
-						<input type="color" id="appInterfaceTextColorPicker" value="#00000F"
-							onchange="appInterfaceTextColorUpdate(this.value);">
-						<label for="appInterfaceTextColorPicker">Application interface text color</label>
-						<br>
-						<input type="color" id="menubarTextColorPicker" value="#00000F"
-							onchange="menubarTextColorUpdate(this.value);">
-						<label for="menubarTextColorPicker">Menubar interface text color</label>
-						<br>
-						<input type="color" id="menubarBackgroundColorPicker" value="#FAFAFA"
-							onchange="menubarBackgroundColorUpdate(this.value);">
-						<label for="menubarBackgroundColorPicker">Menubar background color</label>
-					</div>
-				</div>
-
-				<div id="generalWindowSettings">
-					<h1>Window settings</h1>
-
-				</div>
-
-				<div id="titlebarSettings">
-					<h1>Titlebar</h1>
-					<div id="titlebarButtonSettings">
-						<label for="buttonPlacement" id="buttonPlacementText">Button placement:</label>
-						<select id="buttonPlacement" name="buttonPlacement"
-							onchange="updateButtonPlacement(this.value);">
-							<option value="RDE">RDE</option>
-							<option value="redmond">Redmond</option>
-							<option value="cupertino">Cupertino</option>
-						</select>
-					</div>
-					<hr>
-					<div id="titlebarColorSettings">
-						<div id="focusedTitlebarSettings">
-
-						</div>
-						<hr>
-						<div id="unfocusedTitlebarSettings">
-							<h2>Unfocused</h2>
-							<label for="unfocusedTitlebarGradientSwitch">Enable titlebar gradient?</label>
-							<input type="checkbox" id="unfocusedTitlebarGradientSwitch" checked>
-							<br>
-							<label for="unfocusedGradientDirection" id="unfocusedGradientDirectionText">Gradient
-								direction:</label>
-							<select id="unfocusedGradientDirection" name="unfocusedGradientDirection" onchange="">
-								<option value="to right">To right</option>
-								<option value="to left">To left</option>
-								<option value="to top">To top</option>
-								<option value="to bottom">To bottom</option>
-								<option value="to top right">To top right</option>
-								<option value="to top left">To top left</option>
-								<option value="to bottom right">To bottom right</option>
-								<option value="to bottom left">To bottom left</option>
-							</select>
-							<br>
-							<input type="color" id="unfocusedTitlebarColorOnePicker" value="#00000F"
-								onchange="updateUnfocusedTitlebarColorOne(this.value);">
-							<label for="unfocusedTitlebarColorOnePicker"
-								id="unfocusedTitlebarColorOnePickerText">Background color one)</label>
-							<br>
-							<input type="color" id="unfocusedTitlebarColorTwoPicker" value="#FAFAFA"
-								onchange="updateUnfocusedTitlebarColorTwo(this.value);">
-							<label for="unfocusedTitlebarColorTwoPicker"
-								id="unfocusedTitlebarColorTwoPickerText">Background color two</label>
-							<br>
-							<input type="color" id="unfocusedTitlebarTextColorPicker" value="#808080"
-								onchange="unfocusedTitlebarTextColorUpdate(this.value);">
-							<label for="unfocusedTitlebarTextColorPicker">Text color</label>
-						</div>
-					</div>
-				</div>
-
-				<div id="translucencySettings">
-					<h1>Translucency</h1>
-					<div id="generalTranslucency">
-						<h2>General</h2>
-						<label for="generalTranslucencySwitch">Enable general translucency?</label>
-						<input type="checkbox" id="generalTranslucencySwitch">
-						<br>
-						<input type="range" min="0.1" max="1" value="1" step="0.1" class="slider"
-							id="generalOpacityAmount" onchange="setGeneralOpacity(this.value);">
-						<label for="generalOpacityAmount" id="generalOpacityText">1</label>
-					</div>
-					<hr>
-					<div id="menubarTranslucencySettings">
-						<h2>Menubar</h2>
-						<label for="menubarShareTranslucencySwitch">Control translucency individually?</label>
-						<input type="checkbox" id="menubarShareTranslucencySwitch">
-						<input type="range" min="0.1" max="1" value="1" step="0.1" class="slider"
-							id="menubarTranslucency" onchange="updateMenubarTranslucency(this.value);">
-						<label for="menubarTranslucency" id="menubarTranslucencyText">1</label>
-					</div>
-				</div>
-
-				<div id="menubarSettings">
-					<h1>Menubar</h1>
-					<div id="generalTranslucency">
-						<h2>General</h2>
-						<label for="bottomMenuBarSwitch">Enable bottom menubar?</label>
-						<input type="checkbox" id="bottomMenuBarSwitch">
-					</div>
-				</div>
-			</div>
-
-
-		</div>
-
 		<div class="application" id="settings">
 			<div class="windowFrameOverlay"></div>
 			<div class="titlebar">
@@ -431,77 +277,53 @@ Retro Kernel 0.0.5
 						<div id="appearanceCurrent">
 							<div id="appearanceColorSettings">
 								<h1>Colors</h1>
-								<div id="fakeWindowContainer">
-									<div class="fakeWindow">
-										<div class="titlebar" id="fakeWindowTitlebar">
-											<button class="closeWindowDud">×</button>
+								<div id="demoWindowContainer">
+									<div class="demoWindow">
+										<div class="titlebar" id="demoWindowTitlebar">
+											<button class="closeWindowDemo">×</button>
 											<a>Window</a>
-											<button class="collapseWindowDud">▲</button>
+											<button class="collapseWindowDemo">▲</button>
 										</div>
-										<div id="fakeWindowContent">
+										<div id="demoWindowContent">
 											<a>Text</a>
 										</div>
 									</div>
 								</div>
-								<h2>Focused</h2>
-								<div id="gradientPicker"></div>
-								<label for="titlebarGradientSwitch">Enable titlebar gradient?</label>
-								<input type="checkbox" id="titlebarGradientSwitch" checked>
-								<br>
-								<label for="gradientDirection" id="gradientDirectionText">Gradient direction:</label>
-								<select id="gradientDirection" name="gradientDirection"
-									onchange="updateGradientDirection(this.value);">
-									<option value="to right">To right</option>
-									<option value="to left">To left</option>
-									<option value="to top">To top</option>
-									<option value="to bottom">To bottom</option>
-									<option value="to top right">To top right</option>
-									<option value="to top left">To top left</option>
-									<option value="to bottom right">To bottom right</option>
-									<option value="to bottom left">To bottom left</option>
+
+								<label for="presets">Presets:</label>
+
+								<select name="presets" id="presets">
+								  <option value="bright">Bright</option>
+								  <option value="dark">Dark</option>
+								  <option value="classic">Classic</option>
 								</select>
-								<br>
-								<input type="color" id="titlebarColorOnePicker" value="#00000F"
-									onchange="updateTitlebarColorOne(this.value);">
-								<label for="titlebarColorOnePicker" id="titlebarColorOnePickerText">Background color
-									one</label>
-								<br>
-								<input type="color" id="titlebarColorTwoPicker" value="#FAFAFA"
-									onchange="updateTitlebarColorTwo(this.value);">
-								<label for="titlebarColorTwoPicker" id="titlebarColorTwoPickerText">Background color
-									two</label>
-								<br>
-								<input type="color" id="titlebarTextColorPicker" value="#00000F"
-									onchange="titlebarTextColorUpdate(this.value);">
-								<label for="titlebarTextColorPicker">Text color</label>
-								<h1>Window settings</h1>
-								<div id="borderRadiusSettings">
-									<a>Border radius:</a>
-									<input type="range" min="0" max="25" value="4" step="1" class="slider" id="borderRadiusSlider"
-										onchange="setBorderRadius(this.value);">
-									<label for="borderRadiusSlider" id="borderRadiusSliderText">4px</label>
+
+								<div id="interfaceColors">
+									<input type="color" id="appBackgroundColorPicker" value="#FAFAFA"
+										onchange="updateColor('background', this.value);">
+									<label for="appBackgroundColorPicker">Application background color</label>
+									<br>
+									<input type="color" id="appInterfaceTextColorPicker" value="#00000F"
+										onchange="appInterfaceTextColorUpdate(this.value);">
+									<label for="appInterfaceTextColorPicker">Application interface text color</label>
+									<br>
+									<input type="color" id="menubarTextColorPicker" value="#00000F"
+										onchange="menubarTextColorUpdate(this.value);">
+									<label for="menubarTextColorPicker">Menubar interface text color</label>
+									<br>
+									<input type="color" id="menubarBackgroundColorPicker" value="#FAFAFA"
+										onchange="menubarBackgroundColorUpdate(this.value);">
+									<label for="menubarBackgroundColorPicker">Menubar background color</label>
 								</div>
-								<div id="boxShadowSettings">
-									<hr>
-									<label for="boxShadowSwitch">Application shadows:</label>
-									<input type="checkbox" id="boxShadowSwitch" checked>
-									<br>
-									<input type="range" min="0" max="25" value="8" step="1" class="slider"
-										id="boxShadowHorizontalSlider" onchange="setBoxShadowHorizontal(this.value);">
-									<a class="shadowHint">Shadow horizontal offset: </a>
-									<label for="boxShadowHorizontalSlider" id="boxShadowHorizontalText">8px</label>
-									<br>
-									<input type="range" min="0" max="25" value="15" step="1" class="slider"
-										id="boxShadowVerticalSlider" onchange="setBoxShadowVertical(this.value);">
-									<a class="shadowHint">Shadow vertical offset: </a>
-									<label for="boxShadowVerticalSlider" id="boxShadowVerticalText">15px</label>
-									<hr>
+								
+								<div class="settingsAction">
+									<button>Reset defaults</button>
+									<button>Apply</button>
 								</div>
 
 
 							</div>
 						</div>
-						<a>This will eventually replace the customization settings window</a>
 					</div>
 
 					<div id="backgroundContainer">

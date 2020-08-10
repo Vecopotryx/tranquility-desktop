@@ -19,7 +19,6 @@ var pathfinderIndex;
 var terminalIndex;
 var browserIndex;
 var helpIndex;
-var customizeIndex;
 var settingsIndex;
 
 // related to closing functionality
@@ -174,7 +173,6 @@ function unfocusAll(){
     unfocusWindow("pathfinder");
     unfocusWindow("terminal");
     unfocusWindow("browserWindow");
-    unfocusWindow("customizationSettings")
     unfocusWindow("settings");
 }
 
@@ -186,13 +184,12 @@ function updateIndex() {
     terminalIndex = $('#terminal').css('z-index');
     browserIndex = $('#browserWindow').css('z-index');
     helpIndex = $('#help').css('z-index');
-    customizeIndex = $('#customizationSettings').css('z-index');
     settingsIndex = $('#settings').css('z-index');
     $('.frameOverlay').css('z-index', getHighestIndex() + 1);
 }
 
 function getHighestIndex() {
-    return Math.max(mediaIndex, notesIndex, settingsIndex, pathfinderIndex, terminalIndex, browserIndex, helpIndex, customizeIndex);
+    return Math.max(mediaIndex, notesIndex, settingsIndex, pathfinderIndex, terminalIndex, browserIndex, helpIndex);
 }
 
 function focusWindow(windowIn){
@@ -313,10 +310,11 @@ $(function () {
         openWindow("help");
     })
 
-    // (Customization window)
-    $("#customizationMenuClick").click(function () {
-        openWindow("customizationSettings");
+    // (Settings window)
+    $("#settingsMenuClick").click(function () {
+        openWindow("settings");
     })
+    
 });
 
 function collapseWindow(windowIn){
@@ -810,7 +808,7 @@ function updateTerminalTextColor(terminalTextColorIn) {
     $('#terminalContent > *').css('color', terminalTextColorIn);
 }
 
-
+/*
 // *Customization window*
 $(function () {
     $('#generalTranslucencySwitch').click(function () {
@@ -1382,6 +1380,7 @@ $(function () {
         }
     })
 });
+*/
 
 $(function () {
     $('#windowListMediaplayer').hover(function () {
@@ -1409,10 +1408,6 @@ $(function () {
         uncollapseWindow("browserWindow");
     })
 
-    $('#windowListCustomizationSettings').hover(function () {
-        getActive("customizationSettings");
-    })
-
     $('#windowListHelp').hover(function () {
         focusHelp();
     })
@@ -1437,10 +1432,6 @@ $(function () {
 
     $('#windowListBrowser').click(function () {
         closeWindow("browserWindow");
-    })
-
-    $('#windowListCustomizationSettings').click(function () {
-        closeWindow("customizationSettings");
     })
 
     $('#windowListHelp').click(function () {
@@ -1506,11 +1497,18 @@ $(function () {
         $("#settingsAppearanceButton").css('background', 'linear-gradient(to left, gray, darkgray)');
     })
 
-    $('#fakeWindowTitlebar').click(function () {
-        $('#currentSettings > div').hide();
-        $("#appearanceContainer").show();
-        $("#settingsPanels > div").css('background', 'gray');
-        $("#settingsAppearanceButton").css('background', 'linear-gradient(to left, gray, darkgray)');
+    $('#demoWindowContent').click(function () {
+        $('#appBackgroundColorPicker').click();
     })
-
 });
+
+function appBackgroundColorUpdate(){
+
+}
+
+function updateColor(type, color){
+    if(type == "background"){
+        $(".demoWindow").css('background', color);
+    }
+
+}
