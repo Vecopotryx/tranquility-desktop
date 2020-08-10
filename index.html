@@ -12,6 +12,7 @@
 	<script src=" source/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="script.js" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -306,28 +307,7 @@ Retro Kernel 0.0.5
 
 				<div id="generalWindowSettings">
 					<h1>Window settings</h1>
-					<div id="borderRadiusSettings">
-						<a>Border radius:</a>
-						<input type="range" min="0" max="25" value="4" step="1" class="slider" id="borderRadiusSlider"
-							onchange="setBorderRadius(this.value);">
-						<label for="borderRadiusSlider" id="borderRadiusSliderText">4px</label>
-					</div>
-					<div id="boxShadowSettings">
-						<hr>
-						<label for="boxShadowSwitch">Application shadows:</label>
-						<input type="checkbox" id="boxShadowSwitch" checked>
-						<br>
-						<input type="range" min="0" max="25" value="8" step="1" class="slider"
-							id="boxShadowHorizontalSlider" onchange="setBoxShadowHorizontal(this.value);">
-						<a class="shadowHint">Shadow horizontal offset: </a>
-						<label for="boxShadowHorizontalSlider" id="boxShadowHorizontalText">8px</label>
-						<br>
-						<input type="range" min="0" max="25" value="15" step="1" class="slider"
-							id="boxShadowVerticalSlider" onchange="setBoxShadowVertical(this.value);">
-						<a class="shadowHint">Shadow vertical offset: </a>
-						<label for="boxShadowVerticalSlider" id="boxShadowVerticalText">15px</label>
-						<hr>
-					</div>
+
 				</div>
 
 				<div id="titlebarSettings">
@@ -344,36 +324,7 @@ Retro Kernel 0.0.5
 					<hr>
 					<div id="titlebarColorSettings">
 						<div id="focusedTitlebarSettings">
-							<h2>Focused</h2>
-							<label for="titlebarGradientSwitch">Enable titlebar gradient?</label>
-							<input type="checkbox" id="titlebarGradientSwitch" checked>
-							<br>
-							<label for="gradientDirection" id="gradientDirectionText">Gradient direction:</label>
-							<select id="gradientDirection" name="gradientDirection"
-								onchange="updateGradientDirection(this.value);">
-								<option value="to right">To right</option>
-								<option value="to left">To left</option>
-								<option value="to top">To top</option>
-								<option value="to bottom">To bottom</option>
-								<option value="to top right">To top right</option>
-								<option value="to top left">To top left</option>
-								<option value="to bottom right">To bottom right</option>
-								<option value="to bottom left">To bottom left</option>
-							</select>
-							<br>
-							<input type="color" id="titlebarColorOnePicker" value="#00000F"
-								onchange="updateTitlebarColorOne(this.value);">
-							<label for="titlebarColorOnePicker" id="titlebarColorOnePickerText">Background color
-								one</label>
-							<br>
-							<input type="color" id="titlebarColorTwoPicker" value="#FAFAFA"
-								onchange="updateTitlebarColorTwo(this.value);">
-							<label for="titlebarColorTwoPicker" id="titlebarColorTwoPickerText">Background color
-								two</label>
-							<br>
-							<input type="color" id="titlebarTextColorPicker" value="#00000F"
-								onchange="titlebarTextColorUpdate(this.value);">
-							<label for="titlebarTextColorPicker">Text color</label>
+
 						</div>
 						<hr>
 						<div id="unfocusedTitlebarSettings">
@@ -480,6 +431,74 @@ Retro Kernel 0.0.5
 						<div id="appearanceCurrent">
 							<div id="appearanceColorSettings">
 								<h1>Colors</h1>
+								<div id="fakeWindowContainer">
+									<div class="fakeWindow">
+										<div class="titlebar" id="fakeWindowTitlebar">
+											<button class="closeWindowDud">×</button>
+											<a>Window</a>
+											<button class="collapseWindowDud">▲</button>
+										</div>
+										<div id="fakeWindowContent">
+											<a>Text</a>
+										</div>
+									</div>
+								</div>
+								<h2>Focused</h2>
+								<div id="gradientPicker"></div>
+								<label for="titlebarGradientSwitch">Enable titlebar gradient?</label>
+								<input type="checkbox" id="titlebarGradientSwitch" checked>
+								<br>
+								<label for="gradientDirection" id="gradientDirectionText">Gradient direction:</label>
+								<select id="gradientDirection" name="gradientDirection"
+									onchange="updateGradientDirection(this.value);">
+									<option value="to right">To right</option>
+									<option value="to left">To left</option>
+									<option value="to top">To top</option>
+									<option value="to bottom">To bottom</option>
+									<option value="to top right">To top right</option>
+									<option value="to top left">To top left</option>
+									<option value="to bottom right">To bottom right</option>
+									<option value="to bottom left">To bottom left</option>
+								</select>
+								<br>
+								<input type="color" id="titlebarColorOnePicker" value="#00000F"
+									onchange="updateTitlebarColorOne(this.value);">
+								<label for="titlebarColorOnePicker" id="titlebarColorOnePickerText">Background color
+									one</label>
+								<br>
+								<input type="color" id="titlebarColorTwoPicker" value="#FAFAFA"
+									onchange="updateTitlebarColorTwo(this.value);">
+								<label for="titlebarColorTwoPicker" id="titlebarColorTwoPickerText">Background color
+									two</label>
+								<br>
+								<input type="color" id="titlebarTextColorPicker" value="#00000F"
+									onchange="titlebarTextColorUpdate(this.value);">
+								<label for="titlebarTextColorPicker">Text color</label>
+								<h1>Window settings</h1>
+								<div id="borderRadiusSettings">
+									<a>Border radius:</a>
+									<input type="range" min="0" max="25" value="4" step="1" class="slider" id="borderRadiusSlider"
+										onchange="setBorderRadius(this.value);">
+									<label for="borderRadiusSlider" id="borderRadiusSliderText">4px</label>
+								</div>
+								<div id="boxShadowSettings">
+									<hr>
+									<label for="boxShadowSwitch">Application shadows:</label>
+									<input type="checkbox" id="boxShadowSwitch" checked>
+									<br>
+									<input type="range" min="0" max="25" value="8" step="1" class="slider"
+										id="boxShadowHorizontalSlider" onchange="setBoxShadowHorizontal(this.value);">
+									<a class="shadowHint">Shadow horizontal offset: </a>
+									<label for="boxShadowHorizontalSlider" id="boxShadowHorizontalText">8px</label>
+									<br>
+									<input type="range" min="0" max="25" value="15" step="1" class="slider"
+										id="boxShadowVerticalSlider" onchange="setBoxShadowVertical(this.value);">
+									<a class="shadowHint">Shadow vertical offset: </a>
+									<label for="boxShadowVerticalSlider" id="boxShadowVerticalText">15px</label>
+									<hr>
+								</div>
+
+
 							</div>
 						</div>
 						<a>This will eventually replace the customization settings window</a>

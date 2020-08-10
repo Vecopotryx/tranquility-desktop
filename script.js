@@ -1172,6 +1172,7 @@ function updateButtonPlacement(placementIn) {
 function setBorderRadius(borderRadiusIn) {
     $('#borderRadiusSliderText').text(borderRadiusIn + "px");
     $('.application').css('border-radius', borderRadiusIn + "px");
+    $('.fakeWindow').css('border-radius', borderRadiusIn + "px");
     $('.titlebar').css('border-top-left-radius', borderRadiusIn + "px");
     $('.titlebar').css('border-top-right-radius', borderRadiusIn + "px");
     borderRadiusSlider.value = borderRadiusIn;
@@ -1499,6 +1500,13 @@ $(function () {
     })
 
     $('#settingsAppearanceButton').click(function () {
+        $('#currentSettings > div').hide();
+        $("#appearanceContainer").show();
+        $("#settingsPanels > div").css('background', 'gray');
+        $("#settingsAppearanceButton").css('background', 'linear-gradient(to left, gray, darkgray)');
+    })
+
+    $('#fakeWindowTitlebar').click(function () {
         $('#currentSettings > div').hide();
         $("#appearanceContainer").show();
         $("#settingsPanels > div").css('background', 'gray');

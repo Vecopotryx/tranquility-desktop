@@ -60,16 +60,7 @@ body {
 #notesContent {
 	margin-left: 3px;
 }
-.uncollapseWindow {
-	display: none;
-	float: right;
-	background: none;
-	border: none;
-	margin-right: 5px;
-	padding: 0;
-	cursor: pointer;
-	font-size: 18px;
-}
+
 .collapseWindow {
 	float: right;
 	background: none;
@@ -648,4 +639,44 @@ body {
 	margin-left: 0.5%;
 	text-align: center;
 
+}
+
+.closeWindowDud {
+	float: left;
+	background: none;
+	border: none;
+	margin-left: 5px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+.collapseWindowDud {
+	float: right;
+	background: none;
+	border: none;
+	margin-right: 5px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+.fakeWindow {
+	background-color: white;
+	box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
+	transition: filter 0.5s;
+	min-height: 0.66cm;
+	min-width: 10%;
+	border-radius: 4px;
+	overflow: hidden;
+	height: 80%;
+}
+
+#fakeWindowContainer {
+	width: 75%;
+	background-color: darkgray;
+	padding: 1%;
+	padding-right: 2%;
+	height: 4cm;
+	overflow: hidden;
 }
