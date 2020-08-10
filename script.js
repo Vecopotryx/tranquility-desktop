@@ -1500,15 +1500,23 @@ $(function () {
     $('#demoWindowContent').click(function () {
         $('#appBackgroundColorPicker').click();
     })
+
+    $('#demoText').click(function () {
+        $('#appInterfaceTextColorPicker').click();
+    })
 });
-
-function appBackgroundColorUpdate(){
-
-}
 
 function updateColor(type, color){
     if(type == "background"){
-        $(".demoWindow").css('background', color);
+    }
+
+    switch(type){
+        case "background":
+            $(".demoWindow").css('background', color);
+            break;
+        case "text":
+            $(".demoWindow").css('color', color);
+            break;
     }
 
 }

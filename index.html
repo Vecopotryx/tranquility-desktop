@@ -284,8 +284,8 @@ Retro Kernel 0.0.5
 											<a>Window</a>
 											<button class="collapseWindowDemo">▲</button>
 										</div>
-										<div id="demoWindowContent">
-											<a>Text</a>
+										<div id="demoWindowContent" title="Background color">
+											<div id="demoText" title="Text color">Text</div>
 										</div>
 									</div>
 								</div>
@@ -304,7 +304,7 @@ Retro Kernel 0.0.5
 									<label for="appBackgroundColorPicker">Application background color</label>
 									<br>
 									<input type="color" id="appInterfaceTextColorPicker" value="#00000F"
-										onchange="appInterfaceTextColorUpdate(this.value);">
+										onchange="updateColor('text', this.value);">
 									<label for="appInterfaceTextColorPicker">Application interface text color</label>
 									<br>
 									<input type="color" id="menubarTextColorPicker" value="#00000F"

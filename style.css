@@ -686,6 +686,16 @@ body {
 	overflow: hidden;
 }
 
+#demoText {
+	width: 10%;
+	transition: background-color 0.2s;
+	font-size: 160%;
+}
+
+#demoText:hover {
+	background-color: gray;
+}
+
 .settingsAction {
 	margin: 1%;
 	position: fixed;
