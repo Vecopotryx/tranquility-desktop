@@ -1504,18 +1504,29 @@ $(function () {
     $('#demoText').click(function () {
         $('#appInterfaceTextColorPicker').click();
     })
+
+    $('#demoMenubar>a').click(function () {
+        $('#menubarTextColorPicker').click();
+    })
+
+    $('#demoMenubar').click(function () {
+        $('#menubarBackgroundColorPicker').click();
+    })
 });
 
-function updateColor(type, color){
-    if(type == "background"){
-    }
-
+function updateDemoColor(type, color){
     switch(type){
-        case "background":
+        case "windowBackground":
             $(".demoWindow").css('background', color);
             break;
-        case "text":
+        case "windowText":
             $(".demoWindow").css('color', color);
+            break;
+        case "menubarText":
+            $("#demoMenubar>a").css('color', color);
+            break;
+        case "menubarBackground":
+            $("#demoMenubar").css('background-color', color);
             break;
     }
 

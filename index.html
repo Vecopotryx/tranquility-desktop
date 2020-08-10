@@ -276,8 +276,15 @@ Retro Kernel 0.0.5
 
 						<div id="appearanceCurrent">
 							<div id="appearanceColorSettings">
-								<h1>Colors</h1>
 								<div id="demoWindowContainer">
+									<div id="demoMenubar">
+										<a>Applications</a>
+										<a>File</a>
+										<a>Options</a>
+										<a>Arrange</a>
+										<a>?</a>
+										<a style="float:right">00:00</a>
+									</div>
 									<div class="demoWindow">
 										<div class="titlebar" id="demoWindowTitlebar">
 											<button class="closeWindowDemo">×</button>
@@ -300,19 +307,19 @@ Retro Kernel 0.0.5
 
 								<div id="interfaceColors">
 									<input type="color" id="appBackgroundColorPicker" value="#FAFAFA"
-										onchange="updateColor('background', this.value);">
+										onchange="updateDemoColor('windowBackground', this.value);">
 									<label for="appBackgroundColorPicker">Application background color</label>
 									<br>
 									<input type="color" id="appInterfaceTextColorPicker" value="#00000F"
-										onchange="updateColor('text', this.value);">
+										onchange="updateDemoColor('windowText', this.value);">
 									<label for="appInterfaceTextColorPicker">Application interface text color</label>
 									<br>
 									<input type="color" id="menubarTextColorPicker" value="#00000F"
-										onchange="menubarTextColorUpdate(this.value);">
+										onchange="updateDemoColor('menubarText', this.value);">
 									<label for="menubarTextColorPicker">Menubar interface text color</label>
 									<br>
 									<input type="color" id="menubarBackgroundColorPicker" value="#FAFAFA"
-										onchange="menubarBackgroundColorUpdate(this.value);">
+										onchange="updateDemoColor('menubarBackground', this.value);">
 									<label for="menubarBackgroundColorPicker">Menubar background color</label>
 								</div>
 								
