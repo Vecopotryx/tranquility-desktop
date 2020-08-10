@@ -18,7 +18,7 @@
 <body>
 	<div class="frameOverlay"></div>
 
-	<div id="menubar">
+	<div id="menubar" class="inMenubar">
 		<button id="appMenuClick">Applications</button>
 		<button id="fileMenuClick">File</button>
 		<button id="optionMenuClick">Options</button>
@@ -285,7 +285,7 @@ Retro Kernel 0.0.5
 										<a>?</a>
 										<a style="float:right">00:00</a>
 									</div>
-									<div class="demoWindow">
+									<div id="demoWindow">
 										<div id="demoTitlebar">
 											<button id="closeWindowDemo">×</button>
 											<a>Window</a>
@@ -350,8 +350,9 @@ Retro Kernel 0.0.5
 								</div>
 								
 								<div class="settingsAction">
+									<button>Get current</button>
 									<button>Reset defaults</button>
-									<button>Apply</button>
+									<button onclick="applyAppearanceChanges();">Apply</button>
 								</div>
 
 

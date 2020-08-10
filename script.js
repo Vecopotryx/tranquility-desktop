@@ -2,7 +2,7 @@
 // **initializing variables and giving default values**
 var _titlebarFocusColor = "linear-gradient(to right, white, lightgray)";
 var _unfocusedTitlebarColor = "linear-gradient(to right, white, lightgray)";
-var _titlebarTextColor = "#000000";
+var _focusedTitlebarTextColor = "#000000";
 var _unfocusedTitlebarTextColor = "gray";
 var _appBackgroundColor = "#FFFFFF";
 var _appInterfaceTextColor = "#000000";
@@ -93,8 +93,6 @@ var boxShadowVertical = "15px";
 var _applicationOpacity = 1;
 var _menubarOpacity = 1;
 var _appMenubarShareOpacity = true;
-var _menubarBackgroundColorOut;
-var _appBackgroundColorOut;
 
 var _unfocusedTitlebarGradientDirection = "to right";
 var _unfocusedTitlebarIsGradient = true;
@@ -198,7 +196,7 @@ function focusWindow(windowIn){
     $('#' + windowIn).css('filter', 'grayscale(0%)');
     $('#' + windowIn).css('z-index', getHighestIndex() + 1);
     $('#' + windowIn).css('color', _appInterfaceTextColor);
-    $('#' + windowIn + ' .titlebar>a').css('color', _titlebarTextColor);
+    $('#' + windowIn + ' .titlebar>a').css('color', _focusedTitlebarTextColor);
     $('#' + windowIn + '>.titlebar').css('background', _titlebarFocusColor);
     if(windowIn == "help" || windowIn == "notes"){
         $('#' + windowIn + ' h1').css('color', _appInterfaceTextColor);
@@ -808,506 +806,6 @@ function updateTerminalTextColor(terminalTextColorIn) {
     $('#terminalContent > *').css('color', terminalTextColorIn);
 }
 
-/*
-// *Customization window*
-$(function () {
-    $('#generalTranslucencySwitch').click(function () {
-        if ($(this).is(':checked')) {
-            $('#generalOpacityAmount').show();
-            $('#generalOpacityText').show();
-            setGeneralOpacity($("#generalOpacityAmount").val());
-        } else {
-            $('#generalOpacityAmount').hide();
-            $('#generalOpacityText').hide();
-            setGeneralOpacity(1); 
-        }
-    })
-
-
-    $('#manualControlSwitch').click(function () {
-        if ($(this).is(':checked')) {
-            $('#showColorSettings').prop('disabled', false);
-            $('#showWindowSettings').prop('disabled', false);
-            $('#showTitlebarSettins').prop('disabled', false);
-            $('#showTranslucencySettings').prop('disabled', false);
-            $('#showMenubarSettings').prop('disabled', false);
-            $('#colorSettings').css('display', 'inline-block');
-            $('#generalWindowSettings').css('display', 'none');
-            $('#titlebarSettings').css('display', 'none');
-            $('#translucencySettings').css('display', 'none');
-            $('#customizationSettings').css('width', '45%');
-            $('#generalInterface').css('width', '40%');
-        } else {
-            $('#showColorSettings').prop('disabled', true);
-            $('#showWindowSettings').prop('disabled', true);
-            $('#showTitlebarSettins').prop('disabled', true);
-            $('#showTranslucencySettings').prop('disabled', true);
-            $('#showMenubarSettings').prop('disabled', true);
-            $('#colorSettings').css('display', 'none');
-            $('#generalWindowSettings').css('display', 'none');
-            $('#titlebarSettings').css('display', 'none');
-            $('#translucencySettings').css('display', 'none');
-            $('#customizationSettings').css('width', 'auto');
-            $('#generalInterface').css('width', '100%');
-        }
-    })
-
-    // default preset
-    $('#default').click(function () {
-        updateInterfaceVariables("#000000", "#808080", "#FFFFFF", "#000000", "#000000", "#FFFFFF");
-        updateUnfocusedTitlebarVariables("#FFFFFF", true, "#D3D3D3", "to right");
-        updateFocusedTitlebarVariables("#FFFFFF", true, "#D3D3D3", "to right");
-        updateUnfocusedTitlebarColor();
-        updateFocusedTitlebarColor();
-        $('.application').css('border', 'none');
-        defaultBoxShadow();
-        setBorderRadius(4);
-        setTitlebarGradientSwitch(false);
-        updateButtonPlacement("RDE");
-        _bottomMenuBarEnabled = false;
-        updateInterface();
-    })
-
-    // darkmode preset
-    $('#darkmode').click(function () {
-        updateInterfaceVariables("#FFFFFF", "#808080", "#090a0c", "#FFFFFF", "#FFFFFF", "#090a0c");
-        updateUnfocusedTitlebarVariables("#000000", true, "#808080", "to right");
-        updateFocusedTitlebarVariables("#000000", true, "#808080", "to right");
-        updateUnfocusedTitlebarColor();
-        updateFocusedTitlebarColor();
-        $('.application').css('border', 'none');
-        defaultBoxShadow();
-        setBorderRadius(4);
-        setTitlebarGradientSwitch(false);
-        updateButtonPlacement("RDE");
-        _bottomMenuBarEnabled = false;
-        updateInterface();
-    })
-
-    // classic preset (win95isch)
-    $('#classic').click(function () {
-        updateInterfaceVariables("#FFFFFF", "#808080", "#D3D3D3", "#000000", "#000000", "#D3D3D3");
-        updateUnfocusedTitlebarVariables("#A9A9A9", false, null, null);
-        updateFocusedTitlebarVariables("#00008B", false, null, null);
-        updateUnfocusedTitlebarColor();
-        updateFocusedTitlebarColor();
-        setBorderRadius(0);
-        updateBoxShadow();
-        setTitlebarGradientSwitch(true);
-        $('.application').css('border', '2px outset lightgray');
-        $('#boxShadowSwitch').prop('checked', true);
-        $('#boxShadowSwitch').click();
-        updateButtonPlacement("redmond");
-        _bottomMenuBarEnabled = true;
-        updateInterface();
-    })
-
-    $('#boxShadowSwitch').click(function () {
-        if ($(this).is(':checked')) {
-            updateBoxShadow();
-            $('#boxShadowHorizontalSlider').show();
-            $('#boxShadowHorizontalText').show();
-            $('#boxShadowVerticalSlider').show();
-            $('#boxShadowVerticalText').show();
-            $('.shadowHint').show();
-        } else {
-            $('.application').css('box-shadow', 'none');
-            $('#boxShadowHorizontalSlider').hide();
-            $('#boxShadowHorizontalText').hide();
-            $('#boxShadowVerticalSlider').hide();
-            $('#boxShadowVerticalText').hide();
-            $('.shadowHint').hide();
-        }
-    })
-
-    $('#menubarShareTranslucencySwitch').click(function () {
-        if ($(this).is(':checked')) {
-            $("#menubarTranslucency").val(_menubarOpacity);
-            $("#menubarTranslucencyText").text(_menubarOpacity);
-            $('#menubarTranslucencyText').show();
-            $('#menubarTranslucency').show();
-            _appMenubarShareOpacity = false;
-        } else {
-            $('#menubarTranslucencyText').hide();
-            $('#menubarTranslucency').hide();
-            _appMenubarShareOpacity = true;
-            _menubarOpacity = _applicationOpacity;
-            updateInterfaceVariables(_titlebarTextColor, _unfocusedTitlebarTextColor, _appBackgroundColor, _appInterfaceTextColor, _menubarTextColor, _menubarBackgroundColor);
-            updateInterface();
-        }
-    })
-
-    $('#titlebarGradientSwitch').click(function () {
-        if ($(this).is(':checked')) {
-            _titlebarIsGradient = true;
-            $('#gradientDirectionText').show();
-            $('#gradientDirection').show();
-            $('#titlebarColorTwoPicker').show();
-            $('#titlebarColorTwoPickerText').show();
-            $('#titlebarColorOnePickerText').text("Background color one");
-            updateFocusedTitlebarColor();
-        } else {
-            _titlebarIsGradient = false;
-            $('#gradientDirectionText').hide();
-            $('#gradientDirection').hide();
-            $('#titlebarColorTwoPicker').hide();
-            $('#titlebarColorTwoPickerText').hide();
-            $('#titlebarColorOnePickerText').text("Background color");
-            updateFocusedTitlebarColor();
-        }
-    })
-
-    $('#unfocusedTitlebarGradientSwitch').click(function () {
-        if ($(this).is(':checked')) {
-            _unfocusedTitlebarIsGradient = true;
-            $('#unfocusedGradientDirectionText').show();
-            $('#unfocusedGradientDirection').show();
-            $('#unfocusedTitlebarColorTwoPicker').show();
-            $('#unfocusedTitlebarColorTwoPickerText').show();
-            $('#unfocusedTitlebarColorOnePickerText').text("Background color one");
-            updateUnfocusedTitlebarColor();
-        } else {
-            _unfocusedTitlebarIsGradient = false;
-            $('#unfocusedGradientDirectionText').hide();
-            $('#unfocusedGradientDirection').hide();
-            $('#unfocusedTitlebarColorTwoPicker').hide();
-            $('#unfocusedTitlebarColorTwoPickerText').hide();
-            $('#unfocusedTitlebarColorOnePickerText').text("Background color");
-            updateUnfocusedTitlebarColor();
-        }
-    })
-});
-
-function updateInterfaceVariables(titlebarTextColorIn, unfocusedTitlebarTextColorIn, appBackgroundColorIn, appInterfaceTextColorIn, menubarTextColorIn, menubarBackgroundColorIn) {
-    // updates all interface variables
-    _titlebarTextColor = titlebarTextColorIn;
-    _unfocusedTitlebarTextColor = unfocusedTitlebarTextColorIn;
-    _appBackgroundColor = appBackgroundColorIn;
-    _appBackgroundColorOut = convertHex(appBackgroundColorIn, _applicationOpacity);
-    _appInterfaceTextColor = appInterfaceTextColorIn;
-    _menubarTextColor = menubarTextColorIn;
-    _menubarBackgroundColor = menubarBackgroundColorIn;
-    _menubarBackgroundColorOut = convertHex(menubarBackgroundColorIn, _menubarOpacity);
-}
-
-function updateInterface() {
-    unfocusAll(); // unfocus everything whilst applying interface
-
-    // update settings
-    $("#titlebarTextColorPicker").val(_titlebarTextColor);
-    $("#unfocusedTitlebarTextColorPicker").val(_unfocusedTitlebarTextColor);
-    $("#appBackgroundColorPicker").val(_appBackgroundColor);
-    $("#appInterfaceTextColorPicker").val(_appInterfaceTextColor);
-    $("#menubarTextColorPicker").val(_menubarTextColor);
-    $("#menubarBackgroundColorPicker").val(_menubarBackgroundColor);
-
-    // titlebar
-    $('.titlebar button').css('color', _titlebarTextColor);
-    $('.titlebar').css('color', _titlebarTextColor);
-
-    // menubar
-    if(_bottomMenuBarEnabled){
-        $('#bottombar>button').css('color', _menubarTextColor);
-        $('#bottombar').css('color', _menubarTextColor);
-        $('#bottombar').css('background-color', _menubarBackgroundColorOut);
-        $('#menubar').css('display', 'none');
-        $('#bottombar').css('display', 'inline-block');
-        $('.inMenubar').hide();
-        windowListBottomContainer.appendChild(openWindowList);
-        $('#openWindowList > img').css('width', '0.45cm');
-
-
-    } else {
-        $('#bottomMenuContent').css('display', 'none');
-        $('#bottombar').css('display', 'none');
-        $('#menubar').css('display', 'inline-block');
-        $('#menubar>button').css('color', _menubarTextColor);
-        $('#menubar').css('color', _menubarTextColor);
-        $('#menubar').css('background-color', _menubarBackgroundColorOut);
-        windowListTopContainer.appendChild(openWindowList);
-        $('#openWindowList > img').css('width', '0.35cm');
-    }
-
-
-    // menubar subsidiaries
-    $('.inMenubar').css('background-color', _menubarBackgroundColorOut);
-    $('.inMenubar').css('color', _menubarTextColor);
-
-    // applications:
-    $('#help').css('background-color', _appBackgroundColorOut);
-    $('#customizationSettings').css('background-color', _appBackgroundColorOut);
-    $('#generalInterface').css('border-right', '1px solid ' + _appInterfaceTextColor);
-
-    getActive("customizationSettings");
-}
-
-
-
-// *titlebar stuff*
-function setTitlebarGradientSwitch(off){
-    if(off){
-        $('#titlebarGradientSwitch').prop('checked', true);
-        $('#titlebarGradientSwitch').click();
-        $('#unfocusedTitlebarGradientSwitch').prop('checked', true);
-        $('#unfocusedTitlebarGradientSwitch').click();
-    } else {
-        $('#titlebarGradientSwitch').prop('checked', false);
-        $('#titlebarGradientSwitch').click();
-        $('#unfocusedTitlebarGradientSwitch').prop('checked', false);
-        $('#unfocusedTitlebarGradientSwitch').click();
-    }
-}
-
-function updateFocusedTitlebarVariables(colorOne, isGradient, colorTwo, direction){
-    _titlebarGradientDirection = direction;
-    _titlebarIsGradient = isGradient;
-    _titlebarColorOne = colorOne;
-    _titlebarColorTwo = colorTwo;
-}
-
-function updateUnfocusedTitlebarVariables(colorOne, isGradient, colorTwo, direction){
-    _unfocusedTitlebarGradientDirection = direction;
-    _unfocusedTitlebarIsGradient = isGradient;
-    _unfocusedTitlebarColorOne = colorOne;
-    _unfocusedTitlebarColorTwo = colorTwo;
-}
-
-function updateFocusedTitlebarColor(){
-    if(_titlebarIsGradient){
-        _titlebarFocusColor = "linear-gradient(" + _titlebarGradientDirection + ", " + _titlebarColorOne + ", " + _titlebarColorTwo + ")";
-        $("#titlebarColorTwoPicker").val(_titlebarColorTwo);
-        $("#gradientDirection").val(_titlebarGradientDirection);
-    } else {
-        _titlebarFocusColor = _titlebarColorOne;
-    }
-    $("#titlebarColorOnePicker").val(_titlebarColorOne);
-
-    unfocusAll(); // unfocus everything to apply settings
-    getActive("customizationSettings");
-}
-
-function updateUnfocusedTitlebarColor(){
-    if(_unfocusedTitlebarIsGradient){
-        _unfocusedTitlebarColor = "linear-gradient(" + _unfocusedTitlebarGradientDirection + ", " + _unfocusedTitlebarColorOne + ", " + _unfocusedTitlebarColorTwo + ")";
-        $("#unfocusedTitlebarColorTwoPicker").val(_unfocusedTitlebarColorTwo);
-        $("#unfocusedGradientDirection").val(_unfocusedTitlebarGradientDirection);
-    } else {
-        _unfocusedTitlebarColor = _unfocusedTitlebarColorOne;
-    }
-    $("#unfocusedTitlebarColorOnePicker").val(_unfocusedTitlebarColorOne);
-
-    unfocusAll(); // unfocus everything to apply settings
-    getActive("customizationSettings");
-}
-
-function updateTitlebarColorOne(titlebarColorOneIn){
-    _titlebarColorOne = titlebarColorOneIn;
-    updateFocusedTitlebarColor();
-}
-
-function updateTitlebarColorTwo(titlebarColorTwoIn){
-    _titlebarColorTwo = titlebarColorTwoIn;
-    updateFocusedTitlebarColor();
-}
-
-function updateUnfocusedTitlebarColorOne(unfocusedTitlebarColorOneIn){
-    _unfocusedTitlebarColorOne = unfocusedTitlebarColorOneIn;
-    updateUnfocusedTitlebarColor();
-}
-
-function updateUnfocusedTitlebarColorTwo(unfocusedTitlebarColorTwoIn){
-    _unfocusedTitlebarColorTwo = unfocusedTitlebarColorTwoIn;
-    updateUnfocusedTitlebarColor();
-}
-
-
-function updateGradientDirection(directionIn) {
-    gradientDirection.value = directionIn;
-    _titlebarGradientDirection = directionIn;
-    _titlebarIsGradient = true;
-    updateFocusedTitlebarColor();
-}
-
-function updateUnfocusedGradientDirection(directionIn) {
-    unfocusedGradientDirection.value = directionIn;
-    _unfocusedTitlebarGradientDirection = directionIn;
-    _unfocusedTitlebarIsGradient = true;
-    updateUnfocusedTitlebarColor();
-}
-
-
-// Updates button position depending on which option is picked
-function updateButtonPlacement(placementIn) {
-    buttonPlacement.value = placementIn;
-    switch (placementIn) {
-        case 'RDE':
-            $('.closeWindow').css('float', 'left');
-            $('.collapseWindow').css('float', 'right');
-            $('.titlebar').css('text-align', 'center');
-            $('.titlebar>a').css('margin-left', '0');
-            $('.closeWindow').css('margin-right', '0');
-            $('.collapseWindow').css('margin-left', '0');
-            break;
-        case 'redmond':
-            $('.closeWindow').css('float', 'right');
-            $('.collapseWindow').css('float', 'right');
-            $('.titlebar').css('text-align', 'left');
-            $('.titlebar>a').css('margin-left', '1%');
-            $('.closeWindow').css('margin-right', '1%');
-            $('.collapseWindow').css('margin-left', '0');
-            break;
-        case 'cupertino':
-            $('.closeWindow').css('float', 'left');
-            $('.collapseWindow').css('float', 'left');
-            $('.titlebar').css('text-align', 'center');
-            $('.titlebar>a').css('margin-left', 'none');
-            $('.collapseWindow').css('margin-left', '0.1%');
-            break;
-    }
-}
-
-// *Border radius*
-function setBorderRadius(borderRadiusIn) {
-    $('#borderRadiusSliderText').text(borderRadiusIn + "px");
-    $('.application').css('border-radius', borderRadiusIn + "px");
-    $('.fakeWindow').css('border-radius', borderRadiusIn + "px");
-    $('.titlebar').css('border-top-left-radius', borderRadiusIn + "px");
-    $('.titlebar').css('border-top-right-radius', borderRadiusIn + "px");
-    borderRadiusSlider.value = borderRadiusIn;
-}
-
-// *Box shadow stuff*
-function setBoxShadowHorizontal(boxShadowHorizontalIn) {
-    boxShadowHorizontal = boxShadowHorizontalIn + "px";
-    $("#boxShadowHorizontalSlider").val(boxShadowHorizontalIn);
-    $('#boxShadowHorizontalText').text(boxShadowHorizontal);
-    updateBoxShadow();
-}
-
-function setBoxShadowVertical(boxShadowVerticalIn) {
-    boxShadowVertical = boxShadowVerticalIn + "px";
-    $("#boxShadowVerticalSlider").val(boxShadowVerticalIn);
-    $('#boxShadowVerticalText').text(boxShadowVertical);
-    updateBoxShadow();
-}
-
-function updateBoxShadow(boxShadowHorizontalIn) {
-    $('#boxShadowVerticalText').text(boxShadowVertical);
-    $('#boxShadowHorizontalText').text(boxShadowHorizontal);
-    $('.application').css('box-shadow', boxShadowHorizontal + " " + boxShadowVertical + ' 0px 0px rgba(0, 0, 0, 0.75)');
-}
-
-// Sets the box shadow on .application to default settings
-function defaultBoxShadow() {
-    setBoxShadowHorizontal(8);
-    setBoxShadowVertical(15);
-    updateBoxShadow();
-    $('#boxShadowSwitch').prop('checked', false);
-    $('#boxShadowSwitch').click();
-}
-
-
-// *translucency stuff*
-function setGeneralOpacity(generalOpacityIn) {
-    _applicationOpacity = generalOpacityIn;
-    $('#generalOpacityText').text(_applicationOpacity);
-    if (_appMenubarShareOpacity) {
-        _menubarOpacity = _applicationOpacity;
-    }
-    updateInterfaceVariables(_titlebarTextColor, _unfocusedTitlebarTextColor, _appBackgroundColor, _appInterfaceTextColor, _menubarTextColor, _menubarBackgroundColor);
-    updateInterface();
-}
-
-function updateMenubarTranslucency(menubarOpacityIn) {
-    _menubarOpacity = menubarOpacityIn;
-    $('#menubarTranslucencyText').text(_menubarOpacity);
-    updateInterfaceVariables(_titlebarTextColor, _unfocusedTitlebarTextColor, _appBackgroundColor, _appInterfaceTextColor, _menubarTextColor, _menubarBackgroundColor);
-    updateInterface();
-}
-
-// *color stuff*
-function updateInterfaceVariablesAndInterface() {
-    updateInterfaceVariables(_titlebarTextColor, _unfocusedTitlebarTextColor, _appBackgroundColor, _appInterfaceTextColor, _menubarTextColor, _menubarBackgroundColor);
-    updateInterface();
-}
-
-function titlebarTextColorUpdate(titlebarTextColorIn) {
-    _titlebarTextColor = titlebarTextColorIn;
-    updateInterfaceVariablesAndInterface();
-}
-
-function unfocusedTitlebarTextColorUpdate(unfocusedTitlebarTextColorIn) {
-    _unfocusedTitlebarTextColor = unfocusedTitlebarTextColorIn;
-    updateInterfaceVariablesAndInterface();
-}
-
-function appBackgroundColorUpdate(appBackgroundColorIn) {
-    _appBackgroundColor = appBackgroundColorIn;
-    updateInterfaceVariablesAndInterface();
-}
-
-function appInterfaceTextColorUpdate(appInterfaceTextColorIn) {
-    _appInterfaceTextColor = appInterfaceTextColorIn;
-    updateInterfaceVariablesAndInterface();
-}
-
-function menubarTextColorUpdate(menubarTextColorIn) {
-    _menubarTextColor = menubarTextColorIn;
-    updateInterfaceVariablesAndInterface();
-}
-
-function menubarBackgroundColorUpdate(menubarBackgroundColorIn) {
-    _menubarBackgroundColor = menubarBackgroundColorIn;
-    updateInterfaceVariablesAndInterface();
-}
-
-$(function () {
-    $('#showColorSettings').click(function () {
-        $('#colorSettings').css('display', 'inline-block');
-        $('#generalWindowSettings').css('display', 'none');
-        $('#titlebarSettings').css('display', 'none');
-        $('#translucencySettings').css('display', 'none');
-        $('#menubarSettings').css('display', 'none');
-    })
-
-    $('#showWindowSettings').click(function () {
-        $('#generalWindowSettings').css('display', 'inline-block');
-        $('#colorSettings').css('display', 'none');
-        $('#titlebarSettings').css('display', 'none');
-        $('#translucencySettings').css('display', 'none');
-        $('#menubarSettings').css('display', 'none');
-    })
-
-    $('#showTitlebarSettins').click(function () {
-        $('#titlebarSettings').css('display', 'inline-block');
-        $('#colorSettings').css('display', 'none');
-        $('#generalWindowSettings').css('display', 'none');
-        $('#translucencySettings').css('display', 'none');
-        $('#menubarSettings').css('display', 'none');
-    })
-
-    $('#showTranslucencySettings').click(function () {
-        $('#translucencySettings').css('display', 'inline-block');
-        $('#colorSettings').css('display', 'none');
-        $('#generalWindowSettings').css('display', 'none');
-        $('#titlebarSettings').css('display', 'none');
-        $('#menubarSettings').css('display', 'none');
-    })
-
-    $('#showMenubarSettings').click(function () {
-        $('#menubarSettings').css('display', 'inline-block');
-        $('#colorSettings').css('display', 'none');
-        $('#generalWindowSettings').css('display', 'none');
-        $('#titlebarSettings').css('display', 'none');
-        $('#translucencySettings').css('display', 'none');
-        if(_bottomMenuBarEnabled){
-            $('#bottomMenuBarSwitch').prop('checked', true);
-        } else {
-            $('#bottomMenuBarSwitch').prop('checked', false);
-        }
-    })
-});
-
 
 // **Used in many different parts of this code**
 // from https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
@@ -1322,65 +820,6 @@ function convertHex(hex, opacity) {
 }
 
 
-
-var isBottomMenuBarVisisble
-
-$(function () {
-    $('#bottomPathfinderText').click(function () {
-        $('#pathfinderText').click();
-    })
-
-    $('#bottomChipText').click(function () {
-        $('#chipText').click();
-    })
-    
-    $('#bottomNotesText').click(function () {
-        $('#notesText').click();
-    })
-    
-    $('#bottomTerminalText').click(function () {
-        $('#terminalText').click();
-    })
-    
-    $('#bottomBrowserText').click(function () {
-        $('#browserText').click();
-    })
-    
-    $('#bottomBackgroundMenuClick').click(function () {
-        $('#backgroundMenuClick').click();
-    })
-
-    $('#bottomCustomizationMenuClick').click(function () {
-        $('#customizationMenuClick').click();
-    })
-
-    $('#bottomArrangeToDefault').click(function () {
-        $('#arrangeToDefault').click();
-    })
-
-    $('#bottomHelpMenuClick').click(function () {
-        $('#helpMenuClick').click();
-    })
-
-    $("#bottomMenuClick").click(function () {
-        if ($("#bottomMenuContent").is(":visible")) {
-            $('#bottomMenuContent').hide();
-        } else {
-            $('#bottomMenuContent').show();
-        }
-    })
-
-    $('#bottomMenuBarSwitch').click(function () {
-        if ($(this).is(':checked')) {
-            _bottomMenuBarEnabled = true;
-            updateInterface();
-        } else {
-            _bottomMenuBarEnabled = false;
-            updateInterface();
-        }
-    })
-});
-*/
 
 $(function () {
     $('#windowListMediaplayer').hover(function () {
@@ -1563,10 +1002,10 @@ var demoTitlebarDirection = "to right";
 function updateDemoColor(type, color){
     switch(type){
         case "windowBackground":
-            $(".demoWindow").css('background', color);
+            $("#demoWindow").css('background', color);
             break;
         case "windowText":
-            $(".demoWindow").css('color', color);
+            $("#demoWindow").css('color', color);
             break;
         case "menubarText":
             $("#demoMenubar>a").css('color', color);
@@ -1596,6 +1035,45 @@ function updateDemoColor(type, color){
     }
 }
 
+function applyAppearanceChanges(){
+    _menubarBackgroundColor = $("#demoMenubar").css('background-color');
+    _appBackgroundColor = $("#demoWindow").css('background-color');
+    _titlebarColorOne = demoTitlebarColorOne;
+    _titlebarColorTwo = demoTitlebarColorTwo;
+    _appInterfaceTextColor = $("#demoWindow").css('color');
+    _menubarTextColor = $("#demoMenubar>a").css('color');
+    _focusedTitlebarTextColor = $("#demoTitlebar>a").css('color');
+    updateInterface();
+    focusWindow("settings");
+}
+
+function updateInterface(){
+    unfocusAll();
+    $(".inMenubar > button").css('color', _menubarTextColor);
+    $(".inMenubar").css('background', _menubarBackgroundColor);
+    $(".inMenubar").css('color', _menubarTextColor);
+    // Apply app background color for supported windows
+    $("#settings").css('background', _appBackgroundColor);
+    $("#help").css('background', _appBackgroundColor);
+    _titlebarFocusColor = generateGradient("to right", _titlebarColorOne, _titlebarColorTwo);
+    _unfocusedTitlebarColor = generateGradient("to right", _unfocusedTitlebarColorOne, _unfocusedTitlebarColorTwo);
+
+}
+
+var _unfocusedTitlebarIsGradient = true;
+var _unfocusedTitlebarColorOne = "#FFFFFF";
+var _unfocusedTitlebarColorTwo = "#D3D3D3";
+
+var _titlebarFocusColor = "linear-gradient(to right, white, lightgray)";
+var _unfocusedTitlebarColor = "linear-gradient(to right, white, lightgray)";
+var _focusedTitlebarTextColor = "#000000";
+var _unfocusedTitlebarTextColor = "gray";
+var _appBackgroundColor = "#FFFFFF";
+var _appInterfaceTextColor = "#000000";
+var _unfocusedAppInterfaceTextColor = "#808080";
+var _menubarTextColor = "#000000";
+var _menubarBackgroundColor = "#FFFFFF";
+var _bottomMenuBarEnabled = false;
 
 
 function generateGradient(direction, colorOne, colorTwo){

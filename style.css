@@ -642,7 +642,7 @@ body {
 }
 
 
-.demoWindow {
+#demoWindow {
 	background-color: white;
 	box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
 	transition: filter 0.5s;
