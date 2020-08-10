@@ -336,11 +336,6 @@ $(function () {
     })
 });
 
-// I won't implement collapse functionality for background picker and customization settings right now.
-// They will remain broken for now.
-// But I am planning on combining them into one reworked settings window. Which will get proper collapse functionality.
-// I've removed the collapse buttons on these windows.
-
 function collapseWindow(windowIn){
    switch (windowIn) {
     case 'mediaplayer':
@@ -370,15 +365,6 @@ function collapseWindow(windowIn){
 }
 
 function uncollapseWindow(windowIn){
-    /*
-    if(currentlyFocused == "mediaplayer"){
-        $('#mediaContent').show();
-    } else if(currentlyFocused == "pathfinder"){
-        $('#pathfinderContent').show();
-    } else if(currentlyFocused == "browserWindow"){
-        $('#browserContent').show();
-    }
-    */
    if($('#' + windowIn).resizable("option","disabled")){
     switch (windowIn) {
         case 'mediaplayer':
@@ -403,8 +389,6 @@ function uncollapseWindow(windowIn){
             $('#help').css('height', helpHeight);
             break;
        }
-    // currently using fixed height on uncollapse. Will try to reimplement some effective way to store previous height.
-    // $('#' + windowIn).height("75%");
     $('#' + windowIn).resizable('enable'); 
     }
 }
@@ -586,13 +570,9 @@ $(function () {
         $('#fileMenuContent').hide();
         $('#backgroundPicker').hide();
         $('#appMenuContent').hide();
-        $('#closeBackPicker').click();
-        $('#closeTerminal').click();
-        $('#closeBrowser').click();
-        $('#closeHelp').click();
-        $('#closePathfinder').click();
-        $('#closeAbout').click();
-        $('#closeCustomization').click();
+       closeWindow("terminal");
+       closeWindow("browserWindow");
+       closeWindow("help");
         // Show default applications
         $('#mediaplayer').show();
         $('#notes').show();
@@ -614,12 +594,6 @@ $(function () {
         if (mediaClosed) {
             $("#mediaContent").attr('src', 'https://mmontag.github.io/chip-player-js/');
         }
-
-        // show iframes if collapsed
-        if (isMediaCollapsed) {
-            $("#uncollapseMedia").click
-        }
-        isMediaCollapsed = false;
     })
 
     // Responsible for updating clock
@@ -1516,53 +1490,29 @@ $(function () {
     $('#terminalInput').on('keypress', function (e) {
         if(e.which === 13){
             var terminalInput = $('#terminalInput').val().toLowerCase();
+            $('#terminalContent').find('pre').hide();;
             switch (terminalInput) {
                 case 'ls':
-                    $("#terminalHelp").css('display', 'none');
                     $("#terminalLs").css('display', 'block');
-                    $("#terminalNeofetch").css('display', 'none');
-                    $("#terminalNotFound").css('display', 'none');
-                    $("#terminalUnameR").css('display', 'none');
                     break;
                 case 'uname -r':
-                    $("#terminalHelp").css('display', 'none');
-                    $("#terminalLs").css('display', 'none');
-                    $("#terminalNeofetch").css('display', 'none');
-                    $("#terminalNotFound").css('display', 'none');
                     $("#terminalUnameR").css('display', 'block');
                     break;
                 case 'neofetch':
-                    $("#terminalHelp").css('display', 'none');
-                    $("#terminalLs").css('display', 'none');
                     $("#terminalNeofetch").css('display', 'block');
-                    $("#terminalNotFound").css('display', 'none');
-                    $("#terminalUnameR").css('display', 'none');
                     break;
                 case 'help':
                     $("#terminalHelp").css('display', 'block');
-                    $("#terminalLs").css('display', 'none');
-                    $("#terminalNeofetch").css('display', 'none');
-                    $("#terminalNotFound").css('display', 'none');
-                    $("#terminalUnameR").css('display', 'none');
                     break;
                 case 'exit':
                     $('#terminalInput').val('');
-                    $('#closeTerminal').click();
+                    closeWindow("terminal");
                     break;
                 case 'clear':
                     $('#terminalInput').val('');
-                    $("#terminalHelp").css('display', 'none');
-                    $("#terminalLs").css('display', 'none');
-                    $("#terminalNeofetch").css('display', 'none');
-                    $("#terminalNotFound").css('display', 'none');
-                    $("#terminalUnameR").css('display', 'none');
                     break;
                 default:
-                    $("#terminalHelp").css('display', 'none');
-                    $("#terminalLs").css('display', 'none');
-                    $("#terminalNeofetch").css('display', 'none');
                     $("#terminalNotFound").css('display', 'block');
-                    $("#terminalUnameR").css('display', 'none');
             }
         }
     });
