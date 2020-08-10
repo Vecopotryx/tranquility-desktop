@@ -217,9 +217,11 @@ function focusWindow(){
 var previousFocus;
 
 function getActive(activeIn){
-    previousFocus = currentlyFocused;
-    currentlyFocused = activeIn;
-    focusWindow();
+    if(activeIn !== currentlyFocused){
+        previousFocus = currentlyFocused;
+        currentlyFocused = activeIn;
+        focusWindow();
+    }
 }
 
 // **closing functionality**
