@@ -572,3 +572,12 @@ body {
 #terminalContent > pre {
 	margin-top: -2px;
 }
+
+#settings {
+	position: absolute;
+	background-color: lightgray;
+	margin-top: 5vh;
+	margin-left: 24vw;
+	width: 45%;
+	height: 50%;
+}
