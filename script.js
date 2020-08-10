@@ -1512,6 +1512,10 @@ $(function () {
     $('#demoMenubar').click(function () {
         $('#menubarBackgroundColorPicker').click();
     })
+
+    $('#demoTitlebar>a, #demoTitlebar>button').click(function () {
+        $('#titlebarTextColorPicker').click();
+    })
 });
 
 function updateDemoColor(type, color){
@@ -1528,6 +1532,52 @@ function updateDemoColor(type, color){
         case "menubarBackground":
             $("#demoMenubar").css('background-color', color);
             break;
+        case "titlebarText":
+            $("#demoTitlebar>a").css('color', color);
+            $("#demoTitlebar>button").css('color', color);
+            break;
     }
-
 }
+
+
+function updateButtonPlacement(isDemo, placementIn) {
+    buttonPlacement.value = placementIn;
+    var closeWindow;
+    var collapseWindow;
+    var titlebar;
+    if(isDemo){
+        closeWindow = "#closeWindowDemo";
+        collapseWindow = "#collapseWindowDemo";
+        titlebar = "#demoTitlebar";
+    } else {
+        closeWindow = ".closeWindow";
+        collapseWindow = ".collapseWindow";
+        titlebar = ".titlebar";
+    }
+    switch (placementIn) {
+        case 'RDE':
+            $(closeWindow).css('float', 'left');
+            $(collapseWindow).css('float', 'right');
+            $(titlebar).css('text-align', 'center');
+            $(titlebar + '>a').css('margin-left', '0');
+            $(closeWindow).css('margin-right', '0');
+            $(collapseWindow).css('margin-left', '0');
+            break;
+        case 'redmond':
+            $(closeWindow).css('float', 'right');
+            $(collapseWindow).css('float', 'right');
+            $(titlebar).css('text-align', 'left');
+            $(titlebar + '>a').css('margin-left', '1%');
+            $(closeWindow).css('margin-right', '1%');
+            $(collapseWindow).css('margin-left', '0');
+            break;
+        case 'cupertino':
+            $(closeWindow).css('float', 'left');
+            $(collapseWindow).css('float', 'left');
+            $(titlebar).css('text-align', 'center');
+            $(titlebar + '>a').css('margin-left', 'none');
+            $(closeWindow).css('margin-right', '1%');
+            $(collapseWindow).css('margin-left', '0.1%');
+            break;
+    }
+}   

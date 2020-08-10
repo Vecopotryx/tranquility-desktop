@@ -286,10 +286,10 @@ Retro Kernel 0.0.5
 										<a style="float:right">00:00</a>
 									</div>
 									<div class="demoWindow">
-										<div class="titlebar" id="demoWindowTitlebar">
-											<button class="closeWindowDemo">×</button>
+										<div id="demoTitlebar">
+											<button id="closeWindowDemo">×</button>
 											<a>Window</a>
-											<button class="collapseWindowDemo">▲</button>
+											<button id="collapseWindowDemo">▲</button>
 										</div>
 										<div id="demoWindowContent" title="Background color">
 											<div id="demoText" title="Text color">Text</div>
@@ -297,12 +297,13 @@ Retro Kernel 0.0.5
 									</div>
 								</div>
 
-								<label for="presets">Presets:</label>
+								<label for="presets">Style:</label>
 
 								<select name="presets" id="presets">
-								  <option value="bright">Bright</option>
-								  <option value="dark">Dark</option>
-								  <option value="classic">Classic</option>
+									<option value="custom">Custom</option>
+									<option value="bright">Bright</option>
+									<option value="dark">Dark</option>
+									<option value="classic">Classic</option>
 								</select>
 
 								<div id="interfaceColors">
@@ -321,6 +322,20 @@ Retro Kernel 0.0.5
 									<input type="color" id="menubarBackgroundColorPicker" value="#FAFAFA"
 										onchange="updateDemoColor('menubarBackground', this.value);">
 									<label for="menubarBackgroundColorPicker">Menubar background color</label>
+									<br>
+									<input type="color" id="titlebarTextColorPicker" value="#00000F"
+										onchange="updateDemoColor('titlebarText', this.value);">
+									<label for="titlebarTextColorPicker">Text color</label>
+								</div>
+
+								<div id="titlebarButtonSettings">
+									<label for="buttonPlacement" id="buttonPlacementText">Button placement:</label>
+									<select id="buttonPlacement" name="buttonPlacement"
+										onchange="updateButtonPlacement(true, this.value);">
+										<option value="RDE">RDE</option>
+										<option value="redmond">Redmond</option>
+										<option value="cupertino">Cupertino</option>
+									</select>
 								</div>
 								
 								<div class="settingsAction">
