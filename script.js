@@ -27,24 +27,13 @@ var customizeIndex;
 var mediaClosed = false;
 
 // releated to collapsing functionality (helps keep track of required information):
-/*
+
 var mediaplayerHeight;
-var isMediaplayerCollapsed;
 var notesHeight;
-var isNotesCollapsed;
 var pathfinderHeight;
-var isPathfinderCollapsed;
 var terminalHeight;
-var isTerminalCollapsed;
 var browserHeight;
-var isBrowserCollapsed;
 var helpHeight;
-var isHelpCollapsed;
-var backpickerHeight;
-var isBackpickerCollapsed;
-var customizationHeight;
-var isCustomizationCollapsed;
-*/
 
 /*
 // related to maximize functionality (helps keep track of required infromation)
@@ -351,27 +340,35 @@ $(function () {
 // I've removed the collapse buttons on these windows.
 
 function collapseWindow(windowIn){
-    if(currentlyFocused == "mediaplayer"){
+   switch (windowIn) {
+    case 'mediaplayer':
         $('#mediaContent').hide();
-    } else if(currentlyFocused == "pathfinder"){
+        mediaplayerHeight = $("#mediaplayer").css('height');
+        break;
+    case 'notes':
+        notesHeight = $("#notes").css('height');
+        break;
+    case 'pathfinder':
         $('#pathfinderContent').hide();
-    } else if(currentlyFocused == "browserWindow"){
+        pathfinderHeight = $("#pathfinder").css('height');
+        break;
+    case 'terminal':
+        terminalHeight = $("#terminal").css('height');
+        break;
+    case 'browserWindow':
         $('#browserContent').hide();
-    }
-    /*
-    *Will revisit this later
-    mediaplayerHeight = $("#mediaplayer").css('height');
-    notesHeight = $("#notes").css('height');
-    pathfinderHeight = $("#pathfinder").css('height');
-    terminalHeight = $("#terminal").css('height');
-    browserHeight = $("#browserWindow").css('height');
-    helpHeight = $("#help").css('height');
-    */
+        browserHeight = $("#browserWindow").css('height');
+        break;
+    case 'help':
+        helpHeight = $("#help").css('height');
+        break;
+   }
     $('#' + windowIn).height(0);
     $('#' + windowIn).resizable('disable');
 }
 
 function uncollapseWindow(windowIn){
+    /*
     if(currentlyFocused == "mediaplayer"){
         $('#mediaContent').show();
     } else if(currentlyFocused == "pathfinder"){
@@ -379,9 +376,35 @@ function uncollapseWindow(windowIn){
     } else if(currentlyFocused == "browserWindow"){
         $('#browserContent').show();
     }
+    */
+   if($('#' + windowIn).resizable("option","disabled")){
+    switch (windowIn) {
+        case 'mediaplayer':
+            $('#mediaContent').show();
+            $('#mediaplayer').css('height', mediaplayerHeight);
+            break;
+        case 'notes':
+            $('#notes').css('height', notesHeight);
+            break;
+        case 'pathfinder':
+            $('#pathfinderContent').show();
+            $('#pathfinder').css('height', pathfinderHeight);
+            break;
+        case 'terminal':
+            $('#terminal').css('height', terminalHeight);
+            break;
+        case 'browserWindow':
+            $('#browserContent').show();
+            $('#browserWindow').css('height', browserHeight);
+            break;
+        case 'help':
+            $('#help').css('height', helpHeight);
+            break;
+       }
     // currently using fixed height on uncollapse. Will try to reimplement some effective way to store previous height.
-    $('#' + windowIn).height("75%");
-    $('#' + windowIn).resizable('enable');
+    // $('#' + windowIn).height("75%");
+    $('#' + windowIn).resizable('enable'); 
+    }
 }
 
 // **Collapsing functionality**
