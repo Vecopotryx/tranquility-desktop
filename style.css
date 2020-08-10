@@ -300,84 +300,12 @@ body {
 	width: 7.5%;
 }
 
-.maximiseWindow {
-	float: left;
-	background: none;
-	border: none;
-	margin-left: 0.4%;
-	padding: 0;
-	cursor: pointer;
-	font-size: 18px;
-}
-
-#customizationSettings {
-	position: absolute;
-	background-color: #FFFFFF;
-	display: none;
-	overflow: hidden;
-}
-
-
-#windowSettings > div {
-	float: left;
-}
-
-#generalInterface {
-	text-align: center;
-	width: 40%;
-	border-right: 1px solid black;
-	padding-bottom: 25%;
-}
-
-#interfaceColors {
-	text-align: left;
-}
-
 #notesOpacityAmount, #notesOpacityText, #generalOpacityAmount, #generalOpacityText, #menubarTranslucency, #menubarTranslucencyText  {
 	display: none;
 }
 
 .closeWindow, .uncollapseWindow, .collapseWindow {
 	cursor: pointer;
-}
-
-#presets {
-	margin-right: auto;
-	margin-left: auto;
-}
-
-#presets>div {
-	display: inline-block;
-	text-align: center;
-	margin-left: 1%;
-	cursor: pointer;
-	width: 29%;
-	background-color: gray;
-	border: 1px solid black;
-	border-radius: 2px;
-}
-
-#generalWindowSettings, #titlebarSettings, #translucencySettings, #colorSettings, #menubarSettings {
-	text-align: center;
-	margin-left: 1%;
-	display: none;
-	width: 57%;
-}
-
-#colorSettings {
-	display: inline-block;
-}
-
-#titlebarColorSettings {
-	text-align: left;
-}
-
-#titlebarSettings {
-	padding-bottom: 1%;
-}
-
-#manualControls>button {
-	width: 50%;
 }
 
 #bottombar {
@@ -670,7 +598,7 @@ body {
 }
 
 #demoText {
-	width: 15%;
+	width: 45%;
 	transition: background-color 0.2s;
 	font-size: 160%;
 }
