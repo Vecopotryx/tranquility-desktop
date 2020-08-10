@@ -15,13 +15,12 @@ var _bottomMenuBarEnabled = false;
 var currentlyFocused;
 var mediaIndex;
 var notesIndex;
-var backpickerIndex;
 var pathfinderIndex;
 var terminalIndex;
 var browserIndex;
 var helpIndex;
-var aboutIndex;
 var customizeIndex;
+var settingsIndex;
 
 // related to closing functionality
 var mediaClosed = false;
@@ -157,7 +156,7 @@ function unfocusWindow(windowIn){
     $('#' + windowIn + ' .titlebar>a').css('color', _unfocusedTitlebarTextColor);
     $('#' + windowIn + '>.titlebar').css('background', _unfocusedTitlebarColor);
 
-    if(windowIn == "about" || windowIn == "help" || windowIn == "notes"){
+    if(windowIn == "help" || windowIn == "notes"){
         $('#' + windowIn + ' h1').css('color', _unfocusedAppInterfaceTextColor);
         $('#' + windowIn + ' h2').css('color', _unfocusedAppInterfaceTextColor);
         $('#' + windowIn + ' p').css('color', _unfocusedAppInterfaceTextColor);
@@ -172,45 +171,43 @@ function unfocusWindow(windowIn){
 function unfocusAll(){
     unfocusWindow("mediaplayer")
     unfocusWindow("notes");
-    unfocusWindow("backgroundPicker");
     unfocusWindow("pathfinder");
     unfocusWindow("terminal");
     unfocusWindow("browserWindow");
-    unfocusWindow("about")
     unfocusWindow("customizationSettings")
+    unfocusWindow("settings");
 }
 
 // *index stuff*
 function updateIndex() {
     mediaIndex = $('#mediaplayer').css('z-index');
     notesIndex = $('#notes').css('z-index');
-    backpickerIndex = $('#backgroundPicker').css('z-index');
     pathfinderIndex = $('#pathfinder').css('z-index');
     terminalIndex = $('#terminal').css('z-index');
     browserIndex = $('#browserWindow').css('z-index');
     helpIndex = $('#help').css('z-index');
-    aboutIndex = $('#about').css('z-index');
     customizeIndex = $('#customizationSettings').css('z-index');
+    settingsIndex = $('#settings').css('z-index');
     $('.frameOverlay').css('z-index', getHighestIndex() + 1);
 }
 
 function getHighestIndex() {
-    return Math.max(mediaIndex, notesIndex, backpickerIndex, pathfinderIndex, terminalIndex, browserIndex, helpIndex, aboutIndex, customizeIndex);
+    return Math.max(mediaIndex, notesIndex, settingsIndex, pathfinderIndex, terminalIndex, browserIndex, helpIndex, customizeIndex);
 }
 
-function focusWindow(){
+function focusWindow(windowIn){
     unfocusWindow(previousFocus);
     updateIndex();
-    $('#' + currentlyFocused).css('filter', 'grayscale(0%)');
-    $('#' + currentlyFocused).css('z-index', getHighestIndex() + 1);
-    $('#' + currentlyFocused).css('color', _appInterfaceTextColor);
-    $('#' + currentlyFocused + ' .titlebar>a').css('color', _titlebarTextColor);
-    $('#' + currentlyFocused + '>.titlebar').css('background', _titlebarFocusColor);
-    if(currentlyFocused == "about" || currentlyFocused == "help" || currentlyFocused == "notes"){
-        $('#' + currentlyFocused + ' h1').css('color', _appInterfaceTextColor);
-        $('#' + currentlyFocused + ' h2').css('color', _appInterfaceTextColor);
-        $('#' + currentlyFocused + ' p').css('color', _appInterfaceTextColor);
-        $('#' + currentlyFocused + ' a').css('color', _appInterfaceTextColor);
+    $('#' + windowIn).css('filter', 'grayscale(0%)');
+    $('#' + windowIn).css('z-index', getHighestIndex() + 1);
+    $('#' + windowIn).css('color', _appInterfaceTextColor);
+    $('#' + windowIn + ' .titlebar>a').css('color', _titlebarTextColor);
+    $('#' + windowIn + '>.titlebar').css('background', _titlebarFocusColor);
+    if(windowIn == "help" || windowIn == "notes"){
+        $('#' + windowIn + ' h1').css('color', _appInterfaceTextColor);
+        $('#' + windowIn + ' h2').css('color', _appInterfaceTextColor);
+        $('#' + windowIn + ' p').css('color', _appInterfaceTextColor);
+        $('#' + windowIn + ' a').css('color', _appInterfaceTextColor);
     }
 }
 
@@ -220,7 +217,7 @@ function getActive(activeIn){
     if(activeIn !== currentlyFocused){
         previousFocus = currentlyFocused;
         currentlyFocused = activeIn;
-        focusWindow();
+        focusWindow(currentlyFocused);
     }
 }
 
@@ -309,20 +306,6 @@ $(function () {
         loadingDots();
         $('#browserInfo').delay(2000).fadeOut("slow");
         $('#browserContent').delay(2500).fadeIn("slow");
-    })
-
-    // (About)
-    $("#aboutText").click(function () {
-        openWindow("about");
-    })
-
-    // (Background Picker)
-    $("#backgroundMenuClick").click(function () {
-        $('#backgroundPicker').show();
-        $('#optionMenuContent').hide();
-        $('#fileMenuContent').hide();
-        getActive("backgroundPicker")
-        $('#windowListBackPicker').show();
     })
 
     // (Help window)
@@ -568,7 +551,7 @@ $(function () {
     $("#arrangeToDefault").click(function () {
         $('#optionMenuContent').hide();
         $('#fileMenuContent').hide();
-        $('#backgroundPicker').hide();
+        $('#settings').hide();
         $('#appMenuContent').hide();
        closeWindow("terminal");
        closeWindow("browserWindow");
@@ -1054,7 +1037,6 @@ function updateInterface() {
 
     // applications:
     $('#help').css('background-color', _appBackgroundColorOut);
-    $('#about').css('background-color', _appBackgroundColorOut);
     $('#customizationSettings').css('background-color', _appBackgroundColorOut);
     $('#generalInterface').css('border-right', '1px solid ' + _appInterfaceTextColor);
 
@@ -1365,10 +1347,6 @@ $(function () {
         $('#browserText').click();
     })
     
-    $('#bottomAboutText').click(function () {
-        $('#aboutText').click();
-    })
-    
     $('#bottomBackgroundMenuClick').click(function () {
         $('#backgroundMenuClick').click();
     })
@@ -1430,14 +1408,6 @@ $(function () {
         uncollapseWindow("browserWindow");
     })
 
-    $('#windowListAbout').hover(function () {
-        getActive("about");
-    })
-
-    $('#windowListBackPicker').hover(function () {
-        getActive("backgroundPicker");
-    })
-
     $('#windowListCustomizationSettings').hover(function () {
         getActive("customizationSettings");
     })
@@ -1466,14 +1436,6 @@ $(function () {
 
     $('#windowListBrowser').click(function () {
         closeWindow("browserWindow");
-    })
-
-    $('#windowListAbout').click(function () {
-        closeWindow("about");
-    })
-
-    $('#windowListBackPicker').click(function () {
-        closeWindow("backgroundPicker");
     })
 
     $('#windowListCustomizationSettings').click(function () {
