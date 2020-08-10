@@ -1472,7 +1472,7 @@ $(function () {
     });
 });
 
-
+var demoTitlebarHasClicked;
 
 $(function () {
     
@@ -1515,8 +1515,33 @@ $(function () {
 
     $('#demoTitlebar>a, #demoTitlebar>button').click(function () {
         $('#titlebarTextColorPicker').click();
+        demoTitlebarHasClicked = true;
     })
+
+    $("#demoTitlebar").click(function(e){
+        if(demoTitlebarHasClicked){
+            demoTitlebarHasClicked = false;
+        } else {
+            var pWidth = $(this).innerWidth(); //use .outerWidth() if you want borders
+            var pOffset = $(this).offset(); 
+            var x = e.pageX - pOffset.left;
+            if(pWidth/2 > x){
+                $('#titlebarColorOnePicker').click();
+            } else {
+                if(_titlebarIsGradient){
+                    $('#titlebarColorTwoPicker').click();
+                }
+
+            }
+        }
+
+     });
 });
+
+var demoTitlebarIsGradient = true;
+var demoTitlebarColorOne = "white";
+var demoTitlebarColorTwo = "lightgray";
+var demoTitlebarDirection = "to right";
 
 function updateDemoColor(type, color){
     switch(type){
@@ -1536,7 +1561,28 @@ function updateDemoColor(type, color){
             $("#demoTitlebar>a").css('color', color);
             $("#demoTitlebar>button").css('color', color);
             break;
+        case "titlebarBackgroundOne":
+            if(demoTitlebarIsGradient){
+                demoTitlebarColorOne = color;
+                $("#demoTitlebar").css('background', generateGradient(demoTitlebarDirection, color, demoTitlebarColorTwo));
+            } else {
+                demoTitlebarColorOne = color;
+                $("#demoTitlebar").css('background', color);
+            }
+            break;
+        case "titlebarBackgroundTwo":
+            if(demoTitlebarIsGradient){
+                demoTitlebarColorTwo = color;
+                $("#demoTitlebar").css('background', generateGradient(demoTitlebarDirection, demoTitlebarColorOne, color));
+            }
+            break;
     }
+}
+
+
+
+function generateGradient(direction, colorOne, colorTwo){
+    return "linear-gradient(" + direction + ", " + colorOne + ", " + colorTwo + ")";
 }
 
 
@@ -1581,3 +1627,4 @@ function updateButtonPlacement(isDemo, placementIn) {
             break;
     }
 }   
+

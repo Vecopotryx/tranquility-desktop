@@ -325,7 +325,15 @@ Retro Kernel 0.0.5
 									<br>
 									<input type="color" id="titlebarTextColorPicker" value="#00000F"
 										onchange="updateDemoColor('titlebarText', this.value);">
-									<label for="titlebarTextColorPicker">Text color</label>
+									<label for="titlebarTextColorPicker">Titlebar text color</label>
+									<br>
+									<input type="color" id="titlebarColorOnePicker" value="#D3D3D3"
+										onchange="updateDemoColor('titlebarBackgroundOne', this.value);">
+									<label for="titlebarColorOnePicker" id="titlebarColorOnePickerText">Titlebar background color one</label>
+									<br>
+									<input type="color" id="titlebarColorTwoPicker" value="#FAFAFA"
+										onchange="updateDemoColor('titlebarBackgroundTwo', this.value);">
+									<label for="titlebarColorTwoPicker" id="titlebarColorTwoPickerText">Titlebar background color two</label>
 								</div>
 
 								<div id="titlebarButtonSettings">
