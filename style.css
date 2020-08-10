@@ -543,33 +543,6 @@ body {
 	margin-left: 7cm;
 }
 
-#appearancePanels {
-	width: 100%;
-	height: 0.5cm;
-	background: black;
-	margin-bottom: 0.2cm;
-}
-
-#appearancePanels::after { 
-	content: " ";
-	display: block; 
-	height: 0.5cm; 
-	clear: both;
-	margin-bottom: 0.2cm;
-
- }
-
-#appearancePanels > div {
-	float: left;
-	background: gray;
-	width: 20%;
-	height: 100%;
-	margin-left: 0.5%;
-	text-align: center;
-
-}
-
-
 #demoWindow {
 	background-color: white;
 	box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
@@ -579,7 +552,7 @@ body {
 	border-radius: 4px;
 	overflow: hidden;
 	height: 80%;
-	width: 90%;
+	width: 70%;
 	margin: auto;
 }
 
@@ -589,12 +562,14 @@ body {
 }
 
 #demoWindowContainer {
-	width: 75%;
+	width: auto;
 	background-color: darkgray;
 	padding: 1%;
 	padding-right: 2%;
 	height: 5.5cm;
 	overflow: hidden;
+	border-bottom: 1px solid black;
+	margin-bottom: 1%;
 }
 
 #demoText {
@@ -683,3 +658,12 @@ body {
 	padding-left: 2%;
 }
 
+#appearanceLeftColumn {
+	border-right: 1px solid black;
+}
+
+#appearanceLeftColumn, #appearanceRightColumn {
+	float: left;
+	width: 49%;
+	white-space: nowrap;
+  }

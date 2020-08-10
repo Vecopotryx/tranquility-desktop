@@ -269,12 +269,6 @@ Retro Kernel 0.0.5
 					</div>
 
 					<div id="appearanceContainer">
-						<div id="appearancePanels">
-							<div id="appearanceColors">Colors</div>
-							<div id="appearanceStuff">Stuff</div>
-						</div>
-
-						<div id="appearanceCurrent">
 							<div id="appearanceColorSettings">
 								<div id="demoWindowContainer">
 									<div id="demoMenubar">
@@ -293,84 +287,89 @@ Retro Kernel 0.0.5
 										</div>
 										<div id="demoWindowContent" title="Background color">
 											<div id="demoText" title="Text color">This is an focused window</div>
-											<img src="source/img/KDE Plasma Scenery 64 NO LOGO.jpg" height=40% width=40%>
 										</div>
 									</div>
 								</div>
 
 								<label for="presets">Style:</label>
-
 								<select name="presets" id="presets">
 									<option value="custom">Custom</option>
 									<option value="bright">Bright</option>
 									<option value="dark">Dark</option>
 									<option value="classic">Classic</option>
 								</select>
+								<hr>
 
 								<div id="interfaceColors">
-									<div id="focusedSettings">
+									<div id="appearanceLeftColumn">
+										<div id="focusedSettings">
 
-									<br>
-									<input type="color" id="appInterfaceTextColorPicker" value="#00000F"
-										onchange="updateDemoColor('windowText', this.value);">
-									<label for="appInterfaceTextColorPicker">Focused application interface text color</label>
-
-									<br>
-									<input type="color" id="titlebarTextColorPicker" value="#00000F"
-										onchange="updateDemoColor('titlebarText', this.value);">
-									<label for="titlebarTextColorPicker">Focused titlebar text color</label>
-
-									<br>
-									<input type="color" id="titlebarColorOnePicker" value="#D3D3D3"
-										onchange="updateDemoColor('titlebarBackgroundOne', this.value);">
-									<label for="titlebarColorOnePicker" id="titlebarColorOnePickerText">Focused titlebar background color one</label>
-									<br>
-									<input type="color" id="titlebarColorTwoPicker" value="#FAFAFA"
-										onchange="updateDemoColor('titlebarBackgroundTwo', this.value);">
-									<label for="titlebarColorTwoPicker" id="titlebarColorTwoPickerText">Focused titlebar background color two</label>
+											<br>
+											<input type="color" id="appInterfaceTextColorPicker" value="#00000F"
+												onchange="updateDemoColor('windowText', this.value);">
+											<label for="appInterfaceTextColorPicker">Focused window interface text color</label>
+		
+											<br>
+											<input type="color" id="titlebarTextColorPicker" value="#00000F"
+												onchange="updateDemoColor('titlebarText', this.value);">
+											<label for="titlebarTextColorPicker">Focused titlebar text color</label>
+		
+											<br>
+											<input type="color" id="titlebarColorOnePicker" value="#FAFAFA"
+												onchange="updateDemoColor('titlebarBackgroundOne', this.value);">
+											<label for="titlebarColorOnePicker" id="titlebarColorOnePickerText">Focused titlebar background color one</label>
+											<br>
+											<input type="color" id="titlebarColorTwoPicker" value="#D3D3D3"
+												onchange="updateDemoColor('titlebarBackgroundTwo', this.value);">
+											<label for="titlebarColorTwoPicker" id="titlebarColorTwoPickerText">Focused titlebar background color two</label>
+											</div>
+											
+											<br>
+											<div id="unfocusedSettings">
+												<button id="unfocusedSettingsButton" onclick="unfocusedSettingsClick()">Switch to settings for unfocused windows</button>
+												<br>
+												<input type="color" id="unfocusedAppInterfaceTextColorPicker" value="#808080"
+													onchange="updateDemoColor('unfocusedWndowText', this.value);">
+												<label for="unfocusedAppInterfaceTextColorPicker">Unfocused window interface text color</label>
+			
+												<br>
+												<input type="color" id="unfocusedTitlebarTextColorPicker" value="#808080"
+													onchange="updateDemoColor('unfocusedTitlebarText', this.value);">
+												<label for="unfocusedTitlebarTextColorPicker">Unfocused titlebar text color</label>
+												<br>
+												<input type="color" id="unfocusedTitlebarColorOnePicker" value="#D3D3D3"
+													onchange="updateDemoColor('unfocusedTitlebarBackgroundOne', this.value);">
+												<label for="unfocusedTitlebarColorOnePicker" id="unfocusedTitlebarColorOnePickerText">Unfocused titlebar background color one</label>
+												<br>
+												<input type="color" id="unfocusedTitlebarColorTwoPicker" value="#FAFAFA"
+													onchange="updateDemoColor('unfocusedTitlebarBackgroundTwo', this.value);">
+												<label for="unfocusedTitlebarColorTwoPicker" id="unfocusedTitlebarColorTwoPickerText">Unfocused titlebar background color two</label>
+											</div>
 									</div>
 									
-									<br>
-									<div id="unfocusedSettings">
-										<button onclick="unfocusedSettingsClick()">Unfocused settings</button>
+									
+									<div id="appearanceRightColumn">
 										<br>
-										<input type="color" id="unfocusedAppInterfaceTextColorPicker" value="#808080"
-											onchange="updateDemoColor('unfocusedWndowText', this.value);">
-										<label for="unfocusedAppInterfaceTextColorPicker">Unfocused application interface text color</label>
+										<input type="color" id="appBackgroundColorPicker" value="#FAFAFA"
+										onchange="updateDemoColor('windowBackground', this.value);">
+									<label for="appBackgroundColorPicker">Window background color</label>
+										<br>
+										<label for="titlebarGradientSwitch">Enable titlebar gradient?</label>
+										<input type="checkbox" id="titlebarGradientSwitch" checked>
 	
-										<br>
-										<input type="color" id="unfocusedTitlebarTextColorPicker" value="#808080"
-											onchange="updateDemoColor('unfocusedTitlebarText', this.value);">
-										<label for="unfocusedTitlebarTextColorPicker">Unfocused titlebar text color</label>
-										<br>
-										<input type="color" id="unfocusedTitlebarColorOnePicker" value="#D3D3D3"
-											onchange="updateDemoColor('unfocusedTitlebarBackgroundOne', this.value);">
-										<label for="unfocusedTitlebarColorOnePicker" id="titlebarColorOnePickerText">Unfocused titlebar background color one</label>
-										<br>
-										<input type="color" id="unfocusedTitlebarColorTwoPicker" value="#FAFAFA"
-											onchange="updateDemoColor('unfocusedTitlebarBackgroundTwo', this.value);">
-										<label for="unfocusedTitlebarColorTwoPicker" id="titlebarColorTwoPickerText">Unfocused titlebar background color two</label>
+										<div id="menubarSettings">
+											<br>
+											<input type="color" id="menubarTextColorPicker" value="#00000F"
+												onchange="updateDemoColor('menubarText', this.value);">
+											<label for="menubarTextColorPicker">Menubar interface text color</label>
+											<br>
+											<input type="color" id="menubarBackgroundColorPicker" value="#FAFAFA"
+												onchange="updateDemoColor('menubarBackground', this.value);">
+											<label for="menubarBackgroundColorPicker">Menubar background color</label>
+										</div>
+	
 									</div>
 									
-									<br>
-									<input type="color" id="appBackgroundColorPicker" value="#FAFAFA"
-									onchange="updateDemoColor('windowBackground', this.value);">
-								<label for="appBackgroundColorPicker">Application background color</label>
-									<br>
-									<label for="titlebarGradientSwitch">Enable titlebar gradient?</label>
-									<input type="checkbox" id="titlebarGradientSwitch" checked>
-
-									<div id="menubarSettings">
-										<br>
-										<input type="color" id="menubarTextColorPicker" value="#00000F"
-											onchange="updateDemoColor('menubarText', this.value);">
-										<label for="menubarTextColorPicker">Menubar interface text color</label>
-										<br>
-										<input type="color" id="menubarBackgroundColorPicker" value="#FAFAFA"
-											onchange="updateDemoColor('menubarBackground', this.value);">
-										<label for="menubarBackgroundColorPicker">Menubar background color</label>
-									</div>
-
 								</div>
 
 								<div id="titlebarButtonSettings">
@@ -391,7 +390,6 @@ Retro Kernel 0.0.5
 
 
 							</div>
-						</div>
 					</div>
 
 					<div id="backgroundContainer">

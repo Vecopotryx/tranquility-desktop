@@ -33,41 +33,6 @@ var terminalHeight;
 var browserHeight;
 var helpHeight;
 
-/*
-// related to maximize functionality (helps keep track of required infromation)
-var mediaHeightBeforeMax;
-var mediaWidthBeforeMax;
-var mediaMarginTop;
-var mediaMarginLeft;
-var mediaPositionTop;
-var mediaPositionLeft;
-var isMediaMaximised;
-// notes
-var notesHeightBeforeMax;
-var notesWidthBeforeMax;
-var notesMarginTop;
-var notesMarginLeft;
-var notesPositionTop;
-var notesPositionLeft;
-var isNotesMaximised;
-// terminal
-var terminalHeightBeforeMax;
-var terminalWidthBeforeMax;
-var terminalMarginTop;
-var terminalMarginLeft;
-var terminalPositionTop;
-var terminalPositionLeft;
-var isTerminalMaximised;
-// browser
-var browserHeightBeforeMax;
-var browserWidthBeforeMax;
-var browserMarginTop;
-var browserMarginLeft;
-var browserPositionTop;
-var browserPositionLeft;
-var isBrowserMaximised;
-*/
-
 // for clock
 var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -386,129 +351,6 @@ $(function () {
         }        
     });
 });
-
-/*
-// **Maximise functionality**
-
-function maximizeMedia() {
-    if (isMediaMaximised) {
-        $('#mediaplayer').css('height', mediaHeightBeforeMax);
-        $('#mediaplayer').css('width', mediaWidthBeforeMax);
-        $('#mediaplayer').css('margin-top', mediaMarginTop);
-        $('#mediaplayer').css('margin-left', mediaMarginLeft);
-        $('#mediaplayer').css('top', mediaPositionTop);
-        $('#mediaplayer').css('left', mediaPositionLeft);
-        isMediaMaximised = false;
-    } else {
-        mediaHeightBeforeMax = $("#mediaplayer").css('height');
-        mediaWidthBeforeMax = $("#mediaplayer").css('width');
-        mediaMarginTop = $("#mediaplayer").css('margin-top');
-        mediaMarginLeft = $("#mediaplayer").css('margin-left');
-        mediaPositionTop = $("#mediaplayer").css('top');
-        mediaPositionLeft = $("#mediaplayer").css('left');
-        $('#mediaplayer').css('top', '0.78cm')
-        $('#mediaplayer').css('left', '0.3%')
-        $('#mediaplayer').css('margin-left', '0.1%');
-        $('#mediaplayer').css('height', '95%');
-        $('#mediaplayer').css('width', '99%');
-        isMediaMaximised = true;
-    }
-}
-
-function maximizeNotes() {
-    if (isNotesMaximised) {
-        $('#notes').css('height', notesHeightBeforeMax);
-        $('#notes').css('width', notesWidthBeforeMax);
-        $('#notes').css('margin-top', notesMarginTop);
-        $('#notes').css('margin-left', notesMarginLeft);
-        $('#notes').css('top', notesPositionTop);
-        $('#notes').css('left', notesPositionLeft);
-        isNotesMaximised = false;
-    } else {
-        notesHeightBeforeMax = $("#notes").css('height');
-        notesWidthBeforeMax = $("#notes").css('width');
-        notesMarginTop = $("#notes").css('margin-top');
-        notesMarginLeft = $("#notes").css('margin-left');
-        notesPositionTop = $("#notes").css('top');
-        notesPositionLeft = $("#notes").css('left');
-        $('#notes').css('top', '0.78cm')
-        $('#notes').css('left', '0.3%')
-        $('#notes').css('margin-left', '0.1%');
-        $('#notes').css('height', '95%');
-        $('#notes').css('width', '99%');
-        isNotesMaximised = true;
-    }
-}
-
-function maximizeTerminal() {
-    if (isTerminalMaximised) {
-        $('#terminal').css('height', terminalHeightBeforeMax);
-        $('#terminal').css('width', terminalWidthBeforeMax);
-        $('#terminal').css('margin-top', terminalMarginTop);
-        $('#terminal').css('margin-left', terminalMarginLeft);
-        $('#terminal').css('top', terminalPositionTop);
-        $('#terminal').css('left', terminalPositionLeft);
-        isTerminalMaximised = false;
-    } else {
-        terminalHeightBeforeMax = $("#terminal").css('height');
-        terminalWidthBeforeMax = $("#terminal").css('width');
-        terminalMarginTop = $("#terminal").css('margin-top');
-        terminalMarginLeft = $("#terminal").css('margin-left');
-        terminalPositionTop = $("#terminal").css('top');
-        terminalPositionLeft = $("#terminal").css('left');
-        $('#terminal').css('top', '1cm')
-        $('#terminal').css('left', '0.3%')
-        $('#terminal').css('margin-left', '0.1%');
-        $('#terminal').css('height', '95%');
-        $('#terminal').css('width', '99%');
-        isTerminalMaximised = true;
-    }
-}
-
-function maximizeBrowser() {
-    if (isBrowserMaximised) {
-        $('#browserWindow').css('height', browserHeightBeforeMax);
-        $('#browserWindow').css('width', browserWidthBeforeMax);
-        $('#browserWindow').css('margin-top', browserMarginTop);
-        $('#browserWindow').css('margin-left', browserMarginLeft);
-        $('#browserWindow').css('top', browserPositionTop);
-        $('#browserWindow').css('left', browserPositionLeft);
-        isBrowserMaximised = false;
-    } else {
-        browserHeightBeforeMax = $("#browserWindow").css('height');
-        browserWidthBeforeMax = $("#browserWindow").css('width');
-        browserMarginTop = $("#browserWindow").css('margin-top');
-        browserMarginLeft = $("#browserWindow").css('margin-left');
-        browserPositionTop = $("#browserWindow").css('top');
-        browserPositionLeft = $("#browserWindow").css('left');
-        $('#browserWindow').css('top', '1cm')
-        $('#browserWindow').css('left', '0.3%')
-        $('#browserWindow').css('margin-left', '0.1%');
-        $('#browserWindow').css('height', '95%');
-        $('#browserWindow').css('width', '99%');
-        isBrowserMaximised = true;
-    }
-}
-
-// Execute maximize code on doubleclick
-$(function () {
-    $('#mediaplayer').draggable().dblclick(function () {
-        maximizeMedia();
-    });
-
-    $('#notes').draggable().dblclick(function () {
-        maximizeNotes();
-    });
-
-    $('#terminal').draggable().dblclick(function () {
-        maximizeTerminal();
-    });
-
-    $('#browserWindow').draggable().dblclick(function () {
-        maximizeBrowser();
-    });
-});
-*/
 
 // **Menubar**
 $(function () {
@@ -935,7 +777,8 @@ $(function () {
         $('#currentSettings > div').hide();
         $("#appearanceContainer").show();
         $("#settingsPanels > div").css('background', 'gray');
-        $("#settingsAppearanceButton").css('background', 'linear-gradient(to left, gray, darkgray)');
+        $("#settingsAppearanceButton").css('background', 'linear-gradient(to left, gray, darkgray)')
+        disableUnfocusedSettings();
     })
 
     $('#demoWindowContent').click(function () {
@@ -1005,13 +848,27 @@ $(function () {
             $('#titlebarColorTwoPicker').show();
             $('#titlebarColorTwoPickerText').show();
             $('#titlebarColorOnePickerText').text("Titlebar background color one");
-            $("#demoTitlebar").css('background', generateGradient(demoTitlebarDirection, demoTitlebarColorOne, demoTitlebarColorTwo));
+            $('#unfocusedTitlebarColorTwoPicker').show();
+            $('#unfocusedTitlebarColorTwoPickerText').show();
+            $('#unfocusedTitlebarColorOnePickerText').text("Unfocused titlebar background color one");
+            if(demoIsUnfocused){
+                $("#demoTitlebar").css('background', generateGradient(demoTitlebarDirection, demoUnfocusedTitlebarColorOne, demoUnfocusedTitlebarColorTwo));
+            } else {
+                $("#demoTitlebar").css('background', generateGradient(demoTitlebarDirection, demoTitlebarColorOne, demoTitlebarColorTwo));
+            }
         } else {
             demoTitlebarIsGradient = false;
             $('#titlebarColorTwoPicker').hide();
             $('#titlebarColorTwoPickerText').hide();
             $('#titlebarColorOnePickerText').text("Titlebar background color");
-            $("#demoTitlebar").css('background', demoTitlebarColorOne);
+            $('#unfocusedTitlebarColorTwoPicker').hide();
+            $('#unfocusedTitlebarColorTwoPickerText').hide();
+            $('#unfocusedTitlebarColorOnePickerText').text("Unfocused titlebar background color");
+            if(demoIsUnfocused){
+                $("#demoTitlebar").css('background', demoUnfocusedTitlebarColorOne);
+            } else {
+                $("#demoTitlebar").css('background', demoTitlebarColorOne);
+            }
         }
     })
 });
@@ -1198,35 +1055,44 @@ var demoIsUnfocused = false;
 
 function unfocusedSettingsClick(){ 
     if(demoIsUnfocused){
-        $('#demoWindow').css('filter', 'grayscale(0%)');
-        $("#demoText").html("This is an focused window");
-        $("#demoWindow").css('color', $('#appInterfaceTextColorPicker').val());
-        $("#demoTitlebar>a").css('color', $('#titlebarTextColorPicker').val());
-        $("#demoTitlebar>button").css('color', $('#titlebarTextColorPicker').val());
-        // disable unfocused settings when demo window isn't unfocused
-        $('#unfocusedSettings > input').prop('disabled', true);
-        $("#unfocusedSettings").css('color', _unfocusedAppInterfaceTextColor);
-        // and enable focused settings
-        $('#focusedSettings > input').prop('disabled', false);
-        $("#focusedSettings").css('color', _appInterfaceTextColor);
-        updateDemoColor("titlebarBackgroundOne", $('#titlebarColorOnePicker').val());
-        updateDemoColor("titlebarBackgroundTwo", $('#titlebarColorTwoPicker').val());
-        demoIsUnfocused = false;
+        disableUnfocusedSettings();
     } else {
-        $('#demoWindow').css('filter', 'grayscale(60%)');
-        $("#demoText").html("This is an unfocused window");
-        $("#demoWindow").css('color', $('#unfocusedAppInterfaceTextColorPicker').val());
-        $("#demoTitlebar>a").css('color', $('#unfocusedTitlebarTextColorPicker').val());
-        $("#demoTitlebar>button").css('color', $('#unfocusedTitlebarTextColorPicker').val());
-        // disable focused settings when demo window isn't focused
-        $('#focusedSettings > input').prop('disabled', true);
-        $("#focusedSettings").css('color', _unfocusedAppInterfaceTextColor);
-        // and enable unfocused settings
-        $('#unfocusedSettings > input').prop('disabled', false);
-        $("#unfocusedSettings").css('color', _appInterfaceTextColor);
-        updateDemoColor("unfocusedTitlebarBackgroundOne", $('#unfocusedTitlebarColorOnePicker').val());
-        updateDemoColor("unfocusedTitlebarBackgroundTwo", $('#unfocusedTitlebarColorTwoPicker').val());
-        demoIsUnfocused = true;
+        enableUnfocusedSettings();
     }
+}
 
+function enableUnfocusedSettings(){
+    $('#demoWindow').css('filter', 'grayscale(60%)');
+    $("#demoText").html("This is an unfocused window");
+    $("#demoWindow").css('color', $('#unfocusedAppInterfaceTextColorPicker').val());
+    $("#demoTitlebar>a").css('color', $('#unfocusedTitlebarTextColorPicker').val());
+    $("#demoTitlebar>button").css('color', $('#unfocusedTitlebarTextColorPicker').val());
+    // disable focused settings when demo window isn't focused
+    $('#focusedSettings > input').prop('disabled', true);
+    $("#focusedSettings").css('color', _unfocusedAppInterfaceTextColor);
+    // and enable unfocused settings
+    $('#unfocusedSettings > input').prop('disabled', false);
+    $("#unfocusedSettings").css('color', _appInterfaceTextColor);
+    updateDemoColor("unfocusedTitlebarBackgroundOne", $('#unfocusedTitlebarColorOnePicker').val());
+    updateDemoColor("unfocusedTitlebarBackgroundTwo", $('#unfocusedTitlebarColorTwoPicker').val());
+    demoIsUnfocused = true;
+    $("#unfocusedSettingsButton").html("Switch to settings for unfocused windows");
+}
+
+function disableUnfocusedSettings(){
+    $('#demoWindow').css('filter', 'grayscale(0%)');
+    $("#demoText").html("This is an focused window");
+    $("#demoWindow").css('color', $('#appInterfaceTextColorPicker').val());
+    $("#demoTitlebar>a").css('color', $('#titlebarTextColorPicker').val());
+    $("#demoTitlebar>button").css('color', $('#titlebarTextColorPicker').val());
+    // disable unfocused settings when demo window isn't unfocused
+    $('#unfocusedSettings > input').prop('disabled', true);
+    $("#unfocusedSettings").css('color', _unfocusedAppInterfaceTextColor);
+    // and enable focused settings
+    $('#focusedSettings > input').prop('disabled', false);
+    $("#focusedSettings").css('color', _appInterfaceTextColor);
+    updateDemoColor("titlebarBackgroundOne", $('#titlebarColorOnePicker').val());
+    updateDemoColor("titlebarBackgroundTwo", $('#titlebarColorTwoPicker').val());
+    demoIsUnfocused = false;
+    $("#unfocusedSettingsButton").html("Switch to settings for focused windows");
 }
