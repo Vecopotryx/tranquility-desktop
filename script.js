@@ -1517,3 +1517,26 @@ $(function () {
         }
     });
 });
+
+
+
+$(function () {
+    
+    $('#settingsAboutButton').click(function () {
+        $('#currentSettings > div').hide();
+        $("#aboutContainer").show();
+        $("#settingsPanels > div").css('background', 'gray');
+        $("#settingsAboutButton").css('background', 'linear-gradient(to left, gray, darkgray)');
+    })
+
+    $('#settingsBackgroundsButton').click(function () {
+        $('#currentSettings > div').hide();
+        $("#backgroundContainer").css('display', 'flex');
+        $("#settingsPanels > div").css('background', 'gray');
+        $("#settingsBackgroundsButton").css('background', 'linear-gradient(to left, gray, darkgray)');
+
+    })
+
+
+
+});

@@ -129,62 +129,7 @@
 				<button class="closeWindow">×</button>
 				<a>Background Picker</a>
 			</div>
-			<div id="backgroundContainer">
-				<div id="backgroundPick">
-					<label for="backColor">Color: </label>
-					<input type="color" id="backColor" value="#0000FF" onchange="colorBackground(this.value);">
-					<br>
-					<label for="userBackgroundPick">Background from file: </label>
-					<input type="file" id="userBackgroundPick">
-					<div id="firstBackground"
-						style="background-image: url('source/img/nasa-Q1p7bh3SHj8-unsplash.jpg'); background-position: center; background-size: cover;">
-					</div>
-					<div id="secondBackground"
-						style="background-image: url('source/img/KDE Plasma Scenery 64 NO LOGO.jpg'); background-position: center; background-size: cover;">
-					</div>
-					<div id="thirdBackground"
-						style="background-image: url('source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg'); background-position: center; background-size: cover;">
-
-					</div>
-				</div>
-
-
-				<div id="backgroundSettings">
-					<a>Use image as background:</a>
-					<input type="checkbox" id="imageBackgroundSwitch" checked>
-					<div id="backgroundSize">
-						<h2>Background size:</h2>
-						<input type="radio" id="radioCover" name="backgroundSizes" value="cover" checked>
-						<label for="radioCover">Cover</label><br>
-						<input type="radio" id="radioContain" name="backgroundSizes" value="contain">
-						<label for="radioContain">Contain</label><br>
-						<input type="radio" id="radioAuto" name="backgroundSizes" value="auto">
-						<label for="radioAuto">Auto</label>
-					</div>
-					<div id="backgroundRepeat">
-						<h2>Background repeat:</h2>
-						<input type="radio" id="radioRepeat" name="backgroundRepeats" value="repeat" checked>
-						<label for="radioRepeat">Repeat</label><br>
-						<input type="radio" id="radioRepeatX" name="backgroundRepeats" value="repeat-x">
-						<label for="radioRepeatX">Repeat-X</label><br>
-						<input type="radio" id="radioRepeatY" name="backgroundRepeats" value="repeat-y">
-						<label for="radioRepeatY">Repeat-Y</label>
-						<input type="radio" id="radioNoRepeat" name="backgroundRepeats" value="no-repeat">
-						<label for="radioNoRepeat">No-repeat</label>
-					</div>
-
-					<div id="randomSearch">
-						<h2>Random from Unsplash:</h2>
-						<input id="randomSearchTerm" type="text" placeholder="search term" style="width:50%;">
-						<br>
-						<input id="randomWidth" value="1920" type="text" placeholder="width" style="width:22.5%;">
-						<input id="randomHeight" value="1080" type="text" placeholder="height" style="width:22.5%">
-						<br>
-						<button id="randomFromUnsplash">Random</button>
-					</div>
-				</div>
-
-			</div>
+			
 		</div>
 
 		<div class="application" id="pathfinder">
@@ -264,7 +209,7 @@ Retro Kernel 0.0.5
 				<button class="closeWindow">×</button>
 				<a>About project</a>
 			</div>
-			<div id="aboutContainer">
+			<div id="aboutContainerOld">
 				<div id="aboutImage"><img src="source/img/iconSideViewFaviconCC.png" width="75%"></div>
 				<div id="aboutContent">
 					<h1>Retro Desktop Environment</h1>
@@ -543,7 +488,80 @@ Retro Kernel 0.0.5
 				<button class="collapseWindow">▲</button>
 			</div>
 			<div id="settingsContent">
-				<a>This will contain settings for backgrounds, customization etc</a>
+				<div id="settingsPanels">
+					<div id="appearance"><a>Appearance</a></div>
+					<div id="settingsBackgroundsButton"><a>Backgrounds</a></div>
+					<div id="applications"><a>Applications</a></div>
+					<div id="settingsAboutButton"><a>About</a></div>
+				</div>
+
+				<div id="currentSettings">
+					<div id="aboutContainer">
+						<img id="aboutImage" src="source/img/iconSideViewFaviconCC.png">
+						<div id="aboutContent">
+							<div id="system"><a>System</a> <a class="aboutSecond">Retro Desktop Environment</a></div>
+							<div id="version"><a>Version</a> <a class="aboutSecond">2020-08-10</a></div>
+							<div id="credits"><a>Credits</a> <a class="aboutSecond">></a></div>
+						</div>
+					</div>
+
+					<div id="backgroundContainer">
+						<div id="backgroundPick">
+							<label for="backColor">Color: </label>
+							<input type="color" id="backColor" value="#0000FF" onchange="colorBackground(this.value);">
+							<br>
+							<label for="userBackgroundPick">Background from file: </label>
+							<input type="file" id="userBackgroundPick">
+							<div id="firstBackground"
+								style="background-image: url('source/img/nasa-Q1p7bh3SHj8-unsplash.jpg'); background-position: center; background-size: cover;">
+							</div>
+							<div id="secondBackground"
+								style="background-image: url('source/img/KDE Plasma Scenery 64 NO LOGO.jpg'); background-position: center; background-size: cover;">
+							</div>
+							<div id="thirdBackground"
+								style="background-image: url('source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg'); background-position: center; background-size: cover;">
+		
+							</div>
+						</div>
+		
+		
+						<div id="backgroundSettings">
+							<a>Use image as background:</a>
+							<input type="checkbox" id="imageBackgroundSwitch" checked>
+							<div id="backgroundSize">
+								<h2>Background size:</h2>
+								<input type="radio" id="radioCover" name="backgroundSizes" value="cover" checked>
+								<label for="radioCover">Cover</label><br>
+								<input type="radio" id="radioContain" name="backgroundSizes" value="contain">
+								<label for="radioContain">Contain</label><br>
+								<input type="radio" id="radioAuto" name="backgroundSizes" value="auto">
+								<label for="radioAuto">Auto</label>
+							</div>
+							<div id="backgroundRepeat">
+								<h2>Background repeat:</h2>
+								<input type="radio" id="radioRepeat" name="backgroundRepeats" value="repeat" checked>
+								<label for="radioRepeat">Repeat</label><br>
+								<input type="radio" id="radioRepeatX" name="backgroundRepeats" value="repeat-x">
+								<label for="radioRepeatX">Repeat-X</label><br>
+								<input type="radio" id="radioRepeatY" name="backgroundRepeats" value="repeat-y">
+								<label for="radioRepeatY">Repeat-Y</label>
+								<input type="radio" id="radioNoRepeat" name="backgroundRepeats" value="no-repeat">
+								<label for="radioNoRepeat">No-repeat</label>
+							</div>
+		
+							<div id="randomSearch">
+								<h2>Random from Unsplash:</h2>
+								<input id="randomSearchTerm" type="text" placeholder="search term" style="width:50%;">
+								<br>
+								<input id="randomWidth" value="1920" type="text" placeholder="width" style="width:22.5%;">
+								<input id="randomHeight" value="1080" type="text" placeholder="height" style="width:22.5%">
+								<br>
+								<button id="randomFromUnsplash">Random</button>
+							</div>
+						</div>
+		
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

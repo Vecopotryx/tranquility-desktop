@@ -130,55 +130,8 @@ body {
 #optionMenuContent>a {
 	display: block;
 }
-#backgroundPicker {
-	position: absolute;
-	background-color: #FFFFFF;
-	text-align: center;
-	display: none;
-}
-#backgroundContainer {
-	border: 3px solid rgba(0, 0, 0, 0.0);
-	border-top: 0px;
-	border-bottom: 0px;
-	height: 94%;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	justify-content: start;
-	align-items: auto;
-	align-content: start;
-}
 
-#backgroundSettings {
-	margin: auto;
-	height: 100%;
-	font-size: 0.35cm;
-}
 
-#backgroundSettings h2 {
-	margin-bottom: 1%;
-}
-
-#backgroundPick {
-	width: 50%;
-	height: 100%;
-	overflow-y: scroll;
-	overflow-x:hidden;
-	text-align: left;
-}
-
-#backgroundPick > label {
-	margin-left: 0.5%;
-}
-#backgroundPick>div {
-	margin-top: 0.5%;
-	height: 50%;
-	width: 99%;
-	border-radius: 2px;
-}
-#backgroundContainer>div>img {
-	width: 100%;
-}
 
 #browserWindow {
 	position: absolute;
@@ -312,7 +265,10 @@ body {
 	text-align: center;
 }
 #aboutContainer {
-	display: grid;
+		display: block;
+		padding: auto;
+		width: auto;
+		margin-left: 7cm;
 }
 #aboutImage {
 	grid-column: 1;
@@ -578,6 +534,108 @@ body {
 	background-color: lightgray;
 	margin-top: 5vh;
 	margin-left: 24vw;
-	width: 45%;
+	width: 30cm;
 	height: 50%;
+}
+
+#settingsPanels {
+	float: left;
+	text-align: center;
+	width: 7cm;
+	border-right: 1px solid black;
+	padding-bottom: 25%;
+}
+
+#settingsPanels > div {
+	background-color: gray;
+	height: 1cm;
+	color: black;
+	transition: filter 0.4s;
+}
+
+
+#settingsPanels > div:hover {
+	filter: brightness(1.4);
+	cursor: pointer;
+}
+
+#aboutImage {
+	display: block;
+	margin: auto;
+	width: 20%;
+}
+
+#aboutContent > div {
+	border: 1px solid gray;
+	width: 75%;
+	margin: auto;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	padding: 1%;
+}
+
+#aboutContainerOld {
+	display: block;
+	padding: auto;
+	width: auto;
+	margin-left: 7cm;
+}
+
+.aboutSecond {
+	float: right;
+}
+
+#settingsAboutButton {
+	background: linear-gradient(to left, gray, darkgray);
+}
+
+
+#backgroundPick {
+	width: 50%;
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x:hidden;
+	text-align: left;
+	display: block;
+}
+
+#backgroundPick > label {
+	margin-left: 0.5%;
+}
+#backgroundPick>div {
+	margin-top: 0.5%;
+	height: 2cm;
+	width: 99%;
+	display: flex;
+	border-radius: 2px;
+}
+
+#backgroundPicker {
+	position: absolute;
+	background-color: #FFFFFF;
+	text-align: center;
+	display: none;
+}
+#backgroundContainer {
+	border: 3px solid rgba(0, 0, 0, 0.0);
+	border-top: 0px;
+	border-bottom: 0px;
+	height: 94%;
+	display: none;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: start;
+	align-items: auto;
+	align-content: start;
+}
+
+#backgroundSettings {
+	margin: auto;
+	height: 100%;
+	font-size: 0.35cm;
+	display: block;
+}
+
+#backgroundSettings h2 {
+	margin-bottom: 1%;
 }
