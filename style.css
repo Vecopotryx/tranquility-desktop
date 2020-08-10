@@ -639,3 +639,7 @@ body {
 #backgroundSettings h2 {
 	margin-bottom: 1%;
 }
+
+#appearanceContainer {
+	display: none;
+}

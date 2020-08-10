@@ -1496,9 +1496,13 @@ $(function () {
         $("#backgroundContainer").css('display', 'flex');
         $("#settingsPanels > div").css('background', 'gray');
         $("#settingsBackgroundsButton").css('background', 'linear-gradient(to left, gray, darkgray)');
-
     })
 
-
+    $('#settingsAppearanceButton').click(function () {
+        $('#currentSettings > div').hide();
+        $("#appearanceContainer").show();
+        $("#settingsPanels > div").css('background', 'gray');
+        $("#settingsAppearanceButton").css('background', 'linear-gradient(to left, gray, darkgray)');
+    })
 
 });
