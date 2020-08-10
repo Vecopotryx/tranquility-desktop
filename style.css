@@ -252,30 +252,7 @@ body {
 	display: none;
 	min-width: 40%;
 }
-#about {
-	position: absolute;
-	background-color: white;
-	overflow: hidden;
-	overflow-x: hidden;
-	text-overflow: ellipsis;
-	display: none;
-	font-size: 0.7vw;
-}
-#about>h1 {
-	text-align: center;
-}
-#aboutContainer {
-		display: block;
-		padding: auto;
-		width: auto;
-		margin-left: 7cm;
-}
-#aboutImage {
-	grid-column: 1;
-}
-#aboutContent {
-	grid-column: 2;
-}
+
 #terminal {
 	position: absolute;
 	background-color: rgba(0,0,0,0.5);
@@ -574,7 +551,7 @@ body {
 	padding: 1%;
 }
 
-#aboutContainerOld {
+#aboutContainer {
 	display: block;
 	padding: auto;
 	width: auto;
@@ -642,4 +619,33 @@ body {
 
 #appearanceContainer {
 	display: none;
+	padding: auto;
+	width: auto;
+	margin-left: 7cm;
+}
+
+#appearancePanels {
+	width: 100%;
+	height: 0.5cm;
+	background: black;
+	margin-bottom: 0.2cm;
+}
+
+#appearancePanels::after { 
+	content: " ";
+	display: block; 
+	height: 0.5cm; 
+	clear: both;
+	margin-bottom: 0.2cm;
+
+ }
+
+#appearancePanels > div {
+	float: left;
+	background: gray;
+	width: 20%;
+	height: 100%;
+	margin-left: 0.5%;
+	text-align: center;
+
 }
