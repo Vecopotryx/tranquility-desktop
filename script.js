@@ -1522,20 +1522,37 @@ $(function () {
         if(demoTitlebarHasClicked){
             demoTitlebarHasClicked = false;
         } else {
-            var pWidth = $(this).innerWidth(); //use .outerWidth() if you want borders
-            var pOffset = $(this).offset(); 
-            var x = e.pageX - pOffset.left;
-            if(pWidth/2 > x){
-                $('#titlebarColorOnePicker').click();
-            } else {
-                if(_titlebarIsGradient){
+            if(demoTitlebarIsGradient){
+                var pWidth = $(this).innerWidth(); //use .outerWidth() if you want borders
+                var pOffset = $(this).offset(); 
+                var x = e.pageX - pOffset.left;
+                if(pWidth/2 > x){
+                    $('#titlebarColorOnePicker').click();
+                } else {
                     $('#titlebarColorTwoPicker').click();
+                    }
+                } else {
+                    $('#titlebarColorOnePicker').click();
                 }
-
             }
-        }
 
      });
+
+     $('#titlebarGradientSwitch').click(function () {
+        if ($(this).is(':checked')) {
+            demoTitlebarIsGradient = true;
+            $('#titlebarColorTwoPicker').show();
+            $('#titlebarColorTwoPickerText').show();
+            $('#titlebarColorOnePickerText').text("Titlebar background color one");
+            $("#demoTitlebar").css('background', generateGradient(demoTitlebarDirection, demoTitlebarColorOne, demoTitlebarColorTwo));
+        } else {
+            demoTitlebarIsGradient = false;
+            $('#titlebarColorTwoPicker').hide();
+            $('#titlebarColorTwoPickerText').hide();
+            $('#titlebarColorOnePickerText').text("Titlebar background color");
+            $("#demoTitlebar").css('background', demoTitlebarColorOne);
+        }
+    })
 });
 
 var demoTitlebarIsGradient = true;
