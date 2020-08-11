@@ -589,7 +589,7 @@ body {
 	transition: background-color 0.2s;
 }
 
-#demoMenubar>a:hover {
+#demoMenubar>a:hover, #demoBottombar > a:hover, #demoBottombar > button:hover {
 	background-color: gray;
 }
 
@@ -670,6 +670,7 @@ body {
 	bottom: 0;
 	padding: 0;
 	margin: 0;
+	cursor: crosshair;
 	display: none;
 }
 
@@ -677,14 +678,16 @@ body {
 	background: none;
 	border: none;
 	padding-right: 2px;
-	cursor: pointer;
 	font-size: 20px;
 	font-family: perfect-dos;
 	color: black;
+	transition: background-color 0.2s;
+	cursor: crosshair;
 }
 
 #demoBottombar > a {
 	float: right;
+	transition: background-color 0.2s;
 }
 
 #credits {

@@ -766,6 +766,30 @@ $(function () {
                 case 'clear':
                     $('#terminalInput').val('');
                     break;
+                case 'notes':
+                    $('#notesText').click();
+                    $('#terminalInput').val('');
+                    break;
+                case 'mediaplayer':
+                    $('#chipText').click();
+                    $('#terminalInput').val('');
+                    break;
+                 case 'chipplayer':
+                    $('#chipText').click();
+                    $('#terminalInput').val('');
+                    break;     
+                case 'pathfinder':
+                    $('#pathfinderText').click();
+                    $('#terminalInput').val('');
+                    break;
+                case 'browser':
+                    $('#browserText').click();
+                    $('#terminalInput').val('');
+                    break;
+                 case 'settings':
+                    $('#settingsMenuClick').click();
+                    $('#terminalInput').val('');
+                    break;                     
                 default:
                     $("#terminalNotFound").css('display', 'block');
             }
@@ -999,7 +1023,7 @@ function updateDemoColor(type, color, isUser){
             break;
         case "menubarText":
             $("#demoMenubar>a").css('color', color);
-            $("#demoBottombar>a").css('color', color);
+            $("#demoBottombar>a, #demoBottombar>button").css('color', color);
             break;
         case "menubarBackground":
             if(opacitySettingsVisible){
