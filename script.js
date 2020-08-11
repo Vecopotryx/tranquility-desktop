@@ -165,11 +165,16 @@ function focusWindow(windowIn){
     $('#' + windowIn + ' .titlebar>a').css('color', _focusedTitlebarTextColor);
     $('#' + windowIn + ' .titlebar>button').css('color', _focusedTitlebarTextColor);
     $('#' + windowIn + '>.titlebar').css('background', _titlebarFocusColor);
-    if(windowIn == "help" || windowIn == "notes"){
+    if(windowIn == "help"){
         $('#' + windowIn + ' h1').css('color', _appInterfaceTextColor);
         $('#' + windowIn + ' h2').css('color', _appInterfaceTextColor);
         $('#' + windowIn + ' p').css('color', _appInterfaceTextColor);
         $('#' + windowIn + ' a').css('color', _appInterfaceTextColor);
+    } else if(windowIn == "notes"){
+        $('#notesContent > h1').css('color', "black");
+        $('#notesContent > h2').css('color', "black");
+        $('#notesContent > p').css('color', "black");
+        $('#notesContent > a').css('color', "black");
     }
 }
 
@@ -1160,6 +1165,11 @@ function updatePresetSwitch(switchIn){
     switch (switchIn) {
         case 'bright':
             // Bright
+            applyFocusedPreset("#000000", "#000000", "#FFFFFF", "#D3D3D3");
+
+            applyUnfocusedPreset("#808080", "#808080", "#FFFFFF", "#D3D3D3");
+
+            applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF");
             break;
         case 'dark':
             applyFocusedPreset("#FFFFFF", "#FFFFFF", "#000000", "#808080");
@@ -1167,7 +1177,6 @@ function updatePresetSwitch(switchIn){
             applyUnfocusedPreset("#808080", "#808080", "#000000", "#808080");
 
             applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c");
-        
             break;
         case 'classic':
             // Classic
