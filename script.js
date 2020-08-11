@@ -697,7 +697,11 @@ $(function () {
     })
 
     $('#windowListHelp').hover(function () {
-        focusHelp();
+        getActive("help");
+    })
+
+    $('#windowListSettings').hover(function () {
+        getActive("settings");
     })
 });
 
@@ -724,6 +728,10 @@ $(function () {
 
     $('#windowListHelp').click(function () {
         closeWindow("help");
+    })
+
+    $('#windowListSettings').click(function () {
+        closeWindow("settings");
     })
 });
 
@@ -884,6 +892,14 @@ $(function () {
             updateWindowBorder(false, true);
         }
     })
+
+    $('#boxShadowSwitch').click(function () {
+        if ($(this).is(':checked')) {
+            updateBoxShadow(true, true);
+        } else {
+            updateBoxShadow(false, true);
+        }
+    })
 });
 
 var demoTitlebarIsGradient = true;
@@ -895,8 +911,8 @@ var demoUnfocusedTitlebarColorOne = "white";
 var demoUnfocusedTitlebarColorTwo = "lightgray";
 
 function updateDemoColor(type, color, isUser){
-    if(!isUser){
-        // alert("Not user");
+    if(isUser){
+        $("#presets").val('custom');
     }
     switch(type){
         case "windowBackground":
@@ -980,10 +996,15 @@ function applyAppearanceChanges(){
     _buttonPlacement = $("#buttonPlacement").val();
 
     setBorderRadius($("#borderRadiusSlider").val(), false);
-    console.log($("#windowBorderSwitch").is(":checked"));
     updateWindowBorder($("#windowBorderSwitch").is(":checked"), false);
+    updateBoxShadow($("#boxShadowSwitch").is(":checked"), false);
     updateInterface();
     focusWindow("settings");
+    if(demoIsUnfocused){
+        enableUnfocusedSettings();
+    } else {
+        disableUnfocusedSettings();
+    }
 }
 
 var _buttonPlacement = RDE;
@@ -1093,8 +1114,8 @@ function enableUnfocusedSettings(){
     // and enable unfocused settings
     $('#unfocusedSettings > input').prop('disabled', false);
     $("#unfocusedSettings").css('color', _appInterfaceTextColor);
-    updateDemoColor("unfocusedTitlebarBackgroundOne", $('#unfocusedTitlebarColorOnePicker').val());
-    updateDemoColor("unfocusedTitlebarBackgroundTwo", $('#unfocusedTitlebarColorTwoPicker').val());
+    updateDemoColor("unfocusedTitlebarBackgroundOne", $('#unfocusedTitlebarColorOnePicker').val(), false);
+    updateDemoColor("unfocusedTitlebarBackgroundTwo", $('#unfocusedTitlebarColorTwoPicker').val(), false);
     demoIsUnfocused = true;
     $("#unfocusedSettingsButton").html("Switch to settings for focused windows");
     updateDemo();
@@ -1112,8 +1133,8 @@ function disableUnfocusedSettings(){
     // and enable focused settings
     $('#focusedSettings > input').prop('disabled', false);
     $("#focusedSettings").css('color', _appInterfaceTextColor);
-    updateDemoColor("titlebarBackgroundOne", $('#titlebarColorOnePicker').val());
-    updateDemoColor("titlebarBackgroundTwo", $('#titlebarColorTwoPicker').val());
+    updateDemoColor("titlebarBackgroundOne", $('#titlebarColorOnePicker').val(), false);
+    updateDemoColor("titlebarBackgroundTwo", $('#titlebarColorTwoPicker').val(), false);
     demoIsUnfocused = false;
     $("#unfocusedSettingsButton").html("Switch to settings for unfocused windows");
 }
@@ -1136,7 +1157,7 @@ function applyFocusedPreset(focusAppText, focusTitlebarText, focusTitlebarColorO
     demoTitlebarColorTwo = focusTitlebarColorTwo;
 }
 
-function applyCommonPreset(appBackground, menubarText, menubarBackground, titlebarIsGradient, borderRadius, borderEnabled, buttonPlacement){
+function applyCommonPreset(appBackground, menubarText, menubarBackground, titlebarIsGradient, borderRadius, borderEnabled, buttonPlacement, shadowOn){
     $('#appBackgroundColorPicker').val(appBackground);
     $('#menubarTextColorPicker').val(menubarText);
     $('#menubarBackgroundColorPicker').val(menubarBackground);
@@ -1157,6 +1178,14 @@ function applyCommonPreset(appBackground, menubarText, menubarBackground, titleb
         $("#windowBorderSwitch" ).prop( "checked", true);
         $('#windowBorderSwitch').click();
     }
+
+    if(shadowOn){
+        $("#boxShadowSwitch" ).prop( "checked", false);
+        $('#boxShadowSwitch').click();
+    } else {
+        $("#boxShadowSwitch" ).prop( "checked", true);
+        $('#boxShadowSwitch').click();
+    }    
 
     updateButtonPlacement(true, buttonPlacement);
 
@@ -1216,22 +1245,21 @@ function updatePresetSwitch(switchIn){
 
             applyUnfocusedPreset("#808080", "#808080", "#FFFFFF", "#D3D3D3");
 
-            applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF", true, 4, false, "RDE");
+            applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF", true, 4, false, "RDE", true);
             break;
         case 'dark':
             applyFocusedPreset("#FFFFFF", "#FFFFFF", "#000000", "#808080");
 
             applyUnfocusedPreset("#808080", "#808080", "#000000", "#808080");
 
-            applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c", true, 4, false, "RDE");
+            applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c", true, 4, false, "RDE", true);
             break;
         case 'classic':
             applyFocusedPreset("#000000", "#FFFFFF", "#00008B", "#00008B");
 
             applyUnfocusedPreset("#808080", "#808080", "#A9A9A9", "#A9A9A9");
 
-            applyCommonPreset("#D3D3D3", "#000000", "#D3D3D3", false, 0, true, "redmond");
-
+            applyCommonPreset("#D3D3D3", "#000000", "#D3D3D3", false, 0, true, "redmond", false);
             break;
     }
 
@@ -1241,17 +1269,28 @@ function updatePresetSwitch(switchIn){
 function updateWindowBorder(enabled, isDemo){
     var window;
     if(isDemo){
-        console.log("isDemo");
         window = "#demoWindow";
     } else {
         window = ".application"
     }
     if(enabled){
-        console.log("enabled");
-        console.log(window);
         $(window).css('border', '2px outset lightgray');
     } else {
         $(window).css('border', 'none');
     }
 }
 
+function updateBoxShadow(enabled, isDemo){
+    var window;
+    if(isDemo){
+        window = "#demoWindow";
+    } else {
+        window = ".application";
+    }
+
+    if(enabled){
+        $(window).css('box-shadow', '8px 15px 0px 0px rgba(0, 0, 0, 0.75)');
+    } else {
+        $(window).css('box-shadow', 'none');
+    }
+}
