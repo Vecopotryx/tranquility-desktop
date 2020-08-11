@@ -881,7 +881,10 @@ var demoTitlebarDirection = "to right";
 var demoUnfocusedTitlebarColorOne = "white";
 var demoUnfocusedTitlebarColorTwo = "lightgray";
 
-function updateDemoColor(type, color){
+function updateDemoColor(type, color, isUser){
+    if(!isUser){
+        // alert("Not user");
+    }
     switch(type){
         case "windowBackground":
             $("#demoWindow").css('background', color);
@@ -970,7 +973,6 @@ function applyAppearanceChanges(){
 var _buttonPlacement = RDE;
 
 function updateInterface(){
-    unfocusAll();
     $(".inMenubar > button").css('color', _menubarTextColor);
     $(".inMenubar").css('background', _menubarBackgroundColor);
     $(".inMenubar").css('color', _menubarTextColor);
@@ -986,6 +988,7 @@ function updateInterface(){
     }
 
     updateButtonPlacement(false, _buttonPlacement);
+    unfocusAll();
 }
 
 var _unfocusedTitlebarIsGradient = true;
@@ -1076,7 +1079,8 @@ function enableUnfocusedSettings(){
     updateDemoColor("unfocusedTitlebarBackgroundOne", $('#unfocusedTitlebarColorOnePicker').val());
     updateDemoColor("unfocusedTitlebarBackgroundTwo", $('#unfocusedTitlebarColorTwoPicker').val());
     demoIsUnfocused = true;
-    $("#unfocusedSettingsButton").html("Switch to settings for unfocused windows");
+    $("#unfocusedSettingsButton").html("Switch to settings for focused windows");
+    updateDemo();
 }
 
 function disableUnfocusedSettings(){
@@ -1094,5 +1098,81 @@ function disableUnfocusedSettings(){
     updateDemoColor("titlebarBackgroundOne", $('#titlebarColorOnePicker').val());
     updateDemoColor("titlebarBackgroundTwo", $('#titlebarColorTwoPicker').val());
     demoIsUnfocused = false;
-    $("#unfocusedSettingsButton").html("Switch to settings for focused windows");
+    $("#unfocusedSettingsButton").html("Switch to settings for unfocused windows");
+}
+
+function applyUnfocusedPreset(unfocusAppText, unfocusTitlebarText, unfocusTitlebarColorOne, unfocusTitlebarColorTwo){
+        $('#unfocusedAppInterfaceTextColorPicker').val(unfocusAppText);
+        $('#unfocusedTitlebarTextColorPicker').val(unfocusTitlebarText);
+        $('#unfocusedTitlebarColorOnePicker').val(unfocusTitlebarColorOne);
+        $('#unfocusedTitlebarColorTwoPicker').val(unfocusTitlebarColorTwo);
+        demoUnfocusedTitlebarColorOne = unfocusTitlebarColorOne;
+        demoUnfocusedTitlebarColorTwo = unfocusTitlebarColorTwo;
+}
+
+function applyFocusedPreset(focusAppText, focusTitlebarText, focusTitlebarColorOne, focusTitlebarColorTwo){
+    $('#appInterfaceTextColorPicker').val(focusAppText);
+    $('#titlebarTextColorPicker').val(focusTitlebarText);
+    $('#titlebarColorOnePicker').val(focusTitlebarColorOne);
+    $('#titlebarColorTwoPicker').val(focusTitlebarColorTwo);
+    demoTitlebarColorOne = focusTitlebarColorOne;
+    demoTitlebarColorTwo = focusTitlebarColorTwo;
+}
+
+function applyCommonPreset(appBackground, menubarText, menubarBackground){
+    $('#appBackgroundColorPicker').val(appBackground);
+    $('#menubarTextColorPicker').val(menubarText);
+    $('#menubarBackgroundColorPicker').val(menubarBackground);
+}
+
+
+
+function updateDemo(){
+    if(demoIsUnfocused){
+        $("#demoWindow").css('color', $('#unfocusedAppInterfaceTextColorPicker').val()); // Window text color
+        $("#demoTitlebar>a").css('color', $('#unfocusedTitlebarTextColorPicker').val()); // Titlebar text color
+        $("#demoTitlebar>button").css('color', $('#unfocusedTitlebarTextColorPicker').val()); // Titlebar text color
+        updateDemoColor("unfocusedTitlebarBackgroundOne", $('#unfocusedTitlebarColorOnePicker').val(), false); // Titlebar background
+        updateDemoColor("unfocusedTitlebarBackgroundTwo", $('#unfocusedTitlebarColorTwoPicker').val(), false); // Titlebar background
+    } else {
+        $("#demoWindow").css('color', $('#appInterfaceTextColorPicker').val()); // Window text color
+        $("#demoTitlebar>a").css('color', $('#titlebarTextColorPicker').val()); // Titlebar text color
+        $("#demoTitlebar>button").css('color', $('#titlebarTextColorPicker').val()); // Titlebar text color
+        updateDemoColor("titlebarBackgroundOne", $('#titlebarColorOnePicker').val(), false); // Titlebar background
+        updateDemoColor("titlebarBackgroundTwo", $('#titlebarColorTwoPicker').val(), false); // Titlebar background
+    }
+
+    $("#demoWindow").css('background', $('#appBackgroundColorPicker').val()); // Window background
+
+    $("#demoMenubar>a").css('color', $('#menubarTextColorPicker').val());
+    $("#demoMenubar").css('background-color', $('#menubarBackgroundColorPicker').val());
+
+}
+
+function updatePresetSwitch(switchIn){
+    /*
+            applyUnfocusedPreset(unfocusAppText, unfocusTitlebarText, unfocusTitlebarColorOne, unfocusTitlebarColorTwo);
+
+            applyFocusedPreset(focusAppText, focusTitlebarText, focusTitlebarColorOne, focusTitlebarColorTwo);
+
+            applyCommonPreset(appBackground, menubarText, menubarBackground);
+    */
+    switch (switchIn) {
+        case 'bright':
+            // Bright
+            break;
+        case 'dark':
+            applyFocusedPreset("#FFFFFF", "#FFFFFF", "#000000", "#808080");
+
+            applyUnfocusedPreset("#808080", "#808080", "#000000", "#808080");
+
+            applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c");
+        
+            break;
+        case 'classic':
+            // Classic
+            break;
+    }
+
+    updateDemo();
 }

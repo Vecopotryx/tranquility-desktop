@@ -271,28 +271,28 @@ Retro Kernel 0.0.5
 					<div id="appearanceContainer">
 							<div id="appearanceColorSettings">
 								<div id="demoWindowContainer">
-									<div id="demoMenubar">
-										<a>Applications</a>
-										<a>File</a>
-										<a>Options</a>
-										<a>Arrange</a>
-										<a>?</a>
-										<a style="float:right">00:00</a>
+									<div id="demoMenubar" title="Menubar background color">
+										<a title="Menubar text color">Applications</a>
+										<a title="Menubar text color">File</a>
+										<a title="Menubar text color">Options</a>
+										<a title="Menubar text color">Arrange</a>
+										<a title="Menubar text color">?</a>
+										<a title="Menubar text color" style="float:right">Monday 11:41</a>
 									</div>
 									<div id="demoWindow">
-										<div id="demoTitlebar">
-											<button id="closeWindowDemo">×</button>
-											<a>Window</a>
-											<button id="collapseWindowDemo">▲</button>
+										<div id="demoTitlebar" title="Titlebar background color (click on desired side if gradient)">
+											<button id="closeWindowDemo" title="Titlebar text color">×</button>
+											<a title="Titlebar text color">Window</a>
+											<button id="collapseWindowDemo" title="Titlebar text color">▲</button>
 										</div>
-										<div id="demoWindowContent" title="Background color">
-											<div id="demoText" title="Text color">This is an focused window</div>
+										<div id="demoWindowContent" title="Window background color">
+											<div id="demoText" title="Window text color">This is an focused window</div>
 										</div>
 									</div>
 								</div>
 
 								<label for="presets">Style:</label>
-								<select name="presets" id="presets">
+								<select name="presets" id="presets" onchange="updatePresetSwitch(this.value);">
 									<option value="custom">Custom</option>
 									<option value="bright">Bright</option>
 									<option value="dark">Dark</option>
@@ -306,21 +306,21 @@ Retro Kernel 0.0.5
 
 											<br>
 											<input type="color" id="appInterfaceTextColorPicker" value="#00000F"
-												onchange="updateDemoColor('windowText', this.value);">
+												onchange="updateDemoColor('windowText', this.value, true);">
 											<label for="appInterfaceTextColorPicker">Focused window interface text color</label>
 		
 											<br>
 											<input type="color" id="titlebarTextColorPicker" value="#00000F"
-												onchange="updateDemoColor('titlebarText', this.value);">
+												onchange="updateDemoColor('titlebarText', this.value, true);">
 											<label for="titlebarTextColorPicker">Focused titlebar text color</label>
 		
 											<br>
 											<input type="color" id="titlebarColorOnePicker" value="#FAFAFA"
-												onchange="updateDemoColor('titlebarBackgroundOne', this.value);">
+												onchange="updateDemoColor('titlebarBackgroundOne', this.value, true);">
 											<label for="titlebarColorOnePicker" id="titlebarColorOnePickerText">Focused titlebar background color one</label>
 											<br>
 											<input type="color" id="titlebarColorTwoPicker" value="#D3D3D3"
-												onchange="updateDemoColor('titlebarBackgroundTwo', this.value);">
+												onchange="updateDemoColor('titlebarBackgroundTwo', this.value, true);">
 											<label for="titlebarColorTwoPicker" id="titlebarColorTwoPickerText">Focused titlebar background color two</label>
 											</div>
 											
@@ -329,20 +329,20 @@ Retro Kernel 0.0.5
 												<button id="unfocusedSettingsButton" onclick="unfocusedSettingsClick()">Switch to settings for unfocused windows</button>
 												<br>
 												<input type="color" id="unfocusedAppInterfaceTextColorPicker" value="#808080"
-													onchange="updateDemoColor('unfocusedWndowText', this.value);">
+													onchange="updateDemoColor('unfocusedWndowText', this.value, true);">
 												<label for="unfocusedAppInterfaceTextColorPicker">Unfocused window interface text color</label>
 			
 												<br>
 												<input type="color" id="unfocusedTitlebarTextColorPicker" value="#808080"
-													onchange="updateDemoColor('unfocusedTitlebarText', this.value);">
+													onchange="updateDemoColor('unfocusedTitlebarText', this.value, true);">
 												<label for="unfocusedTitlebarTextColorPicker">Unfocused titlebar text color</label>
 												<br>
 												<input type="color" id="unfocusedTitlebarColorOnePicker" value="#D3D3D3"
-													onchange="updateDemoColor('unfocusedTitlebarBackgroundOne', this.value);">
+													onchange="updateDemoColor('unfocusedTitlebarBackgroundOne', this.value, true);">
 												<label for="unfocusedTitlebarColorOnePicker" id="unfocusedTitlebarColorOnePickerText">Unfocused titlebar background color one</label>
 												<br>
 												<input type="color" id="unfocusedTitlebarColorTwoPicker" value="#FAFAFA"
-													onchange="updateDemoColor('unfocusedTitlebarBackgroundTwo', this.value);">
+													onchange="updateDemoColor('unfocusedTitlebarBackgroundTwo', this.value, true);">
 												<label for="unfocusedTitlebarColorTwoPicker" id="unfocusedTitlebarColorTwoPickerText">Unfocused titlebar background color two</label>
 											</div>
 									</div>
@@ -351,7 +351,7 @@ Retro Kernel 0.0.5
 									<div id="appearanceRightColumn">
 										<br>
 										<input type="color" id="appBackgroundColorPicker" value="#FAFAFA"
-										onchange="updateDemoColor('windowBackground', this.value);">
+										onchange="updateDemoColor('windowBackground', this.value, true);">
 									<label for="appBackgroundColorPicker">Window background color</label>
 										<br>
 										<label for="titlebarGradientSwitch">Enable titlebar gradient?</label>
@@ -360,11 +360,11 @@ Retro Kernel 0.0.5
 										<div id="menubarSettings">
 											<br>
 											<input type="color" id="menubarTextColorPicker" value="#00000F"
-												onchange="updateDemoColor('menubarText', this.value);">
+												onchange="updateDemoColor('menubarText', this.value, true);">
 											<label for="menubarTextColorPicker">Menubar interface text color</label>
 											<br>
 											<input type="color" id="menubarBackgroundColorPicker" value="#FAFAFA"
-												onchange="updateDemoColor('menubarBackground', this.value);">
+												onchange="updateDemoColor('menubarBackground', this.value, true);">
 											<label for="menubarBackgroundColorPicker">Menubar background color</label>
 										</div>
 	
