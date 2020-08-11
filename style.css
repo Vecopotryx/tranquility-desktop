@@ -427,7 +427,7 @@ body {
 
 #settings {
 	position: absolute;
-	background-color: lightgray;
+	background-color: white;
 	margin-top: 5vh;
 	margin-left: 24vw;
 	width: 30cm;
@@ -662,8 +662,18 @@ body {
 	border-right: 1px solid black;
 }
 
+#appearanceRightColumn {
+	margin-left: 0.2cm;
+}
+
 #appearanceLeftColumn, #appearanceRightColumn {
+	margin-top: -0.5cm;
 	float: left;
 	width: 49%;
 	white-space: nowrap;
-  }
+}
+
+#underDemo {
+	margin: auto;
+	text-align: center;
+}

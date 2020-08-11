@@ -289,13 +289,28 @@ Retro Kernel 0.0.5
 									</div>
 								</div>
 
-								<label for="presets">Style:</label>
-								<select name="presets" id="presets" onchange="updatePresetSwitch(this.value);">
-									<option value="custom">Custom</option>
-									<option value="bright">Bright</option>
-									<option value="dark">Dark</option>
-									<option value="classic">Classic</option>
-								</select>
+								<div id="underDemo">
+									<label for="presets">Preset Style:</label>
+									<select name="presets" id="presets" onchange="updatePresetSwitch(this.value);">
+										<option value="bright">Bright</option>
+										<option value="dark">Dark</option>
+										<option value="classic">Classic</option>
+										<option value="custom">Custom</option>
+									</select>
+
+										<label for="buttonPlacement" id="buttonPlacementText">Button placement:</label>
+										<select id="buttonPlacement" name="buttonPlacement"
+											onchange="updateButtonPlacement(true, this.value);">
+											<option value="RDE">RDE</option>
+											<option value="redmond">Redmond</option>
+											<option value="cupertino">Cupertino</option>
+										</select>
+
+										<button id="unfocusedSettingsButton" onclick="unfocusedSettingsClick()">Switch to settings for unfocused windows</button>
+										<br>
+								</div>
+
+
 								<hr>
 
 								<div id="interfaceColors">
@@ -321,11 +336,8 @@ Retro Kernel 0.0.5
 												onchange="updateDemoColor('titlebarBackgroundTwo', this.value, true);">
 											<label for="titlebarColorTwoPicker" id="titlebarColorTwoPickerText">Focused titlebar background color two</label>
 											</div>
-											
-											<br>
+											<hr>
 											<div id="unfocusedSettings">
-												<button id="unfocusedSettingsButton" onclick="unfocusedSettingsClick()">Switch to settings for unfocused windows</button>
-												<br>
 												<input type="color" id="unfocusedAppInterfaceTextColorPicker" value="#808080"
 													onchange="updateDemoColor('unfocusedWndowText', this.value, true);">
 												<label for="unfocusedAppInterfaceTextColorPicker">Unfocused window interface text color</label>
@@ -343,6 +355,9 @@ Retro Kernel 0.0.5
 													onchange="updateDemoColor('unfocusedTitlebarBackgroundTwo', this.value, true);">
 												<label for="unfocusedTitlebarColorTwoPicker" id="unfocusedTitlebarColorTwoPickerText">Unfocused titlebar background color two</label>
 											</div>
+											<hr>
+											<label for="titlebarGradientSwitch">Enable titlebar gradient?</label>
+											<input type="checkbox" id="titlebarGradientSwitch" checked>
 									</div>
 									
 									
@@ -350,12 +365,8 @@ Retro Kernel 0.0.5
 										<br>
 										<input type="color" id="appBackgroundColorPicker" value="#FAFAFA"
 										onchange="updateDemoColor('windowBackground', this.value, true);">
-									<label for="appBackgroundColorPicker">Window background color</label>
-										<br>
-										<label for="titlebarGradientSwitch">Enable titlebar gradient?</label>
-										<input type="checkbox" id="titlebarGradientSwitch" checked>
-	
-										<div id="menubarSettings">
+										<label for="appBackgroundColorPicker">Window background color</label>
+
 											<br>
 											<input type="color" id="menubarTextColorPicker" value="#00000F"
 												onchange="updateDemoColor('menubarText', this.value, true);">
@@ -364,14 +375,13 @@ Retro Kernel 0.0.5
 											<input type="color" id="menubarBackgroundColorPicker" value="#FAFAFA"
 												onchange="updateDemoColor('menubarBackground', this.value, true);">
 											<label for="menubarBackgroundColorPicker">Menubar background color</label>
-										</div>
-	
+										<br>
 										<a>Border radius:</a>
 										<input type="range" min="0" max="25" value="4" step="1" class="slider" id="borderRadiusSlider"
 											onchange="setBorderRadius(this.value, true);">
 										<label for="borderRadiusSlider" id="borderRadiusSliderText">4px</label>
 
-										<br>
+										<hr>
 										<label for="windowBorderSwitch">Enable 3D window border?</label>
 										<input type="checkbox" id="windowBorderSwitch">
 
@@ -384,21 +394,11 @@ Retro Kernel 0.0.5
 									
 								</div>
 
-								<div id="titlebarButtonSettings">
-									<label for="buttonPlacement" id="buttonPlacementText">Button placement:</label>
-									<select id="buttonPlacement" name="buttonPlacement"
-										onchange="updateButtonPlacement(true, this.value);">
-										<option value="RDE">RDE</option>
-										<option value="redmond">Redmond</option>
-										<option value="cupertino">Cupertino</option>
-									</select>
-								</div>
+
 
 
 								
 								<div class="settingsAction">
-									<button>Get current</button>
-									<button>Reset defaults</button>
 									<button onclick="applyAppearanceChanges();">Apply</button>
 								</div>
 

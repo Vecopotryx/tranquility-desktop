@@ -1007,7 +1007,7 @@ function applyAppearanceChanges(){
     }
 }
 
-var _buttonPlacement = RDE;
+var _buttonPlacement = "RDE";
 
 function updateInterface(){
     $(".inMenubar > button").css('color', _menubarTextColor);
@@ -1237,7 +1237,7 @@ function updatePresetSwitch(switchIn){
 
             applyFocusedPreset(focusAppText, focusTitlebarText, focusTitlebarColorOne, focusTitlebarColorTwo);
 
-            applyCommonPreset(appBackground, menubarText, menubarBackground);
+            applyCommonPreset(appBackground, menubarText, menubarBackground, titlebarIsGradient, borderRadius, borderEnabled, buttonPlacement, shadowOn)
     */
     switch (switchIn) {
         case 'bright':
@@ -1280,6 +1280,7 @@ function updateWindowBorder(enabled, isDemo){
     }
 }
 
+
 function updateBoxShadow(enabled, isDemo){
     var window;
     if(isDemo){
@@ -1294,3 +1295,4 @@ function updateBoxShadow(enabled, isDemo){
         $(window).css('box-shadow', 'none');
     }
 }
+
