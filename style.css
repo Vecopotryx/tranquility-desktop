@@ -676,4 +676,6 @@ body {
 	text-align: center;
 }
 
-
+#opacitySettings {
+	display: none;
+}

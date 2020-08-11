@@ -9,6 +9,12 @@ var _appInterfaceTextColor = "#000000";
 var _unfocusedAppInterfaceTextColor = "#808080";
 var _menubarTextColor = "#000000";
 var _menubarBackgroundColor = "#FFFFFF";
+var _unfocusedTitlebarColorOne = "#FFFFFF";
+var _unfocusedTitlebarColorTwo = "#D3D3D3";
+var _titlebarIsGradient = true;
+var _titlebarColorOne = "#FFFFFF";
+var _titlebarColorTwo = "#D3D3D3";
+
 var _bottomMenuBarEnabled = false;
 
 // focus releated stuff:
@@ -32,6 +38,7 @@ var pathfinderHeight;
 var terminalHeight;
 var browserHeight;
 var helpHeight;
+var settingsHeight;
 
 // for clock
 var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -44,7 +51,7 @@ var down = [];
 // browser
 var repetitions = 0;
 
-// background picker
+// settings
 var backgroundBackup;
 
 // terminal
@@ -52,22 +59,20 @@ var terminalOpacityValue = 0.5;
 var terminalHexColor = "#000000";
 var terminalOpacityValueBackup;
 
-// customization window
-var boxShadowHorizontal = "8px";
-var boxShadowVertical = "15px";
-var _applicationOpacity = 1;
-var _menubarOpacity = 1;
-var _appMenubarShareOpacity = true;
+var previousFocus;
+var demoTitlebarHasClicked;
 
-var _unfocusedTitlebarGradientDirection = "to right";
-var _unfocusedTitlebarIsGradient = true;
-var _unfocusedTitlebarColorOne = "#FFFFFF";
-var _unfocusedTitlebarColorTwo = "#D3D3D3";
+var demoTitlebarIsGradient = true;
+var demoTitlebarColorOne = "white";
+var demoTitlebarColorTwo = "lightgray";
+var demoTitlebarDirection = "to right";
 
-var _titlebarGradientDirection = "to right";
-var _titlebarIsGradient = true;
-var _titlebarColorOne = "#FFFFFF";
-var _titlebarColorTwo = "#D3D3D3";
+var demoUnfocusedTitlebarColorOne = "white";
+var demoUnfocusedTitlebarColorTwo = "lightgray";
+
+var opacitySettingsVisible = true;
+var _buttonPlacement = "RDE";
+var demoIsUnfocused = false;
 
 // **End of variables**
 
@@ -178,7 +183,6 @@ function focusWindow(windowIn){
     $('#' + windowIn + ' .titlebar>a').css('color', _focusedTitlebarTextColor);
 }
 
-var previousFocus;
 
 function getActive(activeIn){
     if(activeIn !== currentlyFocused){
@@ -189,7 +193,6 @@ function getActive(activeIn){
 }
 
 // **closing functionality**
-var mediaClosed = false;
 
 $(function () {
     $('.application').mouseover(function () {
@@ -310,6 +313,10 @@ function collapseWindow(windowIn){
     case 'help':
         helpHeight = $("#help").css('height');
         break;
+    case 'settings':
+        settingsHeight = $("#settings").css('height');
+        $('.settingsAction').hide();
+        break;
    }
     $('#' + windowIn).height(0);
     $('#' + windowIn).resizable('disable');
@@ -338,6 +345,10 @@ function uncollapseWindow(windowIn){
             break;
         case 'help':
             $('#help').css('height', helpHeight);
+            break;
+        case 'settings':
+            $('#settings').css('height', settingsHeight);
+            $('.settingsAction').show();
             break;
        }
     $('#' + windowIn).resizable('enable'); 
@@ -445,11 +456,11 @@ $(function () {
 $(document).keydown(function (e) {
     if (!map[e.keyCode]) {
         down.push(e.keyCode);
-        // If holding down alt, then display cover over applications
-        if (down[0] === 18) {
+        // If holding down alt, then display cover over applications (Temporarily disabled as it can become problematic when user presses Alt + Tab)
+        /*if (down[0] === 18) {
             $('.windowFrameOverlay').fadeIn('fast');
             $(".windowFrameOverlay").css('cursor', 'move');
-        }
+        }*/ 
         // If pressing Alt + A, show the applications menu
         if (down[0] === 18 && down[1] === 65) {
             if(_bottomMenuBarEnabled){
@@ -768,7 +779,6 @@ $(function () {
     });
 });
 
-var demoTitlebarHasClicked;
 
 $(function () {
     
@@ -934,13 +944,7 @@ function updateMenubarOpacity(opacityIn, isDemo){
     }
 }
 
-var demoTitlebarIsGradient = true;
-var demoTitlebarColorOne = "white";
-var demoTitlebarColorTwo = "lightgray";
-var demoTitlebarDirection = "to right";
 
-var demoUnfocusedTitlebarColorOne = "white";
-var demoUnfocusedTitlebarColorTwo = "lightgray";
 
 function updateDemoColor(type, color, isUser){
     if(isUser){
@@ -948,7 +952,11 @@ function updateDemoColor(type, color, isUser){
     }
     switch(type){
         case "windowBackground":
-            $("#demoWindow").css('background', color);
+            if(opacitySettingsVisible){
+                $("#demoWindow").css('background', convertHex(color, $("#windowOpacitySlider").val()));
+            } else {
+                $("#demoWindow").css('background', color);
+            }
             break;
         case "windowText":
             $("#demoWindow").css('color', color);
@@ -957,7 +965,11 @@ function updateDemoColor(type, color, isUser){
             $("#demoMenubar>a").css('color', color);
             break;
         case "menubarBackground":
-            $("#demoMenubar").css('background-color', color);
+            if(opacitySettingsVisible){
+                $("#demoMenubar").css('background', convertHex(color, $("#menubarOpacitySlider").val()));
+            } else {
+                $("#demoMenubar").css('background', color);
+            }
             break;
         case "titlebarText":
             $("#demoTitlebar>a").css('color', color);
@@ -1006,7 +1018,6 @@ function updateDemoColor(type, color, isUser){
     }
 }
 
-var opacitySettingsVisible = true;
 
 function applyAppearanceChanges(){
     _menubarTextColor = $('#menubarTextColorPicker').val();
@@ -1045,7 +1056,6 @@ function applyAppearanceChanges(){
     }
 }
 
-var _buttonPlacement = "RDE";
 
 function updateInterface(){
     $(".inMenubar > button").css('color', _menubarTextColor);
@@ -1065,21 +1075,6 @@ function updateInterface(){
     updateButtonPlacement(false, _buttonPlacement);
     unfocusAll();
 }
-
-var _unfocusedTitlebarIsGradient = true;
-var _unfocusedTitlebarColorOne = "#FFFFFF";
-var _unfocusedTitlebarColorTwo = "#D3D3D3";
-
-var _titlebarFocusColor = "linear-gradient(to right, white, lightgray)";
-var _unfocusedTitlebarColor = "linear-gradient(to right, white, lightgray)";
-var _focusedTitlebarTextColor = "#000000";
-var _unfocusedTitlebarTextColor = "gray";
-var _appBackgroundColor = "#FFFFFF";
-var _appInterfaceTextColor = "#000000";
-var _unfocusedAppInterfaceTextColor = "#808080";
-var _menubarTextColor = "#000000";
-var _menubarBackgroundColor = "#FFFFFF";
-var _bottomMenuBarEnabled = false;
 
 
 function generateGradient(direction, colorOne, colorTwo){
@@ -1129,8 +1124,6 @@ function updateButtonPlacement(isDemo, placementIn) {
             break;
     }
 }   
-
-var demoIsUnfocused = false;
 
 function unfocusedSettingsClick(){ 
     if(demoIsUnfocused){
