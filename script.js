@@ -162,7 +162,6 @@ function focusWindow(windowIn){
     $('#' + windowIn).css('filter', 'grayscale(0%)');
     $('#' + windowIn).css('z-index', getHighestIndex() + 1);
     $('#' + windowIn).css('color', _appInterfaceTextColor);
-    $('#' + windowIn + ' .titlebar>a').css('color', _focusedTitlebarTextColor);
     $('#' + windowIn + ' .titlebar>button').css('color', _focusedTitlebarTextColor);
     $('#' + windowIn + '>.titlebar').css('background', _titlebarFocusColor);
     if(windowIn == "help"){
@@ -176,6 +175,7 @@ function focusWindow(windowIn){
         $('#notesContent > p').css('color', "black");
         $('#notesContent > a').css('color', "black");
     }
+    $('#' + windowIn + ' .titlebar>a').css('color', _focusedTitlebarTextColor);
 }
 
 var previousFocus;
@@ -1124,10 +1124,17 @@ function applyFocusedPreset(focusAppText, focusTitlebarText, focusTitlebarColorO
     demoTitlebarColorTwo = focusTitlebarColorTwo;
 }
 
-function applyCommonPreset(appBackground, menubarText, menubarBackground){
+function applyCommonPreset(appBackground, menubarText, menubarBackground, titlebarIsGradient){
     $('#appBackgroundColorPicker').val(appBackground);
     $('#menubarTextColorPicker').val(menubarText);
     $('#menubarBackgroundColorPicker').val(menubarBackground);
+    if(titlebarIsGradient){
+        $( "#titlebarGradientSwitch" ).prop( "checked", false);
+        $('#titlebarGradientSwitch').click();
+    } else {
+        $( "#titlebarGradientSwitch" ).prop( "checked", true);
+        $('#titlebarGradientSwitch').click();
+    }
 }
 
 
@@ -1169,17 +1176,21 @@ function updatePresetSwitch(switchIn){
 
             applyUnfocusedPreset("#808080", "#808080", "#FFFFFF", "#D3D3D3");
 
-            applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF");
+            applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF", true);
             break;
         case 'dark':
             applyFocusedPreset("#FFFFFF", "#FFFFFF", "#000000", "#808080");
 
             applyUnfocusedPreset("#808080", "#808080", "#000000", "#808080");
 
-            applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c");
+            applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c", true);
             break;
         case 'classic':
-            // Classic
+            applyFocusedPreset("#000000", "#FFFFFF", "#00008B", "#00008B");
+
+            applyUnfocusedPreset("#808080", "#808080", "#A9A9A9", "#A9A9A9");
+
+            applyCommonPreset("#D3D3D3", "#000000", "#D3D3D3", false);
             break;
     }
 
