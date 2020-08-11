@@ -876,6 +876,14 @@ $(function () {
             }
         }
     })
+
+    $('#windowBorderSwitch').click(function () {
+        if ($(this).is(':checked')) {
+            updateWindowBorder(true, true);
+        } else {
+            updateWindowBorder(false, true);
+        }
+    })
 });
 
 var demoTitlebarIsGradient = true;
@@ -972,7 +980,8 @@ function applyAppearanceChanges(){
     _buttonPlacement = $("#buttonPlacement").val();
 
     setBorderRadius($("#borderRadiusSlider").val(), false);
-
+    console.log($("#windowBorderSwitch").is(":checked"));
+    updateWindowBorder($("#windowBorderSwitch").is(":checked"), false);
     updateInterface();
     focusWindow("settings");
 }
@@ -1020,7 +1029,8 @@ function generateGradient(direction, colorOne, colorTwo){
 
 
 function updateButtonPlacement(isDemo, placementIn) {
-    buttonPlacement.value = placementIn;
+    $("#buttonPlacement").val(placementIn);
+    // buttonPlacement.value = placementIn;
     var closeWindow;
     var collapseWindow;
     var titlebar;
@@ -1126,7 +1136,7 @@ function applyFocusedPreset(focusAppText, focusTitlebarText, focusTitlebarColorO
     demoTitlebarColorTwo = focusTitlebarColorTwo;
 }
 
-function applyCommonPreset(appBackground, menubarText, menubarBackground, titlebarIsGradient, borderRadius){
+function applyCommonPreset(appBackground, menubarText, menubarBackground, titlebarIsGradient, borderRadius, borderEnabled, buttonPlacement){
     $('#appBackgroundColorPicker').val(appBackground);
     $('#menubarTextColorPicker').val(menubarText);
     $('#menubarBackgroundColorPicker').val(menubarBackground);
@@ -1139,6 +1149,17 @@ function applyCommonPreset(appBackground, menubarText, menubarBackground, titleb
     }
 
     setBorderRadius(borderRadius, true);
+
+    if(borderEnabled){
+        $("#windowBorderSwitch" ).prop( "checked", false);
+        $('#windowBorderSwitch').click();
+    } else {
+        $("#windowBorderSwitch" ).prop( "checked", true);
+        $('#windowBorderSwitch').click();
+    }
+
+    updateButtonPlacement(true, buttonPlacement);
+
 }
 
 function setBorderRadius(borderRadiusIn, isDemo) {
@@ -1179,7 +1200,6 @@ function updateDemo(){
 
     $("#demoMenubar>a").css('color', $('#menubarTextColorPicker').val());
     $("#demoMenubar").css('background-color', $('#menubarBackgroundColorPicker').val());
-
 }
 
 function updatePresetSwitch(switchIn){
@@ -1192,28 +1212,46 @@ function updatePresetSwitch(switchIn){
     */
     switch (switchIn) {
         case 'bright':
-            // Bright
             applyFocusedPreset("#000000", "#000000", "#FFFFFF", "#D3D3D3");
 
             applyUnfocusedPreset("#808080", "#808080", "#FFFFFF", "#D3D3D3");
 
-            applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF", true, 4);
+            applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF", true, 4, false, "RDE");
             break;
         case 'dark':
             applyFocusedPreset("#FFFFFF", "#FFFFFF", "#000000", "#808080");
 
             applyUnfocusedPreset("#808080", "#808080", "#000000", "#808080");
 
-            applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c", true, 4);
+            applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c", true, 4, false, "RDE");
             break;
         case 'classic':
             applyFocusedPreset("#000000", "#FFFFFF", "#00008B", "#00008B");
 
             applyUnfocusedPreset("#808080", "#808080", "#A9A9A9", "#A9A9A9");
 
-            applyCommonPreset("#D3D3D3", "#000000", "#D3D3D3", false, 0);
+            applyCommonPreset("#D3D3D3", "#000000", "#D3D3D3", false, 0, true, "redmond");
+
             break;
     }
 
     updateDemo();
 }
+
+function updateWindowBorder(enabled, isDemo){
+    var window;
+    if(isDemo){
+        console.log("isDemo");
+        window = "#demoWindow";
+    } else {
+        window = ".application"
+    }
+    if(enabled){
+        console.log("enabled");
+        console.log(window);
+        $(window).css('border', '2px outset lightgray');
+    } else {
+        $(window).css('border', 'none');
+    }
+}
+
