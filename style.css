@@ -300,10 +300,6 @@ body {
 	width: 7.5%;
 }
 
-#notesOpacityAmount, #notesOpacityText, #generalOpacityAmount, #generalOpacityText, #menubarTranslucency, #menubarTranslucencyText  {
-	display: none;
-}
-
 .closeWindow, .uncollapseWindow, .collapseWindow {
 	cursor: pointer;
 }
@@ -563,7 +559,9 @@ body {
 
 #demoWindowContainer {
 	width: auto;
-	background-color: darkgray;
+	background: url(source/img/nasa-Q1p7bh3SHj8-unsplash.jpg);
+	background-position: center;
+	background-size: cover;
 	padding: 1%;
 	padding-right: 2%;
 	height: 5.5cm;
@@ -677,3 +675,5 @@ body {
 	margin: auto;
 	text-align: center;
 }
+
+

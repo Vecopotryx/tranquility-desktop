@@ -900,7 +900,27 @@ $(function () {
             updateBoxShadow(false, true);
         }
     })
+
+    $('#opacitySettingsSwitch').click(function () {
+        if ($(this).is(':checked')) {
+            $('#opacitySettings').show();
+            opacitySettingsVisible = true;
+        } else {
+            $('#opacitySettings').hide();
+            opacitySettingsVisible = false;
+        }
+    })
 });
+
+function updateWindowOpacity(opacityIn, isDemo){
+    $("#windowOpacityText").html(opacityIn);
+    if(isDemo){
+        $("#demoWindow").css('background', convertHex($('#appBackgroundColorPicker').val(), opacityIn));
+    } else {
+        _appBackgroundColor = convertHex($('#appBackgroundColorPicker').val(), opacityIn);
+    }
+}
+
 
 var demoTitlebarIsGradient = true;
 var demoTitlebarColorOne = "white";
@@ -974,11 +994,16 @@ function updateDemoColor(type, color, isUser){
     }
 }
 
+var opacitySettingsVisible = true;
 
 function applyAppearanceChanges(){
     _menubarBackgroundColor = $('#menubarBackgroundColorPicker').val();
     _menubarTextColor = $('#menubarTextColorPicker').val();
-    _appBackgroundColor = $('#appBackgroundColorPicker').val();
+    if(opacitySettingsVisible){
+        updateWindowOpacity($("#windowOpacitySlider").val(), false)
+    } else {
+        _appBackgroundColor = $('#appBackgroundColorPicker').val();
+    }
     _titlebarIsGradient = demoTitlebarIsGradient;
 
     // Focused
@@ -1123,7 +1148,7 @@ function enableUnfocusedSettings(){
 
 function disableUnfocusedSettings(){
     $('#demoWindow').css('filter', 'grayscale(0%)');
-    $("#demoText").html("This is an focused window");
+    $("#demoText").html("This is a focused window");
     $("#demoWindow").css('color', $('#appInterfaceTextColorPicker').val());
     $("#demoTitlebar>a").css('color', $('#titlebarTextColorPicker').val());
     $("#demoTitlebar>button").css('color', $('#titlebarTextColorPicker').val());
