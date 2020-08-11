@@ -971,6 +971,8 @@ function applyAppearanceChanges(){
 
     _buttonPlacement = $("#buttonPlacement").val();
 
+    setBorderRadius($("#borderRadiusSlider").val(), false);
+
     updateInterface();
     focusWindow("settings");
 }
@@ -1124,7 +1126,7 @@ function applyFocusedPreset(focusAppText, focusTitlebarText, focusTitlebarColorO
     demoTitlebarColorTwo = focusTitlebarColorTwo;
 }
 
-function applyCommonPreset(appBackground, menubarText, menubarBackground, titlebarIsGradient){
+function applyCommonPreset(appBackground, menubarText, menubarBackground, titlebarIsGradient, borderRadius){
     $('#appBackgroundColorPicker').val(appBackground);
     $('#menubarTextColorPicker').val(menubarText);
     $('#menubarBackgroundColorPicker').val(menubarBackground);
@@ -1135,9 +1137,27 @@ function applyCommonPreset(appBackground, menubarText, menubarBackground, titleb
         $( "#titlebarGradientSwitch" ).prop( "checked", true);
         $('#titlebarGradientSwitch').click();
     }
+
+    setBorderRadius(borderRadius, true);
 }
 
-
+function setBorderRadius(borderRadiusIn, isDemo) {
+    var titlebar;
+    var application;
+    if(isDemo){
+        titlebar = "#demoTitlebar";
+        application = "#demoWindow";
+    } else {
+        titlebar = ".titlebar";
+        application = ".application";
+    }
+    $("#borderRadiusSlider").val(borderRadiusIn);
+    $('#borderRadiusSliderText').text(borderRadiusIn + "px");
+    $(application).css('border-radius', borderRadiusIn + "px");
+    $(titlebar).css('border-top-left-radius', borderRadiusIn + "px");
+    $(titlebar).css('border-top-right-radius', borderRadiusIn + "px");
+    borderRadiusSlider.value = borderRadiusIn;
+}
 
 function updateDemo(){
     if(demoIsUnfocused){
@@ -1155,6 +1175,7 @@ function updateDemo(){
     }
 
     $("#demoWindow").css('background', $('#appBackgroundColorPicker').val()); // Window background
+
 
     $("#demoMenubar>a").css('color', $('#menubarTextColorPicker').val());
     $("#demoMenubar").css('background-color', $('#menubarBackgroundColorPicker').val());
@@ -1176,21 +1197,21 @@ function updatePresetSwitch(switchIn){
 
             applyUnfocusedPreset("#808080", "#808080", "#FFFFFF", "#D3D3D3");
 
-            applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF", true);
+            applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF", true, 4);
             break;
         case 'dark':
             applyFocusedPreset("#FFFFFF", "#FFFFFF", "#000000", "#808080");
 
             applyUnfocusedPreset("#808080", "#808080", "#000000", "#808080");
 
-            applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c", true);
+            applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c", true, 4);
             break;
         case 'classic':
             applyFocusedPreset("#000000", "#FFFFFF", "#00008B", "#00008B");
 
             applyUnfocusedPreset("#808080", "#808080", "#A9A9A9", "#A9A9A9");
 
-            applyCommonPreset("#D3D3D3", "#000000", "#D3D3D3", false);
+            applyCommonPreset("#D3D3D3", "#000000", "#D3D3D3", false, 0);
             break;
     }
 
