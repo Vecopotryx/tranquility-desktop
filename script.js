@@ -109,12 +109,10 @@ $(function () {
 // *unfocus*
 // unfocus applications on load
 $(document).ready(function () {
-    previousFocus = "notes";
-    unfocusWindow();
-    previousFocus = "mediaplayer";
-    unfocusWindow();
+    unfocusAll();
     $('#windowListNotes').show();
     $('#windowListMediaplayer').show();
+    focusWindow("mediaplayer");
 });
 
 function unfocusWindow(windowIn){
@@ -1362,6 +1360,32 @@ function updateBoxShadow(enabled, isDemo){
         $(window).css('box-shadow', 'none');
     }
 }
+
+var clickedOnCreditList;
+
+$(function () {
+    $("#credits").click(function () {
+        if(clickedOnCreditList){
+            clickedOnCreditList = false;
+        } else {
+            if($("#creditsList").is(":visible")){
+                $("#credits").css('height', '0.5cm');
+                $("#creditsArrow").css('transform', 'rotate(0deg)');
+                $("#creditsList").hide()
+            } else {
+                $("#credits").css('height', '3cm');
+                $("#creditsArrow").css('transform', 'rotate(270deg)');
+                $("#creditsList").show()
+            }
+        }
+
+    })
+
+    $("#creditsList").click(function () {
+        clickedOnCreditList = true;
+    })
+});
+
 
 
 // **Used in many different parts of this code**

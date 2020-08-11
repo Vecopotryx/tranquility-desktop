@@ -707,3 +707,20 @@ body {
 #demoBottombar > a {
 	float: right;
 }
+
+#credits {
+	height: 0.5cm;
+	overflow: hidden;
+	transition: height 0.2s ease-in-out;
+	cursor: pointer;
+}
+
+#creditsList {
+	width: 60%;
+	display: none;
+	cursor: default;
+}
+
+#creditsArrow {
+	transition: all 0.6s;
+}
