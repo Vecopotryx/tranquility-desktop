@@ -905,9 +905,13 @@ $(function () {
         if ($(this).is(':checked')) {
             $('#opacitySettings').show();
             opacitySettingsVisible = true;
+            $("#demoWindow").css('background', convertHex($('#appBackgroundColorPicker').val(), $("#windowOpacitySlider").val()));
+            $("#demoMenubar").css('background', convertHex($('#menubarBackgroundColorPicker').val(), $("#menubarOpacitySlider").val()));
         } else {
             $('#opacitySettings').hide();
             opacitySettingsVisible = false;
+            $("#demoWindow").css('background', $('#appBackgroundColorPicker').val());
+            $("#demoMenubar").css('background', $('#menubarBackgroundColorPicker').val());
         }
     })
 });
@@ -921,6 +925,14 @@ function updateWindowOpacity(opacityIn, isDemo){
     }
 }
 
+function updateMenubarOpacity(opacityIn, isDemo){
+    $("#menubarOpacityText").html(opacityIn);
+    if(isDemo){
+        $("#demoMenubar").css('background', convertHex($('#menubarBackgroundColorPicker').val(), opacityIn));
+    } else {
+        _menubarBackgroundColor = convertHex($('#menubarBackgroundColorPicker').val(), opacityIn);
+    }
+}
 
 var demoTitlebarIsGradient = true;
 var demoTitlebarColorOne = "white";
@@ -997,12 +1009,13 @@ function updateDemoColor(type, color, isUser){
 var opacitySettingsVisible = true;
 
 function applyAppearanceChanges(){
-    _menubarBackgroundColor = $('#menubarBackgroundColorPicker').val();
     _menubarTextColor = $('#menubarTextColorPicker').val();
     if(opacitySettingsVisible){
         updateWindowOpacity($("#windowOpacitySlider").val(), false)
+        updateMenubarOpacity($("#menubarOpacitySlider").val(), false)
     } else {
         _appBackgroundColor = $('#appBackgroundColorPicker').val();
+        _menubarBackgroundColor = $('#menubarBackgroundColorPicker').val();
     }
     _titlebarIsGradient = demoTitlebarIsGradient;
 
