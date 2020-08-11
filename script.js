@@ -286,6 +286,7 @@ $(function () {
     // (Settings window)
     $("#settingsMenuClick, #bottomSettingsMenuClick").click(function () {
         openWindow("settings");
+        disableUnfocusedSettings();
     })
     
 });
@@ -809,11 +810,11 @@ $(function () {
         }
     })
 
-    $('#demoMenubar>a').click(function () {
+    $('#demoMenubar>a, #demoBottombar>a, #demoBottombar>button').click(function () {
         $('#menubarTextColorPicker').click();
     })
 
-    $('#demoMenubar').click(function () {
+    $('#demoMenubar, #demoBottombar').click(function () {
         $('#menubarBackgroundColorPicker').click();
     })
 
@@ -998,12 +999,15 @@ function updateDemoColor(type, color, isUser){
             break;
         case "menubarText":
             $("#demoMenubar>a").css('color', color);
+            $("#demoBottombar>a").css('color', color);
             break;
         case "menubarBackground":
             if(opacitySettingsVisible){
                 $("#demoMenubar").css('background', convertHex(color, $("#menubarOpacitySlider").val()));
+                $("#demoBottombar").css('background', convertHex(color, $("#menubarOpacitySlider").val()));
             } else {
                 $("#demoMenubar").css('background', color);
+                $("#demoBottombar").css('background', color);
             }
             break;
         case "titlebarText":
@@ -1291,9 +1295,14 @@ function updateDemo(){
 
     $("#demoWindow").css('background', $('#appBackgroundColorPicker').val()); // Window background
 
+    if(opacitySettingsVisible){
+        $("#demoMenubar, #demoBottombar").css('background', convertHex($('#menubarBackgroundColorPicker').val(), $("#menubarOpacitySlider").val()));
+    } else {
+        $("#demoMenubar, #demoBottombar").css('background-color', $('#menubarBackgroundColorPicker').val());
+    }
 
-    $("#demoMenubar>a").css('color', $('#menubarTextColorPicker').val());
-    $("#demoMenubar").css('background-color', $('#menubarBackgroundColorPicker').val());
+    $("#demoMenubar>a, #demoBottombar>a, #demoBottombar>button").css('color', $('#menubarTextColorPicker').val());
+
 }
 
 function updatePresetSwitch(switchIn){
@@ -1311,6 +1320,9 @@ function updatePresetSwitch(switchIn){
             applyUnfocusedPreset("#808080", "#808080", "#FFFFFF", "#D3D3D3");
 
             applyCommonPreset("#FFFFFF", "#000000", "#FFFFFF", true, 4, false, "RDE", true);
+            
+            $("#bottomMenubarSwitch" ).prop( "checked", true);
+            $('#bottomMenubarSwitch').click();
             break;
         case 'dark':
             applyFocusedPreset("#FFFFFF", "#FFFFFF", "#000000", "#808080");
@@ -1318,6 +1330,9 @@ function updatePresetSwitch(switchIn){
             applyUnfocusedPreset("#808080", "#808080", "#000000", "#808080");
 
             applyCommonPreset("#090a0c", "#FFFFFF", "#090a0c", true, 4, false, "RDE", true);
+
+            $("#bottomMenubarSwitch" ).prop( "checked", true);
+            $('#bottomMenubarSwitch').click();
             break;
         case 'classic':
             applyFocusedPreset("#000000", "#FFFFFF", "#00008B", "#00008B");
@@ -1325,6 +1340,9 @@ function updatePresetSwitch(switchIn){
             applyUnfocusedPreset("#808080", "#808080", "#A9A9A9", "#A9A9A9");
 
             applyCommonPreset("#D3D3D3", "#000000", "#D3D3D3", false, 0, true, "redmond", false);
+
+            $("#bottomMenubarSwitch" ).prop( "checked", false);
+            $('#bottomMenubarSwitch').click();
             break;
     }
 

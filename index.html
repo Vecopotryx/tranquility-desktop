@@ -38,7 +38,7 @@
 		<a id="dateAndTime">00:00</a>
 	</div>
 
-	<div id="bottombar">
+	<div id="bottombar" class="inMenubar">
 		<button id="bottomMenuClick"><img src="favicon.ico" width="15cm"> Menu</button>
 		<div id="windowListBottomContainer">
 
@@ -105,13 +105,15 @@
 				<h1>Work in Progress</h1>
 				<a>Current version: </a>
 				<br>
-				<a> 2020-08-10</a>
+				<a> 2020-08-11</a>
 				<br>
 				<h2>Changelog</h2>
-				<a><b>2020-08-10:</b></a>
-				<p>&#8226; Massively improved dragging and resizing performance</p>
-				<p>&#8226; Improved focus performance</p>
-				<p>&#8226; Fixed bug that could occur whilst dragging and resizing windows</p>
+				<a><b>2020-08-11:</b></a>
+				<p>&#8226; Added a new customization panel with graphical previews</p>
+				<p>&#8226; Added a revamped about screen to the settings window</p>
+				<p>&#8226; Added background settings to the settings window</p>
+				<p>&#8226; Reworked settings backend for better performance</p>
+				<p>&#8226; Removed several windows in favor of the new settings window</p>
 				<a href="changelog.html" target="_blank"><b>Full changelog</b></a>
 				<br>
 				<br>
@@ -161,7 +163,7 @@
 |[]|              |[]|      --------
 |  |              |  |      OS: Retro Desktop Enviornment
 |  |              |  |      Host: Waygate Miga ST 340
-|  |              |  |      Kernel: 0.0.5
+|  |              |  |      Kernel: 0.0.6
 |  |______________|  |      Packages: 7 (rpt)
 |                    |      Shell: /system/rdsh
 |     ____________   |      DE: RDE
@@ -185,7 +187,7 @@ neofetch - display system information
 Unrecognized command
 				</pre>
 				<pre id="terminalUnameR">
-Retro Kernel 0.0.5
+Retro Kernel 0.0.6
 				</pre>
 			</div>
 		</div>
@@ -223,7 +225,7 @@ Retro Kernel 0.0.5
 				<h2>Basic usage</h2>
 				<p>Click the <b>Applications</b> button in the top left corner to open applications</p>
 				<p>Click the <b>File</b> button in the top left corner to get more information about the project</p>
-				<p>Click the <b>Options</b> button in the top menu in order to be able to set a background image</p>
+				<p>Click the <b>Options</b> button in the top menu in order to access settings</p>
 				<p>Click the <b>Arrange</b> button to arrange RDE to the default layout</p>
 				<p>Click the <b>×</b> icon on the top of a window in order to close it</p>
 				<p>Click the <b>▲</b> icon on the top of a window in order to collapse it</p>
@@ -233,8 +235,6 @@ Retro Kernel 0.0.5
 					down the left mouse button and drag</p>
 
 				<h2>Keyboard shortcuts</h2>
-				<p>Press and hold <b>Alt</b> in order to be able to move any window, even whilst hovering over window
-					contents</p>
 				<p>Press <b>Alt</b> and <b>Q</b> together in order to close a window</p>
 				<p>Press <b>Alt</b> and <b>W</b> together in order to collapse a window</p>
 				<p>Press <b>Alt</b> and <b>A</b> together to open the applications menu</p>
@@ -253,7 +253,6 @@ Retro Kernel 0.0.5
 				<div id="settingsPanels">
 					<div id="settingsAppearanceButton"><a>Appearance</a></div>
 					<div id="settingsBackgroundsButton"><a>Backgrounds</a></div>
-					<div id="settingsApplicationsButton"><a>Applications</a></div>
 					<div id="settingsAboutButton"><a>About</a></div>
 				</div>
 

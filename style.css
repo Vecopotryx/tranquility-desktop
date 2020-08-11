@@ -120,9 +120,8 @@ body {
 }
 #optionMenuContent>a {
 	display: block;
+	cursor: pointer;
 }
-
-
 
 #browserWindow {
 	position: absolute;
@@ -160,25 +159,11 @@ body {
 	width: 50%;
 	height: 50%;
 }
-#about {
-	margin-top: 20vh;
-	margin-left: 37.5%;
-	width: 25%;
-	height: 50%;
-}
 #terminal {
 	top: 20vh;
 	left: 25%;
 	width: 50%;
 	height: 45%;
-}
-#backgroundPicker {
-	margin-top: 15vh;
-	margin-left: 25vw;
-	min-height: 12cm;
-	min-width: 25cm;
-	width: 25cm;
-	height: 12.5cm;
 }
 #browserWindow {
 	top: 15vh;
@@ -193,13 +178,6 @@ body {
 	width: 40%;
 	height: auto;
 	font-size: 0.7vw;
-}
-
-#customizationSettings {
-	margin-top: 5vh;
-	margin-left: 24vw;
-	width: 45%;
-	height: auto;
 }
 /* end of positions and sizes */
 
@@ -261,7 +239,7 @@ body {
 	display: none;
 }
 
-#terminalContent, #mediaContent, #browserContent, #pathfinderContent {
+#mediaContent, #browserContent, #pathfinderContent {
 	border:none;
 }
 .frameOverlay {
@@ -300,7 +278,7 @@ body {
 	width: 7.5%;
 }
 
-.closeWindow, .uncollapseWindow, .collapseWindow {
+.closeWindow, .collapseWindow {
 	cursor: pointer;
 }
 
@@ -428,6 +406,7 @@ body {
 	margin-left: 24vw;
 	width: 30cm;
 	height: 50%;
+	display: none;
 }
 
 #settingsPanels {
@@ -471,13 +450,14 @@ body {
 	padding: auto;
 	width: auto;
 	margin-left: 7cm;
+	display: none;
 }
 
 .aboutSecond {
 	float: right;
 }
 
-#settingsAboutButton {
+#settingsAppearanceButton {
 	background: linear-gradient(to left, gray, darkgray);
 }
 
@@ -533,7 +513,6 @@ body {
 }
 
 #appearanceContainer {
-	display: none;
 	padding: auto;
 	width: auto;
 	margin-left: 7cm;
