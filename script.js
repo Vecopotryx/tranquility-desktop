@@ -231,6 +231,8 @@ function capitalizeString(stringIn){
 function openWindow(windowIn){
     $("#appMenuContent").hide();
     $("#fileMenuContent").hide();
+    $("#optionMenuContent").hide();
+    $("#bottomMenuContent").hide();
     $('#' + windowIn).show();
     // uncollapseWindow(windowIn);
     if(windowIn == "mediaplayer"){
@@ -250,27 +252,27 @@ function openWindow(windowIn){
 // **opening functionality**
 $(function () {
     // (Chip Player JS / Mediaplayer)
-    $("#chipIcon, #chipText").click(function () {
+    $("#chipIcon, #chipText, #bottomChipText").click(function () {
         openWindow("mediaplayer");
     })
 
     // (Notes)
-    $("#notesIcon, #notesText").click(function () {
+    $("#notesIcon, #notesText, #bottomNotesText").click(function () {
         openWindow("notes");
     })
 
     // (Pathfinder / File explorer)
-    $("#pathfinderText").click(function () {
+    $("#pathfinderText, #bottomPathfinderText").click(function () {
         openWindow("pathfinder");
     })
 
     // (Terminal)
-    $("#terminalText").click(function () {
+    $("#terminalText, #bottomTerminalText").click(function () {
         openWindow("terminal");
     })
 
     // (Getpost Gavinator)
-    $("#browserText").click(function () {
+    $("#browserText, #bottomBrowserText").click(function () {
         $('#browserContent').attr('src', 'http://theoldnet.com/browser');
         openWindow("browserWindow");
         loadingDots();
@@ -279,12 +281,12 @@ $(function () {
     })
 
     // (Help window)
-    $("#helpMenuClick").click(function () {
+    $("#helpMenuClick, #bottomHelpMenuClick").click(function () {
         openWindow("help");
     })
 
     // (Settings window)
-    $("#settingsMenuClick").click(function () {
+    $("#settingsMenuClick, #bottomSettingsMenuClick").click(function () {
         openWindow("settings");
     })
     
@@ -432,6 +434,14 @@ $(function () {
         // populate iframes if empty
         if (mediaClosed) {
             $("#mediaContent").attr('src', 'https://mmontag.github.io/chip-player-js/');
+        }
+    })
+
+    $("#bottomMenuClick").click(function () {
+        if ($("#bottomMenuContent").is(":visible")) {
+            $('#bottomMenuContent').hide();
+        } else {
+            $('#bottomMenuContent').show();
         }
     })
 
@@ -665,21 +675,6 @@ function updateTerminalBackground() {
 function updateTerminalTextColor(terminalTextColorIn) {
     $('#terminalContent > *').css('color', terminalTextColorIn);
 }
-
-
-// **Used in many different parts of this code**
-// from https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
-function convertHex(hex, opacity) {
-    hex = hex.replace('#', '');
-    r = parseInt(hex.substring(0, 2), 16);
-    g = parseInt(hex.substring(2, 4), 16);
-    b = parseInt(hex.substring(4, 6), 16);
-
-    result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
-    return result;
-}
-
-
 
 $(function () {
     $('#windowListMediaplayer').hover(function () {
@@ -924,6 +919,14 @@ $(function () {
             $("#demoMenubar").css('background', $('#menubarBackgroundColorPicker').val());
         }
     })
+
+    $('#bottomMenubarSwitch').click(function () {
+        if ($(this).is(':checked')) {
+            updateBottomBar(true, true);
+        } else {
+            updateBottomBar(false, true);
+        }
+    })
 });
 
 function updateWindowOpacity(opacityIn, isDemo){
@@ -941,6 +944,40 @@ function updateMenubarOpacity(opacityIn, isDemo){
         $("#demoMenubar").css('background', convertHex($('#menubarBackgroundColorPicker').val(), opacityIn));
     } else {
         _menubarBackgroundColor = convertHex($('#menubarBackgroundColorPicker').val(), opacityIn);
+    }
+}
+
+
+function updateBottomBar(enabled, isDemo){
+    _bottomMenuBarEnabled = enabled;
+    var menubar;
+    var bottombar;
+    if(isDemo){
+        menubar = "#demoMenubar";
+        bottombar = "#demoBottombar";
+    } else {
+        menubar = "#menubar";
+        bottombar = "#bottombar";
+        $("#bottomMenuContent").hide();
+        $("#appMenuContent").hide();
+        $("#fileMenuContent").hide();
+        $("#optionMenuContent").hide();
+    }
+
+    if(enabled){
+        $(menubar).hide();
+        $(bottombar).show();
+        if(!isDemo){
+            windowListBottomContainer.appendChild(openWindowList);
+            $('#openWindowList > img').css('width', '0.45cm');
+        }
+    } else {
+        $(menubar).show();
+        $(bottombar).hide();
+        if(!isDemo){
+            windowListTopContainer.appendChild(openWindowList);
+            $('#openWindowList > img').css('width', '0.35cm');
+        }
     }
 }
 
@@ -1018,7 +1055,6 @@ function updateDemoColor(type, color, isUser){
     }
 }
 
-
 function applyAppearanceChanges(){
     _menubarTextColor = $('#menubarTextColorPicker').val();
     if(opacitySettingsVisible){
@@ -1047,6 +1083,7 @@ function applyAppearanceChanges(){
     setBorderRadius($("#borderRadiusSlider").val(), false);
     updateWindowBorder($("#windowBorderSwitch").is(":checked"), false);
     updateBoxShadow($("#boxShadowSwitch").is(":checked"), false);
+    updateBottomBar($("#bottomMenubarSwitch").is(":checked"), false);
     updateInterface();
     focusWindow("settings");
     if(demoIsUnfocused){
@@ -1080,7 +1117,6 @@ function updateInterface(){
 function generateGradient(direction, colorOne, colorTwo){
     return "linear-gradient(" + direction + ", " + colorOne + ", " + colorTwo + ")";
 }
-
 
 function updateButtonPlacement(isDemo, placementIn) {
     $("#buttonPlacement").val(placementIn);
@@ -1327,3 +1363,15 @@ function updateBoxShadow(enabled, isDemo){
     }
 }
 
+
+// **Used in many different parts of this code**
+// from https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
+function convertHex(hex, opacity) {
+    hex = hex.replace('#', '');
+    r = parseInt(hex.substring(0, 2), 16);
+    g = parseInt(hex.substring(2, 4), 16);
+    b = parseInt(hex.substring(4, 6), 16);
+
+    result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
+    return result;
+}
