@@ -1,78 +1,77 @@
 // ***Retro Desktop Enviornment***
 // **initializing variables and giving default values**
-var _titlebarFocusColor = "linear-gradient(to right, white, lightgray)";
-var _unfocusedTitlebarColor = "linear-gradient(to right, white, lightgray)";
-var _focusedTitlebarTextColor = "#000000";
-var _unfocusedTitlebarTextColor = "gray";
-var _appBackgroundColor = "#FFFFFF";
-var _appInterfaceTextColor = "#000000";
-var _unfocusedAppInterfaceTextColor = "#808080";
-var _menubarTextColor = "#000000";
-var _menubarBackgroundColor = "#FFFFFF";
-var _unfocusedTitlebarColorOne = "#FFFFFF";
-var _unfocusedTitlebarColorTwo = "#D3D3D3";
-var _titlebarIsGradient = true;
-var _titlebarColorOne = "#FFFFFF";
-var _titlebarColorTwo = "#D3D3D3";
-
-var _bottomMenuBarEnabled = false;
+let _titlebarFocusColor = "linear-gradient(to right, white, lightgray)";
+let _unfocusedTitlebarColor = "linear-gradient(to right, white, lightgray)";
+let _focusedTitlebarTextColor = "#000000";
+let _unfocusedTitlebarTextColor = "gray";
+let _appBackgroundColor = "#FFFFFF";
+let _appInterfaceTextColor = "#000000";
+let _unfocusedAppInterfaceTextColor = "#808080";
+let _menubarTextColor = "#000000";
+let _menubarBackgroundColor = "#FFFFFF";
+let _unfocusedTitlebarColorOne = "#FFFFFF";
+let _unfocusedTitlebarColorTwo = "#D3D3D3";
+let _titlebarIsGradient = true;
+let _titlebarColorOne = "#FFFFFF";
+let _titlebarColorTwo = "#D3D3D3";
+let _bottomMenuBarEnabled = false;
 
 // focus releated stuff:
-var currentlyFocused;
-var mediaIndex;
-var notesIndex;
-var pathfinderIndex;
-var terminalIndex;
-var browserIndex;
-var helpIndex;
-var settingsIndex;
+let currentlyFocused;
+let mediaIndex;
+let notesIndex;
+let pathfinderIndex;
+let terminalIndex;
+let browserIndex;
+let helpIndex;
+let settingsIndex;
 
 // related to closing functionality
-var mediaClosed = false;
+let mediaClosed = false;
 
 // releated to collapsing functionality (helps keep track of required information):
 
-var mediaplayerHeight;
-var notesHeight;
-var pathfinderHeight;
-var terminalHeight;
-var browserHeight;
-var helpHeight;
-var settingsHeight;
+let mediaplayerHeight;
+let notesHeight;
+let pathfinderHeight;
+let terminalHeight;
+let browserHeight;
+let helpHeight;
+let settingsHeight;
 
 // for clock
-var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 // utilized by keyboard shortcuts
-var map = [];
-var down = [];
+let map = [];
+let down = [];
 
 // Used by applications:
 // browser
-var repetitions = 0;
+let repetitions = 0;
 
 // settings
-var backgroundBackup;
+let backgroundBackup;
 
 // terminal
-var terminalOpacityValue = 0.5;
-var terminalHexColor = "#000000";
-var terminalOpacityValueBackup;
+let terminalOpacityValue = 0.5;
+let terminalHexColor = "#000000";
+let terminalOpacityValueBackup;
 
-var previousFocus;
-var demoTitlebarHasClicked;
+let previousFocus;
+let demoTitlebarHasClicked;
 
-var demoTitlebarIsGradient = true;
-var demoTitlebarColorOne = "white";
-var demoTitlebarColorTwo = "lightgray";
-var demoTitlebarDirection = "to right";
+let demoTitlebarIsGradient = true;
+let demoTitlebarColorOne = "white";
+let demoTitlebarColorTwo = "lightgray";
+let demoTitlebarDirection = "to right";
 
-var demoUnfocusedTitlebarColorOne = "white";
-var demoUnfocusedTitlebarColorTwo = "lightgray";
+let demoUnfocusedTitlebarColorOne = "white";
+let demoUnfocusedTitlebarColorTwo = "lightgray";
 
-var opacitySettingsVisible = true;
-var _buttonPlacement = "RDE";
-var demoIsUnfocused = false;
+let opacitySettingsVisible = true;
+let _buttonPlacement = "RDE";
+let demoIsUnfocused = false;
 
 // **End of variables**
 
@@ -446,8 +445,8 @@ $(function () {
 
     // Responsible for updating clock
     setInterval(function () {
-        var date = new Date();
-        var day = days[date.getDay()];
+        let date = new Date();
+        let day = days[date.getDay()];
         time = date.toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit'
@@ -507,7 +506,7 @@ $(document).keydown(function (e) {
 
 $(function () {
     $("#customPicker").click(function () {
-        var customSrc = prompt("Please enter an url:", "http://theoldnet.com/browser/");
+        let customSrc = prompt("Please enter an url:", "http://theoldnet.com/browser/");
         if (customSrc == null || customSrc == "") {
             console.log("Nothing happened");
         } else if ((customSrc.includes("http://")) || (customSrc.includes("https://"))) {
@@ -530,8 +529,8 @@ $(function () {
 
 
 function loadingDots() {
-    var dots = window.setInterval(function () {
-        var wait = document.getElementById("wait");
+    let dots = window.setInterval(function () {
+        let wait = document.getElementById("wait");
         repetitions += 1;
         if (wait.innerHTML.length > 3)
             wait.innerHTML = "";
@@ -553,7 +552,7 @@ $(function () {
     });
 
     $('#randomFromUnsplash').click(function () {
-        var widthHeight = document.getElementById('randomWidth').value + "x" + document.getElementById('randomHeight').value;
+        let widthHeight = document.getElementById('randomWidth').value + "x" + document.getElementById('randomHeight').value;
         d = new Date();
         $('body').css('background-image', 'url("https://source.unsplash.com/' + widthHeight + "/?" + document.getElementById('randomSearchTerm').value + "/" + d.getTime() + '/")');
     });
@@ -616,7 +615,7 @@ $(function () {
     $('document').ready(function () {
         $("#userBackgroundPick").change(function () {
             if (this.files && this.files[0]) {
-                var reader = new FileReader();
+                const reader = new FileReader();
                 reader.onload = function (e) {
                     $('body').css('background-image', 'url("' + e.target.result + '")');
                 }
@@ -744,7 +743,7 @@ $(function () {
 $(function () {
     $('#terminalInput').on('keypress', function (e) {
         if(e.which === 13){
-            var terminalInput = $('#terminalInput').val().toLowerCase();
+            let terminalInput = $('#terminalInput').val().toLowerCase();
             $('#terminalContent').find('pre').hide();;
             switch (terminalInput) {
                 case 'ls':
@@ -856,9 +855,9 @@ $(function () {
             demoTitlebarHasClicked = false;
         } else {
             if(demoTitlebarIsGradient){
-                var pWidth = $(this).innerWidth(); //use .outerWidth() if you want borders
-                var pOffset = $(this).offset(); 
-                var x = e.pageX - pOffset.left;
+                let pWidth = $(this).innerWidth();
+                let pOffset = $(this).offset(); 
+                let x = e.pageX - pOffset.left;
                 if(pWidth/2 > x){
                     if(demoIsUnfocused){
                         $('#unfocusedTitlebarColorOnePicker').click();
@@ -973,8 +972,8 @@ function updateMenubarOpacity(opacityIn, isDemo){
 
 function updateBottomBar(enabled, isDemo){
     _bottomMenuBarEnabled = enabled;
-    var menubar;
-    var bottombar;
+    let menubar;
+    let bottombar;
     if(isDemo){
         menubar = "#demoMenubar";
         bottombar = "#demoBottombar";
@@ -1147,9 +1146,9 @@ function generateGradient(direction, colorOne, colorTwo){
 function updateButtonPlacement(isDemo, placementIn) {
     $("#buttonPlacement").val(placementIn);
     // buttonPlacement.value = placementIn;
-    var closeWindow;
-    var collapseWindow;
-    var titlebar;
+    let closeWindow;
+    let collapseWindow;
+    let titlebar;
     if(isDemo){
         closeWindow = "#closeWindowDemo";
         collapseWindow = "#collapseWindowDemo";
@@ -1285,8 +1284,8 @@ function applyCommonPreset(appBackground, menubarText, menubarBackground, titleb
 }
 
 function setBorderRadius(borderRadiusIn, isDemo) {
-    var titlebar;
-    var application;
+    let titlebar;
+    let application;
     if(isDemo){
         titlebar = "#demoTitlebar";
         application = "#demoWindow";
@@ -1374,7 +1373,7 @@ function updatePresetSwitch(switchIn){
 }
 
 function updateWindowBorder(enabled, isDemo){
-    var window;
+    let window;
     if(isDemo){
         window = "#demoWindow";
     } else {
@@ -1389,7 +1388,7 @@ function updateWindowBorder(enabled, isDemo){
 
 
 function updateBoxShadow(enabled, isDemo){
-    var window;
+    let window;
     if(isDemo){
         window = "#demoWindow";
     } else {
@@ -1403,7 +1402,7 @@ function updateBoxShadow(enabled, isDemo){
     }
 }
 
-var clickedOnCreditList;
+let clickedOnCreditList;
 
 $(function () {
     $("#credits").click(function () {
