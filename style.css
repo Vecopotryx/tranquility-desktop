@@ -706,3 +706,30 @@ body {
 #creditsArrow {
 	transition: all 0.6s;
 }
+
+
+#systray {
+	display: block;
+	max-width: 20%;
+	margin: auto;
+	margin-right: 0.2cm;
+	float: left;
+}
+
+#systray > img {
+	margin: 0;
+	padding-left: 0.5%;
+	padding-right: 0.5%;
+	width: 0.35cm;
+	transform: scale(1.1);
+	vertical-align: middle;
+}
+
+#systray > img:hover {
+	transform: scale(1.5);
+	transition: transform 0.2s;
+}
+
+#menubarRight {
+	float: right;
+}

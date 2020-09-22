@@ -796,7 +796,6 @@ $(function () {
     });
 });
 
-
 $(function () {
     
     $('#settingsAboutButton').click(function () {
@@ -1440,3 +1439,11 @@ function convertHex(hex, opacity) {
     result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
     return result;
 }
+
+
+
+$(function () {
+    $('#systrayTiling').click(function () {
+        // this will do stuff, eventually.
+    })
+});
