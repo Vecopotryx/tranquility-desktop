@@ -221,6 +221,7 @@ function closeWindow(windowIn){
     }
     $('#windowList' + capitalizeString(windowIn)).hide();
     currentlyOpen.splice(getArrayIndex(windowIn), 1);
+    updateTiling();
 }
 
 function capitalizeString(stringIn){
@@ -246,6 +247,7 @@ function openWindow(windowIn){
     getActive(windowIn);
     $('#windowList' + capitalizeString(windowIn)).show();
     currentlyOpen.push(windowIn);
+    updateTiling();
 }
 
 
@@ -1461,41 +1463,69 @@ $(function () {
         console.log(currentlyOpen);
         if(tilingEnabled){
             tilingEnabled = false;
+            $("#systrayTiling").attr("src",'source/img/tiling.png');
         } else {
             tilingEnabled = true;
+            $("#systrayTiling").attr("src",'source/img/tilingOn.png');
+            updateTiling();
 
-            console.log(currentlyOpen[0]);
-
-            switch(currentlyOpen.length){
-                case 1:
-                    $('#' + currentlyOpen[0]).css('width', "99%")
-                    break;
-                case 2:
-                    $('#' + currentlyOpen[0]).css('width', "49%")
-
-                    $('#' + currentlyOpen[1]).css('width', "49%")
-                    $('#' + currentlyOpen[1]).css('height', "90%");
-                    $('#' + currentlyOpen[1]).css('top', '1cm')
-                    $('#' + currentlyOpen[1]).css('left', '50.5%');
-                    break;
-                case 3:
-                    $('#' + currentlyOpen[0]).css('width', "49%")
-                    
-                    $('#' + currentlyOpen[1]).css('width', "49%")
-                    $('#' + currentlyOpen[1]).css('height', "44.5%");
-                    $('#' + currentlyOpen[1]).css('top', '1cm')
-                    $('#' + currentlyOpen[1]).css('left', '50.5%');
-
-                    $('#' + currentlyOpen[2]).css('width', "49%")
-                    $('#' + currentlyOpen[2]).css('height', "44.4%");
-                    $('#' + currentlyOpen[2]).css('top', '51%')
-                    $('#' + currentlyOpen[2]).css('left', '50.5%');
-
-            }
-
-            $('#' + currentlyOpen[0]).css('height', "90%");
-            $('#' + currentlyOpen[0]).css('top', '1cm')
-            $('#' + currentlyOpen[0]).css('left', '0.5%');
+            // yes this is a mess, but I'll clean this up in the future.
         }
     })
 });
+
+function updateTiling(){
+
+    if(tilingEnabled){
+
+        switch(currentlyOpen.length){
+            case 1:
+                $('#' + currentlyOpen[0]).css('width', "99%")
+                break;
+            case 2:
+                $('#' + currentlyOpen[0]).css('width', "49%")
+    
+                $('#' + currentlyOpen[1]).css('width', "49%")
+                $('#' + currentlyOpen[1]).css('height', "90%");
+                $('#' + currentlyOpen[1]).css('top', '1cm')
+                $('#' + currentlyOpen[1]).css('left', '50.5%');
+                break;
+            case 3:
+                $('#' + currentlyOpen[0]).css('width', "49%")
+                
+                $('#' + currentlyOpen[1]).css('width', "49%")
+                $('#' + currentlyOpen[1]).css('height', "44.5%");
+                $('#' + currentlyOpen[1]).css('top', '1cm')
+                $('#' + currentlyOpen[1]).css('left', '50.5%');
+    
+                $('#' + currentlyOpen[2]).css('width', "49%")
+                $('#' + currentlyOpen[2]).css('height', "44.4%");
+                $('#' + currentlyOpen[2]).css('top', '51%')
+                $('#' + currentlyOpen[2]).css('left', '50.5%');
+                break;
+            case 4:
+                $('#' + currentlyOpen[0]).css('width', "49%")
+                
+                $('#' + currentlyOpen[1]).css('width', "49%")
+                $('#' + currentlyOpen[1]).css('height', "44.5%");
+                $('#' + currentlyOpen[1]).css('top', '1cm')
+                $('#' + currentlyOpen[1]).css('left', '50.5%');
+    
+                $('#' + currentlyOpen[2]).css('width', "24%")
+                $('#' + currentlyOpen[2]).css('height', "44.4%");
+                $('#' + currentlyOpen[2]).css('top', '51%')
+                $('#' + currentlyOpen[2]).css('left', '50.5%');
+    
+                $('#' + currentlyOpen[3]).css('width', "24%")
+                $('#' + currentlyOpen[3]).css('height', "44.4%");
+                $('#' + currentlyOpen[3]).css('top', '51%')
+                $('#' + currentlyOpen[3]).css('left', '75.5%');
+    
+        }
+    
+        $('#' + currentlyOpen[0]).css('height', "90%");
+        $('#' + currentlyOpen[0]).css('top', '1cm')
+        $('#' + currentlyOpen[0]).css('left', '0.5%');
+    }
+
+}

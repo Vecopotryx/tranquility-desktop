@@ -226,7 +226,7 @@ body {
 	position: absolute;
 	background-color: rgba(0,0,0,0.5);
 	text-overflow: ellipsis;
-	min-width: 42%;
+	/* min-width: 42%;*/
 	display: none;
 }
 #terminalSettings {
