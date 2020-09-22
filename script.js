@@ -1469,20 +1469,31 @@ $(function () {
             switch(currentlyOpen.length){
                 case 1:
                     $('#' + currentlyOpen[0]).css('width', "99%")
-                    $('#' + currentlyOpen[0]).css('height', "90%");
                     break;
                 case 2:
                     $('#' + currentlyOpen[0]).css('width', "49%")
-                    $('#' + currentlyOpen[0]).css('height', "90%");
-                    
+
                     $('#' + currentlyOpen[1]).css('width', "49%")
                     $('#' + currentlyOpen[1]).css('height', "90%");
                     $('#' + currentlyOpen[1]).css('top', '1cm')
                     $('#' + currentlyOpen[1]).css('left', '50.5%');
                     break;
+                case 3:
+                    $('#' + currentlyOpen[0]).css('width', "49%")
+                    
+                    $('#' + currentlyOpen[1]).css('width', "49%")
+                    $('#' + currentlyOpen[1]).css('height', "44.5%");
+                    $('#' + currentlyOpen[1]).css('top', '1cm')
+                    $('#' + currentlyOpen[1]).css('left', '50.5%');
+
+                    $('#' + currentlyOpen[2]).css('width', "49%")
+                    $('#' + currentlyOpen[2]).css('height', "44.4%");
+                    $('#' + currentlyOpen[2]).css('top', '51%')
+                    $('#' + currentlyOpen[2]).css('left', '50.5%');
+
             }
 
-            
+            $('#' + currentlyOpen[0]).css('height', "90%");
             $('#' + currentlyOpen[0]).css('top', '1cm')
             $('#' + currentlyOpen[0]).css('left', '0.5%');
         }
