@@ -73,6 +73,8 @@ let opacitySettingsVisible = true;
 let _buttonPlacement = "RDE";
 let demoIsUnfocused = false;
 
+let currentlyOpen = ["mediaplayer", "notes"];
+
 // **End of variables**
 
 // make applications draggable and resizable. The start stop functions are there
@@ -218,6 +220,7 @@ function closeWindow(windowIn){
         $('#' + windowIn).hide();
     }
     $('#windowList' + capitalizeString(windowIn)).hide();
+    currentlyOpen.splice(getArrayIndex(windowIn), 1);
 }
 
 function capitalizeString(stringIn){
@@ -242,7 +245,7 @@ function openWindow(windowIn){
     }
     getActive(windowIn);
     $('#windowList' + capitalizeString(windowIn)).show();
-
+    currentlyOpen.push(windowIn);
 }
 
 
@@ -367,6 +370,16 @@ $(function () {
         }        
     });
 });
+
+
+// I wasn't able to get the built in array method to work so I had to resort to this. 
+function getArrayIndex(windowIn){
+    for(let i = 0; i < currentlyOpen,length; i++){
+        if(currentlyOpen[i] == windowIn){
+            return(i);
+        }
+    }
+}
 
 // **Menubar**
 $(function () {
@@ -1445,5 +1458,7 @@ function convertHex(hex, opacity) {
 $(function () {
     $('#systrayTiling').click(function () {
         // this will do stuff, eventually.
+        console.log(currentlyOpen.length);
+        console.log(currentlyOpen);
     })
 });
