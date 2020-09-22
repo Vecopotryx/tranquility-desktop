@@ -1453,12 +1453,26 @@ function convertHex(hex, opacity) {
     return result;
 }
 
-
+let tilingEnabled = false;
 
 $(function () {
     $('#systrayTiling').click(function () {
-        // this will do stuff, eventually.
         console.log(currentlyOpen.length);
         console.log(currentlyOpen);
+        if(tilingEnabled){
+            tilingEnabled = false;
+        } else {
+            tilingEnabled = true;
+
+            if(currentlyOpen.length == 2){
+                console.log(currentlyOpen[0]);
+                
+                currentlyOpen[0];
+
+                $('#' + currentlyOpen[0]).css('width', '50%')
+                $('#' + currentlyOpen[0]).css('height', '90%');
+      
+            }
+        }
     })
 });
