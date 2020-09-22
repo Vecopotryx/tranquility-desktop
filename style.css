@@ -142,20 +142,20 @@ body {
 
 /* Defualt Positions and Sizes*/
 #notes {
-	margin-top: 0.25cm;
-	margin-left: 0cm;
+	top: 1.05cm;
+	left: 0.5%;
 	width: 10%;
 	height: 70%;
 }
 #mediaplayer {
-	margin-top: 0.25cm;
-	margin-left: 11%;
+	top: 1.05cm;
+	left: 11.5%;
 	width: 50%;
 	height: 60%;
 }
 #pathfinder {
-	margin-top: 15vh;
-	margin-left: 28%;
+	top: 15vh;
+	left: 28%;
 	width: 50%;
 	height: 50%;
 }
@@ -173,8 +173,8 @@ body {
 }
 
 #help {
-	margin-top: 12vh;
-	margin-left: 24vw;
+	top: 12vh;
+	left: 24vw;
 	width: 40%;
 	height: auto;
 	font-size: 0.7vw;
@@ -402,8 +402,8 @@ body {
 #settings {
 	position: absolute;
 	background-color: white;
-	margin-top: 5vh;
-	margin-left: 24vw;
+	top: 5vh;
+	left: 24vw;
 	width: 30cm;
 	height: 50%;
 	display: none;

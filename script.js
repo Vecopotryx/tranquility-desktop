@@ -1464,15 +1464,27 @@ $(function () {
         } else {
             tilingEnabled = true;
 
-            if(currentlyOpen.length == 2){
-                console.log(currentlyOpen[0]);
-                
-                currentlyOpen[0];
+            console.log(currentlyOpen[0]);
 
-                $('#' + currentlyOpen[0]).css('width', '50%')
-                $('#' + currentlyOpen[0]).css('height', '90%');
-      
+            switch(currentlyOpen.length){
+                case 1:
+                    $('#' + currentlyOpen[0]).css('width', "99%")
+                    $('#' + currentlyOpen[0]).css('height', "90%");
+                    break;
+                case 2:
+                    $('#' + currentlyOpen[0]).css('width', "49%")
+                    $('#' + currentlyOpen[0]).css('height', "90%");
+                    
+                    $('#' + currentlyOpen[1]).css('width', "49%")
+                    $('#' + currentlyOpen[1]).css('height', "90%");
+                    $('#' + currentlyOpen[1]).css('top', '1cm')
+                    $('#' + currentlyOpen[1]).css('left', '50.5%');
+                    break;
             }
+
+            
+            $('#' + currentlyOpen[0]).css('top', '1cm')
+            $('#' + currentlyOpen[0]).css('left', '0.5%');
         }
     })
 });
