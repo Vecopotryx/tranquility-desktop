@@ -220,8 +220,11 @@ function closeWindow(windowIn){
         $('#' + windowIn).hide();
     }
     $('#windowList' + capitalizeString(windowIn)).hide();
-    currentlyOpen.splice(getArrayIndex(windowIn), 1);
-    updateTiling();
+
+    if(currentlyOpen.includes(windowIn)){
+        currentlyOpen.splice(getArrayIndex(windowIn), 1);
+        updateTiling();
+    }
 }
 
 function capitalizeString(stringIn){
@@ -240,14 +243,16 @@ function openWindow(windowIn){
         if (mediaClosed) {
             $("#mediaContent").attr('src', 'https://mmontag.github.io/chip-player-js/');
         }
-        $('#mediaplayer').css('height', '60%');
+        // $('#mediaplayer').css('height', '60%');
         mediaClosed = false;
 
     }
     getActive(windowIn);
-    $('#windowList' + capitalizeString(windowIn)).show();
-    currentlyOpen.push(windowIn);
-    updateTiling();
+    if(!currentlyOpen.includes(windowIn)){
+        $('#windowList' + capitalizeString(windowIn)).show();
+        currentlyOpen.push(windowIn);
+        updateTiling();
+    }
 }
 
 
@@ -439,11 +444,11 @@ $(function () {
         $('#mediaplayer').css('height', '60%');
         // Set default position
         // notes
-        $('#notes').css('top', '0.78cm')
-        $('#notes').css('left', '0.4%');
+        $('#notes').css('top', '1.05cm')
+        $('#notes').css('left', '0.5%');
         // mediaplayer
-        $('#mediaplayer').css('top', '0.78cm')
-        $('#mediaplayer').css('left', '0.4%');
+        $('#mediaplayer').css('top', '1.05cm')
+        $('#mediaplayer').css('left', '11.5%');
         // populate iframes if empty
         if (mediaClosed) {
             $("#mediaContent").attr('src', 'https://mmontag.github.io/chip-player-js/');
@@ -1118,6 +1123,23 @@ function applyAppearanceChanges(){
     _unfocusedTitlebarTextColor = $('#unfocusedTitlebarTextColorPicker').val();
 
     _buttonPlacement = $("#buttonPlacement").val();
+
+
+
+    // Following code was heavily inspired by https://stackoverflow.com/questions/12043187/how-to-check-if-hex-color-is-too-black
+    var c = $('#menubarBackgroundColorPicker').val().substring(1);      // strip #
+    var rgb = parseInt(c, 16);   // convert rrggbb to decimal
+    var r = (rgb >> 16) & 0xff;  // extract red
+    var g = (rgb >>  8) & 0xff;  // extract green
+    var b = (rgb >>  0) & 0xff;  // extract blue
+    
+    var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+    
+    if (luma < 40) {
+        $('#systrayTiling').css('filter', 'invert(1)');
+    } else {
+        $('#systrayTiling').css('filter', 'invert(0)');
+    }
 
     setBorderRadius($("#borderRadiusSlider").val(), false);
     updateWindowBorder($("#windowBorderSwitch").is(":checked"), false);
