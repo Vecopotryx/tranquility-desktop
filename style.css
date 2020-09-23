@@ -733,3 +733,13 @@ body {
 #menubarRight {
 	float: right;
 }
+
+.titlebarTool {
+	float: left;
+	background: none;
+	border: none;
+	margin-left: 5px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 18px;
+}

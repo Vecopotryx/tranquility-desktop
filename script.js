@@ -280,7 +280,7 @@ $(function () {
 
     // (Getpost Gavinator)
     $("#browserText, #bottomBrowserText").click(function () {
-        $('#browserContent').attr('src', 'http://theoldnet.com/browser');
+        $('#browserContent').attr('src', 'https://web.archive.org/web/20000301012010/http://www.w3.org/');
         openWindow("browserWindow");
         loadingDots();
         $('#browserInfo').delay(2000).fadeOut("slow");
@@ -1189,14 +1189,17 @@ function updateButtonPlacement(isDemo, placementIn) {
         closeWindow = "#closeWindowDemo";
         collapseWindow = "#collapseWindowDemo";
         titlebar = "#demoTitlebar";
+        titlebarTool = "#demoTitlebarTool"
     } else {
         closeWindow = ".closeWindow";
         collapseWindow = ".collapseWindow";
         titlebar = ".titlebar";
+        titlebarTool = ".titlebarTool"
     }
     switch (placementIn) {
         case 'RDE':
             $(closeWindow).css('float', 'left');
+            $(titlebarTool).css('float', 'left');
             $(collapseWindow).css('float', 'right');
             $(titlebar).css('text-align', 'center');
             $(titlebar + '>a').css('margin-left', '0');
@@ -1205,6 +1208,7 @@ function updateButtonPlacement(isDemo, placementIn) {
             break;
         case 'redmond':
             $(closeWindow).css('float', 'right');
+            $(titlebarTool).css('float', 'right');
             $(collapseWindow).css('float', 'right');
             $(titlebar).css('text-align', 'left');
             $(titlebar + '>a').css('margin-left', '1%');
@@ -1213,6 +1217,7 @@ function updateButtonPlacement(isDemo, placementIn) {
             break;
         case 'cupertino':
             $(closeWindow).css('float', 'left');
+            $(titlebarTool).css('float', 'left');
             $(collapseWindow).css('float', 'left');
             $(titlebar).css('text-align', 'center');
             $(titlebar + '>a').css('margin-left', 'none');
