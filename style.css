@@ -743,3 +743,16 @@ body {
 	cursor: pointer;
 	font-size: 18px;
 }
+
+#browserNavbar {
+	background-color: #575b63;
+	border-radius: 1px;
+}
+
+#browserNavbar > input {
+	width: 75%;
+}
+
+#browserNavbar > button {
+	width: 10%;
+}

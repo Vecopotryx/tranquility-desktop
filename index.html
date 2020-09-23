@@ -110,9 +110,11 @@
 				<h1>Work in Progress</h1>
 				<a>Current version: </a>
 				<br>
-				<a> 2020-09-22</a>
+				<a> 2020-09-23</a>
 				<br>
 				<h2>Changelog</h2>
+				<a><b>2020-09-23:</b></a>
+				<p>&#8226; Reworked the browser window</p>
 				<a><b>2020-09-22:</b></a>
 				<p>&#8226; Added ability to tile windows</p>
 				<a href="changelog.html" target="_blank"><b>Full changelog</b></a>
@@ -210,9 +212,10 @@ Retro Kernel 0.0.6
 				<a>(Utilizing The Wayback Machine from <a href="http://archive.org/">archive.org</a>)</a>
 			</div>
 			<div id="browserNavbar">
-
+				<input type="text" id="browserInput" value="http://www.w3.org" placeholder="Enter address">
+				<button onclick="updateBrowserUrl()">Go</button>
 			</div>
-			<iframe height="95%" id="browserContent" src="" width="99.5%">
+			<iframe height="95%" id="browserContent" src="" onload="unblockBrowserContent()" width="99.5%">
 				<p>Your browser does not support iframes.</p>
 			</iframe>
 		</div>
@@ -265,7 +268,7 @@ Retro Kernel 0.0.6
 						<img id="aboutImage" src="source/img/iconSideViewFaviconCC.png">
 						<div id="aboutContent">
 							<div id="system"><a>System</a> <a class="aboutSecond">Retro Desktop Environment</a></div>
-							<div id="version"><a>Version</a> <a class="aboutSecond">2020-08-11</a></div>
+							<div id="version"><a>Version</a> <a class="aboutSecond">2020-09-23</a></div>
 							<div id="credits"><a>Credits</a> <a id="creditsArrow" class="aboutSecond">></a>
 								<div id="creditsList">
 									<p>&#8226; Vecopotryx -  <a href="https://github.com/vecopotryx/retro-desktop-environment" target="_blank">Retro Desktop Environment</a></p>

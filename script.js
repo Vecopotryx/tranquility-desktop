@@ -114,6 +114,7 @@ $(document).ready(function () {
     $('#windowListNotes').show();
     $('#windowListMediaplayer').show();
     focusWindow("mediaplayer");
+    $('#browserContent').attr('src', 'https://web.archive.org/web/20000301012010/http://www.w3.org/');
 });
 
 function unfocusWindow(windowIn){
@@ -283,8 +284,6 @@ $(function () {
         $('#browserContent').attr('src', 'https://web.archive.org/web/20000301012010/http://www.w3.org/');
         openWindow("browserWindow");
         loadingDots();
-        $('#browserInfo').delay(2000).fadeOut("slow");
-        $('#browserContent').delay(2500).fadeIn("slow");
     })
 
     // (Help window)
@@ -526,7 +525,7 @@ $(document).keydown(function (e) {
 
 $(function () {
     $("#customPicker").click(function () {
-        let customSrc = prompt("Please enter an url:", "http://theoldnet.com/browser/");
+        let customSrc = prompt("Please enter an url:", "https://web.archive.org/web/20000301012010/http://www.w3.org/");
         if (customSrc == null || customSrc == "") {
             console.log("Nothing happened");
         } else if ((customSrc.includes("http://")) || (customSrc.includes("https://"))) {
@@ -540,15 +539,22 @@ $(function () {
         }
     })
 
-    $("#customWeb").click(function () {
-        $('#browserContent').attr('display', 'block');
-        $('#browserInfo').attr('display', 'none');
-        $('#browserContent').attr('src', 'http://theoldnet.com/browser/');
-    })
+    $('#browserInput').on('keypress', function (e) {
+        if(e.which === 13){
+           updateBrowserUrl();
+        }
+    });
 });
 
+function updateBrowserUrl(){
+    let browserInput = $('#browserInput').val().toLowerCase();
+    $('#browserContent').attr('src', 'https://web.archive.org/web/20000301012010/' + browserInput);
+    loadingDots();
+}
 
 function loadingDots() {
+    $('#browserInfo').delay(100).fadeIn("slow");
+    $('#browserContent').delay(100).fadeOut("slow");
     let dots = window.setInterval(function () {
         let wait = document.getElementById("wait");
         repetitions += 1;
@@ -561,6 +567,11 @@ function loadingDots() {
             repetitions = 0;
         }
     }, 300);
+}
+
+function unblockBrowserContent(){
+    $('#browserInfo').delay(100).fadeOut("slow");
+    $('#browserContent').delay(100).fadeIn("slow")
 }
 
 // *Background Picker*
