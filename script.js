@@ -90,6 +90,9 @@ $(function () {
         stop: function () {
             $('.frameOverlay').fadeOut('fast');
             $('.windowFrameOverlay').fadeOut('fast');
+            if(tilingEnabled){
+                updateTiling();
+            }
         }
     });
     $(".application").resizable({
@@ -114,7 +117,6 @@ $(document).ready(function () {
     $('#windowListNotes').show();
     $('#windowListMediaplayer').show();
     focusWindow("mediaplayer");
-    $('#browserContent').attr('src', 'https://web.archive.org/web/20000301012010/http://www.w3.org/');
 });
 
 function unfocusWindow(windowIn){
@@ -1497,15 +1499,16 @@ let tilingEnabled = false;
 
 $(function () {
     $('#systrayTiling').click(function () {
-        console.log(currentlyOpen.length);
-        console.log(currentlyOpen);
+
         if(tilingEnabled){
             tilingEnabled = false;
             $("#systrayTiling").attr("src",'source/img/tiling.png');
+            $('.application').resizable('enable'); 
         } else {
             tilingEnabled = true;
             $("#systrayTiling").attr("src",'source/img/tilingOn.png');
             updateTiling();
+            $('.application').resizable('disable'); 
 
             // yes this is a mess, but I'll clean this up in the future.
         }
@@ -1515,7 +1518,7 @@ $(function () {
 function updateTiling(){
 
     if(tilingEnabled){
-
+        $('.application').resizable('disable'); 
         switch(currentlyOpen.length){
             case 1:
                 $('#' + currentlyOpen[0]).css('width', "99%")
