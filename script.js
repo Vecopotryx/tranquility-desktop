@@ -1501,7 +1501,6 @@ let tilingEnabled = false;
 
 $(function () {
     $('#systrayTiling').click(function () {
-
         if(tilingEnabled){
             tilingEnabled = false;
             $("#systrayTiling").attr("src",'source/img/tiling.png');
@@ -1511,14 +1510,11 @@ $(function () {
             $("#systrayTiling").attr("src",'source/img/tilingOn.png');
             updateTiling();
             $('.application').resizable('disable'); 
-
-            // yes this is a mess, but I'll clean this up in the future.
         }
     })
 });
 
 function updateTiling(){
-
     if(tilingEnabled){
         $('.application').resizable('disable'); 
         switch(currentlyOpen.length){
@@ -1579,26 +1575,46 @@ function moveItem(from, to) {
     var f = currentlyOpen.splice(from, 1)[0];
     // insert stored item into position `to`
     currentlyOpen.splice(to, 0, f);
-  }
+}
+
 
 function moveTiling(windowIn, position, percentTop){
     var percentLeft = position.left/$(window).width() * 100;
     var percentTop = position.top/$(window).height() *100;
-
     var index = getArrayIndex(windowIn);
     var arrayLength = currentlyOpen.length;
-    console.log(arrayLength);
-    console.log(windowIn);
-    if(percentLeft < 30){
-        moveItem(index,0);
-    } else {
-        if(percentTop < 25){
-            console.log("yes");
-            moveItem(index, 1)
-        } else {
-            if(percentLeft < 75){
 
+    switch(arrayLength){
+        case 2:
+            if(percentLeft < 30){
+                moveItem(index,0);
+            } else {
+                moveItem(index,1);
             }
-        }
+            break;
+        case 3:
+            if(percentLeft < 30){
+                moveItem(index,0);
+            } else if(percentTop < 30) {
+                moveItem(index,1);
+            } else {
+                moveItem(index,2);
+            }
+            break;
+        case 4:
+            if(percentLeft < 30){
+                moveItem(index,0);
+            } else if(percentTop < 30) {
+                moveItem(index,1);
+            } else {
+                if(percentLeft < 65){
+                    moveItem(index,2);
+                } else {
+                    moveItem(index,3);
+                }
+            }
+            break;            
+        default:
+            break;
     }
 }
