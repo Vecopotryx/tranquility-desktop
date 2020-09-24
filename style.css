@@ -329,13 +329,6 @@ body {
 	cursor: pointer;
 }
 
-#bottomDateAndTime {
-	padding-right: 10px;
-	float: right;
-	font-size: 22px;
-	font-family: perfect-dos;
-}
-
 #openWindowList {
 	display: inline;
 	max-width: 20%;

@@ -474,11 +474,7 @@ $(function () {
             hour: '2-digit',
             minute: '2-digit'
         });
-        if(_bottomMenuBarEnabled){
-            $("#bottomDateAndTime").html(day + " " + time);
-        } else {
             $("#dateAndTime").html(day + " " + time);
-        }
     }, 1000);
 
 });
@@ -1026,6 +1022,7 @@ function updateBottomBar(enabled, isDemo){
         if(!isDemo){
             windowListBottomContainer.appendChild(openWindowList);
             $('#openWindowList > img').css('width', '0.45cm');
+            document.getElementById("bottombar").appendChild(menubarRight);
         }
     } else {
         $(menubar).show();
@@ -1033,6 +1030,7 @@ function updateBottomBar(enabled, isDemo){
         if(!isDemo){
             windowListTopContainer.appendChild(openWindowList);
             $('#openWindowList > img').css('width', '0.35cm');
+            document.getElementById("menubar").appendChild(menubarRight);
         }
     }
 }
