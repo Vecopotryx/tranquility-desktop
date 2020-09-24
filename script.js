@@ -91,6 +91,8 @@ $(function () {
             $('.frameOverlay').fadeOut('fast');
             $('.windowFrameOverlay').fadeOut('fast');
             if(tilingEnabled){
+                var position = $(this).position();
+                moveTiling($(this).attr('id'), position);
                 updateTiling();
             }
         }
@@ -1569,4 +1571,34 @@ function updateTiling(){
         $('#' + currentlyOpen[0]).css('left', '0.5%');
     }
 
+}
+
+// following function was taken from https://stackoverflow.com/a/46351038
+function moveItem(from, to) {
+    // remove `from` item and store it
+    var f = currentlyOpen.splice(from, 1)[0];
+    // insert stored item into position `to`
+    currentlyOpen.splice(to, 0, f);
+  }
+
+function moveTiling(windowIn, position, percentTop){
+    var percentLeft = position.left/$(window).width() * 100;
+    var percentTop = position.top/$(window).height() *100;
+
+    var index = getArrayIndex(windowIn);
+    var arrayLength = currentlyOpen.length;
+    console.log(arrayLength);
+    console.log(windowIn);
+    if(percentLeft < 30){
+        moveItem(index,0);
+    } else {
+        if(percentTop < 25){
+            console.log("yes");
+            moveItem(index, 1)
+        } else {
+            if(percentLeft < 75){
+
+            }
+        }
+    }
 }
