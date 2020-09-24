@@ -219,14 +219,12 @@ body {
 	background-color: #FFFFFF;
 	text-overflow: ellipsis;
 	display: none;
-	min-width: 40%;
 }
 
 #terminal {
 	position: absolute;
 	background-color: rgba(0,0,0,0.5);
 	text-overflow: ellipsis;
-	/* min-width: 42%;*/
 	display: none;
 }
 #terminalSettings {
@@ -748,4 +746,62 @@ body {
 
 #browserNavbar > button {
 	width: 10%;
+}
+
+
+/* Pathfinder stuff*/
+#driveBox {
+	width: 100%;
+	height: 0.65cm;
+	background:  linear-gradient(to right, lightgray, gray);
+	border: 1px solid black;
+}
+
+#driveBox>button {
+	background: none;
+	border: none;
+	margin-left: 5px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 18px;
+	font-family: perfect-dos;
+}
+
+#directoryBox {
+	float: left;
+	width: 20%;
+	height: 80vh;
+	border: 1px solid black;
+}
+
+#directoryBox > p {
+	margin: 0;
+	padding: 1%;
+	font-size: 1vw;
+}
+
+#fileBox {
+	display: inline-block;
+	width: 70%;
+	height: 80vh;
+	border: 1px solid black;
+}
+
+#fileBox>button {
+	background: none;
+	border: none;
+	margin-left: 5px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 18px;
+	font-family: perfect-dos;
+}
+
+#fileBox a {
+	font-size: 15px;
+	float: left;
+	padding-right: 13px;
+	width: 80px;
+	text-align: center;
+	font-family: perfect-dos;
 }

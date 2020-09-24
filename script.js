@@ -285,9 +285,11 @@ $(function () {
 
     // (Getpost Gavinator)
     $("#browserText, #bottomBrowserText").click(function () {
-        $('#browserContent').attr('src', 'https://web.archive.org/web/20000301012010/http://www.w3.org/');
-        openWindow("browserWindow");
-        loadingDots();
+        if(!currentlyOpen.includes("browser")){
+            $('#browserContent').attr('src', 'https://web.archive.org/web/20000301012010/http://www.w3.org/');
+            openWindow("browserWindow");
+            loadingDots();
+        }
     })
 
     // (Help window)
@@ -313,7 +315,6 @@ function collapseWindow(windowIn){
         notesHeight = $("#notes").css('height');
         break;
     case 'pathfinder':
-        $('#pathfinderContent').hide();
         pathfinderHeight = $("#pathfinder").css('height');
         break;
     case 'terminal':
@@ -346,7 +347,6 @@ function uncollapseWindow(windowIn){
             $('#notes').css('height', notesHeight);
             break;
         case 'pathfinder':
-            $('#pathfinderContent').show();
             $('#pathfinder').css('height', pathfinderHeight);
             break;
         case 'terminal':
