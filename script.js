@@ -123,6 +123,11 @@ function updateScaling(windowIn){
                 $("#settingsBackgroundsButton").html("🖼️");
                 $("#settingsAboutButton").html("🛈");
                 $("#aboutContainer, #appearanceContainer").css('margin-left', '1cm');
+
+                if($("#interfaceColors").is(":visible")){
+                    $("#interfaceColors").hide();
+                    $("#allSettingsButton").html("Show all settings");
+                }
             } else {
                 $("#settingsPanels").css('width', '7cm');
                 $("#settingsAppearanceButton").html("Appearance");
@@ -1639,5 +1644,16 @@ function moveTiling(windowIn, position, percentTop){
             break;            
         default:
             break;
+    }
+}
+
+
+function allSettingsClick(){ 
+    if($("#interfaceColors").is(":visible")){
+        $("#interfaceColors").hide();
+        $("#allSettingsButton").html("Show all settings");
+    } else {
+        $("#interfaceColors").show();
+        $("#allSettingsButton").html("Hide all settings");
     }
 }

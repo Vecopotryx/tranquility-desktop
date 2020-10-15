@@ -397,7 +397,7 @@ body {
 	left: 24vw;
 	width: 30cm;
 	height: 70%;
-	display: block;
+	display: none;
 }
 
 #settingsPanels {
