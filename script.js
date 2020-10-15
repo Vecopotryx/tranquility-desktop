@@ -122,8 +122,13 @@ function updateScaling(windowIn){
                 $("#settingsAppearanceButton").html("🎨");
                 $("#settingsBackgroundsButton").html("🖼️");
                 $("#settingsAboutButton").html("🛈");
-                $("#aboutContainer").css('margin-left', '1cm');
-                $("#appearanceContainer").css('margin-left', '1cm');
+                $("#aboutContainer, #appearanceContainer").css('margin-left', '1cm');
+            } else {
+                $("#settingsPanels").css('width', '7cm');
+                $("#settingsAppearanceButton").html("Appearance");
+                $("#settingsBackgroundsButton").html("Backgrounds");
+                $("#settingsAboutButton").html("About");
+                $("#aboutContainer, #appearanceContainer").css('margin-left', '7cm');
             }
             break;
     }
@@ -1370,29 +1375,35 @@ function setBorderRadius(borderRadiusIn, isDemo) {
 }
 
 function updateDemo(){
-    if(demoIsUnfocused){
-        $("#demoWindow").css('color', $('#unfocusedAppInterfaceTextColorPicker').val()); // Window text color
-        $("#demoTitlebar>a").css('color', $('#unfocusedTitlebarTextColorPicker').val()); // Titlebar text color
-        $("#demoTitlebar>button").css('color', $('#unfocusedTitlebarTextColorPicker').val()); // Titlebar text color
-        updateDemoColor("unfocusedTitlebarBackgroundOne", $('#unfocusedTitlebarColorOnePicker').val(), false); // Titlebar background
-        updateDemoColor("unfocusedTitlebarBackgroundTwo", $('#unfocusedTitlebarColorTwoPicker').val(), false); // Titlebar background
-    } else {
-        $("#demoWindow").css('color', $('#appInterfaceTextColorPicker').val()); // Window text color
-        $("#demoTitlebar>a").css('color', $('#titlebarTextColorPicker').val()); // Titlebar text color
-        $("#demoTitlebar>button").css('color', $('#titlebarTextColorPicker').val()); // Titlebar text color
-        updateDemoColor("titlebarBackgroundOne", $('#titlebarColorOnePicker').val(), false); // Titlebar background
-        updateDemoColor("titlebarBackgroundTwo", $('#titlebarColorTwoPicker').val(), false); // Titlebar background
-    }
+    $("#demoWindowContainer>*").css('opacity', '0'); // Set opacity to 0 temporarily to achive update transition
 
-    $("#demoWindow").css('background', $('#appBackgroundColorPicker').val()); // Window background
+    setTimeout(function() {
+        if(demoIsUnfocused){
+            $("#demoWindow").css('color', $('#unfocusedAppInterfaceTextColorPicker').val()); // Window text color
+            $("#demoTitlebar>a").css('color', $('#unfocusedTitlebarTextColorPicker').val()); // Titlebar text color
+            $("#demoTitlebar>button").css('color', $('#unfocusedTitlebarTextColorPicker').val()); // Titlebar text color
+            updateDemoColor("unfocusedTitlebarBackgroundOne", $('#unfocusedTitlebarColorOnePicker').val(), false); // Titlebar background
+            updateDemoColor("unfocusedTitlebarBackgroundTwo", $('#unfocusedTitlebarColorTwoPicker').val(), false); // Titlebar background
+        } else {
+            $("#demoWindow").css('color', $('#appInterfaceTextColorPicker').val()); // Window text color
+            $("#demoTitlebar>a").css('color', $('#titlebarTextColorPicker').val()); // Titlebar text color
+            $("#demoTitlebar>button").css('color', $('#titlebarTextColorPicker').val()); // Titlebar text color
+            updateDemoColor("titlebarBackgroundOne", $('#titlebarColorOnePicker').val(), false); // Titlebar background
+            updateDemoColor("titlebarBackgroundTwo", $('#titlebarColorTwoPicker').val(), false); // Titlebar background
+        }
+    
+        $("#demoWindow").css('background', $('#appBackgroundColorPicker').val()); // Window background
+    
+        if(opacitySettingsVisible){
+            $("#demoMenubar, #demoBottombar").css('background', convertHex($('#menubarBackgroundColorPicker').val(), $("#menubarOpacitySlider").val()));
+        } else {
+            $("#demoMenubar, #demoBottombar").css('background-color', $('#menubarBackgroundColorPicker').val());
+        }
+    
+        $("#demoMenubar>a, #demoBottombar>a, #demoBottombar>button").css('color', $('#menubarTextColorPicker').val());
 
-    if(opacitySettingsVisible){
-        $("#demoMenubar, #demoBottombar").css('background', convertHex($('#menubarBackgroundColorPicker').val(), $("#menubarOpacitySlider").val()));
-    } else {
-        $("#demoMenubar, #demoBottombar").css('background-color', $('#menubarBackgroundColorPicker').val());
-    }
-
-    $("#demoMenubar>a, #demoBottombar>a, #demoBottombar>button").css('color', $('#menubarTextColorPicker').val());
+        $("#demoWindowContainer>*").css('opacity', '1'); // Set opacity back to 1 to achive update transition
+    }, 400);
 
 }
 

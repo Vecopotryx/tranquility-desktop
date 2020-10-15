@@ -806,3 +806,7 @@ body {
 	text-align: center;
 	font-family: perfect-dos;
 }
+
+#demoWindowContainer > * {
+	transition: opacity 400ms linear;
+}
