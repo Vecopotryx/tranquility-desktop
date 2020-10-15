@@ -113,8 +113,8 @@
 				<br>
 				<h2>Changelog</h2>
 				<a><b>2020-10-15:</b></a>
-				<p>&#8226; Improved scaling of certain windows</p>
-				<p>&#8226; Some minor tweaks to a few windows</p>
+				<p>&#8226; Added a year picker to Getpost Gavinator</p>
+				<p>&#8226; A few enhancments to the settings window</p>
 				<a href="changelog.html" target="_blank"><b>Full changelog</b></a>
 				<br>
 				<br>
@@ -229,6 +229,14 @@ Retro Kernel 0.0.6
 				<a>(Utilizing The Wayback Machine from <a href="http://archive.org/">archive.org</a>)</a>
 			</div>
 			<div id="browserNavbar">
+				<label for="browserYear">Year:</label>
+				<select name="browserYear" id="browserYear">
+					<option value="2000">2000</option>
+					<option value="2005">2005</option>
+					<option value="2010">2010</option>
+					<option value="2015">2015</option>
+				</select>
+
 				<input type="text" id="browserInput" value="http://www.w3.org" placeholder="Enter address">
 				<button onclick="updateBrowserUrl()">Go</button>
 			</div>
@@ -448,8 +456,6 @@ Retro Kernel 0.0.6
 								<div class="settingsAction">
 									<button onclick="applyAppearanceChanges();">Apply</button>
 								</div>
-
-
 							</div>
 					</div>
 

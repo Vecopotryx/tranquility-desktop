@@ -573,7 +573,8 @@ $(function () {
 
 function updateBrowserUrl(){
     let browserInput = $('#browserInput').val().toLowerCase();
-    $('#browserContent').attr('src', 'https://web.archive.org/web/20000301012010/' + browserInput);
+    let browserYear = $('#browserYear').val();
+    $('#browserContent').attr('src', 'https://web.archive.org/web/' + browserYear + '0301012010/' + browserInput);
     loadingDots();
 }
 
@@ -1199,6 +1200,7 @@ function updateInterface(){
     // Apply app background color for supported windows
     $("#settings").css('background', _appBackgroundColor);
     $("#help").css('background', _appBackgroundColor);
+    $("#pathfinder").css('background', _appBackgroundColor);
     if(_titlebarIsGradient){
         _titlebarFocusColor = generateGradient("to right", _titlebarColorOne, _titlebarColorTwo);
         _unfocusedTitlebarColor = generateGradient("to right", _unfocusedTitlebarColorOne, _unfocusedTitlebarColorTwo);
