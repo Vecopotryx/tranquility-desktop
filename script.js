@@ -106,9 +106,28 @@ $(function () {
         stop: function () {
             $('.frameOverlay').fadeOut('fast');
             $('.windowFrameOverlay').fadeOut('fast');
+            updateScaling($(this).attr('id'));
         }
     });
 });
+
+function updateScaling(windowIn){
+    let width = $("#" + windowIn).width();
+    let height = $("#" + windowIn).height();
+    let windowWidth=window.innerWidth;
+    switch(windowIn){
+        case "settings":
+            if(width/windowWidth < 0.4){
+                $("#settingsPanels").css('width', '1cm');
+                $("#settingsAppearanceButton").html("🎨");
+                $("#settingsBackgroundsButton").html("🖼️");
+                $("#settingsAboutButton").html("🛈");
+                $("#aboutContainer").css('margin-left', '1cm');
+                $("#appearanceContainer").css('margin-left', '1cm');
+            }
+            break;
+    }
+}
 
 // **focus stuff**
 
@@ -430,11 +449,12 @@ $(function () {
     $("#arrangeToDefault").click(function () {
         $('#optionMenuContent').hide();
         $('#fileMenuContent').hide();
-        $('#settings').hide();
         $('#appMenuContent').hide();
-       closeWindow("terminal");
-       closeWindow("browserWindow");
-       closeWindow("help");
+        closeWindow("pathfinder");
+        closeWindow("settings");
+        closeWindow("terminal");
+        closeWindow("browserWindow");
+        closeWindow("help");
         // Show default applications
         $('#mediaplayer').show();
         $('#notes').show();
@@ -483,11 +503,6 @@ $(function () {
 $(document).keydown(function (e) {
     if (!map[e.keyCode]) {
         down.push(e.keyCode);
-        // If holding down alt, then display cover over applications (Temporarily disabled as it can become problematic when user presses Alt + Tab)
-        /*if (down[0] === 18) {
-            $('.windowFrameOverlay').fadeIn('fast');
-            $(".windowFrameOverlay").css('cursor', 'move');
-        }*/ 
         // If pressing Alt + A, show the applications menu
         if (down[0] === 18 && down[1] === 65) {
             if(_bottomMenuBarEnabled){
@@ -828,7 +843,6 @@ $(function () {
 });
 
 $(function () {
-    
     $('#settingsAboutButton').click(function () {
         $('#currentSettings > div').hide();
         $("#aboutContainer").show();

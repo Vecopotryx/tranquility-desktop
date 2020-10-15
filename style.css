@@ -396,8 +396,8 @@ body {
 	top: 5vh;
 	left: 24vw;
 	width: 30cm;
-	height: 50%;
-	display: none;
+	height: 70%;
+	display: block;
 }
 
 #settingsPanels {
@@ -517,9 +517,10 @@ body {
 	min-width: 10%;
 	border-radius: 4px;
 	overflow: hidden;
-	height: 80%;
+	height: 85%;
 	width: 70%;
 	margin: auto;
+	transform: scale(0.8);
 }
 
 #demoWindowContent {
@@ -534,7 +535,7 @@ body {
 	background-size: cover;
 	padding: 1%;
 	padding-right: 2%;
-	height: 5.5cm;
+	height: 25vh;
 	overflow: hidden;
 	border-bottom: 1px solid black;
 	margin-bottom: 1%;
@@ -566,6 +567,7 @@ body {
 	font-size: 150%;
 	margin-bottom: 0.2cm;
 	cursor: crosshair;
+	transform-origin: 0 0;
 }
 
 
@@ -627,10 +629,6 @@ body {
 	padding-left: 2%;
 }
 
-#appearanceLeftColumn {
-	border-right: 1px solid black;
-}
-
 #appearanceRightColumn {
 	margin-left: 0.2cm;
 }
@@ -639,7 +637,10 @@ body {
 	margin-top: -0.5cm;
 	float: left;
 	width: 49%;
+	height: 10cm;
 	white-space: nowrap;
+	transform: scale(0.8);
+	transform-origin: left top;
 }
 
 #underDemo {
