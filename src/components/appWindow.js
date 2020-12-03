@@ -11,6 +11,9 @@ class AppWindow extends Component {
             <a className="appName">{this.props.appName}</a>
             <button className="collapseWindow">▲</button>
           </div>
+          <div className="appContent">
+            {this.props.children}
+          </div>
         </div>
       </React.Fragment>
     );
