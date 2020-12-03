@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import AppWindow from './components/appWindow';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <AppWindow/>
     </div>
   );
 }
