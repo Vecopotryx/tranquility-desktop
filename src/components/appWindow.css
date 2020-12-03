@@ -36,5 +36,6 @@
 }
 
 .appContent {
+  height: calc(100% - 0.7cm);
   min-height: 3cm;
 }
