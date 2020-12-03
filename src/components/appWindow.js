@@ -14,7 +14,7 @@ class AppWindow extends Component {
           }}
         >
           <div className="titlebar">
-            <button className="closeWindow">×</button>
+            <button onClick={() => this.props.onClose(this.props.id)} className="closeWindow">×</button>
             <a className="appName">{this.props.appName}</a>
             <button className="collapseWindow">▲</button>
           </div>

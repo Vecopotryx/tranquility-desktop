@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AppWindow from "./components/appWindow";
 import Notes from "./components/notes";
+import Menubar from "./components/menubar";
 
 class App extends Component {
   state = {
@@ -10,11 +11,17 @@ class App extends Component {
   ],
   };
 
+  handleClose =  (appId) => {
+    const appWindows = this.state.appWindows.filter(c => c.id !== appId);
+    this.setState({ appWindows });
+  }
+
   render() {
     return (
       <React.Fragment>
+        <Menubar></Menubar>
         {this.state.appWindows.map((appWindow) => (
-          <AppWindow key={appWindow.id} appName={appWindow.appName}>
+          <AppWindow key={appWindow.id} id={appWindow.id} appName={appWindow.appName} onClose={this.handleClose}>
             {appWindow.appComponent}
           </AppWindow>
         ))}
