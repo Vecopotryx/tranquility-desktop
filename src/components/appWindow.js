@@ -21,6 +21,7 @@ class AppWindow extends Component {
     return (
       <React.Fragment>
         <Rnd
+        style={{zIndex: this.props.zIndex}}
           ref={c => { this.rnd = c; }} 
           className="appWindow"
           maxHeight={this.state.maxHeight}
@@ -30,6 +31,10 @@ class AppWindow extends Component {
                 storedWidth: ref.style.width,
                 storedHeight: ref.style.height
               });
+            } else {
+              this.setState({
+                storedWidth: ref.style.width
+              });
             }
           }}
           default={{
@@ -37,12 +42,15 @@ class AppWindow extends Component {
             y: 100,
           }}
         >
+          <div className="appWrapper" onMouseEnter={() => this.props.onFocus(this.props.id, this.props.zIndex)}>
           <div className="titlebar">
             <button onClick={() => this.props.onClose(this.props.id)} className="closeWindow">×</button>
             <a className="appName">{this.props.appName}</a>
             <button onClick={this.updateCollapse} className="collapseWindow">{this.state.appContentCollapsed ? "▼" : "▲"}</button>
           </div>
           <div className="appContent" style={{display: this.state.appContentCollapsed ? "none" : "block"}}>{this.props.children}</div>
+          </div>
+
         </Rnd>
       </React.Fragment>
     );
