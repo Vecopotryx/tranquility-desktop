@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Notes from "../components/notes";
 
 class Menubar extends Component {
     
@@ -6,7 +7,7 @@ class Menubar extends Component {
     return (
       <React.Fragment>
         <div id="menubarLeft">
-            <button>Open notes</button>
+            <button onClick={() => this.props.onOpen("Notes from menubar", <Notes/>)} >Open notes</button>
         </div>
       </React.Fragment>
     );
