@@ -3,7 +3,7 @@
   background-color: white;
   box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
   min-width: 10%;
-  min-height: 10%;
+  min-height: 0.7cm;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -37,5 +37,4 @@
 
 .appContent {
   height: calc(100% - 0.7cm);
-  min-height: 3cm;
 }
