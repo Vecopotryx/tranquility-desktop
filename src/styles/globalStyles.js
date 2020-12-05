@@ -14,14 +14,16 @@ export const GlobalStyles = createGlobalStyle`
     }
     .collapseWindow, .menubarRight {
         float: right;
+        color: ${({theme}) => theme.text};
     }
     
     .closeWindow, .menubarLeft {
         float: left;
+        color: ${({theme}) => theme.text};
     }
     
 
-    .appWindow {
+    .appWindow, .appContent {
         background-color: ${({theme}) => theme.background};
     }
 

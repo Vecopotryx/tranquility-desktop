@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export const Settings = ({theme, toggleTheme}) => {
-    return (
-        <button onClick={toggleTheme}>
-            <h1>Toggle</h1>
-        </button>
-    )
-}
+export const Settings = ({ theme, setTheme }) => {
+  return (
+    <React.Fragment>
+      <button onClick={() => setTheme("light")}>Light</button>
+      <button onClick={() => setTheme("dark")}>Dark</button>
+    </React.Fragment>
+  );
+};
