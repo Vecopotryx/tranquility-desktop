@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import AppWindow from "./components/appWindow";
 import Notes from "./components/notes";
+import ChipPlayer from "./components/chipPlayer";
 import Menubar from "./components/menubar";
 import './components/appWindow.css';
 
 class App extends Component {
   state = {
     appWindows: [
-      { id: 1, appName: "Notes", appComponent: <Notes />, zIndex: 1 },
-      { id: 2, appName: "Notes2", appComponent: <Notes />, zIndex: 2 },
+      { id: 1, appName: "Notes", appComponent: <Notes />, zIndex: 1, defaultWidth: 200, defaultHeight: 200, backgroundColor: "white", isUnfocused: false },
+      { id: 2, appName: "Chip Player JS", appComponent: <ChipPlayer />, zIndex: 2, defaultWidth: "50%", defaultHeight: 500, backgroundColor: "#010088", isUnfocused: false  },
     ],
     lastFocused: 0,
     frameOverlayVisible: false,
@@ -20,7 +21,7 @@ class App extends Component {
     this.setState({ appWindows });
   };
 
-  handleOpen = (appName, appComponent) => {
+  handleOpen = (appName, appComponent, defaultWidth, defaultHeight, backgroundColor) => {
     let newId =
       Math.max(...this.state.appWindows.map((appWindow) => appWindow.id)) + 1;
     let highest = Math.max(
@@ -36,10 +37,14 @@ class App extends Component {
           id: newId,
           appName: appName,
           appComponent: appComponent,
-          zIndex: highest + 2,
+          zIndex: 1,
+          defaultWidth: defaultWidth,
+          defaultHeight: defaultHeight,
+          backgroundColor: backgroundColor
         },
       ],
-      frameOverlayIndex: highest + 1
+      frameOverlayIndex: highest + 1,
+      lastFocused: newId - 1,
     }));
   };
 
@@ -50,8 +55,8 @@ class App extends Component {
       );
       if (zIndex < highest) {
         const newAppWindows = this.state.appWindows.map((appWindow) => {
-          if (appWindow.id !== appId) return appWindow;
-          return { ...appWindow, zIndex: highest + 1 };
+          if (appWindow.id !== appId) return { ...appWindow, isUnfocused: true };
+          return { ...appWindow, zIndex: highest + 1, isUnfocused: false };
         });
         this.setState({ appWindows: newAppWindows, lastFocused: appId, frameOverlayIndex: highest + 1});
       }
@@ -77,6 +82,10 @@ class App extends Component {
             id={appWindow.id}
             appName={appWindow.appName}
             zIndex={appWindow.zIndex}
+            defaultHeight={appWindow.defaultHeight}
+            defaultWidth={appWindow.defaultWidth}
+            backgroundColor={appWindow.backgroundColor}
+            isUnfocused={appWindow.isUnfocused}
             onClose={this.handleClose}
             onFocus={this.handleFocus}
             onResizeOrDragStart={this.handleResizeOrDragStart}

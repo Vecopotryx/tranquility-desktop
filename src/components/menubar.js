@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Notes from "../components/notes";
 import "./menubar.css";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Notes from "../components/notes";
+import ChipPlayer from "./chipPlayer";
 
 class Menubar extends Component {
   state = {
@@ -10,11 +11,17 @@ class Menubar extends Component {
         appName: "Notes",
         appComponent: <Notes />,
         buttonText: "Notes",
+        defaultWidth: 200,
+        defaultHeight: 200,
+        backgroundColor: "white"
       },
       {
-        appName: "Notes 2",
-        appComponent: <Notes />,
-        buttonText: "Notes 2",
+        appName: "Chip Player JS",
+        appComponent: <ChipPlayer />,
+        buttonText: "Chip Player JS",
+        defaultWidth: "50%",
+        defaultHeight: 500,
+        backgroundColor: "#010088"
       },
     ],
     time: new Date(),
@@ -53,7 +60,10 @@ class Menubar extends Component {
                     onClick={() =>
                       this.props.onOpen(
                         appButton.appName,
-                        appButton.appComponent
+                        appButton.appComponent,
+                        appButton.defaultWidth,
+                        appButton.defaultHeight,
+                        appButton.backgroundColor
                       )
                     }
                   >

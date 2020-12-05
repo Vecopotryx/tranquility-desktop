@@ -6,6 +6,7 @@
   min-height: 0.7cm;
   border-radius: 4px;
   overflow: hidden;
+  transition: filter 0.2s;
 }
 
 .appWrapper {
@@ -52,6 +53,15 @@
 	background: rgba(34, 34, 34, 0.5);
 	position: absolute;
 	top: 0;
+	left: 0;
+	display: none;
+}
+
+.internalFrameOverlay {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0.7cm;
 	left: 0;
 	display: none;
 }
