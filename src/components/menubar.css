@@ -1,45 +1,8 @@
-:root {
-    --background: white;
-    --text-color: black;
-    --border-radius: 5px;
-}
-
-.menubarLeft {
-    float: left;
-}
-
-.menubarRight {
-    float: right;
-}
-
-.menubarLeft, .menubarRight {
-    margin: 0.1cm;
-    background-color: var(--background);
-    height: 0.7cm;
-    border-radius: var(--border-radius);
-}
-
-.menubarDropdown {
-    float: left;
-    user-select: none;
-    text-decoration: none;
-}
-
-.menubarDropdown > * {
-    background-color: var(--background);
-    width: 4cm;
-    border-radius: var(--border-radius);
-    padding-right: 5px;
-    padding-left: 5px;
-    font-size: 100%;
-}
-
-.menubarButton {
-    width: 100%;
+.collapseWindow, .closeWindow {
     background: none;
-	border: none;
-	padding-right: 2px;
-	cursor: pointer;
-	font-size: 20px;
-	color: var(--text-color);
-}
+      border: none;
+      margin: 0 10px 0 10px;
+      padding: 0;
+      cursor: pointer;
+      font-size: 18px;
+  }

@@ -46,7 +46,7 @@ class AppWindow extends Component {
               });
             }
           }}
-          cancel=".collapseWindow, .closeWindow"
+          cancel=".collapseWindow, .closeWindow, .appContent>*"
           onDragStop={() => {
             this.setState({internalFrameOverlayVisible: false});
             this.props.onResizeOrDragStop();
@@ -69,10 +69,10 @@ class AppWindow extends Component {
           <div className="appWrapper" onMouseEnter={() => this.props.onFocus(this.props.id, this.props.zIndex)}>
           <div className="titlebar">
             <button onClick={() => this.props.onClose(this.props.id)} className="closeWindow">×</button>
-            <a className="appName" style={{color: this.props.isUnfocused ? "gray" : "black"}}>{this.props.appName}</a>
+            <a className="appName">{this.props.appName}</a>
             <button onClick={this.updateCollapse} className="collapseWindow">{this.state.appContentCollapsed ? "▼" : "▲"}</button>
           </div>
-          <div className="appContent" style={{display: this.state.appContentCollapsed ? "none" : "block", backgroundColor: this.props.backgroundColor}}>
+          <div className="appContent" style={{display: this.state.appContentCollapsed ? "none" : "block"}}>
             <div style={{display: this.state.internalFrameOverlayVisible ? "block" : "none"}} className="internalFrameOverlay"/>
             {this.props.children}
             </div>
@@ -83,5 +83,7 @@ class AppWindow extends Component {
     );
   }
 }
+
+// style={{color: this.props.isUnfocused ? "gray" : "black"}}
 
 export default AppWindow;
