@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./appWindow.css";
 import { Rnd } from "react-rnd";
 
 class AppWindow extends Component {
@@ -26,6 +25,7 @@ class AppWindow extends Component {
           className="appWindow"
           maxHeight={this.state.maxHeight}
           onResizeStop={(e, direction, ref) => {
+            this.props.onResizeOrDragStop();
             if(!this.state.appContentCollapsed){
               this.setState({
                 storedWidth: ref.style.width,
@@ -36,6 +36,15 @@ class AppWindow extends Component {
                 storedWidth: ref.style.width
               });
             }
+          }}
+          onDragStop={() => {
+            this.props.onResizeOrDragStop();
+          }}
+          onResizeStart={() => {
+            this.props.onResizeOrDragStart();
+          }}
+          onDragStart={() => {
+            this.props.onResizeOrDragStart();
           }}
           default={{
             x: 100,

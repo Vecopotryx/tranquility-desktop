@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AppWindow from "./components/appWindow";
 import Notes from "./components/notes";
 import Menubar from "./components/menubar";
+import './components/appWindow.css';
 
 class App extends Component {
   state = {
@@ -10,6 +11,8 @@ class App extends Component {
       { id: 2, appName: "Notes2", appComponent: <Notes />, zIndex: 2 },
     ],
     lastFocused: 0,
+    frameOverlayVisible: false,
+    frameOverlayIndex: 2,
   };
 
   handleClose = (appId) => {
@@ -36,6 +39,7 @@ class App extends Component {
           zIndex: highest + 1,
         },
       ],
+      frameOverlayIndex: highest + 1
     }));
   };
 
@@ -49,15 +53,24 @@ class App extends Component {
           if (appWindow.id !== appId) return appWindow;
           return { ...appWindow, zIndex: highest + 1 };
         });
-        this.setState({ appWindows: newAppWindows, lastFocused: appId });
+        this.setState({ appWindows: newAppWindows, lastFocused: appId, frameOverlayIndex: highest + 1});
       }
     }
   };
+
+  handleResizeOrDragStart = () => {
+    this.setState({ frameOverlayVisible: true });
+  }
+
+  handleResizeOrDragStop = () => {
+    this.setState({ frameOverlayVisible: false });
+  }
 
   render() {
     return (
       <React.Fragment>
         <Menubar onOpen={this.handleOpen}></Menubar>
+        <div style={{display: this.state.frameOverlayVisible ? "block" : "none", zIndex: this.state.frameOverlayIndex}} className="frameOverlay"/>
         {this.state.appWindows.map((appWindow) => (
           <AppWindow
             key={appWindow.id}
@@ -66,6 +79,8 @@ class App extends Component {
             zIndex={appWindow.zIndex}
             onClose={this.handleClose}
             onFocus={this.handleFocus}
+            onResizeOrDragStart={this.handleResizeOrDragStart}
+            onResizeOrDragStop={this.handleResizeOrDragStop}
           >
             {appWindow.appComponent}
           </AppWindow>
