@@ -9,6 +9,7 @@ class App extends Component {
       { id: 1, appName: "Notes", appComponent: <Notes />, zIndex: 1 },
       { id: 2, appName: "Notes2", appComponent: <Notes />, zIndex: 2 },
     ],
+    lastFocused: 0,
   };
 
   handleClose = (appId) => {
@@ -17,33 +18,41 @@ class App extends Component {
   };
 
   handleOpen = (appName, appComponent) => {
-    let newId = Math.max(...this.state.appWindows.map(appWindow => appWindow.id)) + 1;
-    let highest = Math.max(...this.state.appWindows.map(appWindow => appWindow.zIndex));
-    if(!isFinite(newId)){
+    let newId =
+      Math.max(...this.state.appWindows.map((appWindow) => appWindow.id)) + 1;
+    let highest = Math.max(
+      ...this.state.appWindows.map((appWindow) => appWindow.zIndex)
+    );
+    if (!isFinite(newId)) {
       newId = 1; // Makes sure that newId is a valid number, as I had problems with it getting set to -Infinity when appWindows was empty.
     }
     this.setState((prevState) => ({
       appWindows: [
         ...prevState.appWindows,
-        { id: newId, appName: appName + newId, appComponent: appComponent, zIndex: highest + 1},
+        {
+          id: newId,
+          appName: appName + newId,
+          appComponent: appComponent,
+          zIndex: highest + 1,
+        },
       ],
     }));
   };
 
   handleFocus = (appId, zIndex) => {
-      console.log("Focus called for id " + appId);
-      // At the moment this is quite an unefficient way of handling it, going to look into making this more efficient at a later time.
-      let highest = Math.max(...this.state.appWindows.map(appWindow => appWindow.zIndex));
-      console.log(highest);
-      if(zIndex < highest){
-        const newAppWindows = this.state.appWindows.map(appWindow => {
+    if (appId !== this.state.lastFocused) {
+      let highest = Math.max(
+        ...this.state.appWindows.map((appWindow) => appWindow.zIndex)
+      );
+      if (zIndex < highest) {
+        const newAppWindows = this.state.appWindows.map((appWindow) => {
           if (appWindow.id !== appId) return appWindow;
-          return { ...appWindow, zIndex: highest + 1};
+          return { ...appWindow, zIndex: highest + 1 };
         });
-    
-        this.setState({appWindows: newAppWindows});
+        this.setState({ appWindows: newAppWindows, lastFocused: appId });
       }
-  }
+    }
+  };
 
   render() {
     return (
