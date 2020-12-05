@@ -34,9 +34,9 @@ class App extends Component {
         ...prevState.appWindows,
         {
           id: newId,
-          appName: appName + newId,
+          appName: appName,
           appComponent: appComponent,
-          zIndex: highest + 1,
+          zIndex: highest + 2,
         },
       ],
       frameOverlayIndex: highest + 1

@@ -37,6 +37,7 @@ class AppWindow extends Component {
               });
             }
           }}
+          cancel=".collapseWindow, .closeWindow"
           onDragStop={() => {
             this.props.onResizeOrDragStop();
           }}
@@ -47,8 +48,8 @@ class AppWindow extends Component {
             this.props.onResizeOrDragStart();
           }}
           default={{
-            x: 100,
-            y: 100,
+            x: 700,
+            y: 400,
           }}
         >
           <div className="appWrapper" onMouseEnter={() => this.props.onFocus(this.props.id, this.props.zIndex)}>
