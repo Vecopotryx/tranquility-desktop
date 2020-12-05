@@ -22,6 +22,7 @@
   color: var(--color-text);
   background: var(--titlebar-background);
   text-align: center;
+  user-select: none;
 }
 
 .collapseWindow, .closeWindow {
