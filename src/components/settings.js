@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import darkmodeImage from './darkmode-temporary.svg';
+import defaultBackground1 from '../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg';
+import defaultBackground2 from '../img/KDE Plasma Scenery 64 NO LOGO.jpg';
+import defaultBackground3 from '../img/nasa-Q1p7bh3SHj8-unsplash.jpg';
 
 
 class Settings extends Component {
@@ -18,7 +21,7 @@ class Settings extends Component {
   };
 
   componentDidMount() {
-    this.setState({ image: this.props.background.replace('url(','').replace(')',''), themeOption: this.props.theme});
+    this.setState({ image: this.props.background.replace("url('",'').replace("')",''), themeOption: this.props.theme});
   }
 
   themeHandler = (changeEvent) => {
@@ -50,27 +53,17 @@ class Settings extends Component {
   // Return array with settings then parse them?
   render() {
     return (
-      <React.Fragment>
-        <div className="backgroundPicker">
-          <h2>Background: </h2>
-          <input type="text" onChange={this.handleUnsplashInput}></input>
-          <button onClick={this.unsplashHandler}>Search for photo</button>
-          <input
-            type="file"
-            onChange={this.onImageChange}
-          />
-        </div>
-
+      <div className="settings">
         <div className="themePicker">
-            <h2>Theme:</h2>
+            <h2>Theme</h2>
             <div className="settingsPreviewsHolder">
-              <div className="settingsPreviews" style={{backgroundImage: "url(" + this.state.image + ")"}}>
+              <div className="settingsPreviews" style={{backgroundImage: "url(" + this.state.image + ")", marginRight: "1%"}}>
                 <img className="settingsThemePreview" src={darkmodeImage} width="100%" alt=""></img>
               </div>
               <div className="settingsPreviews" style={{backgroundImage: "url(" + this.state.image + ")"}}>
                 <img className="settingsThemePreview" src={darkmodeImage} width="100%" alt=""></img>
               </div>
-              <div className="settingsPreviews" style={{backgroundImage: "url(" + this.state.image + ")"}}>
+              <div className="settingsPreviews" style={{backgroundImage: "url(" + this.state.image + ")", marginLeft: "1%"}}>
                 <img className="settingsThemePreview" src={darkmodeImage} width="100%" alt=""></img>
               </div>
             </div>
@@ -104,10 +97,41 @@ class Settings extends Component {
             Classic
           </label>
           </div>
+        </div>
+        <div className="backgroundPicker">
+          <h2>Background</h2>
+          <img className="settingsCurrentBackgroundPreview" src={this.state.image} width="100%" alt=""></img>
+          <hr width="99%"/>
+          <div className="settingsPreviewsHolder">
+            <img className="settingsBackgroundPreview" src={defaultBackground1} style={{marginRight: "1%"}} width="100%" alt=""></img>
+            <img className="settingsBackgroundPreview" src={defaultBackground2} width="100%" alt=""></img>
+            <img className="settingsBackgroundPreview" src={defaultBackground3} style={{marginLeft: "1%"}} width="100%" alt=""></img>
 
+          </div>
+          <div className="settingsBackgroundOptions">
+            <h3>Set background</h3>
+            <label>
+              Random from Unsplash
+              <br/>
+              <input type="text" onChange={this.handleUnsplashInput}></input>
+              <button onClick={this.unsplashHandler}>Search for photo</button>
+            </label>
+
+            <br/>
+            <label>
+              Upload from computer
+              <br/>
+
+              <input
+                type="file"
+                onChange={this.onImageChange}
+              />
+            </label>
+
+          </div>
 
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
