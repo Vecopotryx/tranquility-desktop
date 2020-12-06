@@ -10,9 +10,6 @@ class AppWindow extends Component {
     internalFrameOverlayVisible: false,
   };
 
-
-  // Todo: Make constructor that sets maxHeight to availHeight directly
-
   componentDidMount() {
     this.setState({ storedHeight: this.props.defaultHeight, storedWidth: this.props.defaultWidth, maxHeight: window.screen.availHeight });
     this.props.onFocus(this.props.id, this.props.zIndex);
@@ -67,12 +64,12 @@ class AppWindow extends Component {
           }}
         >
           <div className="appWrapper" onMouseEnter={() => this.props.onFocus(this.props.id, this.props.zIndex)}>
-          <div className="titlebar">
+          <div className={this.props.isUnfocused ? 'titlebarUnfocused' : 'titlebar'}>
             <button onClick={() => this.props.onClose(this.props.id)} className="closeWindow">×</button>
             <a className="appName">{this.props.appName}</a>
             <button onClick={this.updateCollapse} className="collapseWindow">{this.state.appContentCollapsed ? "▼" : "▲"}</button>
           </div>
-          <div className="appContent" style={{display: this.state.appContentCollapsed ? "none" : "block"}}>
+          <div className="appContent" style={{display: this.state.appContentCollapsed ? "none" : "block", backgroundColor: this.props.customBackground !== null ? "block" : "none"}}>
             <div style={{display: this.state.internalFrameOverlayVisible ? "block" : "none"}} className="internalFrameOverlay"/>
             {this.props.children}
             </div>

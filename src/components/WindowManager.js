@@ -4,6 +4,7 @@ import Notes from "./notes";
 import ChipPlayer from "./chipPlayer";
 import './appWindow.css';
 import { Settings } from './settings';
+import Menubar from "./menubar";
 
 class WindowManager extends Component {
   state = {
@@ -11,7 +12,7 @@ class WindowManager extends Component {
       {
         id: 1,
         appName: "Notes",
-        appComponent: <Settings theme={this.props.theme} setTheme={this.props.setTheme}/>,
+        appComponent: <Notes />,
         zIndex: 1,
         defaultWidth: 200,
         defaultHeight: 200,
@@ -98,8 +99,6 @@ class WindowManager extends Component {
     this.setState({ frameOverlayVisible: false });
   };
 
-  handleInformation = () => {};
-
   render() {
     return (
       <React.Fragment>
@@ -110,6 +109,7 @@ class WindowManager extends Component {
           }}
           className="frameOverlay"
         />
+        <Menubar onOpen={this.handleOpen} theme={this.props.theme} setTheme={this.props.setTheme} background={this.props.background} setBackground={this.props.setBackground}/>
         {this.state.appWindows.map((appWindow) => (
           <AppWindow
             key={appWindow.id}
@@ -123,7 +123,6 @@ class WindowManager extends Component {
             onFocus={this.handleFocus}
             onResizeOrDragStart={this.handleResizeOrDragStart}
             onResizeOrDragStop={this.handleResizeOrDragStop}
-            onSettingsApply={this.handleSettings}
           >
             {appWindow.appComponent}
           </AppWindow>

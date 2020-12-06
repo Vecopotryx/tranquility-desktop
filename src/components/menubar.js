@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./menubar.css";
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Notes from "../components/notes";
 import ChipPlayer from "./chipPlayer";
+import { Settings } from './settings';
 
 class Menubar extends Component {
   state = {
@@ -13,7 +14,6 @@ class Menubar extends Component {
         buttonText: "Notes",
         defaultWidth: 200,
         defaultHeight: 200,
-        backgroundColor: "white"
       },
       {
         appName: "Chip Player JS",
@@ -21,7 +21,7 @@ class Menubar extends Component {
         buttonText: "Chip Player JS",
         defaultWidth: "50%",
         defaultHeight: 500,
-        backgroundColor: "#010088"
+        customBackground: "#010088",
       },
     ],
     time: new Date(),
@@ -52,7 +52,7 @@ class Menubar extends Component {
       <React.Fragment>
         <nav>
           <div className="menubarLeft">
-            <NavDropdown className="menubarDropdown" title="Apps">
+            <NavDropdown className="menubarDropdown" title="Applications">
               {this.state.appButtons.map((appButton) => (
                 <NavDropdown.Item>
                   <button
@@ -63,7 +63,7 @@ class Menubar extends Component {
                         appButton.appComponent,
                         appButton.defaultWidth,
                         appButton.defaultHeight,
-                        appButton.backgroundColor
+                        appButton.customBackground
                       )
                     }
                   >
@@ -75,10 +75,18 @@ class Menubar extends Component {
             </NavDropdown>
 
             <NavDropdown className="menubarDropdown" title="Options">
-                <NavDropdown.Item>
-                  <button className="menubarButton">Settings</button>
-                  <NavDropdown.Divider />
-                </NavDropdown.Item>
+              <NavDropdown.Item>
+                <button
+                  className="menubarButton"
+                  onClick={() =>
+                    this.props.onOpen("Settings", <Settings theme={this.props.theme} setTheme={this.props.setTheme} background={this.props.background} setBackground={this.props.setBackground}/>, 300, 300,
+                    )
+                  }
+                >
+                  Settings
+                </button>
+                <NavDropdown.Divider />
+              </NavDropdown.Item>
             </NavDropdown>
           </div>
           <div className="menubarRight">
