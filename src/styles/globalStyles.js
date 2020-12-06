@@ -96,10 +96,8 @@ export const GlobalStyles = createGlobalStyle`
 .settingsPreviews {
     background-size: cover;
     border-radius: ${({theme}) => theme.borderRadius};
-    width: 30%;
+    width: 33%;
     height: 10;
-    margin-left: 1%;
-    float: left;
 }
 
 .settingsThemeRadios {
@@ -115,6 +113,34 @@ export const GlobalStyles = createGlobalStyle`
     align-items: center;
 }
 
+.settingsBackgroundPreview {
+    height: 10vh;
+    object-fit: cover;
+    background-size: cover;
+    border-radius: ${({theme}) => theme.borderRadius};
+    width: 32.5%;
+    height: 4cm;
+    margin-bottom: 1%;
+}
+
+.backgroundPicker, .themePicker {
+    text-align: center;
+}
+
+.settingsCurrentBackgroundPreview {
+    border-radius: ${({theme}) => theme.borderRadius};
+    width: 100%;
+}
+
+.settings {
+    padding: 3%;
+}
+
+.settingsBackgroundOptions > label > button, .settingsBackgroundOptions > label > input {
+    width: 35%;
+    margin-left: 5%;
+    height: 0.8cm;
+}
 `;
 
 
