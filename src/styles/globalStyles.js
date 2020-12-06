@@ -2,9 +2,19 @@ import { createGlobalStyle } from 'styled-components';
 
 //         background: url("https://raw.githubusercontent.com/Vecopotryx/retro-desktop-environment/master/source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg");
 
+
+
+/* for bottom menubar:
+    .menubar {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+    */
 export const GlobalStyles = createGlobalStyle`
     body {
         background: ${(props) => props.background};
+        background-size: cover;
         color: ${({theme}) => theme.text};
     }
     .titlebar, .titlebarUnfocused {
@@ -44,6 +54,12 @@ export const GlobalStyles = createGlobalStyle`
         background-color: ${({theme}) => theme.background};
     }
 
+    .appContent > * {
+        cursor: default;
+    }
+
+
+
 .menubarLeft, .menubarRight {
     margin: 8px;
     background-color: ${({theme}) => theme.background};
@@ -76,6 +92,29 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 20px;
     color: ${({theme}) => theme.text};
 }
+
+.settingsPreviews {
+    background-size: cover;
+    border-radius: ${({theme}) => theme.borderRadius};
+    width: 30%;
+    height: 10;
+    margin-left: 1%;
+    float: left;
+}
+
+.settingsThemeRadios {
+    text-align: center;
+    display: inline-block;
+    width: 33%;
+}
+
+.settingsThemeRadiosHolder, .settingsPreviewsHolder {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 `;
 
 

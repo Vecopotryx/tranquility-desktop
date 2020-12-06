@@ -3,7 +3,7 @@ import AppWindow from "./appWindow";
 import Notes from "./notes";
 import ChipPlayer from "./chipPlayer";
 import './appWindow.css';
-import { Settings } from './settings';
+import Settings from './settings';
 import Menubar from "./menubar";
 
 class WindowManager extends Component {
@@ -30,7 +30,7 @@ class WindowManager extends Component {
     ],
     lastFocused: 0,
     frameOverlayVisible: false,
-    frameOverlayIndex: 2,
+    frameOverlayIndex: 2
   };
 
   handleClose = (appId) => {
