@@ -3,7 +3,7 @@ import "./menubar.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Notes from "../components/notes";
 import ChipPlayer from "./chipPlayer";
-import { Settings } from './settings';
+import Settings from './settings';
 
 class Menubar extends Component {
   state = {
@@ -50,7 +50,7 @@ class Menubar extends Component {
     const { time } = this.state;
     return (
       <React.Fragment>
-        <nav>
+        <nav className="menubar">
           <div className="menubarLeft">
             <NavDropdown className="menubarDropdown" title="Applications">
               {this.state.appButtons.map((appButton) => (
