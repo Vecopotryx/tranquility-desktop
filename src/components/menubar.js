@@ -4,6 +4,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Notes from "../components/notes";
 import ChipPlayer from "./chipPlayer";
 import Settings from './settings';
+import appIconPlaceholder from '../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg';
 
 class Menubar extends Component {
   state = {
@@ -14,14 +15,16 @@ class Menubar extends Component {
         buttonText: "Notes",
         defaultWidth: 200,
         defaultHeight: 200,
+        appIcon: appIconPlaceholder
       },
       {
         appName: "Chip Player JS",
         appComponent: <ChipPlayer />,
-        buttonText: "Chip Player JS",
+        buttonText: "Chip Player",
         defaultWidth: "50%",
         defaultHeight: 500,
         customBackground: "#010088",
+        appIcon: appIconPlaceholder
       },
     ],
     time: new Date(),
@@ -63,11 +66,13 @@ class Menubar extends Component {
                         appButton.appComponent,
                         appButton.defaultWidth,
                         appButton.defaultHeight,
+                        appButton.appIcon,
                         appButton.customBackground
                       )
                     }
                   >
-                    {appButton.buttonText}
+                    <img src={appButton.appIcon} alt=""></img>
+                    <a style={{float: "left"}}>{appButton.buttonText}</a>
                   </button>
                   <NavDropdown.Divider />
                 </NavDropdown.Item>
@@ -80,7 +85,7 @@ class Menubar extends Component {
                   className="menubarButton"
                   onClick={() =>
                     this.props.onOpen("Settings", <Settings theme={this.props.theme} setTheme={this.props.setTheme} background={this.props.background} setBackground={this.props.setBackground}/>, 300, 300,
-                    )
+                    appIconPlaceholder)
                   }
                 >
                   Settings
@@ -88,6 +93,11 @@ class Menubar extends Component {
                 <NavDropdown.Divider />
               </NavDropdown.Item>
             </NavDropdown>
+            <span className="openwindowListStuff">
+              {this.props.children}
+
+            </span>
+
           </div>
           <div className="menubarRight">
             <a>
