@@ -5,6 +5,7 @@ import ChipPlayer from "./chipPlayer";
 import './appWindow.css';
 import Settings from './settings';
 import Menubar from "./menubar";
+import placeholderIcon from '../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg';
 
 class WindowManager extends Component {
   state = {
@@ -17,6 +18,7 @@ class WindowManager extends Component {
         defaultWidth: 200,
         defaultHeight: 200,
         isUnfocused: false,
+        appIcon: placeholderIcon
       },
       {
         id: 2,
@@ -26,6 +28,7 @@ class WindowManager extends Component {
         defaultWidth: "50%",
         defaultHeight: 500,
         isUnfocused: false,
+        appIcon: placeholderIcon
       },
     ],
     lastFocused: 0,
@@ -43,6 +46,7 @@ class WindowManager extends Component {
     appComponent,
     defaultWidth,
     defaultHeight,
+    appIcon,
     backgroundColor
   ) => {
     let newId =
@@ -60,10 +64,11 @@ class WindowManager extends Component {
           id: newId,
           appName: appName,
           appComponent: appComponent,
-          zIndex: 1,
+          zIndex: highest + 1,
           defaultWidth: defaultWidth,
           defaultHeight: defaultHeight,
-          backgroundColor: backgroundColor,
+          appIcon: appIcon,
+          backgroundColor: backgroundColor
         },
       ],
       frameOverlayIndex: highest + 1,
@@ -76,7 +81,7 @@ class WindowManager extends Component {
       let highest = Math.max(
         ...this.state.appWindows.map((appWindow) => appWindow.zIndex)
       );
-      if (zIndex < highest) {
+      if (zIndex <= highest) {
         const newAppWindows = this.state.appWindows.map((appWindow) => {
           if (appWindow.id !== appId)
             return { ...appWindow, isUnfocused: true };
@@ -85,7 +90,7 @@ class WindowManager extends Component {
         this.setState({
           appWindows: newAppWindows,
           lastFocused: appId,
-          frameOverlayIndex: highest + 1,
+          frameOverlayIndex: highest,
         });
       }
     }
@@ -99,6 +104,11 @@ class WindowManager extends Component {
     this.setState({ frameOverlayVisible: false });
   };
 
+  handleWindowListClick = (appId) => {
+    // focus stuff
+    console.log(appId);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -109,7 +119,14 @@ class WindowManager extends Component {
           }}
           className="frameOverlay"
         />
-        <Menubar onOpen={this.handleOpen} theme={this.props.theme} setTheme={this.props.setTheme} background={this.props.background} setBackground={this.props.setBackground}/>
+        <Menubar onOpen={this.handleOpen} theme={this.props.theme} setTheme={this.props.setTheme} background={this.props.background} setBackground={this.props.setBackground}>
+          <div className="openWindowList">
+          {this.state.appWindows.map((appWindow) => (
+          <img src={appWindow.appIcon} alt="" onClick={this.handleWindowListClick(appWindow.id)}></img>
+        ))}
+          </div>
+
+        </Menubar>
         {this.state.appWindows.map((appWindow) => (
           <AppWindow
             key={appWindow.id}
@@ -131,8 +148,5 @@ class WindowManager extends Component {
     );
   }
 }
-
-//             backgroundColor={appWindow.backgroundColor}
-//  backgroundColor: "#010088",
 
 export default WindowManager;
