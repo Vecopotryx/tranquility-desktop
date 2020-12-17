@@ -7,7 +7,7 @@ const Settings = (props) => {
     const OpenedSettings = () => {
         switch(openSettings) {
             case "customization":
-                return <Customization theme={props.theme} setTheme={props.setTheme} background={props.background} setBackground={props.setBackground}/>
+                return <Customization theme={props.theme} setTheme={props.setTheme} background={props.background} setBackground={props.setBackground} scale={props.scale} setScale={props.setScale}/>
             default:
                 break;
         }
