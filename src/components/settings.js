@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import Customization from './customization'
 
-export default function Settings() {
+const Settings = (props) => {
     const [openSettings, setOpenSettings] = useState("customization");
 
-    const OpenedSettings = ( props ) => {
+    const OpenedSettings = () => {
         switch(openSettings) {
             case "customization":
                 return <Customization theme={props.theme} setTheme={props.setTheme} background={props.background} setBackground={props.setBackground}/>
@@ -19,3 +19,5 @@ export default function Settings() {
         </div>
     )
 }
+
+export default Settings;
