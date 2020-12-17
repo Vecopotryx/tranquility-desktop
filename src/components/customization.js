@@ -7,11 +7,9 @@ import defaultBackground3 from "../img/nasa-Q1p7bh3SHj8-unsplash.jpg";
 export default function Customization(props) {
   const [unsplashTerm, setUnsplashTerm] = useState("");
   const [currentBackground, setCurrentBackground] = useState(props.background);
-  const [currentTheme, setCurrentTheme] = useState(props.theme);
-  const [currentScale, setCurrentScale] = useState(props.scale);
+  const [currentSettings, setCurrentSettings] = useState(props.customizeSettings);
 
   // - Need to allow user to click image to select theme.
-  // - Perhaps return object with other settings then parse them in the future?
   // - Perhaps add opacity settings?
 
   const onImageChange = (event) => {
@@ -23,8 +21,8 @@ export default function Customization(props) {
   };
 
   const themeHandler = (changeEvent) => {
-    setCurrentTheme(changeEvent.target.value);
-    props.setTheme(changeEvent.target.value);
+    setCurrentSettings({ ...currentSettings, theme: changeEvent.target.value});
+    props.setCustomizeSettings({ ...currentSettings, theme: changeEvent.target.value});
   };
 
   const unsplashHandler = () => {
@@ -47,8 +45,8 @@ export default function Customization(props) {
   };
 
   const onScaleChange = (changeEvent) => {
-    setCurrentScale(changeEvent.target.value / 10);
-    props.setScale(changeEvent.target.value / 10);
+    setCurrentSettings({ ...currentSettings, scale: changeEvent.target.value / 10});
+    props.setCustomizeSettings({ ...currentSettings, scale: changeEvent.target.value / 10});
   }
 
   return (
@@ -102,7 +100,7 @@ export default function Customization(props) {
             <input
               type="radio"
               value="light"
-              checked={currentTheme === "light"}
+              checked={currentSettings.theme === "light"}
               onChange={themeHandler}
             />
             Light
@@ -111,7 +109,7 @@ export default function Customization(props) {
             <input
               type="radio"
               value="dark"
-              checked={currentTheme === "dark"}
+              checked={currentSettings.theme === "dark"}
               onChange={themeHandler}
             />
             Dark
@@ -120,7 +118,7 @@ export default function Customization(props) {
             <input
               type="radio"
               value="classic"
-              checked={currentTheme === "classic"}
+              checked={currentSettings.theme === "classic"}
               onChange={themeHandler}
             />
             Classic
@@ -190,8 +188,8 @@ export default function Customization(props) {
         <br />
         <label>
           UI Scale
-          <input type="range" min="5" max="30" value={currentScale * 10} step="1" onChange={onScaleChange}></input>
-          <a>{currentScale}</a>
+          <input type="range" min="5" max="30" value={currentSettings.scale * 10} step="1" onChange={onScaleChange}></input>
+          <a>{currentSettings.scale}</a>
         </label>
       </div>
     </div>

@@ -87,12 +87,10 @@ class Menubar extends Component {
                     this.props.onOpen(
                       "Settings",
                       <Settings
-                        theme={this.props.theme}
-                        setTheme={this.props.setTheme}
                         background={this.props.background}
                         setBackground={this.props.setBackground}
-                        scale={this.props.scale}
-                        setScale={this.props.setScale}
+                        customizeSettings={this.props.customizeSettings}
+                        setCustomizeSettings={this.props.setCustomizeSettings}
                       />,
                       300,
                       300,
