@@ -103,10 +103,6 @@ class WindowManager extends Component {
     this.setState({ frameOverlayVisible: false });
   };
 
-  handleWindowListClick = (appId) => {
-    // focus stuff
-    console.log(appId);
-  }
 
   render() {
     return (
@@ -118,14 +114,23 @@ class WindowManager extends Component {
           }}
           className="frameOverlay"
         />
-        <Menubar onOpen={this.handleOpen} theme={this.props.theme} setTheme={this.props.setTheme} background={this.props.background} setBackground={this.props.setBackground}>
+        <Menubar 
+          onOpen={this.handleOpen}
+          theme={this.props.theme}
+          setTheme={this.props.setTheme}
+          background={this.props.background}
+          setBackground={this.props.setBackground}
+          scale={this.props.scale}
+          setScale={this.props.setScale}
+          >        
           <div className="openWindowList">
           {this.state.appWindows.map((appWindow) => (
-          <img src={appWindow.appIcon} alt="" onClick={this.handleWindowListClick(appWindow.id)}></img>
+          <img src={appWindow.appIcon} alt=""></img>
         ))}
           </div>
 
         </Menubar>
+        <div className="appWindowWrapper">
         {this.state.appWindows.map((appWindow) => (
           <AppWindow
             key={appWindow.id}
@@ -143,6 +148,7 @@ class WindowManager extends Component {
             {appWindow.appComponent}
           </AppWindow>
         ))}
+        </div>
       </React.Fragment>
     );
   }

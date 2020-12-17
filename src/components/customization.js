@@ -8,14 +8,16 @@ export default function Customization(props) {
   const [unsplashTerm, setUnsplashTerm] = useState("");
   const [currentBackground, setCurrentBackground] = useState(props.background);
   const [currentTheme, setCurrentTheme] = useState(props.theme);
+  const [currentScale, setCurrentScale] = useState(props.scale);
 
   // - Need to allow user to click image to select theme.
   // - Perhaps return object with other settings then parse them in the future?
+  // - Perhaps add opacity settings?
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let newImage = URL.createObjectURL(event.target.files[0]);
-      setCurrentBackground(newImage);
+      setCurrentBackground("url(" + newImage + ") ");
       props.setBackground("url(" + newImage + ") ");
     }
   };
@@ -33,16 +35,21 @@ export default function Customization(props) {
       "https://source.unsplash.com/" +
       widthHeight +
       "/?" +
-      unsplashTerm +
+      (unsplashTerm === "" ? "nature" : unsplashTerm) +
       "/" +
       d.getTime();
-    setCurrentBackground(newImage);
+    setCurrentBackground("url(" + newImage + ") ");
     props.setBackground("url(" + newImage + ") ");
   };
 
   const handleUnsplashInput = (changeEvent) => {
     setUnsplashTerm(changeEvent.target.value);
   };
+
+  const onScaleChange = (changeEvent) => {
+    setCurrentScale(changeEvent.target.value / 10);
+    props.setScale(changeEvent.target.value / 10);
+  }
 
   return (
     <div className="customization">
@@ -52,7 +59,7 @@ export default function Customization(props) {
           <div
             className="settingsPreviews"
             style={{
-              backgroundImage: "url(" + currentBackground + ")",
+              backgroundImage: currentBackground,
               marginRight: "1%",
             }}
           >
@@ -65,7 +72,7 @@ export default function Customization(props) {
           </div>
           <div
             className="settingsPreviews"
-            style={{ backgroundImage: "url(" + currentBackground + ")" }}
+            style={{ backgroundImage: currentBackground }}
           >
             <img
               className="settingsThemePreview"
@@ -77,7 +84,7 @@ export default function Customization(props) {
           <div
             className="settingsPreviews"
             style={{
-              backgroundImage: "url(" + currentBackground + ")",
+              backgroundImage: currentBackground,
               marginLeft: "1%",
             }}
           >
@@ -122,13 +129,6 @@ export default function Customization(props) {
       </div>
       <div className="backgroundPicker">
         <h2>Background</h2>
-        <img
-          className="settingsCurrentBackgroundPreview"
-          src={currentBackground}
-          width="100%"
-          alt=""
-        ></img>
-        <hr width="99%" />
         <div className="settingsPreviewsHolder">
           <img
             className="settingsBackgroundPreview"
@@ -152,7 +152,6 @@ export default function Customization(props) {
           ></img>
         </div>
         <div className="settingsBackgroundOptions">
-          <h3>Set background</h3>
           <label>
             Random from Unsplash
             <br />
@@ -167,6 +166,33 @@ export default function Customization(props) {
             <input type="file" onChange={onImageChange} />
           </label>
         </div>
+      </div>
+      <div className="backgroundPicker">
+        <h2>Misc</h2>
+        <label>
+          Connected Menubar
+          <input type="checkbox"></input>
+        </label>
+        <br />
+        <label>
+          Bottom Menubar
+          <input type="checkbox"></input>
+        </label>
+        <br />
+        <label>
+          Button Placement
+          <select>
+            <option value="RDE">RDE</option>
+            <option value="redmond">Redmond</option>
+            <option value="cupertino">Cupertino</option>
+          </select>
+        </label>
+        <br />
+        <label>
+          UI Scale
+          <input type="range" min="5" max="30" value={currentScale * 10} step="1" onChange={onScaleChange}></input>
+          <a>{currentScale}</a>
+        </label>
       </div>
     </div>
   );

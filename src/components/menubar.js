@@ -3,8 +3,8 @@ import "./menubar.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Notes from "../components/notes";
 import ChipPlayer from "./chipPlayer";
-import Settings from './settings';
-import appIconPlaceholder from '../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg';
+import Settings from "./settings";
+import appIconPlaceholder from "../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
 
 class Menubar extends Component {
   state = {
@@ -15,7 +15,7 @@ class Menubar extends Component {
         buttonText: "Notes",
         defaultWidth: 200,
         defaultHeight: 200,
-        appIcon: appIconPlaceholder
+        appIcon: appIconPlaceholder,
       },
       {
         appName: "Chip Player JS",
@@ -24,7 +24,7 @@ class Menubar extends Component {
         defaultWidth: "50%",
         defaultHeight: 500,
         customBackground: "#010088",
-        appIcon: appIconPlaceholder
+        appIcon: appIconPlaceholder,
       },
     ],
     time: new Date(),
@@ -72,7 +72,7 @@ class Menubar extends Component {
                     }
                   >
                     <img src={appButton.appIcon} alt=""></img>
-                    <a style={{float: "left"}}>{appButton.buttonText}</a>
+                    <a style={{ float: "left" }}>{appButton.buttonText}</a>
                   </button>
                   <NavDropdown.Divider />
                 </NavDropdown.Item>
@@ -84,8 +84,20 @@ class Menubar extends Component {
                 <button
                   className="menubarButton"
                   onClick={() =>
-                    this.props.onOpen("Settings", <Settings theme={this.props.theme} setTheme={this.props.setTheme} background={this.props.background} setBackground={this.props.setBackground}/>, 300, 300,
-                    appIconPlaceholder)
+                    this.props.onOpen(
+                      "Settings",
+                      <Settings
+                        theme={this.props.theme}
+                        setTheme={this.props.setTheme}
+                        background={this.props.background}
+                        setBackground={this.props.setBackground}
+                        scale={this.props.scale}
+                        setScale={this.props.setScale}
+                      />,
+                      300,
+                      300,
+                      appIconPlaceholder
+                    )
                   }
                 >
                   Settings
@@ -93,11 +105,7 @@ class Menubar extends Component {
                 <NavDropdown.Divider />
               </NavDropdown.Item>
             </NavDropdown>
-            <span className="openwindowListStuff">
-              {this.props.children}
-
-            </span>
-
+            <span className="openwindowListStuff">{this.props.children}</span>
           </div>
           <div className="menubarRight">
             <a>

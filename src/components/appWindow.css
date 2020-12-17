@@ -2,8 +2,6 @@
   display: block;
   background-color: white;
   box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
-  min-width: 10%;
-  min-height: 0.7cm;
   border-radius: 4px;
   overflow: hidden;
   transition: filter 0.2s;
@@ -13,10 +11,6 @@
     display: block;
     height: 100%;
     width: 100%;
-}
-
-.appContent {
-  height: calc(100% - 0.7cm);
 }
 
 .frameOverlay {
