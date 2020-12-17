@@ -3,7 +3,6 @@ import AppWindow from "./appWindow";
 import Notes from "./notes";
 import ChipPlayer from "./chipPlayer";
 import './appWindow.css';
-import Settings from './settings';
 import Menubar from "./menubar";
 import placeholderIcon from '../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg';
 
@@ -90,7 +89,7 @@ class WindowManager extends Component {
         this.setState({
           appWindows: newAppWindows,
           lastFocused: appId,
-          frameOverlayIndex: highest,
+          frameOverlayIndex: highest + 1,
         });
       }
     }

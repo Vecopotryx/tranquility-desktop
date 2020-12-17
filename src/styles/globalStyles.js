@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 //         background: url("https://raw.githubusercontent.com/Vecopotryx/retro-desktop-environment/master/source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg");
-
+// Perhaps add a scale variable, then multiply things like menubar height?
 
 
 /* for bottom menubar:
@@ -14,8 +14,9 @@ import { createGlobalStyle } from 'styled-components';
     */
 export const GlobalStyles = createGlobalStyle`
     body {
-        background: ${(props) => props.background};
-        background-size: cover;
+        background-image: ${(props) => props.background};
+        background-size: 105%;
+        min-height: 100%;
         color: ${({theme}) => theme.text};
     }
     .titlebar, .titlebarUnfocused {
@@ -34,6 +35,10 @@ export const GlobalStyles = createGlobalStyle`
     .titlebarUnfocused {
         color: ${({theme}) => theme.unfocusedText};
         background: ${({theme}) => theme.unfocusedTitlebarBackground};
+    }
+
+    .titlebarUnfocused > button {
+        color: ${({theme}) => theme.unfocusedText};
     }
 
     .collapseWindow {
