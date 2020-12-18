@@ -18,7 +18,7 @@ export const GlobalStyles = createGlobalStyle`
     .titlebar, .titlebarUnfocused {
         width: 100%;
         height: ${({scale}) => scale * 0.7}cm;
-        color: ${({theme}) => theme.text};
+        color: ${({theme}) => theme.titlebarTextColor};
         background: ${({theme}) => theme.titlebarBackground};
         text-align: ${({theme}) => theme.titlebarTextAlignment};
         user-select: none;
@@ -201,6 +201,7 @@ export const lightTheme = {
     background: '255, 255, 255',
     text: '#121212',
     unfocusedText: 'gray',
+    titlebarTextColor: '#121212',
     titlebarBackground: 'linear-gradient(to right, white, lightgray)',
     unfocusedTitlebarBackground: 'linear-gradient(to right, white, lightgray)',
     collapseWindowPosition: "right",
@@ -214,6 +215,7 @@ export const darkTheme = {
     background: '9, 10, 12',
     text: '#fff',
     unfocusedText: 'gray',
+    titlebarTextColor: '#fff',
     titlebarBackground: 'linear-gradient(to right, #090a0c, gray)',
     unfocusedTitlebarBackground: 'linear-gradient(to right, #090a0c, gray)',
     collapseWindowPosition: "right",
@@ -224,10 +226,11 @@ export const darkTheme = {
 
 export const classicTheme = {
     background: '169, 169, 169',
-    text: '#fff',
+    text: '#121212',
     unfocusedText: 'gray',
+    titlebarTextColor: '#fff',
     titlebarBackground: '#00008B',
-    unfocusedTitlebarBackground: '#A9A9A9',
+    unfocusedTitlebarBackground: '#606060',
     collapseWindowPosition: "right",
     closeWindowPosition: "right",
     titlebarTextAlignment: "left",
