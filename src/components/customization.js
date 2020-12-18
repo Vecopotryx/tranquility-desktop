@@ -7,10 +7,11 @@ import defaultBackground3 from "../img/nasa-Q1p7bh3SHj8-unsplash.jpg";
 export default function Customization(props) {
   const [unsplashTerm, setUnsplashTerm] = useState("");
   const [currentBackground, setCurrentBackground] = useState(props.background);
-  const [currentSettings, setCurrentSettings] = useState(props.customizeSettings);
+  const [currentSettings, setCurrentSettings] = useState(
+    props.customizeSettings
+  );
 
   // - Need to allow user to click image to select theme.
-  // - Perhaps add opacity settings?
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -21,8 +22,11 @@ export default function Customization(props) {
   };
 
   const themeHandler = (changeEvent) => {
-    setCurrentSettings({ ...currentSettings, theme: changeEvent.target.value});
-    props.setCustomizeSettings({ ...currentSettings, theme: changeEvent.target.value});
+    setCurrentSettings({ ...currentSettings, theme: changeEvent.target.value });
+    props.setCustomizeSettings({
+      ...currentSettings,
+      theme: changeEvent.target.value,
+    });
   };
 
   const unsplashHandler = () => {
@@ -45,24 +49,56 @@ export default function Customization(props) {
   };
 
   const onScaleChange = (changeEvent) => {
-    setCurrentSettings({ ...currentSettings, scale: changeEvent.target.value / 10});
-    props.setCustomizeSettings({ ...currentSettings, scale: changeEvent.target.value / 10});
-  }
+    setCurrentSettings({
+      ...currentSettings,
+      scale: changeEvent.target.value / 10,
+    });
+    props.setCustomizeSettings({
+      ...currentSettings,
+      scale: changeEvent.target.value / 10,
+    });
+  };
 
   const handleConnectedMenubar = (changeEvent) => {
-    setCurrentSettings({ ...currentSettings, connectedMenubar: changeEvent.target.checked});
-    props.setCustomizeSettings({ ...currentSettings, connectedMenubar: changeEvent.target.checked});
-  }
+    setCurrentSettings({
+      ...currentSettings,
+      connectedMenubar: changeEvent.target.checked,
+    });
+    props.setCustomizeSettings({
+      ...currentSettings,
+      connectedMenubar: changeEvent.target.checked,
+    });
+  };
 
   const handleBottomMenubar = (changeEvent) => {
-    setCurrentSettings({ ...currentSettings, bottomMenubar: changeEvent.target.checked});
-    props.setCustomizeSettings({ ...currentSettings, bottomMenubar: changeEvent.target.checked});
-  }
+    setCurrentSettings({
+      ...currentSettings,
+      bottomMenubar: changeEvent.target.checked,
+    });
+    props.setCustomizeSettings({
+      ...currentSettings,
+      bottomMenubar: changeEvent.target.checked,
+    });
+  };
 
   const onOpacityChange = (changeEvent) => {
-    setCurrentSettings({ ...currentSettings, opacity: changeEvent.target.value / 10});
-    props.setCustomizeSettings({ ...currentSettings, opacity: changeEvent.target.value / 10});
-  }
+    setCurrentSettings({
+      ...currentSettings,
+      opacity: changeEvent.target.value / 10,
+    });
+    props.setCustomizeSettings({
+      ...currentSettings,
+      opacity: changeEvent.target.value / 10,
+    });
+  };
+
+  const fontHandler = (changeEvent) => {
+    setCurrentSettings({ ...currentSettings, font: changeEvent.target.value });
+    props.setCustomizeSettings({
+      ...currentSettings,
+      font: changeEvent.target.value,
+    });
+  };
 
   return (
     <div className="customization">
@@ -184,12 +220,20 @@ export default function Customization(props) {
         <h2>Misc</h2>
         <label>
           Connected Menubar
-          <input type="checkbox" checked={currentSettings.connectedMenubar} onChange={handleConnectedMenubar}></input>
+          <input
+            type="checkbox"
+            checked={currentSettings.connectedMenubar}
+            onChange={handleConnectedMenubar}
+          ></input>
         </label>
         <br />
         <label>
           Bottom Menubar
-          <input type="checkbox" checked={currentSettings.bottomMenubar} onChange={handleBottomMenubar}></input>
+          <input
+            type="checkbox"
+            checked={currentSettings.bottomMenubar}
+            onChange={handleBottomMenubar}
+          ></input>
         </label>
         <br />
         <label>
@@ -203,14 +247,48 @@ export default function Customization(props) {
         <br />
         <label>
           UI Scale
-          <input type="range" min="5" max="30" value={currentSettings.scale * 10} step="1" onChange={onScaleChange}></input>
+          <input
+            type="range"
+            min="5"
+            max="30"
+            value={currentSettings.scale * 10}
+            step="1"
+            onChange={onScaleChange}
+          ></input>
           <a>{currentSettings.scale}</a>
         </label>
         <br />
         <label>
           Opacity
-          <input type="range" min="1" max="10" value={currentSettings.opacity * 10} step="1" onChange={onOpacityChange}></input>
+          <input
+            type="range"
+            min="1"
+            max="10"
+            value={currentSettings.opacity * 10}
+            step="1"
+            onChange={onOpacityChange}
+          ></input>
           <a>{currentSettings.opacity}</a>
+        </label>
+        <h2>Font</h2>
+        <label>
+          <input
+            type="radio"
+            value="modern"
+            checked={currentSettings.font === "modern"}
+            onChange={fontHandler}
+          />
+          <a style={{fontFamily: "Sans-serif"}}>Modern</a>
+        </label>
+        <br />
+        <label>
+          <input
+            type="radio"
+            value="retro"
+            checked={currentSettings.font === "retro"}
+            onChange={fontHandler}
+          />
+          <a style={{fontFamily: "retro"}}>Retro</a>
         </label>
       </div>
     </div>
