@@ -6,68 +6,38 @@ export default function Customization(props) {
     props.customizeSettings
   );
 
-  // - Need to allow user to click image to select theme.
-
-  const themeHandler = (changeEvent) => {
-    const newCurrentSettings = { ...currentSettings, theme: changeEvent.target.value };
-    setCurrentSettings(newCurrentSettings);
-    props.setCustomizeSettings(newCurrentSettings);
-    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
-  };
-
-  const onScaleChange = (changeEvent) => {
-    const newCurrentSettings = { ...currentSettings, scale: changeEvent.target.value / 10 };
-    setCurrentSettings(newCurrentSettings);
-    props.setCustomizeSettings(newCurrentSettings);
-    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
-  };
-
-  const handleConnectedMenubar = (changeEvent) => {
-    const newCurrentSettings = { ...currentSettings, connectedMenubar: changeEvent.target.checked };
-    setCurrentSettings(newCurrentSettings);
-    props.setCustomizeSettings(newCurrentSettings);
-    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
-  };
-
-  const handleBottomMenubar = (changeEvent) => {
-    const newCurrentSettings = { ...currentSettings, bottomMenubar: changeEvent.target.checked };
-    setCurrentSettings(newCurrentSettings);
-    props.setCustomizeSettings(newCurrentSettings);
-    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
-  };
-
-  const onOpacityChange = (changeEvent) => {
-    const newCurrentSettings = { ...currentSettings, opacity: changeEvent.target.value / 10 };
-    setCurrentSettings(newCurrentSettings);
-    props.setCustomizeSettings(newCurrentSettings);
-    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
-  };
-
-  const fontHandler = (changeEvent) => {
-    const newCurrentSettings = { ...currentSettings, font: changeEvent.target.value };
-    setCurrentSettings(newCurrentSettings);
-    props.setCustomizeSettings(newCurrentSettings);
-    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
-  };
-
   const setDefaultSettings = () => {
+    const defaultSettings = {
+      theme: "dark",
+      scale: 1,
+      connectedMenubar: false,
+      bottomMenubar: false,
+      opacity: 1,
+      font: "modern",
+      usingLocalStorage: currentSettings.usingLocalStorage,
+    };
+    setCurrentSettings(defaultSettings);
+    props.setCustomizeSettings(defaultSettings);
     localStorage.clear();
-    setCurrentSettings({
-      theme: "dark",
-      scale: 1,
-      connectedMenubar: false,
-      bottomMenubar: false,
-      opacity: 1,
-      font: "modern",
-    });
-    props.setCustomizeSettings({
-      theme: "dark",
-      scale: 1,
-      connectedMenubar: false,
-      bottomMenubar: false,
-      opacity: 1,
-      font: "modern",
-    });
+  };
+
+  const updateSettings = (property, value) => {
+    const newCurrentSettings = { ...currentSettings, [property]: value };
+    setCurrentSettings(newCurrentSettings);
+    props.setCustomizeSettings(newCurrentSettings);
+    if (newCurrentSettings.usingLocalStorage) {
+      localStorage.setItem(
+        "customizeSettings",
+        JSON.stringify(newCurrentSettings)
+      );
+    }
+  };
+
+  const toggleLocalStorage = (e) => {
+    updateSettings("usingLocalStorage", e.target.checked);
+    if (!e.target.checked) {
+      localStorage.clear();
+    }
   };
 
   return (
@@ -86,18 +56,20 @@ export default function Customization(props) {
               className="settingsThemePreview"
               src={darkmodeImage}
               width="100%"
-              alt=""
+              alt="Light"
+              onClick={() => updateSettings("theme", "light")}
             ></img>
           </div>
           <div
             className="settingsPreviews"
             style={{ backgroundImage: props.background }}
+            onClick={() => updateSettings("theme", "dark")}
           >
             <img
               className="settingsThemePreview"
               src={darkmodeImage}
               width="100%"
-              alt=""
+              alt="Dark"
             ></img>
           </div>
           <div
@@ -106,12 +78,13 @@ export default function Customization(props) {
               backgroundImage: props.background,
               marginLeft: "1%",
             }}
+            onClick={() => updateSettings("theme", "classic")}
           >
             <img
               className="settingsThemePreview"
               src={darkmodeImage}
               width="100%"
-              alt=""
+              alt="Classic"
             ></img>
           </div>
         </div>
@@ -122,7 +95,7 @@ export default function Customization(props) {
               type="radio"
               value="light"
               checked={currentSettings.theme === "light"}
-              onChange={themeHandler}
+              onChange={(e) => updateSettings("theme", e.target.value)}
             />
             Light
           </label>
@@ -131,7 +104,7 @@ export default function Customization(props) {
               type="radio"
               value="dark"
               checked={currentSettings.theme === "dark"}
-              onChange={themeHandler}
+              onChange={(e) => updateSettings("theme", e.target.value)}
             />
             Dark
           </label>
@@ -140,7 +113,7 @@ export default function Customization(props) {
               type="radio"
               value="classic"
               checked={currentSettings.theme === "classic"}
-              onChange={themeHandler}
+              onChange={(e) => updateSettings("theme", e.target.value)}
             />
             Classic
           </label>
@@ -153,7 +126,9 @@ export default function Customization(props) {
           <input
             type="checkbox"
             checked={currentSettings.connectedMenubar}
-            onChange={handleConnectedMenubar}
+            onChange={(e) =>
+              updateSettings("connectedMenubar", e.target.checked)
+            }
           ></input>
         </label>
         <br />
@@ -162,7 +137,7 @@ export default function Customization(props) {
           <input
             type="checkbox"
             checked={currentSettings.bottomMenubar}
-            onChange={handleBottomMenubar}
+            onChange={(e) => updateSettings("bottomMenubar", e.target.checked)}
           ></input>
         </label>
         <br />
@@ -183,7 +158,7 @@ export default function Customization(props) {
             max="30"
             value={currentSettings.scale * 10}
             step="1"
-            onChange={onScaleChange}
+            onChange={(e) => updateSettings("scale", e.target.value / 10)}
           ></input>
           <a>{currentSettings.scale}</a>
         </label>
@@ -196,7 +171,7 @@ export default function Customization(props) {
             max="10"
             value={currentSettings.opacity * 10}
             step="1"
-            onChange={onOpacityChange}
+            onChange={(e) => updateSettings("opacity", e.target.value / 10)}
           ></input>
           <a>{currentSettings.opacity}</a>
         </label>
@@ -206,7 +181,7 @@ export default function Customization(props) {
             type="radio"
             value="modern"
             checked={currentSettings.font === "modern"}
-            onChange={fontHandler}
+            onChange={(e) => updateSettings("font", e.target.value)}
           />
           <a style={{ fontFamily: "Sans-serif" }}>Modern</a>
         </label>
@@ -216,11 +191,19 @@ export default function Customization(props) {
             type="radio"
             value="retro"
             checked={currentSettings.font === "retro"}
-            onChange={fontHandler}
+            onChange={(e) => updateSettings("font", e.target.value)}
           />
           <a style={{ fontFamily: "retro" }}>Retro</a>
         </label>
-        <hr/>
+        <hr />
+        <label>
+          Use cookies/localStorage
+          <input
+            type="checkbox"
+            checked={currentSettings.usingLocalStorage}
+            onChange={toggleLocalStorage}
+          ></input>
+        </label>
         <button onClick={setDefaultSettings}>Revert to default settings</button>
       </div>
     </div>
