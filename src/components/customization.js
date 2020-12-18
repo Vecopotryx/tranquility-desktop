@@ -100,6 +100,25 @@ export default function Customization(props) {
     });
   };
 
+  const setDefaultSettings = () => {
+    setCurrentSettings({
+      theme: "dark",
+      scale: 1,
+      connectedMenubar: false,
+      bottomMenubar: false,
+      opacity: 1,
+      font: "modern",
+    });
+    props.setCustomizeSettings({
+      theme: "dark",
+      scale: 1,
+      connectedMenubar: false,
+      bottomMenubar: false,
+      opacity: 1,
+      font: "modern",
+    });
+  };
+
   return (
     <div className="customization">
       <div className="themePicker">
@@ -278,7 +297,7 @@ export default function Customization(props) {
             checked={currentSettings.font === "modern"}
             onChange={fontHandler}
           />
-          <a style={{fontFamily: "Sans-serif"}}>Modern</a>
+          <a style={{ fontFamily: "Sans-serif" }}>Modern</a>
         </label>
         <br />
         <label>
@@ -288,8 +307,10 @@ export default function Customization(props) {
             checked={currentSettings.font === "retro"}
             onChange={fontHandler}
           />
-          <a style={{fontFamily: "retro"}}>Retro</a>
+          <a style={{ fontFamily: "retro" }}>Retro</a>
         </label>
+        <hr/>
+        <button onClick={setDefaultSettings}>Revert to default settings</button>
       </div>
     </div>
   );
