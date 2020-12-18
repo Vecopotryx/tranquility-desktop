@@ -5,6 +5,7 @@ import ChipPlayer from "./chipPlayer";
 import './appWindow.css';
 import Menubar from "./menubar";
 import placeholderIcon from '../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg';
+import Greeter from './greeter'
 
 class WindowManager extends Component {
   state = {
@@ -21,8 +22,8 @@ class WindowManager extends Component {
       },
       {
         id: 2,
-        appName: "Chip Player JS",
-        appComponent: <ChipPlayer />,
+        appName: "Welcome to RDE",
+        appComponent: <Greeter />,
         zIndex: 2,
         defaultWidth: "50%",
         defaultHeight: 500,
