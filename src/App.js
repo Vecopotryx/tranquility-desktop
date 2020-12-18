@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   GlobalStyles,
   lightTheme,
@@ -19,7 +19,16 @@ function App() {
     bottomMenubar: false,
     opacity: 1,
     font: "modern",
+    usingCookies: true,
   });
+    // Actually using localStorage, but keeping the name usingCookies for now.
+
+  useEffect(() => {
+    const storedSettings = JSON.parse(localStorage.getItem('customizeSettings'));
+    if(storedSettings != null){
+      setCustomizeSettings(storedSettings);
+    }
+  }, []);
 
   let themeMode = lightTheme;
   switch (customizeSettings.theme) {
