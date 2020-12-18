@@ -41,6 +41,7 @@ export const GlobalStyles = createGlobalStyle`
 
     .titlebarUnfocused > button {
         font-size: ${({scale}) => scale * 15}px;
+        line-height: ${({scale}) => scale * 0.7}cm;
         color: ${({theme}) => theme.unfocusedText};
     }
 
@@ -172,7 +173,7 @@ export const GlobalStyles = createGlobalStyle`
     width: 100%;
 }
 
-.customization {
+.customization, .backgroundPicker {
     padding: 3%;
 }
 
@@ -214,7 +215,7 @@ export const lightTheme = {
 export const darkTheme = {
     background: '9, 10, 12',
     text: '#fff',
-    unfocusedText: 'gray',
+    unfocusedText: 'darkgray',
     titlebarTextColor: '#fff',
     titlebarBackground: 'linear-gradient(to right, #090a0c, gray)',
     unfocusedTitlebarBackground: 'linear-gradient(to right, #090a0c, gray)',
