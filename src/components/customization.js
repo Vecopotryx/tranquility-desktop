@@ -54,6 +54,11 @@ export default function Customization(props) {
     props.setCustomizeSettings({ ...currentSettings, connectedMenubar: changeEvent.target.checked});
   }
 
+  const handleBottomMenubar = (changeEvent) => {
+    setCurrentSettings({ ...currentSettings, bottomMenubar: changeEvent.target.checked});
+    props.setCustomizeSettings({ ...currentSettings, bottomMenubar: changeEvent.target.checked});
+  }
+
   return (
     <div className="customization">
       <div className="themePicker">
@@ -179,7 +184,7 @@ export default function Customization(props) {
         <br />
         <label>
           Bottom Menubar
-          <input type="checkbox"></input>
+          <input type="checkbox" checked={currentSettings.bottomMenubar} onChange={handleBottomMenubar}></input>
         </label>
         <br />
         <label>
