@@ -1,17 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-//         background: url("https://raw.githubusercontent.com/Vecopotryx/retro-desktop-environment/master/source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg");
-// Perhaps add a scale variable, then multiply things like menubar height?
-
-
-/* for bottom menubar:
-    .menubar {
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        background-color: #090a0c;
-    }
-    */
 export const GlobalStyles = createGlobalStyle`
     body {
         background-image: ${(props) => props.background};
@@ -82,15 +70,17 @@ export const GlobalStyles = createGlobalStyle`
         height: ${({scale}) => scale * 0.7}cm;
         background-color: ${({customizeSettings}) => customizeSettings.connectedMenubar ?  ({theme}) => theme.background : "transparent" };
         border-radius: ${({theme}) => theme.borderRadius};
+        bottom: ${({customizeSettings}) => customizeSettings.bottomMenubar ?  "0" : "" };
     }
 
 
 .menubarLeft, .menubarRight {
-    font-size: ${({scale}) => scale * 15}px;
+    font-size: ${({scale}) => scale * 16}px;
     background-color: ${({theme}) => theme.background};
     color: ${({theme}) => theme.text};
     height: ${({scale}) => scale * 0.7}cm;
     border-radius: ${({theme}) => theme.borderRadius};
+    line-height: ${({scale}) => scale * 0.7}cm;;
     padding-left: 0.2%;
     padding-right: 0.2%;
 }
