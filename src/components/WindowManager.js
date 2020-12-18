@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import AppWindow from "./appWindow";
 import Notes from "./notes";
 import ChipPlayer from "./chipPlayer";
-import './appWindow.css';
+import "./appWindow.css";
 import Menubar from "./menubar";
-import placeholderIcon from '../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg';
-import Greeter from './greeter'
+import placeholderIcon from "../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
+import Greeter from "./greeter";
 
 class WindowManager extends Component {
   state = {
@@ -18,22 +18,29 @@ class WindowManager extends Component {
         defaultWidth: 200,
         defaultHeight: 200,
         isUnfocused: false,
-        appIcon: placeholderIcon
+        appIcon: placeholderIcon,
       },
       {
         id: 2,
         appName: "Welcome to RDE",
-        appComponent: <Greeter />,
+        appComponent: (
+          <Greeter
+            setBackground={this.props.setBackground}
+            customizeSettings={this.props.customizeSettings}
+            setCustomizeSettings={this.props.setCustomizeSettings}
+            handleClose={this.handleClose}
+          />
+        ),
         zIndex: 2,
         defaultWidth: "50%",
         defaultHeight: 500,
         isUnfocused: false,
-        appIcon: placeholderIcon
+        appIcon: placeholderIcon,
       },
     ],
     lastFocused: 0,
     frameOverlayVisible: false,
-    frameOverlayIndex: 2
+    frameOverlayIndex: 2,
   };
 
   handleClose = (appId) => {
@@ -68,7 +75,7 @@ class WindowManager extends Component {
           defaultWidth: defaultWidth,
           defaultHeight: defaultHeight,
           appIcon: appIcon,
-          backgroundColor: backgroundColor
+          backgroundColor: backgroundColor,
         },
       ],
       frameOverlayIndex: highest + 1,
@@ -104,7 +111,6 @@ class WindowManager extends Component {
     this.setState({ frameOverlayVisible: false });
   };
 
-
   render() {
     return (
       <React.Fragment>
@@ -115,38 +121,37 @@ class WindowManager extends Component {
           }}
           className="frameOverlay"
         />
-        <Menubar 
+        <Menubar
           onOpen={this.handleOpen}
           background={this.props.background}
           setBackground={this.props.setBackground}
           customizeSettings={this.props.customizeSettings}
           setCustomizeSettings={this.props.setCustomizeSettings}
-          >        
+        >
           <div className="openWindowList">
-          {this.state.appWindows.map((appWindow) => (
-          <img src={appWindow.appIcon} alt=""></img>
-        ))}
+            {this.state.appWindows.map((appWindow) => (
+              <img src={appWindow.appIcon} alt=""></img>
+            ))}
           </div>
-
         </Menubar>
         <div className="appWindowWrapper">
-        {this.state.appWindows.map((appWindow) => (
-          <AppWindow
-            key={appWindow.id}
-            id={appWindow.id}
-            appName={appWindow.appName}
-            zIndex={appWindow.zIndex}
-            defaultHeight={appWindow.defaultHeight}
-            defaultWidth={appWindow.defaultWidth}
-            isUnfocused={appWindow.isUnfocused}
-            onClose={this.handleClose}
-            onFocus={this.handleFocus}
-            onResizeOrDragStart={this.handleResizeOrDragStart}
-            onResizeOrDragStop={this.handleResizeOrDragStop}
-          >
-            {appWindow.appComponent}
-          </AppWindow>
-        ))}
+          {this.state.appWindows.map((appWindow) => (
+            <AppWindow
+              key={appWindow.id}
+              id={appWindow.id}
+              appName={appWindow.appName}
+              zIndex={appWindow.zIndex}
+              defaultHeight={appWindow.defaultHeight}
+              defaultWidth={appWindow.defaultWidth}
+              isUnfocused={appWindow.isUnfocused}
+              onClose={this.handleClose}
+              onFocus={this.handleFocus}
+              onResizeOrDragStart={this.handleResizeOrDragStart}
+              onResizeOrDragStop={this.handleResizeOrDragStop}
+            >
+              {appWindow.appComponent}
+            </AppWindow>
+          ))}
         </div>
       </React.Fragment>
     );
