@@ -80,6 +80,7 @@ export default function Welcome(props) {
         <label>
             Remember settings (enable cookies)
           <input
+            checked
             type="checkbox"
           ></input>
           <br/>

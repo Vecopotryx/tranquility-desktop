@@ -9,66 +9,49 @@ export default function Customization(props) {
   // - Need to allow user to click image to select theme.
 
   const themeHandler = (changeEvent) => {
-    setCurrentSettings({ ...currentSettings, theme: changeEvent.target.value });
-    props.setCustomizeSettings({
-      ...currentSettings,
-      theme: changeEvent.target.value,
-    });
+    const newCurrentSettings = { ...currentSettings, theme: changeEvent.target.value };
+    setCurrentSettings(newCurrentSettings);
+    props.setCustomizeSettings(newCurrentSettings);
+    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
   };
 
   const onScaleChange = (changeEvent) => {
-    setCurrentSettings({
-      ...currentSettings,
-      scale: changeEvent.target.value / 10,
-    });
-    props.setCustomizeSettings({
-      ...currentSettings,
-      scale: changeEvent.target.value / 10,
-    });
+    const newCurrentSettings = { ...currentSettings, scale: changeEvent.target.value / 10 };
+    setCurrentSettings(newCurrentSettings);
+    props.setCustomizeSettings(newCurrentSettings);
+    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
   };
 
   const handleConnectedMenubar = (changeEvent) => {
-    setCurrentSettings({
-      ...currentSettings,
-      connectedMenubar: changeEvent.target.checked,
-    });
-    props.setCustomizeSettings({
-      ...currentSettings,
-      connectedMenubar: changeEvent.target.checked,
-    });
+    const newCurrentSettings = { ...currentSettings, connectedMenubar: changeEvent.target.checked };
+    setCurrentSettings(newCurrentSettings);
+    props.setCustomizeSettings(newCurrentSettings);
+    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
   };
 
   const handleBottomMenubar = (changeEvent) => {
-    setCurrentSettings({
-      ...currentSettings,
-      bottomMenubar: changeEvent.target.checked,
-    });
-    props.setCustomizeSettings({
-      ...currentSettings,
-      bottomMenubar: changeEvent.target.checked,
-    });
+    const newCurrentSettings = { ...currentSettings, bottomMenubar: changeEvent.target.checked };
+    setCurrentSettings(newCurrentSettings);
+    props.setCustomizeSettings(newCurrentSettings);
+    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
   };
 
   const onOpacityChange = (changeEvent) => {
-    setCurrentSettings({
-      ...currentSettings,
-      opacity: changeEvent.target.value / 10,
-    });
-    props.setCustomizeSettings({
-      ...currentSettings,
-      opacity: changeEvent.target.value / 10,
-    });
+    const newCurrentSettings = { ...currentSettings, opacity: changeEvent.target.value / 10 };
+    setCurrentSettings(newCurrentSettings);
+    props.setCustomizeSettings(newCurrentSettings);
+    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
   };
 
   const fontHandler = (changeEvent) => {
-    setCurrentSettings({ ...currentSettings, font: changeEvent.target.value });
-    props.setCustomizeSettings({
-      ...currentSettings,
-      font: changeEvent.target.value,
-    });
+    const newCurrentSettings = { ...currentSettings, font: changeEvent.target.value };
+    setCurrentSettings(newCurrentSettings);
+    props.setCustomizeSettings(newCurrentSettings);
+    localStorage.setItem('customizeSettings', JSON.stringify(newCurrentSettings));
   };
 
   const setDefaultSettings = () => {
+    localStorage.clear();
     setCurrentSettings({
       theme: "dark",
       scale: 1,

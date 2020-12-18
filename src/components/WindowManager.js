@@ -12,16 +12,6 @@ class WindowManager extends Component {
     appWindows: [
       {
         id: 1,
-        appName: "Notes",
-        appComponent: <Notes />,
-        zIndex: 1,
-        defaultWidth: 200,
-        defaultHeight: 200,
-        isUnfocused: false,
-        appIcon: placeholderIcon,
-      },
-      {
-        id: 2,
         appName: "Welcome to RDE",
         appComponent: (
           <Greeter
@@ -31,7 +21,7 @@ class WindowManager extends Component {
             handleClose={this.handleClose}
           />
         ),
-        zIndex: 2,
+        zIndex: 1,
         defaultWidth: "50%",
         defaultHeight: 500,
         isUnfocused: false,
