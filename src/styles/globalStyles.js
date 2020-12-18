@@ -1,11 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
+import perfectDOS from './Perfect_DOS_VGA_437_Win.ttf'; 
 
 export const GlobalStyles = createGlobalStyle`
+    @font-face {
+        font-family: "retro";
+        src: local("perfect-dos"),
+        url(${perfectDOS}) format("truetype");
+    ;}
+
     body {
         background-image: ${(props) => props.background};
         background-size: 105%;
         min-height: 100%;
         color: ${({theme}) => theme.text};
+        font-family: ${({customizeSettings}) => customizeSettings.font === "retro" ?  "retro" : "" };
     }
     .titlebar, .titlebarUnfocused {
         width: 100%;
@@ -17,10 +25,12 @@ export const GlobalStyles = createGlobalStyle`
         transition: background 0.2s;
     }
     .titlebar > button {
+        line-height: ${({scale}) => scale * 0.7}cm;
         font-size: ${({scale}) => scale * 15}px;
     }
     .titlebar > a, .titlebarUnfocused > a {
         font-size: ${({scale}) => scale * 15}px;
+        line-height: ${({scale}) => scale * 0.7}cm;
         padding-right: 10px;
         padding-left: 10px;
     }
@@ -81,7 +91,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({theme}) => theme.text};
     height: ${({scale}) => scale * 0.7}cm;
     border-radius: ${({theme}) => theme.borderRadius};
-    line-height: ${({scale}) => scale * 0.7}cm;;
+    line-height: ${({scale}) => scale * 0.7}cm;
     padding-left: 0.2%;
     padding-right: 0.2%;
 }
@@ -100,7 +110,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 .menubarDropdown > * {
-    padding-right: 5px;
+    padding-right: ${({scale}) => scale * 5}px;
 }
 
 .menubarButton {
@@ -114,6 +124,7 @@ export const GlobalStyles = createGlobalStyle`
     align-items: center;
     float: right;
     font-size: ${({scale}) => scale * 15}px;
+    font-family: ${({customizeSettings}) => customizeSettings.font === "retro" ?  "retro" : "" };
     color: ${({theme}) => theme.text};
 }
 
