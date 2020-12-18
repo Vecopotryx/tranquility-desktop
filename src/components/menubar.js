@@ -56,52 +56,56 @@ class Menubar extends Component {
         <nav className="menubar">
           <div className="menubarLeft">
             <NavDropdown className="menubarDropdown" title="Applications">
-              {this.state.appButtons.map((appButton) => (
+              <div className="menubarList">
+                {this.state.appButtons.map((appButton) => (
+                  <NavDropdown.Item>
+                    <button
+                      className="menubarButton"
+                      onClick={() =>
+                        this.props.onOpen(
+                          appButton.appName,
+                          appButton.appComponent,
+                          appButton.defaultWidth,
+                          appButton.defaultHeight,
+                          appButton.appIcon,
+                          appButton.customBackground
+                        )
+                      }
+                    >
+                      <img src={appButton.appIcon} alt=""></img>
+                      <a style={{ float: "left" }}>{appButton.buttonText}</a>
+                    </button>
+                    <NavDropdown.Divider />
+                  </NavDropdown.Item>
+                ))}
+              </div>
+            </NavDropdown>
+
+            <NavDropdown className="menubarDropdown" title="Options">
+              <div className="menubarList">
                 <NavDropdown.Item>
                   <button
                     className="menubarButton"
                     onClick={() =>
                       this.props.onOpen(
-                        appButton.appName,
-                        appButton.appComponent,
-                        appButton.defaultWidth,
-                        appButton.defaultHeight,
-                        appButton.appIcon,
-                        appButton.customBackground
+                        "Settings",
+                        <Settings
+                          background={this.props.background}
+                          setBackground={this.props.setBackground}
+                          customizeSettings={this.props.customizeSettings}
+                          setCustomizeSettings={this.props.setCustomizeSettings}
+                        />,
+                        300,
+                        800,
+                        appIconPlaceholder
                       )
                     }
                   >
-                    <img src={appButton.appIcon} alt=""></img>
-                    <a style={{ float: "left" }}>{appButton.buttonText}</a>
+                    Settings
                   </button>
                   <NavDropdown.Divider />
                 </NavDropdown.Item>
-              ))}
-            </NavDropdown>
-
-            <NavDropdown className="menubarDropdown" title="Options">
-              <NavDropdown.Item>
-                <button
-                  className="menubarButton"
-                  onClick={() =>
-                    this.props.onOpen(
-                      "Settings",
-                      <Settings
-                        background={this.props.background}
-                        setBackground={this.props.setBackground}
-                        customizeSettings={this.props.customizeSettings}
-                        setCustomizeSettings={this.props.setCustomizeSettings}
-                      />,
-                      300,
-                      300,
-                      appIconPlaceholder
-                    )
-                  }
-                >
-                  Settings
-                </button>
-                <NavDropdown.Divider />
-              </NavDropdown.Item>
+              </div>
             </NavDropdown>
             <span className="openwindowListStuff">{this.props.children}</span>
           </div>

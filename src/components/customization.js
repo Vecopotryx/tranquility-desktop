@@ -59,6 +59,11 @@ export default function Customization(props) {
     props.setCustomizeSettings({ ...currentSettings, bottomMenubar: changeEvent.target.checked});
   }
 
+  const onOpacityChange = (changeEvent) => {
+    setCurrentSettings({ ...currentSettings, opacity: changeEvent.target.value / 10});
+    props.setCustomizeSettings({ ...currentSettings, opacity: changeEvent.target.value / 10});
+  }
+
   return (
     <div className="customization">
       <div className="themePicker">
@@ -200,6 +205,12 @@ export default function Customization(props) {
           UI Scale
           <input type="range" min="5" max="30" value={currentSettings.scale * 10} step="1" onChange={onScaleChange}></input>
           <a>{currentSettings.scale}</a>
+        </label>
+        <br />
+        <label>
+          Opacity
+          <input type="range" min="1" max="10" value={currentSettings.opacity * 10} step="1" onChange={onOpacityChange}></input>
+          <a>{currentSettings.opacity}</a>
         </label>
       </div>
     </div>

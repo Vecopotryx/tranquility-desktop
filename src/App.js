@@ -5,7 +5,7 @@ import WindowManager from './components/WindowManager';
 
 function App() {
   const [background, setBackground] = useState("url('https://raw.githubusercontent.com/Vecopotryx/retro-desktop-environment/master/source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg')");  
-  const [customizeSettings, setCustomizeSettings] = useState({theme: "dark", scale: 1, connectedMenubar: false, bottomMenubar: false});
+  const [customizeSettings, setCustomizeSettings] = useState({theme: "dark", scale: 1, connectedMenubar: false, bottomMenubar: false, opacity: 1});
 
   let themeMode = lightTheme;
   switch(customizeSettings.theme){

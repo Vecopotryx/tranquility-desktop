@@ -47,12 +47,13 @@ export const GlobalStyles = createGlobalStyle`
     .appWindow {
         border-radius: ${({theme}) => theme.borderRadius};
         border: ${({theme}) => theme.border};
+        background-color: ${({theme}) => theme.background};
+        background-color: rgba(${({theme}) => theme.background},${({customizeSettings}) => customizeSettings.opacity});
     }
 
     .appWindow, .appContent {
         min-height: ${({scale}) => scale * 0.7}cm;
         min-width: ${({scale}) => scale * 4}cm;
-        background-color: ${({theme}) => theme.background};
     }
 
     .appContent > * {
@@ -68,7 +69,7 @@ export const GlobalStyles = createGlobalStyle`
         margin: 8px;
         position: absolute;
         height: ${({scale}) => scale * 0.7}cm;
-        background-color: ${({customizeSettings}) => customizeSettings.connectedMenubar ?  ({theme}) => theme.background : "transparent" };
+        background-color: ${({customizeSettings}) => customizeSettings.connectedMenubar ?  ({theme, customizeSettings}) => "rgba("+theme.background + "," + customizeSettings.opacity + ")" : "transparent" };
         border-radius: ${({theme}) => theme.borderRadius};
         bottom: ${({customizeSettings}) => customizeSettings.bottomMenubar ?  "0" : "" };
     }
@@ -76,7 +77,7 @@ export const GlobalStyles = createGlobalStyle`
 
 .menubarLeft, .menubarRight {
     font-size: ${({scale}) => scale * 16}px;
-    background-color: ${({theme}) => theme.background};
+    background-color: ${({customizeSettings}) => customizeSettings.connectedMenubar ? "transparent" : ({theme, customizeSettings}) => "rgba("+theme.background + "," + customizeSettings.opacity + ")" };
     color: ${({theme}) => theme.text};
     height: ${({scale}) => scale * 0.7}cm;
     border-radius: ${({theme}) => theme.borderRadius};
@@ -91,10 +92,14 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
 }
 
-.menubarDropdown > * {
-    background-color: ${({theme}) => theme.background};
+.menubarList {
+    display: inline-block;
     width: ${({scale}) => scale * 4}cm;
+    background-color: ${({theme, customizeSettings}) => "rgba("+theme.background + "," + customizeSettings.opacity + ")"};
     border-radius: ${({theme}) => theme.borderRadius};
+}
+
+.menubarDropdown > * {
     padding-right: 5px;
 }
 
@@ -182,7 +187,7 @@ export const GlobalStyles = createGlobalStyle`
 
 
 export const lightTheme = {
-    background: '#fff',
+    background: '255, 255, 255',
     text: '#121212',
     unfocusedText: 'gray',
     titlebarBackground: 'linear-gradient(to right, white, lightgray)',
@@ -195,7 +200,7 @@ export const lightTheme = {
 
 
 export const darkTheme = {
-    background: '#090a0c',
+    background: '9, 10, 12',
     text: '#fff',
     unfocusedText: 'gray',
     titlebarBackground: 'linear-gradient(to right, #090a0c, gray)',
@@ -207,7 +212,7 @@ export const darkTheme = {
 };
 
 export const classicTheme = {
-    background: '#A9A9A9',
+    background: '169, 169, 169',
     text: '#fff',
     unfocusedText: 'gray',
     titlebarBackground: '#00008B',
