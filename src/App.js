@@ -19,9 +19,8 @@ function App() {
     bottomMenubar: false,
     opacity: 1,
     font: "modern",
-    usingCookies: true,
+    usingLocalStorage: false,
   });
-    // Actually using localStorage, but keeping the name usingCookies for now.
 
   useEffect(() => {
     const storedSettings = JSON.parse(localStorage.getItem('customizeSettings'));
