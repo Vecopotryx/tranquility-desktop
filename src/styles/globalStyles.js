@@ -42,7 +42,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .titlebarUnfocused > button {
-        font-size: ${({scale}) => scale * 16}px;
+        font-size: ${({scale}) => scale * 15}px;
         color: ${({theme}) => theme.unfocusedText};
     }
 
@@ -75,9 +75,17 @@ export const GlobalStyles = createGlobalStyle`
         height: calc(100% - ${({scale}) => scale * 0.7}cm);
       }
 
+      .menubar {
+        width: calc(100% - 16px);
+        margin: 8px;
+        position: absolute;
+        height: ${({scale}) => scale * 0.7}cm;
+        background-color: ${({customizeSettings}) => customizeSettings.connectedMenubar ?  ({theme}) => theme.background : "transparent" };
+        border-radius: ${({theme}) => theme.borderRadius};
+    }
+
 
 .menubarLeft, .menubarRight {
-    margin: 8px;
     font-size: ${({scale}) => scale * 15}px;
     background-color: ${({theme}) => theme.background};
     color: ${({theme}) => theme.text};

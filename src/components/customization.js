@@ -49,6 +49,11 @@ export default function Customization(props) {
     props.setCustomizeSettings({ ...currentSettings, scale: changeEvent.target.value / 10});
   }
 
+  const handleConnectedMenubar = (changeEvent) => {
+    setCurrentSettings({ ...currentSettings, connectedMenubar: changeEvent.target.checked});
+    props.setCustomizeSettings({ ...currentSettings, connectedMenubar: changeEvent.target.checked});
+  }
+
   return (
     <div className="customization">
       <div className="themePicker">
@@ -169,7 +174,7 @@ export default function Customization(props) {
         <h2>Misc</h2>
         <label>
           Connected Menubar
-          <input type="checkbox"></input>
+          <input type="checkbox" checked={currentSettings.connectedMenubar} onChange={handleConnectedMenubar}></input>
         </label>
         <br />
         <label>
