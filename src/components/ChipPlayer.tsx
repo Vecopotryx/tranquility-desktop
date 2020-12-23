@@ -7,7 +7,7 @@ class ChipPlayer extends Component {
         <iframe
           title="chipPlayerJS"
           height="100%"
-          src="https://mmontag.github.io/chip-player-js/browse/Modland/coma's%20favorite%20Fasttracker%202/Elwood?play=Modland%2Fcoma%27s+favorite+Fasttracker+2%2FElwood%2Finto+the+shadow.xm"
+          src="https://mmontag.github.io/chip-player-js/browse/ModArchives?play=ModArchives%2F1fineday.xm"
           width="100%"
           style={{border: "none"}}
         >

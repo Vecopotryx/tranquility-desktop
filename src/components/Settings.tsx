@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { ReactElement, useState } from 'react'
 import Customization from './customization'
 import BackgroundPicker from './backgroundPicker'
 
-const Settings = (props) => {
+interface Props {
+    background: String;
+    setBackground: Function;
+    customizeSettings: Object;
+    setCustomizeSettings: Function;
+}
+
+const Settings = (props: Props) => {
     const [openSettings, setOpenSettings] = useState("customization");
 
-    const OpenedSettings = () => {
+    const OpenedSettings = (): ReactElement => {
         switch(openSettings) {
             case "customization":
                 return <Customization background={props.background} customizeSettings={props.customizeSettings} setCustomizeSettings={props.setCustomizeSettings}/>
@@ -14,6 +21,7 @@ const Settings = (props) => {
             default:
                 break;
         }
+        return <h1>Error</h1>
       }; 
 
     return (
