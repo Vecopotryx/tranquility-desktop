@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./menubar.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Notes from "../components/notes";
-import ChipPlayer from "./chipPlayer";
-import Settings from "./settings";
+import Notes from "./Notes";
+import ChipPlayer from "./ChipPlayer";
+import Settings from "./Settings";
 import appIconPlaceholder from "../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
 
 class Menubar extends Component {

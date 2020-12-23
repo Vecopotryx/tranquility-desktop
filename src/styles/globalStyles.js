@@ -25,6 +25,7 @@ export const GlobalStyles = createGlobalStyle`
         transition: background 0.2s;
     }
     .titlebar > button {
+        color: ${({theme}) => theme.titlebarTextColor};
         line-height: ${({scale}) => scale * 0.7}cm;
         font-size: ${({scale}) => scale * 15}px;
     }
@@ -48,6 +49,11 @@ export const GlobalStyles = createGlobalStyle`
     .collapseWindow {
         float: ${({theme}) => theme.collapseWindowPosition};;
         color: ${({theme}) => theme.text};
+    }
+
+    .collapseWindow:hover, .closeWindow:hover {
+        transform: scale(1.3);
+        transition: transform 0.2s;
     }
     
     .closeWindow {
@@ -99,8 +105,7 @@ export const GlobalStyles = createGlobalStyle`
 
 .menubarDropdown {
     float: left;
-    user-select: none;
-    text-decoration: none;
+
 }
 
 .menubarList {
@@ -112,6 +117,9 @@ export const GlobalStyles = createGlobalStyle`
 
 .menubarDropdown > * {
     padding-right: ${({scale}) => scale * 5}px;
+    user-select: none;
+    text-decoration: none;
+    color: ${({theme}) => theme.text};
 }
 
 .menubarButton {

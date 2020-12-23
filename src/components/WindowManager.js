@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AppWindow from "./appWindow";
-import Notes from "./notes";
-import ChipPlayer from "./chipPlayer";
+import Notes from "./Notes";
+import ChipPlayer from "./ChipPlayer";
 import "./appWindow.css";
 import Menubar from "./menubar";
 import placeholderIcon from "../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
