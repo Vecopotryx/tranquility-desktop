@@ -1,6 +1,6 @@
 import React from 'react'
 import Notes from './Notes';
-import AppWindow from "./appWindow";
+import AppWindow from "./AppWindow";
 
 const WindowManager = () => {
     const [windowList, setWindowList] = React.useState(
@@ -18,15 +18,19 @@ const WindowManager = () => {
     return (
         <>
             <div className="WindowContainer">
-                {windowList.map((appWindow) => (
-                    <AppWindow>
-                        // Currently borked. Will have to rewrite AppWindow first.
-                        <h2>Test</h2>
-                    </AppWindow>
-                ))}
+                <AppWindow isFocused={true} title="Test" >
+                    <h2>Test</h2>
+                </AppWindow>
             </div>
         </>
     )
 }
 
 export default WindowManager;
+
+                /*
+                {windowList.map((appWindow) => (
+                    <AppWindow>
+                        <h2>Test</h2>
+                    </AppWindow>
+                ))}*/
