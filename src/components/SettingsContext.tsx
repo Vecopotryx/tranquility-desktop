@@ -8,6 +8,7 @@ interface SettingsTypes {
   opacity: number;
   font: string;
   usingLocalStorage: boolean;
+  background: string;
 }
 
 interface SettingsContextProps {
@@ -23,6 +24,7 @@ const DefaultSettings = {
   opacity: 1,
   font: "modern",
   usingLocalStorage: false,
+  background: "url(https://raw.githubusercontent.com/Vecopotryx/retro-desktop-environment/master/source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg)",
 };
 
 export const SettingsContext = React.createContext<SettingsContextProps>({

@@ -7,6 +7,10 @@ export default function BackgroundPicker(props) {
   const [unsplashTerm, setUnsplashTerm] = useState("");
   const [currentBackground, setCurrentBackground] = useState(props.background);
 
+
+  // Background picker is currently borked after implementing Context API for settings, 
+  // but as I will rewrite this with TypeScript later anyways I won't both fixing it currently.
+
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let newImage = URL.createObjectURL(event.target.files[0]);

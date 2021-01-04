@@ -3,7 +3,7 @@ import darkmodeImage from "./darkmode-temporary.svg";
 
 export default function Customization(props) {
   const [currentSettings, setCurrentSettings] = useState(
-    props.customizeSettings
+    props.settings
   );
 
   const setDefaultSettings = () => {
@@ -17,14 +17,14 @@ export default function Customization(props) {
       usingLocalStorage: currentSettings.usingLocalStorage,
     };
     setCurrentSettings(defaultSettings);
-    props.setCustomizeSettings(defaultSettings);
+    props.setSettings(defaultSettings);
     localStorage.clear();
   };
 
   const updateSettings = (property, value) => {
     const newCurrentSettings = { ...currentSettings, [property]: value };
     setCurrentSettings(newCurrentSettings);
-    props.setCustomizeSettings(newCurrentSettings);
+    props.setSettings(newCurrentSettings);
     if (newCurrentSettings.usingLocalStorage) {
       localStorage.setItem(
         "customizeSettings",
@@ -48,7 +48,7 @@ export default function Customization(props) {
           <div
             className="settingsPreviews"
             style={{
-              backgroundImage: props.background,
+              backgroundImage: props.settings.background,
               marginRight: "1%",
             }}
           >
@@ -62,7 +62,7 @@ export default function Customization(props) {
           </div>
           <div
             className="settingsPreviews"
-            style={{ backgroundImage: props.background }}
+            style={{ backgroundImage: props.settings.background }}
             onClick={() => updateSettings("theme", "dark")}
           >
             <img
@@ -75,7 +75,7 @@ export default function Customization(props) {
           <div
             className="settingsPreviews"
             style={{
-              backgroundImage: props.background,
+              backgroundImage: props.settings.background,
               marginLeft: "1%",
             }}
             onClick={() => updateSettings("theme", "classic")}
