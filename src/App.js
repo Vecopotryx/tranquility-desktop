@@ -40,10 +40,7 @@ function App() {
             scale={settings.scale}
             customizeSettings={settings}
           />
-          <WindowManager
-            background={settings.background}
-            customizeSettings={settings}
-          />
+          <WindowManager/>
         </div>
       </ThemeProvider>
   );
