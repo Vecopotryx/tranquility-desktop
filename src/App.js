@@ -7,30 +7,17 @@ import {
 } from "./styles/globalStyles";
 import { ThemeProvider } from "styled-components";
 import WindowManager from "./components/WindowManager";
+import { SettingsProvider, useSettings } from "./components/SettingsContext";
 
 function App() {
   const [background, setBackground] = useState(
     "url(https://raw.githubusercontent.com/Vecopotryx/retro-desktop-environment/master/source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg)"
   );
-  const [customizeSettings, setCustomizeSettings] = useState({
-    theme: "dark",
-    scale: 1,
-    connectedMenubar: false,
-    bottomMenubar: false,
-    opacity: 1,
-    font: "modern",
-    usingLocalStorage: false,
-  });
 
-  useEffect(() => {
-    const storedSettings = JSON.parse(localStorage.getItem('customizeSettings'));
-    if(storedSettings != null){
-      setCustomizeSettings(storedSettings);
-    }
-  }, []);
+  const settings = useSettings().customizeSettings;
 
   let themeMode = lightTheme;
-  switch (customizeSettings.theme) {
+  switch (settings.theme) {
     case "dark":
       themeMode = darkTheme;
       break;
@@ -42,22 +29,35 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={themeMode}>
-      <div>
-        <GlobalStyles
-          background={background}
-          scale={customizeSettings.scale}
-          customizeSettings={customizeSettings}
-        />
-        <WindowManager
-          background={background}
-          setBackground={setBackground}
-          customizeSettings={customizeSettings}
-          setCustomizeSettings={setCustomizeSettings}
-        />
-      </div>
-    </ThemeProvider>
+    <SettingsProvider>
+      <ThemeProvider theme={themeMode}>
+        <div>
+          <GlobalStyles
+            background={background}
+            scale={settings.scale}
+            customizeSettings={settings}
+          />
+          <WindowManager
+            background={background}
+            setBackground={setBackground}
+            customizeSettings={settings}
+          />
+        </div>
+      </ThemeProvider>
+    </SettingsProvider>
   );
 }
 
 export default App;
+
+/*
+
+  useEffect(() => {
+    const storedSettings = JSON.parse(localStorage.getItem('customizeSettings'));
+    if(storedSettings != null){
+      useSettings.setCustomizeSettings(storedSettings);
+    }
+  }, []);
+
+
+*/
