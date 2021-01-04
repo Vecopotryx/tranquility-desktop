@@ -8,7 +8,7 @@ import {
 import { ThemeProvider } from "styled-components";
 import WindowManager from "./components/WindowManager";
 import { useSettings } from "./components/SettingsContext";
-
+import Menubar from "./components/menubar";
 function App() {
   const settings = useSettings().customizeSettings;
   const setSettings = useSettings().setCustomizeSettings;
@@ -40,6 +40,7 @@ function App() {
             scale={settings.scale}
             customizeSettings={settings}
           />
+          <Menubar/>
           <WindowManager/>
         </div>
       </ThemeProvider>
