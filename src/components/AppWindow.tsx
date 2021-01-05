@@ -4,12 +4,15 @@ import "./appWindow.css";
 
 interface AppWindowProps {
   children: ReactNode;
+  appId: number;
   isFocused: boolean;
   title: string;
   index: number;
+  updateFrameOverlay: (visible:boolean, index:number) => void;
+  handleClose: (appId:number) => void;
 }
 
-const AppWindow = ({ children, isFocused, title, index }: AppWindowProps) => {
+const AppWindow = ({ children, appId, isFocused, title, index, updateFrameOverlay, handleClose }: AppWindowProps) => {
   const [dimensions, setDimensions] = React.useState({
     maxHeight: 20000,
     storedHeight: 300,
@@ -45,6 +48,10 @@ const AppWindow = ({ children, isFocused, title, index }: AppWindowProps) => {
 
   let rndRef: Rnd | null;
 
+  const handleResizeOrDrag = (status:boolean) => {
+    updateFrameOverlay(status, index - 1);
+  }
+
   return (
     <>
       <Rnd
@@ -52,6 +59,19 @@ const AppWindow = ({ children, isFocused, title, index }: AppWindowProps) => {
         maxHeight={dimensions.maxHeight}
         ref={(c) => {
           rndRef = c;
+        }}
+        cancel=".collapseWindow, .closeWindow, .appContent>*"
+        onResizeStart={() => {
+          handleResizeOrDrag(true);
+        }}
+        onResizeStop={() => {
+          handleResizeOrDrag(false);
+        }}
+        onDragStart={() => {
+          handleResizeOrDrag(true);
+        }}
+        onDragStop={() => {
+          handleResizeOrDrag(false);
         }}
         default={{
           x: (document.documentElement.clientWidth - dimensions.storedWidth)/2,
@@ -61,7 +81,7 @@ const AppWindow = ({ children, isFocused, title, index }: AppWindowProps) => {
         }}
       >
         <div className={isFocused! ? "titlebar" : "titlebarUnfocused"}>
-          <button className="closeWindow">×</button>
+          <button className="closeWindow" onClick={() => handleClose(appId)}>×</button>
           <a className="appName">{title}</a>
           <button className="collapseWindow" onClick={() => updateCollapse()}>
             {isCollapsed ? "▼" : "▲"}
