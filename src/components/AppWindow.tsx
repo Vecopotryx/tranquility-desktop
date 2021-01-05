@@ -8,11 +8,21 @@ interface AppWindowProps {
   isFocused: boolean;
   title: string;
   index: number;
-  updateFrameOverlay: (visible:boolean, index:number) => void;
-  handleClose: (appId:number) => void;
+  updateFrameOverlay: (visible: boolean, index: number) => void;
+  handleClose: (appId: number) => void;
+  handleFocus: (appId: number) => void;
 }
 
-const AppWindow = ({ children, appId, isFocused, title, index, updateFrameOverlay, handleClose }: AppWindowProps) => {
+const AppWindow = ({
+  children,
+  appId,
+  isFocused,
+  title,
+  index,
+  updateFrameOverlay,
+  handleClose,
+  handleFocus,
+}: AppWindowProps) => {
   const [dimensions, setDimensions] = React.useState({
     maxHeight: 20000,
     storedHeight: 300,
@@ -49,16 +59,16 @@ const AppWindow = ({ children, appId, isFocused, title, index, updateFrameOverla
 
   let rndRef: Rnd | null;
 
-  const handleResizeOrDrag = (status:boolean) => {
+  const handleResizeOrDrag = (status: boolean) => {
     setFrameOverlay(status);
-    updateFrameOverlay(status, index - 1);
-  }
+    updateFrameOverlay(status, index);
+  };
 
   return (
     <>
       <Rnd
         className="appWindow"
-        style={{zIndex: index}}
+        style={{ zIndex: index }}
         maxHeight={dimensions.maxHeight}
         ref={(c) => {
           rndRef = c;
@@ -77,25 +87,40 @@ const AppWindow = ({ children, appId, isFocused, title, index, updateFrameOverla
           handleResizeOrDrag(false);
         }}
         default={{
-          x: (document.documentElement.clientWidth - dimensions.storedWidth)/2,
-          y: (document.documentElement.clientHeight - dimensions.storedHeight)/2,
+          x:
+            (document.documentElement.clientWidth - dimensions.storedWidth) / 2,
+          y:
+            (document.documentElement.clientHeight - dimensions.storedHeight) /
+            2,
           width: dimensions.storedWidth,
           height: dimensions.storedHeight,
         }}
       >
-        <div className={isFocused! ? "titlebar" : "titlebarUnfocused"}>
-          <button className="closeWindow" onClick={() => handleClose(appId)}>×</button>
-          <a className="appName">{title}</a>
-          <button className="collapseWindow" onClick={() => updateCollapse()}>
-            {isCollapsed ? "▼" : "▲"}
-          </button>
-        </div>
         <div
-          className="appContent"
-          style={{ display: isCollapsed ? "none" : "block" }}
+          className="appWrapper"
+          onMouseEnter={() =>
+            handleFocus(appId)
+          }
         >
-          <div style={{display: frameOverlay ? "block" : "none"}} className="internalFrameOverlay"/>
-          {children}
+          <div className={isFocused! ? "titlebar" : "titlebarUnfocused"}>
+            <button className="closeWindow" onClick={() => handleClose(appId)}>
+              ×
+            </button>
+            <a className="appName">{title}</a>
+            <button className="collapseWindow" onClick={() => updateCollapse()}>
+              {isCollapsed ? "▼" : "▲"}
+            </button>
+          </div>
+          <div
+            className="appContent"
+            style={{ display: isCollapsed ? "none" : "block" }}
+          >
+            <div
+              style={{ display: frameOverlay ? "block" : "none" }}
+              className="internalFrameOverlay"
+            />
+            {children}
+          </div>
         </div>
       </Rnd>
     </>
