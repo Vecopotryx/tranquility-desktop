@@ -20,21 +20,22 @@ interface WindowManagerProps {
 }*/
 
 const WindowManager = () => {
-  const [status, setStatus] = React.useState();
+  const [highestIndex, setHighestIndex] = React.useState(2);
+  const [currentlyFocused, setCurrentlyFocused] = React.useState(2);
 
   const [windowList, setWindowList] = React.useState([
     {
-      id: 1,
+      id: 0,
       title: "Test",
       component: <ChipPlayer />,
       index: 1,
       isFocused: false,
     },
     {
-      id: 2,
+      id: 1,
       title: "Test2",
       component: <ChipPlayer />,
-      index: 3,
+      index: 2,
       isFocused: true,
     },
   ]);
@@ -45,11 +46,10 @@ const WindowManager = () => {
   });
 
   const handleOpen = (title: string, component: JSX.Element) => {
-    console.log(title, component);
-    const newArr = [
-      ...windowList,
-      { id: 1, title: title, component: component, index: 1, isFocused: true },
-    ];
+    const newId =
+    Math.max(...windowList.map((appWindow) => appWindow.id)) + 1;
+    const newArr = [...windowList, { id: newId, title: title, component: component, index: highestIndex + 1, isFocused: true }];
+    setHighestIndex(highestIndex + 1);
     setWindowList(newArr);
   };
 
@@ -58,8 +58,21 @@ const WindowManager = () => {
   };
 
   const updateFrameOverlay = (visible:boolean, index:number) => {
-    setFrameOverlay({visible: visible, index: index})
+    setFrameOverlay({visible: visible, index: highestIndex})
   };
+
+  const handleFocus = (appId: number) => {
+    if(appId !== currentlyFocused){
+      const newWindowList = windowList.map((appWindow) => {
+        if (appWindow.id !== appId)
+          return { ...appWindow, isFocused: false };
+        return { ...appWindow, index: highestIndex + 1, isFocused: true };
+      });
+      setWindowList(newWindowList);
+      setHighestIndex(highestIndex + 1);
+      setCurrentlyFocused(appId);
+    }
+  }
 
   return (
     <>
@@ -80,6 +93,7 @@ const WindowManager = () => {
             index={appWindow.index}
             updateFrameOverlay={updateFrameOverlay}
             handleClose={handleClose}
+            handleFocus={handleFocus}
           >
             {appWindow.component}
           </AppWindow>
