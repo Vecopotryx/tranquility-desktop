@@ -20,6 +20,7 @@ const AppWindow = ({ children, appId, isFocused, title, index, updateFrameOverla
   });
 
   const [isCollapsed, setIsCollapsed] = React.useState(false);
+  const [frameOverlay, setFrameOverlay] = React.useState(true);
 
   const updateCollapse = () => {
     if (rndRef != null) {
@@ -49,6 +50,7 @@ const AppWindow = ({ children, appId, isFocused, title, index, updateFrameOverla
   let rndRef: Rnd | null;
 
   const handleResizeOrDrag = (status:boolean) => {
+    setFrameOverlay(status);
     updateFrameOverlay(status, index - 1);
   }
 
@@ -56,6 +58,7 @@ const AppWindow = ({ children, appId, isFocused, title, index, updateFrameOverla
     <>
       <Rnd
         className="appWindow"
+        style={{zIndex: index}}
         maxHeight={dimensions.maxHeight}
         ref={(c) => {
           rndRef = c;
@@ -91,6 +94,7 @@ const AppWindow = ({ children, appId, isFocused, title, index, updateFrameOverla
           className="appContent"
           style={{ display: isCollapsed ? "none" : "block" }}
         >
+          <div style={{display: frameOverlay ? "block" : "none"}} className="internalFrameOverlay"/>
           {children}
         </div>
       </Rnd>
