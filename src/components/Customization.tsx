@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import darkmodeImage from "./darkmode-temporary.svg";
 import "../styles/Settings.css";
 
@@ -110,7 +110,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
               checked={settings.font === "modern"}
               onChange={(e) => updateSettings("font", e.target.value)}
             />
-            <a style={{ fontFamily: "Sans-serif" }}>Modern</a>
+            <p style={{ fontFamily: "Sans-serif" }}>Modern</p>
           </label>
           <br />
           <label>
@@ -120,7 +120,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
               checked={settings.font === "retro"}
               onChange={(e) => updateSettings("font", e.target.value)}
             />
-            <a style={{ fontFamily: "retro" }}>Retro</a>
+            <p style={{ fontFamily: "retro" }}>Retro</p>
           </label>
         </div>
         <div className="menubarSettings">
@@ -162,7 +162,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
                 updateSettings("scale", Number(e.target.value) / 10)
               }
             ></input>
-            <a>{settings.scale}</a>
+            <p>{settings.scale}</p>
           </label>
           <br />
           <label>
@@ -177,7 +177,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
                 updateSettings("opacity", Number(e.target.value) / 10)
               }
             ></input>
-            <a>{settings.opacity}</a>
+            <p>{settings.opacity}</p>
           </label>
         </div>
         <div className="miscSettings2">

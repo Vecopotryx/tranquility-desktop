@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./menubar.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Notes from "./Notes";
@@ -8,9 +8,9 @@ import appIconPlaceholder from "../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jp
 
 type MenubarProps = {
   handleOpen: (title: string, component: JSX.Element) => void;
-}
+};
 
-const Menubar = ({handleOpen}: MenubarProps) =>  {
+const Menubar = ({ handleOpen }: MenubarProps) => {
   const AppButtons = [
     {
       appName: "Notes",
@@ -31,13 +31,13 @@ const Menubar = ({handleOpen}: MenubarProps) =>  {
     },
   ];
 
+  const [time, setTime] = useState(new Date());
+
   useEffect(() => {
     setInterval(() => {
-       time = new Date();
+      setTime(new Date());
     }, 1000);
-  }, [])
-
-  let time = new Date();
+  }, []);
 
   const days = [
     "Sunday",
@@ -46,7 +46,7 @@ const Menubar = ({handleOpen}: MenubarProps) =>  {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
 
   /*
@@ -58,21 +58,22 @@ const Menubar = ({handleOpen}: MenubarProps) =>  {
     <>
       <nav className="menubar">
         <div className="menubarLeft">
-          <NavDropdown id="applications" className="menubarDropdown" title="Applications">
+          <NavDropdown
+            id="applications"
+            className="menubarDropdown"
+            title="Applications"
+          >
             <div className="menubarList">
               {AppButtons.map((appButton) => (
                 <NavDropdown.Item>
                   <button
                     className="menubarButton"
                     onClick={() =>
-                      handleOpen(
-                        appButton.appName,
-                        appButton.appComponent,
-                      )
+                      handleOpen(appButton.appName, appButton.appComponent)
                     }
                   >
                     <img src={appButton.appIcon} alt=""></img>
-                    <a style={{ float: "left" }}>{appButton.buttonText}</a>
+                    {appButton.buttonText}
                   </button>
                   <NavDropdown.Divider />
                 </NavDropdown.Item>
@@ -85,12 +86,7 @@ const Menubar = ({handleOpen}: MenubarProps) =>  {
               <NavDropdown.Item>
                 <button
                   className="menubarButton"
-                  onClick={() =>
-                    handleOpen(
-                      "Settings",
-                      <Settings/>,
-                    )
-                  }
+                  onClick={() => handleOpen("Settings", <Settings />)}
                 >
                   Settings
                 </button>
@@ -100,13 +96,13 @@ const Menubar = ({handleOpen}: MenubarProps) =>  {
           </NavDropdown>
         </div>
         <div className="menubarRight">
-          <a>
+          <p>
             {days[time.getDay()]}{" "}
             {time.toLocaleTimeString([], {
               hour: "2-digit",
               minute: "2-digit",
             })}
-          </a>
+          </p>
         </div>
       </nav>
     </>
@@ -114,6 +110,5 @@ const Menubar = ({handleOpen}: MenubarProps) =>  {
 };
 
 //           <span className="openwindowListStuff">{this.props.children}</span>
-
 
 export default Menubar;

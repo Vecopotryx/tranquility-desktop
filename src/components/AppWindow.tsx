@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactText, useRef } from "react";
+import React, { ReactNode } from "react";
 import { Rnd } from "react-rnd";
 import "./appWindow.css";
 
@@ -106,7 +106,7 @@ const AppWindow = ({
             <button className="closeWindow" onClick={() => handleClose(appId)}>
               ×
             </button>
-            <a className="appName">{title}</a>
+            <p className="appName">{title}</p>
             <button className="collapseWindow" onClick={() => updateCollapse()}>
               {isCollapsed ? "▼" : "▲"}
             </button>

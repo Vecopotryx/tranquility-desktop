@@ -44,8 +44,7 @@ export const GlobalStyles = createGlobalStyle(
       font-size: ${settings.scale * 15}px;
     }
 
-    .titlebar > a,
-    .titlebarUnfocused > a {
+    .appName {
       font-size: ${settings.scale * 15}px;
       line-height: ${settings.scale * 0.7}cm;
     }
