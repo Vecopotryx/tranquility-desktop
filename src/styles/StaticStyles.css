@@ -68,56 +68,6 @@ body {
   padding-right: 3%;
 }
 
-.settingsPreviews {
-  background-size: cover;
-  width: 33%;
-  height: 10;
-}
-
-.settingsThemeRadios {
-  text-align: center;
-  display: inline-block;
-  width: 33%;
-}
-
-.settingsThemeRadiosHolder,
-.settingsPreviewsHolder {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.settingsBackgroundPreview {
-  height: 10vh;
-  object-fit: cover;
-  background-size: cover;
-  width: 32.5%;
-  height: 4cm;
-  margin-bottom: 1%;
-}
-
-.backgroundPicker,
-.themePicker {
-  text-align: center;
-}
-
-.settingsCurrentBackgroundPreview {
-  width: 100%;
-}
-
-.customization,
-.backgroundPicker {
-  padding: 3%;
-}
-
-.settingsBackgroundOptions > label > button,
-.settingsBackgroundOptions > label > input {
-  width: 35%;
-  margin-left: 5%;
-  height: 0.8cm;
-}
-
 .openWindowList {
   display: flex;
   justify-content: center;

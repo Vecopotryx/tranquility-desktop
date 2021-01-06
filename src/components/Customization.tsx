@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import darkmodeImage from "./darkmode-temporary.svg";
+import "../styles/Settings.css";
 
 interface SettingsTypes {
   theme: string;
@@ -36,15 +37,15 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     localStorage.clear();
   };
 
-  const updateSettings = (property:string, value:string|boolean|number) => {
+  const updateSettings = (
+    property: string,
+    value: string | boolean | number
+  ) => {
     const newCurrentSettings = { ...currentSettings, [property]: value };
     setCurrentSettings(newCurrentSettings);
     setSettings(newCurrentSettings);
     if (newCurrentSettings.usingLocalStorage) {
-      localStorage.setItem(
-        "settings",
-        JSON.stringify(newCurrentSettings)
-      );
+      localStorage.setItem("settings", JSON.stringify(newCurrentSettings));
     }
   };
 
@@ -134,83 +135,88 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
           </label>
         </div>
       </div>
-      <div className="backgroundPicker">
-        <h2>Misc</h2>
-        <label>
-          Connected Menubar
-          <input
-            type="checkbox"
-            checked={currentSettings.connectedMenubar}
-            onChange={(e) =>
-              updateSettings("connectedMenubar", e.target.checked)
-            }
-          ></input>
-        </label>
-        <br />
-        <label>
-          Bottom Menubar
-          <input
-            type="checkbox"
-            checked={currentSettings.bottomMenubar}
-            onChange={(e) => updateSettings("bottomMenubar", e.target.checked)}
-          ></input>
-        </label>
-        <br />
-        <label>
-          Button Placement
-          <select>
-            <option value="RDE">RDE</option>
-            <option value="redmond">Redmond</option>
-            <option value="cupertino">Cupertino</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          UI Scale
-          <input
-            type="range"
-            min="5"
-            max="30"
-            value={currentSettings.scale * 10}
-            step="1"
-            onChange={(e) => updateSettings("scale", e.target.value)}  // Supposed to divide by 10, but having type errors atm, will look into this.
-          ></input>
-          <a>{currentSettings.scale}</a>
-        </label>
-        <br />
-        <label>
-          Opacity
-          <input
-            type="range"
-            min="1"
-            max="10"
-            value={currentSettings.opacity * 10}
-            step="1"
-            onChange={(e) => updateSettings("opacity", e.target.value)} // Supposed to divide by 10, but having type errors atm, will look into this.
-          ></input>
-          <a>{currentSettings.opacity}</a>
-        </label>
-        <h2>Font</h2>
-        <label>
-          <input
-            type="radio"
-            value="modern"
-            checked={currentSettings.font === "modern"}
-            onChange={(e) => updateSettings("font", e.target.value)}
-          />
-          <a style={{ fontFamily: "Sans-serif" }}>Modern</a>
-        </label>
-        <br />
-        <label>
-          <input
-            type="radio"
-            value="retro"
-            checked={currentSettings.font === "retro"}
-            onChange={(e) => updateSettings("font", e.target.value)}
-          />
-          <a style={{ fontFamily: "retro" }}>Retro</a>
-        </label>
-        <hr />
+      <div className="otherSettings">
+        <div className="fontSettings">
+          <h2>Font</h2>
+          <label>
+            <input
+              type="radio"
+              value="modern"
+              checked={currentSettings.font === "modern"}
+              onChange={(e) => updateSettings("font", e.target.value)}
+            />
+            <a style={{ fontFamily: "Sans-serif" }}>Modern</a>
+          </label>
+          <br />
+          <label>
+            <input
+              type="radio"
+              value="retro"
+              checked={currentSettings.font === "retro"}
+              onChange={(e) => updateSettings("font", e.target.value)}
+            />
+            <a style={{ fontFamily: "retro" }}>Retro</a>
+          </label>
+        </div>
+        <div className="menubarSettings">
+          <h2>Menubar</h2>
+          <label>
+            Connected Menubar
+            <input
+              type="checkbox"
+              checked={currentSettings.connectedMenubar}
+              onChange={(e) =>
+                updateSettings("connectedMenubar", e.target.checked)
+              }
+            ></input>
+          </label>
+          <br />
+          <label>
+            Bottom Menubar
+            <input
+              type="checkbox"
+              checked={currentSettings.bottomMenubar}
+              onChange={(e) =>
+                updateSettings("bottomMenubar", e.target.checked)
+              }
+            ></input>
+          </label>
+          <br />
+        </div>
+        <div className="miscSettings">
+          <h2>Misc</h2>
+          <label>
+            UI Scale
+            <input
+              type="range"
+              min="5"
+              max="30"
+              value={currentSettings.scale * 10}
+              step="1"
+              onChange={(e) =>
+                updateSettings("scale", Number(e.target.value) / 10)
+              }
+            ></input>
+            <a>{currentSettings.scale}</a>
+          </label>
+          <br />
+          <label>
+            Opacity
+            <input
+              type="range"
+              min="1"
+              max="10"
+              value={currentSettings.opacity * 10}
+              step="1"
+              onChange={(e) =>
+                updateSettings("opacity", Number(e.target.value) / 10)
+              }
+            ></input>
+            <a>{currentSettings.opacity}</a>
+          </label>
+        </div>
+        <div className="miscSettings2">
+        <h2>Misc 2</h2>
         <label>
           Use cookies/localStorage
           <input
@@ -219,10 +225,24 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             onChange={toggleLocalStorage}
           ></input>
         </label>
+        <br />
         <button onClick={setDefaultSettings}>Revert to default settings</button>
       </div>
+      </div>
+      
     </div>
   );
 };
+/*
+Perhaps at a later date:
+        <label>
+          Button Placement
+          <select>
+            <option value="RDE">RDE</option>
+            <option value="redmond">Redmond</option>
+            <option value="cupertino">Cupertino</option>
+          </select>
+        </label>
+*/
 
 export default Customization;
