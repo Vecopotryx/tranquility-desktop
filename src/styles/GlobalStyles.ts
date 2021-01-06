@@ -191,3 +191,14 @@ export const classicTheme = {
   borderRadius: "0px",
   border: "2px outset lightgray",
 };
+
+export const getTheme = (theme: string) => {
+  switch (theme) {
+    case "dark":
+      return darkTheme;
+    case "classic":
+      return classicTheme;
+    default:
+      return lightTheme;
+  }
+};
