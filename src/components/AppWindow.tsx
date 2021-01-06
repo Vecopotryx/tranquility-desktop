@@ -26,9 +26,9 @@ const AppWindow = ({
   const [dimensions, setDimensions] = React.useState({
     maxHeight: 20000,
     storedHeight: 300,
-    storedWidth: 500,
   });
 
+  // storedWidth: 500,
   const [isCollapsed, setIsCollapsed] = React.useState(false);
   const [frameOverlay, setFrameOverlay] = React.useState(true);
 
@@ -37,20 +37,20 @@ const AppWindow = ({
       if (isCollapsed) {
         setDimensions({
           maxHeight: 20000,
-          storedWidth: dimensions.storedWidth,
+          // storedWidth: dimensions.storedWidth,
           storedHeight: dimensions.storedHeight,
         });
         rndRef.updateSize({
-          width: dimensions.storedWidth,
+          width: rndRef.getSelfElement()?.clientWidth as number,
           height: dimensions.storedHeight,
         });
       } else {
         setDimensions({
           maxHeight: 0,
-          storedWidth: rndRef.getSelfElement()?.clientWidth as number,
+          // storedWidth: rndRef.getSelfElement()?.clientWidth as number,
           storedHeight: rndRef.getSelfElement()?.clientHeight as number,
         });
-        rndRef.updateSize({ width: dimensions.storedWidth, height: 0 });
+        rndRef.updateSize({ width: rndRef.getSelfElement()?.clientWidth as number, height: 0 });
       }
     }
 
@@ -88,11 +88,11 @@ const AppWindow = ({
         }}
         default={{
           x:
-            (document.documentElement.clientWidth - dimensions.storedWidth) / 2,
+            (document.documentElement.clientWidth - 500) / 2,
           y:
             (document.documentElement.clientHeight - dimensions.storedHeight) /
             2,
-          width: dimensions.storedWidth,
+          width: 500,
           height: dimensions.storedHeight,
         }}
       >
