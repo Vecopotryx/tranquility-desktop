@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react'
 import Customization from './customization'
-import BackgroundPicker from './backgroundPicker'
+import BackgroundPicker from './BackgroundPicker'
 import { useSettings } from './SettingsContext'
 
 const Settings = () => {
@@ -14,7 +14,7 @@ const Settings = () => {
             case "customization":
                 return <Customization settings={settings} setSettings={setSettings}/>
             case "background":
-                return <BackgroundPicker settings={settings.background} setSettings={setSettings}/>
+                return <BackgroundPicker settings={settings} setSettings={setSettings}/>
             default:
                 break;
         }
