@@ -1,7 +1,23 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import perfectDOS from './Perfect_DOS_VGA_437_Win.ttf'; 
 
-export const GlobalStyles = createGlobalStyle`
+interface SettingsTypes {
+    theme: string;
+    scale: number;
+    connectedMenubar: boolean;
+    bottomMenubar: boolean;
+    opacity: number;
+    font: string;
+    usingLocalStorage: boolean;
+    background: string;
+  }
+
+interface Props {
+    settings: SettingsTypes;
+ }
+
+export const GlobalStyles = createGlobalStyle(
+    ({settings}: Props) => css`
     @font-face {
         font-family: "retro";
         src: local("perfect-dos"),
@@ -9,15 +25,15 @@ export const GlobalStyles = createGlobalStyle`
     ;}
 
     body {
-        background-image: ${(props) => props.background};
+        background-image: ${settings.background};
         background-size: 105%;
         min-height: 100%;
         color: ${({theme}) => theme.text};
-        font-family: ${({customizeSettings}) => customizeSettings.font === "retro" ?  "retro" : "" };
+        font-family: ${settings.font === "retro" ?  "retro" : "" };
     }
     .titlebar, .titlebarUnfocused {
         width: 100%;
-        height: ${({scale}) => scale * 0.7}cm;
+        height: ${settings.scale * 0.7}cm;
         color: ${({theme}) => theme.titlebarTextColor};
         background: ${({theme}) => theme.titlebarBackground};
         text-align: ${({theme}) => theme.titlebarTextAlignment};
@@ -26,12 +42,12 @@ export const GlobalStyles = createGlobalStyle`
     }
     .titlebar > button {
         color: ${({theme}) => theme.titlebarTextColor};
-        line-height: ${({scale}) => scale * 0.7}cm;
-        font-size: ${({scale}) => scale * 15}px;
+        line-height: ${settings.scale * 0.7}cm;
+        font-size: ${settings.scale * 15}px;
     }
     .titlebar > a, .titlebarUnfocused > a {
-        font-size: ${({scale}) => scale * 15}px;
-        line-height: ${({scale}) => scale * 0.7}cm;
+        font-size: ${settings.scale * 15}px;
+        line-height: ${settings.scale * 0.7}cm;
         padding-right: 10px;
         padding-left: 10px;
     }
@@ -41,8 +57,8 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .titlebarUnfocused > button {
-        font-size: ${({scale}) => scale * 15}px;
-        line-height: ${({scale}) => scale * 0.7}cm;
+        font-size: ${settings.scale * 15}px;
+        line-height: ${settings.scale * 0.7}cm;
         color: ${({theme}) => theme.unfocusedText};
     }
 
@@ -65,12 +81,12 @@ export const GlobalStyles = createGlobalStyle`
         border-radius: ${({theme}) => theme.borderRadius};
         border: ${({theme}) => theme.border};
         background-color: ${({theme}) => theme.background};
-        background-color: rgba(${({theme}) => theme.background},${({customizeSettings}) => customizeSettings.opacity});
+        background-color: rgba(${({theme}) => theme.background},${settings.opacity});
     }
 
     .appWindow, .appContent {
-        min-height: ${({scale}) => scale * 0.7}cm;
-        min-width: ${({scale}) => scale * 4}cm;
+        min-height: ${settings.scale * 0.7}cm;
+        min-width: ${settings.scale * 4}cm;
     }
 
     .appContent > * {
@@ -78,27 +94,27 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .appContent {
-        height: calc(100% - ${({scale}) => scale * 0.7}cm);
+        height: calc(100% - ${settings.scale * 0.7}cm);
       }
 
       .menubar {
         width: calc(100% - 16px);
         margin: 8px;
         position: absolute;
-        height: ${({scale}) => scale * 0.7}cm;
-        background-color: ${({customizeSettings}) => customizeSettings.connectedMenubar ?  ({theme, customizeSettings}) => "rgba("+theme.background + "," + customizeSettings.opacity + ")" : "transparent" };
+        height: ${settings.scale * 0.7}cm;
+        background-color: ${settings.connectedMenubar ?  ({theme}) => "rgba("+theme.background + "," + settings.opacity + ")" : "transparent" };
         border-radius: ${({theme}) => theme.borderRadius};
-        bottom: ${({customizeSettings}) => customizeSettings.bottomMenubar ?  "0" : "" };
+        bottom: ${settings.bottomMenubar ?  "0" : "" };
     }
 
 
 .menubarLeft, .menubarRight {
-    font-size: ${({scale}) => scale * 16}px;
-    background-color: ${({customizeSettings}) => customizeSettings.connectedMenubar ? "transparent" : ({theme, customizeSettings}) => "rgba("+theme.background + "," + customizeSettings.opacity + ")" };
+    font-size: ${settings.scale * 16}px;
+    background-color: ${settings.connectedMenubar ? "transparent" : ({theme}) => "rgba("+theme.background + "," + settings.opacity + ")" };
     color: ${({theme}) => theme.text};
-    height: ${({scale}) => scale * 0.7}cm;
+    height: ${settings.scale * 0.7}cm;
     border-radius: ${({theme}) => theme.borderRadius};
-    line-height: ${({scale}) => scale * 0.7}cm;
+    line-height: ${settings.scale * 0.7}cm;
     padding-left: 0.2%;
     padding-right: 0.2%;
 }
@@ -110,13 +126,13 @@ export const GlobalStyles = createGlobalStyle`
 
 .menubarList {
     display: inline-block;
-    width: ${({scale}) => scale * 4}cm;
-    background-color: ${({theme, customizeSettings}) => "rgba("+theme.background + "," + customizeSettings.opacity + ")"};
+    width: ${settings.scale * 4}cm;
+    background-color: ${({theme}) => "rgba("+theme.background + "," + settings.opacity + ")"};
     border-radius: ${({theme}) => theme.borderRadius};
 }
 
 .menubarDropdown > * {
-    padding-right: ${({scale}) => scale * 5}px;
+    padding-right: ${settings.scale * 5}px;
     user-select: none;
     text-decoration: none;
     color: ${({theme}) => theme.text};
@@ -132,14 +148,14 @@ export const GlobalStyles = createGlobalStyle`
     display: flex;
     align-items: center;
     float: right;
-    font-size: ${({scale}) => scale * 15}px;
-    font-family: ${({customizeSettings}) => customizeSettings.font === "retro" ?  "retro" : "" };
+    font-size: ${settings.scale * 15}px;
+    font-family: ${settings.font === "retro" ?  "retro" : "" };
     color: ${({theme}) => theme.text};
 }
 
 .menubarButton > img {
     float: left;
-    width: ${({scale}) => scale * 0.7}cm;
+    width: ${settings.scale * 0.7}cm;
     padding-right: 3%;
 }
 .settingsPreviews {
@@ -193,7 +209,7 @@ export const GlobalStyles = createGlobalStyle`
 
 .openWindowList {
     color: ${({theme}) => theme.text};
-    height: ${({scale}) => scale * 0.7}cm;
+    height: ${settings.scale * 0.7}cm;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,9 +217,9 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 .openWindowList > img {
-    height: ${({scale}) => scale * 0.6}cm;
+    height: ${settings.scale * 0.6}cm;
 }
-`;
+`);
 
 
 export const lightTheme = {
