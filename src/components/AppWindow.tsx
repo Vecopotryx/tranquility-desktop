@@ -25,12 +25,12 @@ const AppWindow = ({
 }: AppWindowProps) => {
   const [dimensions, setDimensions] = React.useState({
     maxHeight: 20000,
-    storedHeight: 300,
+    storedHeight: document.documentElement.clientHeight / 2,
   });
 
   // storedWidth: 500,
   const [isCollapsed, setIsCollapsed] = React.useState(false);
-  const [frameOverlay, setFrameOverlay] = React.useState(true);
+  const [frameOverlay, setFrameOverlay] = React.useState(false);
 
   const updateCollapse = () => {
     if (rndRef != null) {
@@ -50,7 +50,10 @@ const AppWindow = ({
           // storedWidth: rndRef.getSelfElement()?.clientWidth as number,
           storedHeight: rndRef.getSelfElement()?.clientHeight as number,
         });
-        rndRef.updateSize({ width: rndRef.getSelfElement()?.clientWidth as number, height: 0 });
+        rndRef.updateSize({
+          width: rndRef.getSelfElement()?.clientWidth as number,
+          height: 0,
+        });
       }
     }
 
@@ -88,20 +91,17 @@ const AppWindow = ({
         }}
         default={{
           x:
-            (document.documentElement.clientWidth - 500) / 2,
+            (document.documentElement.clientWidth -
+              document.documentElement.clientWidth / 2) /
+            2,
           y:
             (document.documentElement.clientHeight - dimensions.storedHeight) /
             2,
-          width: 500,
+          width: document.documentElement.clientWidth / 2,
           height: dimensions.storedHeight,
         }}
       >
-        <div
-          className="appWrapper"
-          onMouseEnter={() =>
-            handleFocus(appId)
-          }
-        >
+        <div className="appWrapper" onMouseEnter={() => handleFocus(appId)}>
           <div className={isFocused! ? "titlebar" : "titlebarUnfocused"}>
             <button className="closeWindow" onClick={() => handleClose(appId)}>
               ×
