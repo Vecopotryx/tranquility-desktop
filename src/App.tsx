@@ -14,9 +14,9 @@ function App() {
   const setSettings = useSettings().setCustomizeSettings;
   
   useEffect(() => {
-    const storedSettings = JSON.parse(localStorage.getItem('customizeSettings'));
-    if(storedSettings != null){
-      setSettings(storedSettings);
+    const storedSettings = localStorage.getItem('string');
+    if(storedSettings !== null){
+      setSettings(JSON.parse(storedSettings));
     }
   }, []);
 
@@ -35,15 +35,19 @@ function App() {
   return (
       <ThemeProvider theme={themeMode}>
         <div>
-          <GlobalStyles
-            background={settings.background}
-            scale={settings.scale}
-            customizeSettings={settings}
-          />
+
           <WindowManager/>
         </div>
       </ThemeProvider>
   );
 }
+
+/*
+The current GlobalStyles component doesn't seem to work properly after migrating to TypeScript, so I'll rewrite GlobalStyles before adding it back.
+          <GlobalStyles
+            background={settings.background}
+            scale={settings.scale}
+            customizeSettings={settings}
+          />*/
 
 export default App;
