@@ -3,6 +3,7 @@ import React, { SetStateAction, Dispatch, FC } from "react";
 import AppWindow from "./AppWindow";
 import Menubar from "./Menubar";
 import ChipPlayer from "./ChipPlayer";
+import Notes from "./Notes";
 
 interface WindowListProps {
   id?: number;
@@ -27,14 +28,14 @@ const WindowManager = () => {
     {
       id: 0,
       title: "Test",
-      component: <ChipPlayer />,
+      component: <Notes />,
       index: 1,
       isFocused: false,
     },
     {
       id: 1,
       title: "Test2",
-      component: <ChipPlayer />,
+      component: <Notes />,
       index: 2,
       isFocused: true,
     },
