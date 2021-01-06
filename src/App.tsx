@@ -8,6 +8,7 @@ import {
 import { ThemeProvider } from "styled-components";
 import WindowManager from "./components/WindowManager";
 import { useSettings } from "./components/SettingsContext";
+import "./styles/StaticStyles.css";
 
 function App() {
   const settings = useSettings().customizeSettings;
