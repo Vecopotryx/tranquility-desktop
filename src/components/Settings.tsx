@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react'
-import Customization from './customization'
+import Customization from './Customization'
 import BackgroundPicker from './BackgroundPicker'
 import { useSettings } from './SettingsContext'
 
