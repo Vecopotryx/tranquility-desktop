@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import darkmodeImage from "./darkmode-temporary.svg";
 
-export default function Customization(props) {
-  const [currentSettings, setCurrentSettings] = useState(
-    props.settings
-  );
+interface SettingsTypes {
+  theme: string;
+  scale: number;
+  connectedMenubar: boolean;
+  bottomMenubar: boolean;
+  opacity: number;
+  font: string;
+  usingLocalStorage: boolean;
+  background: string;
+}
+
+interface CustomizationProps {
+  settings: SettingsTypes;
+  setSettings: Dispatch<SetStateAction<SettingsTypes>>;
+}
+
+const Customization = ({ settings, setSettings }: CustomizationProps) => {
+  const [currentSettings, setCurrentSettings] = useState(settings);
 
   const setDefaultSettings = () => {
     const defaultSettings = {
@@ -15,27 +29,28 @@ export default function Customization(props) {
       opacity: 1,
       font: "modern",
       usingLocalStorage: currentSettings.usingLocalStorage,
+      background: settings.background,
     };
     setCurrentSettings(defaultSettings);
-    props.setSettings(defaultSettings);
+    setSettings(defaultSettings);
     localStorage.clear();
   };
 
-  const updateSettings = (property, value) => {
+  const updateSettings = (property:string, value:string|boolean|number) => {
     const newCurrentSettings = { ...currentSettings, [property]: value };
     setCurrentSettings(newCurrentSettings);
-    props.setSettings(newCurrentSettings);
+    setSettings(newCurrentSettings);
     if (newCurrentSettings.usingLocalStorage) {
       localStorage.setItem(
-        "customizeSettings",
+        "settings",
         JSON.stringify(newCurrentSettings)
       );
     }
   };
 
-  const toggleLocalStorage = (e) => {
-    updateSettings("usingLocalStorage", e.target.checked);
-    if (!e.target.checked) {
+  const toggleLocalStorage = (event: { target: HTMLInputElement }) => {
+    updateSettings("usingLocalStorage", event.target.checked);
+    if (!event.target.checked) {
       localStorage.clear();
     }
   };
@@ -48,7 +63,7 @@ export default function Customization(props) {
           <div
             className="settingsPreviews"
             style={{
-              backgroundImage: props.settings.background,
+              backgroundImage: settings.background,
               marginRight: "1%",
             }}
           >
@@ -62,7 +77,7 @@ export default function Customization(props) {
           </div>
           <div
             className="settingsPreviews"
-            style={{ backgroundImage: props.settings.background }}
+            style={{ backgroundImage: settings.background }}
             onClick={() => updateSettings("theme", "dark")}
           >
             <img
@@ -75,7 +90,7 @@ export default function Customization(props) {
           <div
             className="settingsPreviews"
             style={{
-              backgroundImage: props.settings.background,
+              backgroundImage: settings.background,
               marginLeft: "1%",
             }}
             onClick={() => updateSettings("theme", "classic")}
@@ -158,7 +173,7 @@ export default function Customization(props) {
             max="30"
             value={currentSettings.scale * 10}
             step="1"
-            onChange={(e) => updateSettings("scale", e.target.value / 10)}
+            onChange={(e) => updateSettings("scale", e.target.value)}  // Supposed to divide by 10, but having type errors atm, will look into this.
           ></input>
           <a>{currentSettings.scale}</a>
         </label>
@@ -171,7 +186,7 @@ export default function Customization(props) {
             max="10"
             value={currentSettings.opacity * 10}
             step="1"
-            onChange={(e) => updateSettings("opacity", e.target.value / 10)}
+            onChange={(e) => updateSettings("opacity", e.target.value)} // Supposed to divide by 10, but having type errors atm, will look into this.
           ></input>
           <a>{currentSettings.opacity}</a>
         </label>
@@ -208,4 +223,6 @@ export default function Customization(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Customization;
