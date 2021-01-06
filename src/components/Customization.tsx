@@ -19,8 +19,6 @@ interface CustomizationProps {
 }
 
 const Customization = ({ settings, setSettings }: CustomizationProps) => {
-  const [currentSettings, setCurrentSettings] = useState(settings);
-
   const setDefaultSettings = () => {
     const defaultSettings = {
       theme: "dark",
@@ -29,10 +27,9 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
       bottomMenubar: false,
       opacity: 1,
       font: "modern",
-      usingLocalStorage: currentSettings.usingLocalStorage,
+      usingLocalStorage: settings.usingLocalStorage,
       background: settings.background,
     };
-    setCurrentSettings(defaultSettings);
     setSettings(defaultSettings);
     localStorage.clear();
   };
@@ -41,11 +38,17 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     property: string,
     value: string | boolean | number
   ) => {
-    const newCurrentSettings = { ...currentSettings, [property]: value };
-    setCurrentSettings(newCurrentSettings);
-    setSettings(newCurrentSettings);
-    if (newCurrentSettings.usingLocalStorage) {
-      localStorage.setItem("settings", JSON.stringify(newCurrentSettings));
+    let newSettings = { ...settings, [property]: value };
+    setSettings(newSettings);
+    if (newSettings.usingLocalStorage) {
+      localStorage.setItem(
+        "settings",
+        JSON.stringify({
+          ...newSettings,
+          background:
+            "url(https://raw.githubusercontent.com/Vecopotryx/retro-desktop-environment/master/source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg)",
+        })
+      );
     }
   };
 
@@ -56,84 +59,46 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     }
   };
 
+  interface Props {
+    theme: string;
+    image: string;
+  }
+
+  const ThemePreview = ({ theme, image }: Props) => {
+    return (
+      <div>
+        <div
+          className="settingsPreviews"
+          style={{ backgroundImage: settings.background }}
+          onClick={() => updateSettings("theme", theme.toLowerCase())}
+        >
+          <img
+            className="settingsThemePreview"
+            src={image}
+            width="100%"
+            alt={theme.toLowerCase()}
+          ></img>
+        </div>
+        <label className="settingsThemeRadios">
+          <input
+            type="radio"
+            value={theme.toLowerCase()}
+            checked={settings.theme === theme.toLowerCase()}
+            onChange={(e) => updateSettings("theme", e.target.value)}
+          />
+          {theme}
+        </label>
+      </div>
+    );
+  };
+
   return (
     <div className="customization">
-      <div className="themePicker">
-        <h2>Theme</h2>
-        <div className="settingsPreviewsHolder">
-          <div
-            className="settingsPreviews"
-            style={{
-              backgroundImage: settings.background,
-              marginRight: "1%",
-            }}
-          >
-            <img
-              className="settingsThemePreview"
-              src={darkmodeImage}
-              width="100%"
-              alt="Light"
-              onClick={() => updateSettings("theme", "light")}
-            ></img>
-          </div>
-          <div
-            className="settingsPreviews"
-            style={{ backgroundImage: settings.background }}
-            onClick={() => updateSettings("theme", "dark")}
-          >
-            <img
-              className="settingsThemePreview"
-              src={darkmodeImage}
-              width="100%"
-              alt="Dark"
-            ></img>
-          </div>
-          <div
-            className="settingsPreviews"
-            style={{
-              backgroundImage: settings.background,
-              marginLeft: "1%",
-            }}
-            onClick={() => updateSettings("theme", "classic")}
-          >
-            <img
-              className="settingsThemePreview"
-              src={darkmodeImage}
-              width="100%"
-              alt="Classic"
-            ></img>
-          </div>
-        </div>
-
-        <div className="settingsThemeRadiosHolder">
-          <label className="settingsThemeRadios">
-            <input
-              type="radio"
-              value="light"
-              checked={currentSettings.theme === "light"}
-              onChange={(e) => updateSettings("theme", e.target.value)}
-            />
-            Light
-          </label>
-          <label className="settingsThemeRadios">
-            <input
-              type="radio"
-              value="dark"
-              checked={currentSettings.theme === "dark"}
-              onChange={(e) => updateSettings("theme", e.target.value)}
-            />
-            Dark
-          </label>
-          <label className="settingsThemeRadios">
-            <input
-              type="radio"
-              value="classic"
-              checked={currentSettings.theme === "classic"}
-              onChange={(e) => updateSettings("theme", e.target.value)}
-            />
-            Classic
-          </label>
-        </div>
+      <h2>Theme</h2>
+      <div className={"themePreviews"}>
+        <ThemePreview theme={"Light"} image={darkmodeImage} />
+        <ThemePreview theme={"Dark"} image={darkmodeImage} />
+        <ThemePreview theme={"Classic"} image={darkmodeImage} />
       </div>
       <div className="otherSettings">
         <div className="fontSettings">
@@ -142,7 +107,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             <input
               type="radio"
               value="modern"
-              checked={currentSettings.font === "modern"}
+              checked={settings.font === "modern"}
               onChange={(e) => updateSettings("font", e.target.value)}
             />
             <a style={{ fontFamily: "Sans-serif" }}>Modern</a>
@@ -152,7 +117,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             <input
               type="radio"
               value="retro"
-              checked={currentSettings.font === "retro"}
+              checked={settings.font === "retro"}
               onChange={(e) => updateSettings("font", e.target.value)}
             />
             <a style={{ fontFamily: "retro" }}>Retro</a>
@@ -164,7 +129,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             Connected Menubar
             <input
               type="checkbox"
-              checked={currentSettings.connectedMenubar}
+              checked={settings.connectedMenubar}
               onChange={(e) =>
                 updateSettings("connectedMenubar", e.target.checked)
               }
@@ -175,7 +140,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             Bottom Menubar
             <input
               type="checkbox"
-              checked={currentSettings.bottomMenubar}
+              checked={settings.bottomMenubar}
               onChange={(e) =>
                 updateSettings("bottomMenubar", e.target.checked)
               }
@@ -191,13 +156,13 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
               type="range"
               min="5"
               max="30"
-              value={currentSettings.scale * 10}
+              value={settings.scale * 10}
               step="1"
               onChange={(e) =>
                 updateSettings("scale", Number(e.target.value) / 10)
               }
             ></input>
-            <a>{currentSettings.scale}</a>
+            <a>{settings.scale}</a>
           </label>
           <br />
           <label>
@@ -206,30 +171,31 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
               type="range"
               min="1"
               max="10"
-              value={currentSettings.opacity * 10}
+              value={settings.opacity * 10}
               step="1"
               onChange={(e) =>
                 updateSettings("opacity", Number(e.target.value) / 10)
               }
             ></input>
-            <a>{currentSettings.opacity}</a>
+            <a>{settings.opacity}</a>
           </label>
         </div>
         <div className="miscSettings2">
-        <h2>Misc 2</h2>
-        <label>
-          Use cookies/localStorage
-          <input
-            type="checkbox"
-            checked={currentSettings.usingLocalStorage}
-            onChange={toggleLocalStorage}
-          ></input>
-        </label>
-        <br />
-        <button onClick={setDefaultSettings}>Revert to default settings</button>
+          <h2>Misc 2</h2>
+          <label>
+            Use cookies/localStorage
+            <input
+              type="checkbox"
+              checked={settings.usingLocalStorage}
+              onChange={toggleLocalStorage}
+            ></input>
+          </label>
+          <br />
+          <button onClick={setDefaultSettings}>
+            Revert to default settings
+          </button>
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 };
