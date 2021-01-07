@@ -6,7 +6,7 @@ const Browser = () => {
   const [site, setSite] = useState("https://www.w3.org");
   const [loading, setLoading] = useState(true);
   const [frameSource, setFrameSource] = useState(
-    "http://www.themostamazingwebsiteontheinternet.com/"
+    "https://web.archive.org/web/19950301012010/netscape.com"
   );
 
   const updateIframe = () => {
@@ -27,7 +27,7 @@ const Browser = () => {
     return (
       <>
         {years.map((year) => (
-          <option value={year}>{year}</option>
+          <option value={year} key={year}>{year}</option>
         ))}
       </>
     );
@@ -61,7 +61,7 @@ const Browser = () => {
             ></img>
             <p>
               Retrieving data from
-              <a href="https://archive.org/">Archive.org</a>
+              <a href="https://archive.org/" target="_blank" rel="noopener noreferrer"> Archive.org</a>
             </p>
           </>
         )}

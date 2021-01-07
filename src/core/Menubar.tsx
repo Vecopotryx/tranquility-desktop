@@ -30,7 +30,7 @@ const Menubar = ({ handleOpen }: MenubarProps) => {
     {
       appName: "Getpost Gavinator",
       appComponent: <Browser />,
-      buttonText: "Getpost Gavinator",
+      buttonText: "Internet",
       appIcon: appIconPlaceholder,
     },
   ];
