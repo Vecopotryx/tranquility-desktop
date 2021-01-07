@@ -148,6 +148,12 @@ export const GlobalStyles = createGlobalStyle(
     .openWindowList > img {
       height: ${settings.scale * 0.6}cm;
     }
+
+    .loadingSpinner {
+      filter: ${theme === lightTheme || theme === classicTheme
+        ? "invert(1)"
+        : ""};
+    }
   `
 );
 

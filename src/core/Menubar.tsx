@@ -7,6 +7,7 @@ import appIconPlaceholder from "../assets/img/backgrounds/andreas-gucklhorn-IRq7
 import Notes from "../applications/Notes";
 import ChipPlayer from "../applications/ChipPlayer";
 import Settings from "../applications/settings/Settings";
+import Browser from "../applications/Browser";
 
 type MenubarProps = {
   handleOpen: (title: string, component: JSX.Element) => void;
@@ -18,17 +19,18 @@ const Menubar = ({ handleOpen }: MenubarProps) => {
       appName: "Notes",
       appComponent: <Notes />,
       buttonText: "Notes",
-      defaultWidth: 200,
-      defaultHeight: 200,
       appIcon: appIconPlaceholder,
     },
     {
       appName: "Chip Player JS",
       appComponent: <ChipPlayer />,
       buttonText: "Chip Player",
-      defaultWidth: "50%",
-      defaultHeight: 500,
-      customBackground: "#010088",
+      appIcon: appIconPlaceholder,
+    },
+    {
+      appName: "Getpost Gavinator",
+      appComponent: <Browser />,
+      buttonText: "Getpost Gavinator",
       appIcon: appIconPlaceholder,
     },
   ];
