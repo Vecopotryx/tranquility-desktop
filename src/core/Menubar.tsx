@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./menubar.css";
+import "../assets/styles/componentStyles/Menubar.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Notes from "./Notes";
-import ChipPlayer from "./ChipPlayer";
-import Settings from "./Settings";
-import appIconPlaceholder from "../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
+import appIconPlaceholder from "../assets/img/backgrounds/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
+
+// application components:
+import Notes from "../applications/Notes";
+import ChipPlayer from "../applications/ChipPlayer";
+import Settings from "../applications/settings/Settings";
 
 type MenubarProps = {
   handleOpen: (title: string, component: JSX.Element) => void;

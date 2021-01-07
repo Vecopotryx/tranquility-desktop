@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react'
 import Customization from './Customization'
 import BackgroundPicker from './BackgroundPicker'
-import { useSettings } from './SettingsContext'
+import { useSettings } from '../../contexts/SettingsContext'
 
 const Settings = () => {
     const [openSettings, setOpenSettings] = useState("customization");

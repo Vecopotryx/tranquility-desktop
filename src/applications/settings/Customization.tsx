@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
-import darkmodeImage from "./darkmode-temporary.svg";
-import "../styles/Settings.css";
+import darkmodeImage from "../../assets/img/darkmode-temporary.svg";
+import "../../assets/styles/componentStyles/Settings.css";
 
 interface SettingsTypes {
   theme: string;

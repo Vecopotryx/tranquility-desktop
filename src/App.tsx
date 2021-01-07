@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { GlobalStyles, getTheme } from "./styles/GlobalStyles";
+import { GlobalStyles, getTheme } from "./core/GlobalStyles";
 import { ThemeProvider } from "styled-components";
-import { useSettings } from "./components/SettingsContext";
-import WindowManager from "./components/WindowManager";
-import "./styles/StaticStyles.css";
+import { useSettings } from "./contexts/SettingsContext";
+import WindowManager from "./core/WindowManager";
+import "./assets/styles/StaticStyles.css";
 
 function App() {
   const settings = useSettings().customizeSettings;

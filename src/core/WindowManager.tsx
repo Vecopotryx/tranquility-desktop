@@ -1,7 +1,7 @@
 import React from "react";
 import AppWindow from "./AppWindow";
 import Menubar from "./Menubar";
-import Notes from "./Notes";
+import Notes from "../applications/Notes";
 
 const WindowManager = () => {
   const [highestIndex, setHighestIndex] = React.useState(2);
