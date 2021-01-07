@@ -8,6 +8,7 @@ import Notes from "../applications/Notes";
 import ChipPlayer from "../applications/ChipPlayer";
 import Settings from "../applications/settings/Settings";
 import Browser from "../applications/Browser";
+import Terminal from "../applications/Terminal";
 
 type MenubarProps = {
   handleOpen: (title: string, component: JSX.Element) => void;
@@ -31,6 +32,12 @@ const Menubar = ({ handleOpen }: MenubarProps) => {
       appName: "Getpost Gavinator",
       appComponent: <Browser />,
       buttonText: "Internet",
+      appIcon: appIconPlaceholder,
+    },
+    {
+      appName: "Terminal",
+      appComponent: <Terminal />,
+      buttonText: "Terminal",
       appIcon: appIconPlaceholder,
     },
   ];
