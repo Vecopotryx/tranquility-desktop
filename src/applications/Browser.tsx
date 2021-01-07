@@ -2,20 +2,35 @@ import React, { useState } from "react";
 import loadingSpinner from "../assets/img/tail-spin.svg";
 
 const Browser = () => {
-  const [year, setYear] = useState(2000);
+  const [year, setYear] = useState(2010);
   const [site, setSite] = useState("https://www.w3.org");
   const [loading, setLoading] = useState(true);
   const [frameSource, setFrameSource] = useState(
-    "https://web.archive.org/web/20000301012010/http://w3.org"
+    "http://www.themostamazingwebsiteontheinternet.com/"
   );
 
   const updateIframe = () => {
     const newSource =
       "https://web.archive.org/web/" + year + "0301012010/" + site;
     setFrameSource(newSource);
-    if(frameSource !== newSource){
-        setLoading(true);
+    if (frameSource !== newSource) {
+      setLoading(true);
     }
+  };
+
+  const YearOptions = () => {
+    let years: number[] = [];
+    for (let i = 1995; i <= 2020; i++) {
+      years.push(i);
+    }
+
+    return (
+      <>
+        {years.map((year) => (
+          <option value={year}>{year}</option>
+        ))}
+      </>
+    );
   };
 
   return (
@@ -23,11 +38,8 @@ const Browser = () => {
       <div id="browserNavbar" style={{ textAlign: "center" }}>
         <label>
           Year:
-          <select onChange={(e) => setYear(Number(e.target.value))}>
-            <option value="2000">2000</option>
-            <option value="2005">2005</option>
-            <option value="2010">2010</option>
-            <option value="2015">2015</option>
+          <select value={year} onChange={(e) => setYear(Number(e.target.value))}>
+              <YearOptions/>
           </select>
         </label>
         <input
@@ -42,7 +54,11 @@ const Browser = () => {
         <button onClick={() => updateIframe()}>Go</button>
         {loading && (
           <>
-            <img className="loadingSpinner" src={loadingSpinner} alt="Loading"></img>
+            <img
+              className="loadingSpinner"
+              src={loadingSpinner}
+              alt="Loading"
+            ></img>
             <p>
               Retrieving data from
               <a href="https://archive.org/">Archive.org</a>
