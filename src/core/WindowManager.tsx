@@ -1,28 +1,20 @@
 import React from "react";
 import AppWindow from "./AppWindow";
 import Menubar from "./Menubar";
-import Notes from "../applications/Notes";
+
+interface WindowListProps {
+  id: number;
+  title: string;
+  component: JSX.Element;
+  index: number;
+  isFocused: boolean;
+}
 
 const WindowManager = () => {
-  const [highestIndex, setHighestIndex] = React.useState(2);
-  const [currentlyFocused, setCurrentlyFocused] = React.useState(2);
+  const [highestIndex, setHighestIndex] = React.useState(0);
+  const [currentlyFocused, setCurrentlyFocused] = React.useState(0);
 
-  const [windowList, setWindowList] = React.useState([
-    {
-      id: 0,
-      title: "Test",
-      component: <Notes />,
-      index: 1,
-      isFocused: false,
-    },
-    {
-      id: 1,
-      title: "Test2",
-      component: <Notes />,
-      index: 2,
-      isFocused: true,
-    },
-  ]);
+  const [windowList, setWindowList] = React.useState<WindowListProps[]>([]);
 
   const [frameOverlay, setFrameOverlay] = React.useState({
     visible: false,
