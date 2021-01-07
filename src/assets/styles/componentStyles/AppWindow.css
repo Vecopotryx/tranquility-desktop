@@ -51,3 +51,7 @@
 .appContent > * {
   cursor: default;
 }
+
+.appContent {
+  height: 100%;
+}
