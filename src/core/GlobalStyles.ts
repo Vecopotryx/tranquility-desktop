@@ -1,5 +1,5 @@
 import { createGlobalStyle, css } from "styled-components";
-import perfectDOS from "./Perfect_DOS_VGA_437_Win.ttf";
+import perfectDOS from "../assets/styles/Perfect_DOS_VGA_437_Win.ttf";
 
 interface SettingsTypes {
   theme: string;

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { SettingsProvider } from './components/SettingsContext'
+import { SettingsProvider } from './contexts/SettingsContext'
 
 ReactDOM.render(
   <React.StrictMode>

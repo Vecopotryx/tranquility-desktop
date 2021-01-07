@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Rnd } from "react-rnd";
-import "./appWindow.css";
+import "../assets/styles/componentStyles/AppWindow.css";
 
 interface AppWindowProps {
   children: ReactNode;

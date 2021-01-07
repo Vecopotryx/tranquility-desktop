@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import defaultBackground1 from "../img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
-import defaultBackground2 from "../img/KDE Plasma Scenery 64 NO LOGO.jpg";
-import defaultBackground3 from "../img/nasa-Q1p7bh3SHj8-unsplash.jpg";
+import defaultBackground1 from "../../assets/img/backgrounds/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
+import defaultBackground2 from "../../assets/img/backgrounds/KDE Plasma Scenery 64 NO LOGO.jpg";
+import defaultBackground3 from "../../assets/img/backgrounds/nasa-Q1p7bh3SHj8-unsplash.jpg";
 
 interface SettingsTypes {
   theme: string;

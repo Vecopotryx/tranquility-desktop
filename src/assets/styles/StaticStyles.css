@@ -1,0 +1,14 @@
+body {
+  background-size: 105%;
+  min-height: 100%;
+}
+
+.frameOverlay {
+  height: 100%;
+  width: 100%;
+  background: rgba(34, 34, 34, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
