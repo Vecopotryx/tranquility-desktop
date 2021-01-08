@@ -51,3 +51,8 @@
 .appContent > * {
   cursor: default;
 }
+
+.appContent {
+  overflow-y: auto;
+  overflow-x: hidden;
+}

@@ -84,8 +84,6 @@ export const GlobalStyles = createGlobalStyle(
 
     .appContent {
       height: calc(100% - ${settings.scale * 0.7}cm);
-      overflow-y: auto;
-      overflow-x: hidden;
     }
 
     .menubar {
@@ -155,6 +153,11 @@ export const GlobalStyles = createGlobalStyle(
       filter: ${theme === lightTheme || theme === classicTheme
         ? "invert(1)"
         : ""};
+    }
+
+    .terminalInput {
+      caret-color: ${theme === darkTheme ? "white" : "black"};
+      color: ${theme === darkTheme ? "white" : "black"};
     }
   `
 );
