@@ -8,7 +8,7 @@ const Terminal = () => {
   const InputLine = () => {
     return (
       <div>
-        $
+        <UserIndicator />
         <input
           type="text"
           onChange={(e) => {
@@ -17,6 +17,8 @@ const Terminal = () => {
           onKeyUp={(e) => {
             if (e.key === "Enter") handleInput();
           }}
+          style={{ border: "none", background: "transparent" }}
+          className="terminalInput"
           ref={inputRef}
         ></input>
       </div>
@@ -47,17 +49,20 @@ const Terminal = () => {
   };
 
   const handleCommand = (element: JSX.Element) => {
-    setCommandHistory([
-      ...commandHistory,
-      <PrevUserInput />,
-      <>
-        {element} <br />
-      </>,
-    ]);
+    setCommandHistory([...commandHistory, <PrevUserInput />, <>{element}</>]);
   };
 
   const PrevUserInput = () => {
-    return <p>$ {currentInput}</p>;
+    return (
+      <p>
+        <UserIndicator />
+        {currentInput}
+      </p>
+    );
+  };
+
+  const UserIndicator = () => {
+    return <p style={{ color: "aqua" }}>$ </p>;
   };
 
   const Test = () => {
@@ -65,11 +70,7 @@ const Terminal = () => {
   };
 
   const Neofetch = () => {
-    return (
-      <span style={{ display: "block" }}>
-        <pre>{neofetchContent}</pre>
-      </span>
-    );
+    return <pre>{neofetchContent}</pre>;
   };
 
   const neofetchContent = `
@@ -97,7 +98,7 @@ const Terminal = () => {
   };
 
   return (
-    <div>
+    <div style={{ height: "100%" }} onClick={() => inputRef.current.focus()}>
       {commandHistory.map((element, index) => (
         <div key={index}>{element}</div>
       ))}
