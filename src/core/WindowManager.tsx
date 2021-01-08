@@ -3,20 +3,12 @@ import { useWindowList } from "../contexts/WindowContext";
 import AppWindow from "./AppWindow";
 import Menubar from "./Menubar";
 
-interface WindowListProps {
-  id: number;
-  title: string;
-  component: JSX.Element;
-  index: number;
-  isFocused: boolean;
-}
-
 const WindowManager = () => {
-  const [highestIndex, setHighestIndex] = React.useState(0);
-  const [currentlyFocused, setCurrentlyFocused] = React.useState(0);
+  // const [highestIndex, setHighestIndex] = React.useState(0);
+  // const [currentlyFocused, setCurrentlyFocused] = React.useState(0);
 
   const windowList = useWindowList().windowList;
-  const setWindowList = useWindowList().setWindowList;
+  // const setWindowList = useWindowList().setWindowList;
 
   // const [windowList, setWindowList] = React.useState<WindowListProps[]>([]);
 
@@ -25,6 +17,7 @@ const WindowManager = () => {
     index: 1,
   });
 
+  /*
   const handleOpen = (title: string, component: JSX.Element) => {
     let newId = Math.max(...windowList.map((appWindow) => appWindow.id)) + 1;
     if (!isFinite(newId)) newId = 0; // Prevents newId from being -Infinity when list is empty.
@@ -40,17 +33,19 @@ const WindowManager = () => {
     ];
     setHighestIndex(highestIndex + 1);
     setWindowList(newArr);
-  };
+  };*/
 
-  const handleClose = (appId: number) => {
+  const handleClose = useWindowList().handleClose /*(appId: number) => {
     setWindowList(windowList.filter((c) => c.id !== appId));
-  };
+  };*/
+
+  const highestIndex = useWindowList().highestIndex;
 
   const updateFrameOverlay = (visible: boolean, index: number) => {
     setFrameOverlay({ visible: visible, index: highestIndex });
   };
 
-  const handleFocus = (appId: number) => {
+  const handleFocus = useWindowList().handleFocus /*(appId: number) => {
     if (appId !== currentlyFocused) {
       const newWindowList = windowList.map((appWindow) => {
         if (appWindow.id !== appId) return { ...appWindow, isFocused: false };
@@ -60,7 +55,7 @@ const WindowManager = () => {
       setHighestIndex(highestIndex + 1);
       setCurrentlyFocused(appId);
     }
-  };
+  };*/
 
   return (
     <>
