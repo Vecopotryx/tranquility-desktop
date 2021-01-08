@@ -84,6 +84,8 @@ export const GlobalStyles = createGlobalStyle(
 
     .appContent {
       height: calc(100% - ${settings.scale * 0.7}cm);
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .menubar {

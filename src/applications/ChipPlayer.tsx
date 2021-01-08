@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class ChipPlayer extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div style={{height: "100%", overflow: "hidden"}}>
         <iframe
           title="chipPlayerJS"
           height="100%"
@@ -13,7 +13,7 @@ class ChipPlayer extends Component {
         >
           <p>Your browser does not support iframes.</p>
         </iframe>
-      </React.Fragment>
+      </div>
     );
   }
 }

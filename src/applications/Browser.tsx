@@ -34,7 +34,7 @@ const Browser = () => {
   };
 
   return (
-    <div className="browser" style={{ height: "100%" }}>
+    <div className="browser" style={{height: "100%", overflow: "hidden"}}>
       <div id="browserNavbar" style={{ textAlign: "center" }}>
         <label>
           Year:
