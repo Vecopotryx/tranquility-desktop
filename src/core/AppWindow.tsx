@@ -1,9 +1,9 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Rnd } from "react-rnd";
 import "../assets/styles/componentStyles/AppWindow.css";
 
 interface AppWindowProps {
-  children: ReactNode;
+  children: JSX.Element;
   appId: number;
   isFocused: boolean;
   title: string;
@@ -119,7 +119,7 @@ const AppWindow = ({
               style={{ display: frameOverlay ? "block" : "none" }}
               className="internalFrameOverlay"
             />
-            {children}
+            {React.cloneElement(children, { id: appId, handleClose: handleClose })}
           </div>
         </div>
       </Rnd>

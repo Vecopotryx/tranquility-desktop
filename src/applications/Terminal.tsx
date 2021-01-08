@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const Terminal = () => {
+const Terminal = (props: any) => {
   let currentInput = "";
   const inputRef = useRef<any>();
 
@@ -40,6 +40,11 @@ const Terminal = () => {
         break;
       case "neofetch":
         handleCommand(<Neofetch />);
+        break;
+      case "exit":
+        if(props.id !== null){
+          props.handleClose(props.id);
+        }
         break;
       default:
         handleCommand(<InvalidCommand />);
