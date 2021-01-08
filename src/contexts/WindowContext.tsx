@@ -6,11 +6,12 @@ interface WindowListTypes {
   component: JSX.Element;
   index: number;
   isFocused: boolean;
+  appIcon: string;
 }
 
 interface WindowContextProps {
   windowList: WindowListTypes[];
-  handleOpen: (title: string, component: JSX.Element) => void;
+  handleOpen: (title: string, component: JSX.Element, appIcon: string) => void;
   handleClose: (appId: number) => void;
   handleFocus: (appId: number) => void;
   highestIndex: number;
@@ -26,7 +27,7 @@ export const WindowListProvider: React.FC = ({ children }) => {
 
   const [currentlyFocused, setCurrentlyFocused] = React.useState(0);
 
-  const handleOpen = (title: string, component: JSX.Element) => {
+  const handleOpen = (title: string, component: JSX.Element, appIcon: string) => {
     let newId =
       Math.max(...windowListState.map((appWindow) => appWindow.id)) + 1;
     if (!isFinite(newId)) newId = 0; // Prevents newId from being -Infinity when list is empty.
@@ -38,6 +39,7 @@ export const WindowListProvider: React.FC = ({ children }) => {
         component: component,
         index: highestIndex + 1,
         isFocused: true,
+        appIcon: appIcon,
       },
     ];
     setHighestIndex(highestIndex + 1);
