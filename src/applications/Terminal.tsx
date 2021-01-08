@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const Terminal = () => {
-  // const [currentInput, setCurrentInput] = useState<string>("");
-
   let currentInput = "";
-  const InputLine = ({ id }: { id: number }) => {
+  const inputRef = useRef<any>();
+
+  const InputLine = () => {
     return (
       <div>
         $
@@ -16,25 +16,17 @@ const Terminal = () => {
           onKeyUp={(e) => {
             if (e.key === "Enter") handleInput();
           }}
+          ref={inputRef}
         ></input>
       </div>
     );
   };
 
-  interface CommandHistoryProps {
-    id: number;
-    component: JSX.Element;
-  }
+  const [commandHistory, setCommandHistory] = useState<JSX.Element[]>([]);
 
-  // const [currentId, setCurrentId] = useState(0);
-  // let currentId = 0;
-
-  const [commandHistory, setCommandHistory] = useState<CommandHistoryProps[]>([
-    {
-      id: 0,
-      component: <InputLine id={0} />,
-    },
-  ]);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [commandHistory]);
 
   const handleInput = () => {
     switch (currentInput.toLowerCase()) {
@@ -42,27 +34,28 @@ const Terminal = () => {
         handleCommand(<Test />);
         break;
       default:
-        handleCommand(<p>{currentInput}</p>)
+        handleCommand(<br/>);
         break;
     }
   };
 
   const handleCommand = (element: JSX.Element) => {
-    setCommandHistory([
-      ...commandHistory,
-      { id: 1, component: element },
-      { id: 1, component: <br/> },
-    ]);
+    setCommandHistory([...commandHistory, <PrevUserInput/>, <>{element} <br /></>]);
   };
+
+  const PrevUserInput = () => {
+    return (<p>$ {currentInput}</p>)
+  }
 
   const Test = () => {
     return <>Test</>;
   };
+
   return (
     <div>
-      {commandHistory.map((element) => element.component)}
+      {commandHistory.map((element, index) => <div key={index}>{element}</div>)}
 
-      <InputLine id={1}/>
+      <InputLine key={-1} />
     </div>
   );
 };
