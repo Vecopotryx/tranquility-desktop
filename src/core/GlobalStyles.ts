@@ -155,6 +155,10 @@ export const GlobalStyles = createGlobalStyle(
         : ""};
     }
 
+    .githubIcon {
+      filter: ${theme === darkTheme ? "invert(1)" : ""};
+    }
+
     .terminalInput {
       caret-color: ${theme === darkTheme ? "white" : "black"};
       color: ${theme === darkTheme ? "white" : "black"};
