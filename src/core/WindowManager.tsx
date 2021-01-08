@@ -71,7 +71,7 @@ const WindowManager = () => {
         }}
         className="frameOverlay"
       />
-      <Menubar handleOpen={handleOpen} />
+      <Menubar handleOpen={useWindowList().handleOpen} />
       <div className="WindowContainer">
         {windowList.map((appWindow) => (
           <AppWindow
