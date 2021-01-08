@@ -1,3 +1,4 @@
+import { clear } from "console";
 import React, { useState, useRef, useEffect } from "react";
 
 const Terminal = () => {
@@ -33,8 +34,11 @@ const Terminal = () => {
       case "test":
         handleCommand(<Test />);
         break;
+      case "clear":
+        clear();
+        break;
       default:
-        handleCommand(<br/>);
+        handleCommand(<InvalidCommand/>);
         break;
     }
   };
@@ -50,6 +54,14 @@ const Terminal = () => {
   const Test = () => {
     return <>Test</>;
   };
+
+  const clear = () => {
+    setCommandHistory([]);
+  }
+
+  const InvalidCommand = () => {
+    return (<p><i>{currentInput}</i> is not a valid command</p>)
+  }
 
   return (
     <div>
