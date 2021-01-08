@@ -17,6 +17,7 @@
 .menubarRight {
   padding-left: 0.2%;
   padding-right: 0.2%;
+  user-select: none;
 }
 
 .menubarList {

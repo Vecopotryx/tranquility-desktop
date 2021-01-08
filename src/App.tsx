@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { useSettings } from "./contexts/SettingsContext";
 import WindowManager from "./core/WindowManager";
 import "./assets/styles/StaticStyles.css";
+import { WindowListProvider } from "./contexts/WindowContext";
 
 function App() {
   const settings = useSettings().customizeSettings;
@@ -20,7 +21,9 @@ function App() {
     <ThemeProvider theme={getTheme(settings.theme)}>
       <div>
         <GlobalStyles settings={settings} />
-        <WindowManager />
+        <WindowListProvider>
+          <WindowManager />
+        </WindowListProvider>
       </div>
     </ThemeProvider>
   );

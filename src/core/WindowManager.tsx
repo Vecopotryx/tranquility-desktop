@@ -1,4 +1,5 @@
 import React from "react";
+import { useWindowList } from "../contexts/WindowContext";
 import AppWindow from "./AppWindow";
 import Menubar from "./Menubar";
 
@@ -14,7 +15,10 @@ const WindowManager = () => {
   const [highestIndex, setHighestIndex] = React.useState(0);
   const [currentlyFocused, setCurrentlyFocused] = React.useState(0);
 
-  const [windowList, setWindowList] = React.useState<WindowListProps[]>([]);
+  const windowList = useWindowList().windowList;
+  const setWindowList = useWindowList().setWindowList;
+
+  // const [windowList, setWindowList] = React.useState<WindowListProps[]>([]);
 
   const [frameOverlay, setFrameOverlay] = React.useState({
     visible: false,
