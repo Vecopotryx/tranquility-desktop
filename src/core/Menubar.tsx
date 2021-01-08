@@ -39,6 +39,8 @@ const Menubar = () => {
     },
   ];
   const handleOpen = useWindowList().handleOpen;
+  const handleFocus = useWindowList().handleFocus;
+  const windowList = useWindowList().windowList;
   
   const [time, setTime] = useState(new Date());
 
@@ -58,11 +60,6 @@ const Menubar = () => {
     "Saturday",
   ];
 
-  /*
-                          appButton.defaultWidth,
-                        appButton.defaultHeight,
-                        appButton.appIcon,
-                        appButton.customBackground*/
   return (
     <>
       <nav className="menubar">
@@ -73,12 +70,12 @@ const Menubar = () => {
             title="Applications"
           >
             <div className="menubarList">
-              {AppButtons.map((appButton) => (
-                <NavDropdown.Item>
+              {AppButtons.map((appButton, index) => (
+                <NavDropdown.Item key={index}>
                   <button
                     className="menubarButton"
                     onClick={() =>
-                      handleOpen(appButton.appName, appButton.appComponent)
+                      handleOpen(appButton.appName, appButton.appComponent, appButton.appIcon)
                     }
                   >
                     <img src={appButton.appIcon} alt=""></img>
@@ -95,7 +92,7 @@ const Menubar = () => {
               <NavDropdown.Item>
                 <button
                   className="menubarButton"
-                  onClick={() => handleOpen("Settings", <Settings />)}
+                  onClick={() => handleOpen("Settings", <Settings />, appIconPlaceholder)}
                 >
                   Settings
                 </button>
@@ -103,6 +100,9 @@ const Menubar = () => {
               </NavDropdown.Item>
             </div>
           </NavDropdown>
+          <span className="openWindowList">{windowList.map((app) => (
+            <img src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)}></img>
+          ))}</span>
         </div>
         <div className="menubarRight">
           <p>
@@ -117,7 +117,5 @@ const Menubar = () => {
     </>
   );
 };
-
-//           <span className="openwindowListStuff">{this.props.children}</span>
 
 export default Menubar;

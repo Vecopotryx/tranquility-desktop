@@ -145,10 +145,6 @@ export const GlobalStyles = createGlobalStyle(
       height: ${settings.scale * 0.7}cm;
     }
 
-    .openWindowList > img {
-      height: ${settings.scale * 0.6}cm;
-    }
-
     .loadingSpinner {
       filter: ${theme === lightTheme || theme === classicTheme
         ? "invert(1)"
@@ -162,6 +158,10 @@ export const GlobalStyles = createGlobalStyle(
     .terminalInput {
       caret-color: ${theme === darkTheme ? "white" : "black"};
       color: ${theme === darkTheme ? "white" : "black"};
+    }
+
+    .openWindowList > img {
+      width: ${settings.scale * 1}cm;
     }
   `
 );
