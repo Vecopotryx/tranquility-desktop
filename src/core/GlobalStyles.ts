@@ -160,8 +160,12 @@ export const GlobalStyles = createGlobalStyle(
       color: ${theme === darkTheme ? "white" : "black"};
     }
 
-    .openWindowList > img {
-      width: ${settings.scale * 1}cm;
+    .openWindowListIcon {
+      height: ${settings.scale * 0.6}cm;
+    }
+
+    .openWindowList > div {
+      height: ${settings.scale * 0.8}cm;
     }
   `
 );

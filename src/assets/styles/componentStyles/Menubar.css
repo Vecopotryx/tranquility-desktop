@@ -50,10 +50,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  float: right;
 }
 
-.openWindowList > img:hover {
+.openWindowListIcon {
+  margin-left: 0.2vw;
+  vertical-align: middle;
+}
+
+.openWindowListIcon:hover {
   transform: scale(1.2);
   transition: transform 0.2s;
 }
