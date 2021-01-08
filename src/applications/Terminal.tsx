@@ -1,4 +1,3 @@
-import { clear } from "console";
 import React, { useState, useRef, useEffect } from "react";
 
 const Terminal = () => {
