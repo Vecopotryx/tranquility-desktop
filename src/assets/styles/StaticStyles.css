@@ -16,3 +16,7 @@ body {
 .loadingSpinner {
   vertical-align: middle;
 }
+
+p {
+  display: inline;
+}
