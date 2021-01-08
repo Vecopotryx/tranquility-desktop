@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/componentStyles/Menubar.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import appIconPlaceholder from "../assets/img/backgrounds/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
+
+// application icons:
+import ChipPlayerIcon from "../assets/img/icons/ChipPlayerJS.png"
+import TerminalIcon from "../assets/img/icons/terminal.png"
+import NotesIcon from "../assets/img/icons/notes.png"
+import SettingsIcon from "../assets/img/icons/settings.png"
+import BrowserIcon from "../assets/img/icons/browser.png"
 
 // application components:
 import Notes from "../applications/Notes";
@@ -17,25 +23,25 @@ const Menubar = () => {
       appName: "Notes",
       appComponent: <Notes />,
       buttonText: "Notes",
-      appIcon: appIconPlaceholder,
+      appIcon: NotesIcon,
     },
     {
       appName: "Chip Player JS",
       appComponent: <ChipPlayer />,
       buttonText: "Chip Player",
-      appIcon: appIconPlaceholder,
+      appIcon: ChipPlayerIcon,
     },
     {
       appName: "Getpost Gavinator",
       appComponent: <Browser />,
       buttonText: "Internet",
-      appIcon: appIconPlaceholder,
+      appIcon: BrowserIcon,
     },
     {
       appName: "Terminal",
       appComponent: <Terminal />,
       buttonText: "Terminal",
-      appIcon: appIconPlaceholder,
+      appIcon: TerminalIcon,
     },
   ];
   const handleOpen = useWindowList().handleOpen;
@@ -92,7 +98,7 @@ const Menubar = () => {
               <NavDropdown.Item>
                 <button
                   className="menubarButton"
-                  onClick={() => handleOpen("Settings", <Settings />, appIconPlaceholder)}
+                  onClick={() => handleOpen("Settings", <Settings />, SettingsIcon)}
                 >
                   Settings
                 </button>
@@ -100,8 +106,10 @@ const Menubar = () => {
               </NavDropdown.Item>
             </div>
           </NavDropdown>
-          <span className="openWindowList">{windowList.map((app) => (
-            <img src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)}></img>
+          <span className="openWindowList">{windowList.map((app, index) => (
+            <div key={index}>
+              <img className="openWindowListIcon" src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)}></img>
+            </div>
           ))}</span>
         </div>
         <div className="menubarRight">
