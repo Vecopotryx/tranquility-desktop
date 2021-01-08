@@ -8,7 +8,7 @@ interface AppWindowProps {
   isFocused: boolean;
   title: string;
   index: number;
-  updateFrameOverlay: (visible: boolean, index: number) => void;
+  updateFrameOverlay: (visible: boolean) => void;
   handleClose: (appId: number) => void;
   handleFocus: (appId: number) => void;
 }
@@ -64,7 +64,7 @@ const AppWindow = ({
 
   const handleResizeOrDrag = (status: boolean) => {
     setFrameOverlay(status);
-    updateFrameOverlay(status, index);
+    updateFrameOverlay(status);
   };
 
   return (

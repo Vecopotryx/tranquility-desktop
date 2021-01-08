@@ -5,6 +5,7 @@ import { useSettings } from "./contexts/SettingsContext";
 import WindowManager from "./core/WindowManager";
 import "./assets/styles/StaticStyles.css";
 import { WindowListProvider } from "./contexts/WindowContext";
+import Menubar from "./core/Menubar";
 
 function App() {
   const settings = useSettings().customizeSettings;
@@ -22,6 +23,7 @@ function App() {
       <div>
         <GlobalStyles settings={settings} />
         <WindowListProvider>
+          <Menubar />
           <WindowManager />
         </WindowListProvider>
       </div>

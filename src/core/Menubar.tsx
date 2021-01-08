@@ -9,12 +9,9 @@ import ChipPlayer from "../applications/ChipPlayer";
 import Settings from "../applications/settings/Settings";
 import Browser from "../applications/Browser";
 import Terminal from "../applications/Terminal";
+import { useWindowList } from "../contexts/WindowContext";
 
-type MenubarProps = {
-  handleOpen: (title: string, component: JSX.Element) => void;
-};
-
-const Menubar = ({ handleOpen }: MenubarProps) => {
+const Menubar = () => {
   const AppButtons = [
     {
       appName: "Notes",
@@ -41,7 +38,8 @@ const Menubar = ({ handleOpen }: MenubarProps) => {
       appIcon: appIconPlaceholder,
     },
   ];
-
+  const handleOpen = useWindowList().handleOpen;
+  
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
