@@ -136,7 +136,8 @@ export const GlobalStyles = createGlobalStyle(
     }
 
     .currentBackgroundPreview,
-    .defaultBackgroundHolder > img {
+    .defaultBackgroundHolder > img,
+    .aboutContainer > div {
       border-radius: ${theme.borderRadius};
     }
 
@@ -175,6 +176,12 @@ export const GlobalStyles = createGlobalStyle(
 
     .settings > button:hover {
       filter: ${theme === darkTheme ? "brightness(2)" : "brightness(0.1)"};
+    }
+
+    .backgroundOptions > label > * {
+      background: ${theme.titlebarBackground};
+      border-radius: ${theme.borderRadius};
+      color: ${theme.text};
     }
   `
 );

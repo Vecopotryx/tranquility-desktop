@@ -3,6 +3,7 @@ import Customization from "./Customization";
 import BackgroundPicker from "./BackgroundPicker";
 import About from "./About";
 import { useSettings } from "../../contexts/SettingsContext";
+import "../../assets/styles/componentStyles/Settings.css";
 
 const Settings = () => {
   const [openSettings, setOpenSettings] = useState("Customization");
@@ -19,26 +20,31 @@ const Settings = () => {
           <BackgroundPicker settings={settings} setSettings={setSettings} />
         );
       case "about":
-        return (
-          <About />
-        );
+        return <About />;
       default:
         break;
     }
     return <h1>Error</h1>;
   };
 
+  const SettingsButton = ({setting}: {setting: string}) => {
+    return (
+      <>
+        {openSettings === setting ? (
+          <h2>{setting}</h2>
+        ) : (
+          <button onClick={() => setOpenSettings(setting)}>{setting}</button>
+        )}
+      </>
+    );
+  };
+
   return (
     <div>
       <div className="settings">
-        <h2>{openSettings}</h2>
-        <button onClick={() => setOpenSettings("Customization")}>
-          Customization
-        </button>
-        <button onClick={() => setOpenSettings("Background")}>
-          Background
-        </button>
-        <button onClick={() => setOpenSettings("About")}>About</button>
+          <SettingsButton setting="Customization"/>
+          <SettingsButton setting="Background"/>
+          <SettingsButton setting="About"/>
       </div>
       <OpenedSettings />
     </div>

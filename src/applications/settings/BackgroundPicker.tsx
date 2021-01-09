@@ -21,20 +21,16 @@ interface BackgroundPickerProps {
 
 const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
   const [unsplashTerm, setUnsplashTerm] = useState("");
-  const [currentBackground, setCurrentBackground] = useState(
-    settings.background
-  );
 
   const onImageChange = (event: { target: HTMLInputElement }) => {
     if (event.target.files && event.target.files[0]) {
       let newImage = URL.createObjectURL(event.target.files[0]);
-      setCurrentBackground("url(" + newImage + ") ");
-      setBackground("url(" + newImage + ") ");
+      setBackground(newImage);
     }
   };
 
   const setBackground = (value: string) => {
-    setSettings({ ...settings, background: value });
+    setSettings({ ...settings, background: "url(" + value + ") " });
   };
 
   const unsplashHandler = () => {
@@ -48,8 +44,7 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
       (unsplashTerm === "" ? "nature" : unsplashTerm) +
       "/" +
       d.getTime();
-    setCurrentBackground("url(" + newImage + ") ");
-    setBackground("url(" + newImage + ") ");
+    setBackground(newImage);
   };
 
   const handleUnsplashInput = (event: { target: HTMLInputElement }) => {
@@ -61,26 +56,37 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
       <div className="backpickerImages">
         <img
           className="currentBackgroundPreview"
-          src={currentBackground.replace("url(", "").replace(")", "")}
+          src={settings.background.replace("url(", "").replace(")", "")}
           alt=""
         ></img>
         <div className="defaultBackgroundHolder">
-            <img src={defaultBackground1} alt=""></img>
-            <img src={defaultBackground2} alt=""></img>
-            <img src={defaultBackground3} alt=""></img>
+          <img
+            src={defaultBackground1}
+            alt=""
+            onClick={() => setBackground(defaultBackground1)}
+          ></img>
+          <img
+            src={defaultBackground2}
+            alt=""
+            onClick={() => setBackground(defaultBackground2)}
+          ></img>
+          <img
+            src={defaultBackground3}
+            alt=""
+            onClick={() => setBackground(defaultBackground3)}
+          ></img>
         </div>
       </div>
-      <br/>
+      <br />
       <div className="backgroundOptions">
         <label>
-          Random from Unsplash
+          Random from Unsplash:
           <input type="text" onChange={handleUnsplashInput}></input>
           <button onClick={unsplashHandler}>Search for photo</button>
         </label>
 
         <label>
-          Upload from computer
-          <input type="file" onChange={onImageChange} />
+          Upload from computer: <input type="file" onChange={onImageChange} />
         </label>
       </div>
     </div>
