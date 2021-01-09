@@ -135,8 +135,8 @@ export const GlobalStyles = createGlobalStyle(
       border-radius: ${theme.borderRadius};
     }
 
-    .settingsBackgroundPreview,
-    .settingsCurrentBackgroundPreview {
+    .currentBackgroundPreview,
+    .defaultBackgroundHolder > img {
       border-radius: ${theme.borderRadius};
     }
 
