@@ -179,7 +179,7 @@ export const GlobalStyles = createGlobalStyle(
     }
 
     .backgroundOptions > label > * {
-      background: ${theme.titlebarBackground};
+      background: ${theme === classicTheme ? "white" : theme.titlebarBackground};
       border-radius: ${theme.borderRadius};
       color: ${theme.text};
     }
