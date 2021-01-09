@@ -1,14 +1,32 @@
-.settingsBackgroundPreview {
-  height: 10vh;
+.defaultBackgroundHolder > img {
+  height: 5cm;
   object-fit: cover;
-  background-size: cover;
-  width: 32.5%;
-  height: 4cm;
-  margin-bottom: 1%;
+  width: 100%;
 }
 
-.settingsCurrentBackgroundPreview {
-  width: 100%;
+.defaultBackgroundHolder {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 0.2cm;
+  grid-row-gap: 0.2cm;
+  width:50%;
+}
+
+.currentBackgroundPreview {
+  object-fit: cover;
+  float: left;
+  width: 49%;
+  margin-right: 1%;
+  height: 10.2cm;
+}
+
+.backgroundOptions {
+  text-align: center;
+}
+
+.backgroundOptions > label {
+  margin-left: 1%;
+  margin-right: 1%;
 }
 
 .customization,

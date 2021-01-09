@@ -55,50 +55,31 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
   const handleUnsplashInput = (event: { target: HTMLInputElement }) => {
     setUnsplashTerm(event.target.value);
   };
-  //         <hr width="99%" /> (For some reason typescript doesnt like me assigning width to a hr)
+
   return (
     <div className="backgroundPicker">
-      <h2>Background</h2>
-      <img
-        className="settingsCurrentBackgroundPreview"
-        src={currentBackground.replace("url(", "").replace(")", "")}
-        width="100%"
-        alt=""
-      ></img>
-      <div className="settingsPreviewsHolder">
+      <div className="backpickerImages">
         <img
-          className="settingsBackgroundPreview"
-          src={defaultBackground1}
-          style={{ marginRight: "1%" }}
-          width="100%"
+          className="currentBackgroundPreview"
+          src={currentBackground.replace("url(", "").replace(")", "")}
           alt=""
         ></img>
-        <img
-          className="settingsBackgroundPreview"
-          src={defaultBackground2}
-          width="100%"
-          alt=""
-        ></img>
-        <img
-          className="settingsBackgroundPreview"
-          src={defaultBackground3}
-          style={{ marginLeft: "1%" }}
-          width="100%"
-          alt=""
-        ></img>
+        <div className="defaultBackgroundHolder">
+            <img src={defaultBackground1} alt=""></img>
+            <img src={defaultBackground2} alt=""></img>
+            <img src={defaultBackground3} alt=""></img>
+        </div>
       </div>
-      <div className="settingsBackgroundOptions">
+      <br/>
+      <div className="backgroundOptions">
         <label>
           Random from Unsplash
-          <br />
           <input type="text" onChange={handleUnsplashInput}></input>
           <button onClick={unsplashHandler}>Search for photo</button>
         </label>
 
-        <br />
         <label>
           Upload from computer
-          <br />
           <input type="file" onChange={onImageChange} />
         </label>
       </div>
