@@ -1,5 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
-import darkmodeImage from "../../assets/img/darkmode-temporary.svg";
+import darkPreview from "../../assets/img/preview-dark.svg";
+import lightPreview from "../../assets/img/preview-light.svg";
+import classicPreview from "../../assets/img/preview-classic.svg";
 import "../../assets/styles/componentStyles/Settings.css";
 
 interface SettingsTypes {
@@ -95,9 +97,9 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
   return (
     <div className="customization">
       <div className={"themePreviews"}>
-        <ThemePreview theme={"Light"} image={darkmodeImage} />
-        <ThemePreview theme={"Dark"} image={darkmodeImage} />
-        <ThemePreview theme={"Classic"} image={darkmodeImage} />
+        <ThemePreview theme={"Light"} image={lightPreview} />
+        <ThemePreview theme={"Dark"} image={darkPreview} />
+        <ThemePreview theme={"Classic"} image={classicPreview} />
       </div>
       <div className="otherSettings">
         <div className="fontSettings">
