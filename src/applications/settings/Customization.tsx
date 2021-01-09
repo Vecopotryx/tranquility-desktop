@@ -94,7 +94,6 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
 
   return (
     <div className="customization">
-      <h2>Theme</h2>
       <div className={"themePreviews"}>
         <ThemePreview theme={"Light"} image={darkmodeImage} />
         <ThemePreview theme={"Dark"} image={darkmodeImage} />
