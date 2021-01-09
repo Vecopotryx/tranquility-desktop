@@ -39,6 +39,7 @@
   display: flex;
   align-items: center;
   float: right;
+  outline: none;
 }
 
 .menubarButton > img {
