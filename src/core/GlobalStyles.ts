@@ -167,6 +167,15 @@ export const GlobalStyles = createGlobalStyle(
     .openWindowList > div {
       height: ${settings.scale * 0.8}cm;
     }
+
+    .settings > button {
+      color: ${theme.unfocusedText};
+      font-family: ${settings.font === "retro" ? "retro" : ""};
+    }
+
+    .settings > button:hover {
+      filter: ${theme === darkTheme ? "brightness(2)" : "brightness(0.1)"};
+    }
   `
 );
 
@@ -199,7 +208,7 @@ export const darkTheme = {
 export const classicTheme = {
   background: "169, 169, 169",
   text: "#121212",
-  unfocusedText: "gray",
+  unfocusedText: "#303030",
   titlebarTextColor: "#fff",
   titlebarBackground: "#00008B",
   unfocusedTitlebarBackground: "#606060",

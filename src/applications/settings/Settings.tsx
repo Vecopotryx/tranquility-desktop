@@ -5,13 +5,13 @@ import About from "./About";
 import { useSettings } from "../../contexts/SettingsContext";
 
 const Settings = () => {
-  const [openSettings, setOpenSettings] = useState("customization");
+  const [openSettings, setOpenSettings] = useState("Customization");
 
   const settings = useSettings().customizeSettings;
   const setSettings = useSettings().setCustomizeSettings;
 
   const OpenedSettings = (): ReactElement => {
-    switch (openSettings) {
+    switch (openSettings.toLowerCase()) {
       case "customization":
         return <Customization settings={settings} setSettings={setSettings} />;
       case "background":
@@ -30,14 +30,15 @@ const Settings = () => {
 
   return (
     <div>
-      <div>
-        <button onClick={() => setOpenSettings("customization")}>
+      <div className="settings">
+        <h2>{openSettings}</h2>
+        <button onClick={() => setOpenSettings("Customization")}>
           Customization
         </button>
-        <button onClick={() => setOpenSettings("background")}>
+        <button onClick={() => setOpenSettings("Background")}>
           Background
         </button>
-        <button onClick={() => setOpenSettings("about")}>About</button>
+        <button onClick={() => setOpenSettings("About")}>About</button>
       </div>
       <OpenedSettings />
     </div>
