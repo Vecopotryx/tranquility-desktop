@@ -1,7 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import defaultBackground1 from "../../assets/img/backgrounds/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg";
-import defaultBackground2 from "../../assets/img/backgrounds/KDE Plasma Scenery 64 NO LOGO.jpg";
-import defaultBackground3 from "../../assets/img/backgrounds/nasa-Q1p7bh3SHj8-unsplash.jpg";
+import defaultBackground1 from "../../assets/img/backgrounds/alejandro-cabrera-Bl78X4ipJtw-unsplash.jpg";
+import defaultBackground2 from "../../assets/img/backgrounds/szabolcs-toth-BE2T__AyThs-unsplash.jpg";
+import defaultBackground3 from "../../assets/img/backgrounds/edmond-lau-jba0W6Nssjg-unsplash.jpg";
+import defaultBackground4 from "../../assets/img/backgrounds/nasa-Q1p7bh3SHj8-unsplash.jpg";
 
 interface SettingsTypes {
   theme: string;
@@ -51,6 +52,16 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
     setUnsplashTerm(event.target.value);
   };
 
+  const DefaultBackground = ({ background }: { background: string }) => {
+    return (
+      <img
+        src={background}
+        alt=""
+        onClick={() => setBackground(background)}
+      ></img>
+    );
+  };
+
   return (
     <div className="backgroundPicker">
       <div className="backpickerImages">
@@ -60,21 +71,10 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
           alt=""
         ></img>
         <div className="defaultBackgroundHolder">
-          <img
-            src={defaultBackground1}
-            alt=""
-            onClick={() => setBackground(defaultBackground1)}
-          ></img>
-          <img
-            src={defaultBackground2}
-            alt=""
-            onClick={() => setBackground(defaultBackground2)}
-          ></img>
-          <img
-            src={defaultBackground3}
-            alt=""
-            onClick={() => setBackground(defaultBackground3)}
-          ></img>
+          <DefaultBackground background={defaultBackground1}/>
+          <DefaultBackground background={defaultBackground2}/>
+          <DefaultBackground background={defaultBackground3}/>
+          <DefaultBackground background={defaultBackground4}/>
         </div>
       </div>
       <br />

@@ -1,5 +1,5 @@
 .defaultBackgroundHolder > img {
-  height: 5cm;
+  height: 4cm;
   object-fit: cover;
   width: 100%;
   cursor: pointer;
@@ -18,7 +18,7 @@
   float: left;
   width: 49%;
   margin-right: 1%;
-  height: 10.2cm;
+  height: 8.2cm;
 }
 
 .backgroundOptions {
@@ -106,10 +106,7 @@
   font-size: 20px;
   display: inline;
   outline: none;
-}
-
-.buttonContainer {
-  width: 100%;
+  user-select: none;
 }
 
 .settings > h2 {
@@ -117,7 +114,6 @@
   user-select: none;
   padding-left: 3%;
   padding-right: 3%;
-  margin-top: 0;
 }
 
 .settings {
