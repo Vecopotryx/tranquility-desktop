@@ -28,7 +28,6 @@ const AppWindow = ({
     storedHeight: document.documentElement.clientHeight / 2,
   });
 
-  // storedWidth: 500,
   const [isCollapsed, setIsCollapsed] = React.useState(false);
   const [frameOverlay, setFrameOverlay] = React.useState(false);
 
@@ -37,7 +36,6 @@ const AppWindow = ({
       if (isCollapsed) {
         setDimensions({
           maxHeight: 20000,
-          // storedWidth: dimensions.storedWidth,
           storedHeight: dimensions.storedHeight,
         });
         rndRef.updateSize({
@@ -47,7 +45,6 @@ const AppWindow = ({
       } else {
         setDimensions({
           maxHeight: 0,
-          // storedWidth: rndRef.getSelfElement()?.clientWidth as number,
           storedHeight: rndRef.getSelfElement()?.clientHeight as number,
         });
         rndRef.updateSize({
@@ -113,7 +110,7 @@ const AppWindow = ({
           </div>
           <div
             className="appContent"
-            style={{ display: isCollapsed ? "none" : "block" }}
+            style={{ display: isCollapsed ? "none" : "block"}}
           >
             <div
               style={{ display: frameOverlay ? "block" : "none" }}
