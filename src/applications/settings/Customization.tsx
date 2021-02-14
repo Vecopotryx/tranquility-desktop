@@ -3,6 +3,7 @@ import darkPreview from "../../assets/img/preview-dark.svg";
 import lightPreview from "../../assets/img/preview-light.svg";
 import classicPreview from "../../assets/img/preview-classic.svg";
 import "../../assets/styles/componentStyles/Settings.css";
+import defaultBackground3 from "../../assets/img/backgrounds/edmond-lau-jba0W6Nssjg-unsplash.jpg";
 
 interface SettingsTypes {
   theme: string;
@@ -48,7 +49,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
         JSON.stringify({
           ...newSettings,
           background:
-            "url(https://raw.githubusercontent.com/Vecopotryx/retro-desktop-environment/master/source/img/andreas-gucklhorn-IRq79QU9ZGU-unsplash.jpg)",
+            "url(" + defaultBackground3 + ")",
         })
       );
     }
