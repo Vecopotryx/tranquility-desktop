@@ -12,8 +12,8 @@ const Greeter = (props: any) => {
 
   const Greeting = () => {
     return (
-      <div style={{textAlign: "center"}}>
-        <img className="welcomeLogo" src={Logo}></img>
+      <div style={{ textAlign: "center" }}>
+        <img className="welcomeLogo" src={Logo} alt=""></img>
         <div className="welcomeText">
           <h1>Welcome to Retro Desktop Environment</h1>
           <p>
@@ -67,9 +67,9 @@ const Greeter = (props: any) => {
   const Complete = () => {
     return (
       <div>
-        <div style={{marginLeft: "1%"}}>
-        <h1>Setup complete</h1>
-        <h4>You can change these settings later using the settings app</h4>
+        <div style={{ marginLeft: "1%" }}>
+          <h1>Setup complete</h1>
+          <h4>You can change these settings later using the settings app</h4>
         </div>
         <div className="buttonHolder">
           <button
@@ -80,7 +80,12 @@ const Greeter = (props: any) => {
           </button>
           <button
             className="forwardButton"
-            onClick={() => props.handleClose(props.id)}
+            onClick={() => {
+              if (settings.usingLocalStorage) {
+                localStorage.setItem("greeted", "true")
+              }
+              props.handleClose(props.id);
+            }}
           >
             Start using RDE
           </button>

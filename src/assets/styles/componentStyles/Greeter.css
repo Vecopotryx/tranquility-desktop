@@ -1,20 +1,18 @@
 .backButton {
   float: left;
-  margin: 5px;
+  margin: 1%;
 }
 
 .forwardButton {
   float: right;
-  margin: 5px;
+  margin: 1%;
 }
 
 .buttonHolder {
   position: absolute;
-  width: 90%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 0;
-  right: 0;
   text-align: center;
   bottom: 0;
 }
