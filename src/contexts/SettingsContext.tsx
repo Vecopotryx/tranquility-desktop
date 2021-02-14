@@ -24,7 +24,7 @@ const DefaultSettings = {
   bottomMenubar: false,
   opacity: 1,
   font: "modern",
-  usingLocalStorage: false,
+  usingLocalStorage: true,
   background: "url(" + defaultBackground3 + ")",
 };
 

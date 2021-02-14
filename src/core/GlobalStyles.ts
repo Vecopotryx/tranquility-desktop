@@ -178,7 +178,7 @@ export const GlobalStyles = createGlobalStyle(
       filter: ${theme === darkTheme ? "brightness(2)" : "brightness(0.1)"};
     }
 
-    .backgroundOptions > label > *, .miscSettings2 > button {
+    .backgroundOptions > label > *, .miscSettings2 > button, .buttonHolder > button {
       background: ${theme === classicTheme ? "white" : theme.titlebarBackground};
       border-radius: ${theme.borderRadius};
       color: ${theme.text};
