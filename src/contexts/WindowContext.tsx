@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Greeter from "../applications/Greeter";
+import Logo from "../assets/img/LogoSideView.png";
 
 interface WindowListTypes {
   id: number;
@@ -61,6 +63,14 @@ export const WindowListProvider: React.FC = ({ children }) => {
       setCurrentlyFocused(appId);
     }
   };
+
+
+  useEffect(() => {
+    if(localStorage.getItem("greeted") === null){
+        handleOpen("Greeter", <Greeter/>, Logo);
+    }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <WindowContext.Provider

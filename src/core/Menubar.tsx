@@ -16,7 +16,6 @@ import Settings from "../applications/settings/Settings";
 import Browser from "../applications/Browser";
 import Terminal from "../applications/Terminal";
 import { useWindowList } from "../contexts/WindowContext";
-import Greeter from "../applications/Greeter";
 
 const Menubar = () => {
   const AppButtons = [
@@ -42,12 +41,6 @@ const Menubar = () => {
       appName: "Terminal",
       appComponent: <Terminal />,
       buttonText: "Terminal",
-      appIcon: TerminalIcon,
-    },
-    {
-      appName: "Greeter",
-      appComponent: <Greeter />,
-      buttonText: "Greeter",
       appIcon: TerminalIcon,
     },
   ];
