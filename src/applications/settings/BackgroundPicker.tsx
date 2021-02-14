@@ -71,17 +71,23 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
           alt=""
         ></img>
         <div className="defaultBackgroundHolder">
-          <DefaultBackground background={defaultBackground1}/>
-          <DefaultBackground background={defaultBackground2}/>
-          <DefaultBackground background={defaultBackground3}/>
-          <DefaultBackground background={defaultBackground4}/>
+          <DefaultBackground background={defaultBackground1} />
+          <DefaultBackground background={defaultBackground2} />
+          <DefaultBackground background={defaultBackground3} />
+          <DefaultBackground background={defaultBackground4} />
         </div>
       </div>
       <br />
       <div className="backgroundOptions">
         <label>
           Random from Unsplash:
-          <input type="text" onChange={handleUnsplashInput}></input>
+          <input
+            type="text"
+            onChange={handleUnsplashInput}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") unsplashHandler();
+            }}
+          ></input>
           <button onClick={unsplashHandler}>Search for photo</button>
         </label>
 
