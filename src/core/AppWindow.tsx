@@ -116,7 +116,7 @@ const AppWindow = ({
               style={{ display: frameOverlay ? "block" : "none" }}
               className="internalFrameOverlay"
             />
-            {React.cloneElement(children, { id: appId, handleClose: handleClose })}
+            {children}
           </div>
         </div>
       </Rnd>

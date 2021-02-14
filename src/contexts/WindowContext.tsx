@@ -36,7 +36,7 @@ export const WindowListProvider: React.FC = ({ children }) => {
       {
         id: newId,
         title: title,
-        component: component,
+        component: React.cloneElement(component, { id: newId, handleClose: handleClose }),
         index: highestIndex + 1,
         isFocused: true,
         appIcon: appIcon,
