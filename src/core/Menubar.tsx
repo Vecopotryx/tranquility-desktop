@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/componentStyles/Menubar.css";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import Dropdown from "./Dropdown";
 
 // application icons:
 import ChipPlayerIcon from "../assets/img/icons/ChipPlayerJS.png"
@@ -47,7 +47,7 @@ const Menubar = () => {
   const handleOpen = useWindowList().handleOpen;
   const handleFocus = useWindowList().handleFocus;
   const windowList = useWindowList().windowList;
-  
+
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -66,63 +66,58 @@ const Menubar = () => {
     "Saturday",
   ];
 
-  return (
-    <>
-      <nav className="menubar">
-        <div className="menubarLeft">
-          <NavDropdown
-            id="applications"
-            className="menubarDropdown"
-            title="Applications"
-          >
-            <div className="menubarList">
-              {AppButtons.map((appButton, index) => (
-                <NavDropdown.Item key={index}>
-                  <button
-                    className="menubarButton"
-                    onClick={() =>
-                      handleOpen(appButton.appName, appButton.appComponent, appButton.appIcon)
-                    }
-                  >
-                    <img src={appButton.appIcon} alt=""></img>
-                    {appButton.buttonText}
-                  </button>
-                  <NavDropdown.Divider />
-                </NavDropdown.Item>
-              ))}
-            </div>
-          </NavDropdown>
 
-          <NavDropdown id="options" className="menubarDropdown" title="Options">
-            <div className="menubarList">
-              <NavDropdown.Item>
+  return (
+    <div className="menubar">
+      <div className="menubarLeft">
+        <Dropdown text="Applications">
+          <div className="menubarList">
+            {AppButtons.map((appButton, index) => (
+              <div key={index}>
                 <button
                   className="menubarButton"
-                  onClick={() => handleOpen("Settings", <Settings />, SettingsIcon)}
+                  onClick={() =>
+                    handleOpen(appButton.appName, appButton.appComponent, appButton.appIcon)
+                  }
                 >
-                  Settings
+                  <img src={appButton.appIcon} alt=""></img>
+                  {appButton.buttonText}
                 </button>
-                <NavDropdown.Divider />
-              </NavDropdown.Item>
-            </div>
-          </NavDropdown>
-          <span className="openWindowList">{windowList.map((app, index) => (
+              </div>
+            ))}
+          </div>
+        </Dropdown>
+
+        <Dropdown text="Options">
+          <div className="menubarList">
+            <button
+              className="menubarButton"
+              onClick={() => handleOpen("Settings", <Settings />, SettingsIcon)}
+            >
+              Settings
+            </button>
+          </div>
+        </Dropdown>
+
+        <span className="openWindowList">
+          {windowList.map((app, index) => (
             <div key={index}>
               <img className="openWindowListIcon" src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)}></img>
             </div>
-          ))}</span>
-        </div>
-        <div className="menubarRight">
-          <p>
-            {days[time.getDay()]}{" "}
-            {time.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </p>
-        </div>
-      </nav>
-    </>
+          ))}
+        </span>
+      </div>
+
+      <div className="menubarRight">
+        <p>
+          {days[time.getDay()]}{" "}
+          {time.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </p>
+      </div>
+    </div>
   );
 };
 

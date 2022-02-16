@@ -21,12 +21,13 @@
 }
 
 .menubarList {
-  display: inline-block;
+  position: absolute;
 }
 
 .menubarDropdown > * {
   user-select: none;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .menubarButton {
