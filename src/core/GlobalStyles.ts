@@ -115,6 +115,9 @@ export const GlobalStyles = createGlobalStyle(
       settings.opacity +
       ")"};
       border-radius: ${theme.borderRadius};
+      bottom: ${settings.bottomMenubar
+        ? (settings.scale * 0.7) + "cm"
+        : null};
     }
 
     .menubarDropdown > * {
