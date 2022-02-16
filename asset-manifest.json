@@ -1,31 +1,24 @@
 {
   "files": {
-    "main.css": "/retro-desktop-environment/static/css/main.c359bdfd.chunk.css",
-    "main.js": "/retro-desktop-environment/static/js/main.ba06e886.chunk.js",
-    "main.js.map": "/retro-desktop-environment/static/js/main.ba06e886.chunk.js.map",
-    "runtime-main.js": "/retro-desktop-environment/static/js/runtime-main.b8a1d2d2.js",
-    "runtime-main.js.map": "/retro-desktop-environment/static/js/runtime-main.b8a1d2d2.js.map",
-    "static/js/2.b5b2140f.chunk.js": "/retro-desktop-environment/static/js/2.b5b2140f.chunk.js",
-    "static/js/2.b5b2140f.chunk.js.map": "/retro-desktop-environment/static/js/2.b5b2140f.chunk.js.map",
+    "main.css": "/retro-desktop-environment/static/css/main.beb44bf3.css",
+    "main.js": "/retro-desktop-environment/static/js/main.c22b54db.js",
+    "static/media/alejandro-cabrera-Bl78X4ipJtw-unsplash.jpg": "/retro-desktop-environment/static/media/alejandro-cabrera-Bl78X4ipJtw-unsplash.bb160104669fbe82c39c.jpg",
+    "static/media/nasa-Q1p7bh3SHj8-unsplash.jpg": "/retro-desktop-environment/static/media/nasa-Q1p7bh3SHj8-unsplash.c90e02ea733ec155f712.jpg",
+    "static/media/szabolcs-toth-BE2T__AyThs-unsplash.jpg": "/retro-desktop-environment/static/media/szabolcs-toth-BE2T__AyThs-unsplash.d5c558e287d6561f9b60.jpg",
+    "static/media/edmond-lau-jba0W6Nssjg-unsplash.jpg": "/retro-desktop-environment/static/media/edmond-lau-jba0W6Nssjg-unsplash.decb52dce6c8d6482854.jpg",
+    "static/media/Perfect_DOS_VGA_437_Win.ttf": "/retro-desktop-environment/static/media/Perfect_DOS_VGA_437_Win.29ef71f99589099ff342.ttf",
+    "static/media/LogoSideView.png": "/retro-desktop-environment/static/media/LogoSideView.098231adbd057bf55740.png",
+    "static/media/preview-dark.svg": "/retro-desktop-environment/static/media/preview-dark.10dfbccc5bf8fbc8603128dd1430631e.svg",
+    "static/media/preview-light.svg": "/retro-desktop-environment/static/media/preview-light.cb1429188fe3af31db3a32e9b90aea98.svg",
+    "static/media/preview-classic.svg": "/retro-desktop-environment/static/media/preview-classic.d2ae6ff9251123525ebb758da5588761.svg",
+    "static/media/tail-spin.svg": "/retro-desktop-environment/static/media/tail-spin.86194a552d45044eea10396f20518cab.svg",
     "index.html": "/retro-desktop-environment/index.html",
-    "static/css/main.c359bdfd.chunk.css.map": "/retro-desktop-environment/static/css/main.c359bdfd.chunk.css.map",
-    "static/js/2.b5b2140f.chunk.js.LICENSE.txt": "/retro-desktop-environment/static/js/2.b5b2140f.chunk.js.LICENSE.txt",
-    "static/media/LogoSideView.098231ad.png": "/retro-desktop-environment/static/media/LogoSideView.098231ad.png",
-    "static/media/Perfect_DOS_VGA_437_Win.29ef71f9.ttf": "/retro-desktop-environment/static/media/Perfect_DOS_VGA_437_Win.29ef71f9.ttf",
-    "static/media/alejandro-cabrera-Bl78X4ipJtw-unsplash.bb160104.jpg": "/retro-desktop-environment/static/media/alejandro-cabrera-Bl78X4ipJtw-unsplash.bb160104.jpg",
-    "static/media/edmond-lau-jba0W6Nssjg-unsplash.decb52dc.jpg": "/retro-desktop-environment/static/media/edmond-lau-jba0W6Nssjg-unsplash.decb52dc.jpg",
-    "static/media/github.16a9304e.svg": "/retro-desktop-environment/static/media/github.16a9304e.svg",
-    "static/media/nasa-Q1p7bh3SHj8-unsplash.c90e02ea.jpg": "/retro-desktop-environment/static/media/nasa-Q1p7bh3SHj8-unsplash.c90e02ea.jpg",
-    "static/media/preview-classic.d2ae6ff9.svg": "/retro-desktop-environment/static/media/preview-classic.d2ae6ff9.svg",
-    "static/media/preview-dark.10dfbccc.svg": "/retro-desktop-environment/static/media/preview-dark.10dfbccc.svg",
-    "static/media/preview-light.cb142918.svg": "/retro-desktop-environment/static/media/preview-light.cb142918.svg",
-    "static/media/szabolcs-toth-BE2T__AyThs-unsplash.d5c558e2.jpg": "/retro-desktop-environment/static/media/szabolcs-toth-BE2T__AyThs-unsplash.d5c558e2.jpg",
-    "static/media/tail-spin.86194a55.svg": "/retro-desktop-environment/static/media/tail-spin.86194a55.svg"
+    "static/media/github.svg": "/retro-desktop-environment/static/media/github.16a9304e38fd8167989291ab92544e14.svg",
+    "main.beb44bf3.css.map": "/retro-desktop-environment/static/css/main.beb44bf3.css.map",
+    "main.c22b54db.js.map": "/retro-desktop-environment/static/js/main.c22b54db.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.b8a1d2d2.js",
-    "static/js/2.b5b2140f.chunk.js",
-    "static/css/main.c359bdfd.chunk.css",
-    "static/js/main.ba06e886.chunk.js"
+    "static/css/main.beb44bf3.css",
+    "static/js/main.c22b54db.js"
   ]
 }
