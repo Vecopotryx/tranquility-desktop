@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/retro-desktop-environment/static/css/main.beb44bf3.css",
-    "main.js": "/retro-desktop-environment/static/js/main.c22b54db.js",
+    "main.js": "/retro-desktop-environment/static/js/main.48b4c051.js",
     "static/media/alejandro-cabrera-Bl78X4ipJtw-unsplash.jpg": "/retro-desktop-environment/static/media/alejandro-cabrera-Bl78X4ipJtw-unsplash.bb160104669fbe82c39c.jpg",
     "static/media/nasa-Q1p7bh3SHj8-unsplash.jpg": "/retro-desktop-environment/static/media/nasa-Q1p7bh3SHj8-unsplash.c90e02ea733ec155f712.jpg",
     "static/media/szabolcs-toth-BE2T__AyThs-unsplash.jpg": "/retro-desktop-environment/static/media/szabolcs-toth-BE2T__AyThs-unsplash.d5c558e287d6561f9b60.jpg",
@@ -15,10 +15,10 @@
     "index.html": "/retro-desktop-environment/index.html",
     "static/media/github.svg": "/retro-desktop-environment/static/media/github.16a9304e38fd8167989291ab92544e14.svg",
     "main.beb44bf3.css.map": "/retro-desktop-environment/static/css/main.beb44bf3.css.map",
-    "main.c22b54db.js.map": "/retro-desktop-environment/static/js/main.c22b54db.js.map"
+    "main.48b4c051.js.map": "/retro-desktop-environment/static/js/main.48b4c051.js.map"
   },
   "entrypoints": [
     "static/css/main.beb44bf3.css",
-    "static/js/main.c22b54db.js"
+    "static/js/main.48b4c051.js"
   ]
 }
