@@ -27,6 +27,7 @@ export const Notes = () => {
     ]);
     setSelected(newNote);
     setHighestId(highestId + 1);
+    sessionStorage.setItem("notesHighestId", JSON.stringify(highestId));
   }
 
   const updateText = (text: string, id: number | undefined) => {
@@ -39,15 +40,25 @@ export const Notes = () => {
     }
   }
 
+  const removeNote = (id: number) => {
+    const filtered = notes.filter((c) => c.id !== id);
+    setNotes(filtered);
+    sessionStorage.setItem("notes", JSON.stringify(filtered));
+  }
 
   useEffect(() => {
     const storedNotes = sessionStorage.getItem("notes");
+    const storedHighestId = sessionStorage.getItem("notesHighestId");
     if (storedNotes !== null) {
       setNotes(JSON.parse(storedNotes));
       setSelected(JSON.parse(storedNotes)[0]);
     } else {
       setNotes([{ id: -1, title: "Hello world", content: "Hello world" }]);
       setSelected({ id: -1, title: "Hello world", content: "Hello world" });
+    }
+
+    if (storedHighestId !== null) {
+      setHighestId(JSON.parse(storedHighestId) + 1);
     }
   }, []);
 
@@ -56,10 +67,15 @@ export const Notes = () => {
   return (
     <div style={{ overflow: "hidden", height: "100%", display: "flex" }}>
       <div style={{ width: "5cm", borderRight: "1px solid gray", textAlign: "center" }}>
+        <h2 onClick={addNote}>Add new note</h2>
         {notes.map((note) =>
-          <h4 key={note.id} onClick={() => setSelected(note)}>{note.title}</h4>
+          <>
+            <h4 style={{ display: "inline" }} key={note.id} onClick={() => setSelected(note)}>{note.title}</h4>
+            <button className="closeWindow" style={{ float: "right" }} onClick={() => removeNote(note.id)}>×</button>
+            <br />
+            <br />
+          </>
         )}
-        <button onClick={addNote}>Add new note</button>
       </div>
       <div style={{ width: "100%", padding: "0.5em" }}>
         <h1>{selected != null ? selected.title : null}</h1>
