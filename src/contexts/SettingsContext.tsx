@@ -17,8 +17,11 @@ interface SettingsContextProps {
   setCustomizeSettings: Dispatch<SetStateAction<SettingsTypes>>;
 }
 
+const hours = new Date().getHours()
+const isDayTime = hours >= 8 && hours < 18
+
 const DefaultSettings = {
-  theme: "dark",
+  theme: isDayTime ? "light" : "dark",
   scale: 1,
   connectedMenubar: false,
   bottomMenubar: false,
