@@ -186,6 +186,10 @@ export const GlobalStyles = createGlobalStyle(
       border-radius: ${theme.borderRadius};
       color: ${theme.text};
     }
+
+    textarea {
+      color: ${theme === darkTheme ? "white" : "black"};
+    }
   `
 );
 
