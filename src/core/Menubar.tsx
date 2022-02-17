@@ -8,6 +8,7 @@ import TerminalIcon from "../assets/img/icons/terminal.png"
 import NotesIcon from "../assets/img/icons/notes.png"
 import SettingsIcon from "../assets/img/icons/settings.png"
 import BrowserIcon from "../assets/img/icons/browser.png"
+import ClockIcon from "../assets/img/icons/clock.svg"
 
 // application components:
 import Notes from "../applications/Notes";
@@ -15,6 +16,7 @@ import ChipPlayer from "../applications/ChipPlayer";
 import Settings from "../applications/settings/Settings";
 import Browser from "../applications/Browser";
 import Terminal from "../applications/Terminal";
+import Clock from "../applications/Clock";
 import { useWindowList } from "../contexts/WindowContext";
 
 const Menubar = () => {
@@ -42,6 +44,12 @@ const Menubar = () => {
       appComponent: <Terminal />,
       buttonText: "Terminal",
       appIcon: TerminalIcon,
+    },
+    {
+      appName: "Clock",
+      appComponent: <Clock />,
+      buttonText: "Clock",
+      appIcon: ClockIcon,
     },
   ];
   const handleOpen = useWindowList().handleOpen;
@@ -108,7 +116,7 @@ const Menubar = () => {
         </span>
       </div>
 
-      <div className="menubarRight">
+      <div className="menubarRight" onClick={() => handleOpen("Clock", <Clock />, ClockIcon)}>
         <p>
           {days[time.getDay()]}{" "}
           {time.toLocaleTimeString([], {
