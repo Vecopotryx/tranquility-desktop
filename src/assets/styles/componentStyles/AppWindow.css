@@ -3,6 +3,7 @@
   box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
   overflow: hidden;
   transition: filter 0.2s;
+  backdrop-filter: blur(10px);
 }
 
 .appWrapper {

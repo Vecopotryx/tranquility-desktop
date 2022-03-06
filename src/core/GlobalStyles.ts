@@ -93,6 +93,9 @@ export const GlobalStyles = createGlobalStyle(
         : "transparent"};
       border-radius: ${theme.borderRadius};
       bottom: ${settings.bottomMenubar ? "0" : ""};
+      backdrop-filter: ${settings.connectedMenubar
+        ? "blur(10px)"
+        : "none"};
     }
 
     .menubarLeft,
@@ -105,6 +108,9 @@ export const GlobalStyles = createGlobalStyle(
       height: ${settings.scale * 0.7}cm;
       border-radius: ${theme.borderRadius};
       line-height: ${settings.scale * 0.7}cm;
+      backdrop-filter: ${settings.connectedMenubar
+        ? "none"
+        : "blur(10px)"};
     }
 
     .menubarList {
