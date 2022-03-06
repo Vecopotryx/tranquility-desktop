@@ -9,6 +9,7 @@ import NotesIcon from "../assets/img/icons/notes.png"
 import SettingsIcon from "../assets/img/icons/settings.png"
 import BrowserIcon from "../assets/img/icons/browser.png"
 import ClockIcon from "../assets/img/icons/clock.svg"
+import CalcIcon from "../assets/img/icons/calculator.svg"
 
 // application components:
 import Notes from "../applications/Notes";
@@ -17,6 +18,7 @@ import Settings from "../applications/settings/Settings";
 import Browser from "../applications/Browser";
 import Terminal from "../applications/Terminal";
 import Clock from "../applications/Clock";
+import Calculator from "../applications/Calculator";
 import { useWindowList } from "../contexts/WindowContext";
 
 const Menubar = () => {
@@ -50,6 +52,12 @@ const Menubar = () => {
       appComponent: <Clock />,
       buttonText: "Clock",
       appIcon: ClockIcon,
+    },
+    {
+      appName: "Calculator",
+      appComponent: <Calculator />,
+      buttonText: "Calculator",
+      appIcon: CalcIcon,
     },
   ];
   const handleOpen = useWindowList().handleOpen;
