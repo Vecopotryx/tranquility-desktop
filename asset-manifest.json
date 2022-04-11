@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/retro-desktop-environment/static/css/main.f7d3b358.css",
-    "main.js": "/retro-desktop-environment/static/js/main.9c634345.js",
-    "static/media/alejandro-cabrera-Bl78X4ipJtw-unsplash.jpg": "/retro-desktop-environment/static/media/alejandro-cabrera-Bl78X4ipJtw-unsplash.bb160104669fbe82c39c.jpg",
+    "main.js": "/retro-desktop-environment/static/js/main.d52c6524.js",
+    "static/media/patrick-robert-doyle-r4PxPNSIzHw-unsplash.jpg": "/retro-desktop-environment/static/media/patrick-robert-doyle-r4PxPNSIzHw-unsplash.aefb82f55602ebb3b2b3.jpg",
+    "static/media/kyle-bushnell-wjrlOqZCvCM-unsplash.jpg": "/retro-desktop-environment/static/media/kyle-bushnell-wjrlOqZCvCM-unsplash.2c4641067d986ee45775.jpg",
+    "static/media/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg": "/retro-desktop-environment/static/media/sylvain-mauroux-jYCUBAIUsk8-unsplash.bc97d71b17d706531fe3.jpg",
     "static/media/nasa-Q1p7bh3SHj8-unsplash.jpg": "/retro-desktop-environment/static/media/nasa-Q1p7bh3SHj8-unsplash.c90e02ea733ec155f712.jpg",
-    "static/media/szabolcs-toth-BE2T__AyThs-unsplash.jpg": "/retro-desktop-environment/static/media/szabolcs-toth-BE2T__AyThs-unsplash.d5c558e287d6561f9b60.jpg",
-    "static/media/edmond-lau-jba0W6Nssjg-unsplash.jpg": "/retro-desktop-environment/static/media/edmond-lau-jba0W6Nssjg-unsplash.decb52dce6c8d6482854.jpg",
     "static/media/Perfect_DOS_VGA_437_Win.ttf": "/retro-desktop-environment/static/media/Perfect_DOS_VGA_437_Win.29ef71f99589099ff342.ttf",
     "static/media/LogoSideView.png": "/retro-desktop-environment/static/media/LogoSideView.098231adbd057bf55740.png",
     "static/media/preview-dark.svg": "/retro-desktop-environment/static/media/preview-dark.10dfbccc5bf8fbc8603128dd1430631e.svg",
@@ -17,10 +17,10 @@
     "index.html": "/retro-desktop-environment/index.html",
     "static/media/github.svg": "/retro-desktop-environment/static/media/github.16a9304e38fd8167989291ab92544e14.svg",
     "main.f7d3b358.css.map": "/retro-desktop-environment/static/css/main.f7d3b358.css.map",
-    "main.9c634345.js.map": "/retro-desktop-environment/static/js/main.9c634345.js.map"
+    "main.d52c6524.js.map": "/retro-desktop-environment/static/js/main.d52c6524.js.map"
   },
   "entrypoints": [
     "static/css/main.f7d3b358.css",
-    "static/js/main.9c634345.js"
+    "static/js/main.d52c6524.js"
   ]
 }
