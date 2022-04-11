@@ -5,7 +5,7 @@ import darkPreview from "../assets/img/preview-dark.svg";
 import lightPreview from "../assets/img/preview-light.svg";
 import classicPreview from "../assets/img/preview-classic.svg";
 import { useSettings } from "../contexts/SettingsContext";
-import defaultBackground3 from "../assets/img/backgrounds/edmond-lau-jba0W6Nssjg-unsplash.jpg";
+import defaultBackground1 from "../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
 import BackgroundPicker from "./settings/BackgroundPicker";
 
 const Greeter = (props: any) => {
@@ -54,7 +54,7 @@ const Greeter = (props: any) => {
         JSON.stringify({
           ...newSettings,
           background:
-            "url(" + defaultBackground3 + ")",
+            "url(" + defaultBackground1 + ")",
         })
       );
     }

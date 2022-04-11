@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import defaultBackground1 from "../../assets/img/backgrounds/alejandro-cabrera-Bl78X4ipJtw-unsplash.jpg";
-import defaultBackground2 from "../../assets/img/backgrounds/szabolcs-toth-BE2T__AyThs-unsplash.jpg";
-import defaultBackground3 from "../../assets/img/backgrounds/edmond-lau-jba0W6Nssjg-unsplash.jpg";
+import defaultBackground1 from "../../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
+import defaultBackground2 from "../../assets/img/backgrounds/patrick-robert-doyle-r4PxPNSIzHw-unsplash.jpg";
+import defaultBackground3 from "../../assets/img/backgrounds/kyle-bushnell-wjrlOqZCvCM-unsplash.jpg";
 import defaultBackground4 from "../../assets/img/backgrounds/nasa-Q1p7bh3SHj8-unsplash.jpg";
 
 interface SettingsTypes {

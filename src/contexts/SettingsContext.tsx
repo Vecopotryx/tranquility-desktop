@@ -1,5 +1,5 @@
 import React, { SetStateAction, Dispatch } from "react";
-import defaultBackground3 from "../assets/img/backgrounds/edmond-lau-jba0W6Nssjg-unsplash.jpg";
+import defaultBackground1 from "../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
 
 interface SettingsTypes {
   theme: string;
@@ -28,7 +28,7 @@ const DefaultSettings = {
   opacity: 1,
   font: "modern",
   usingLocalStorage: true,
-  background: "url(" + defaultBackground3 + ")",
+  background: "url(" + defaultBackground1 + ")",
 };
 
 export const SettingsContext = React.createContext<SettingsContextProps>({
