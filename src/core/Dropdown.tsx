@@ -7,7 +7,7 @@ interface DropdownProps {
     text: string;
 }
 
-const Dropdown = ({ children, text }: DropdownProps) => {
+const Dropdown = (props: DropdownProps) => {
     const [expanded, setExpanded] = useState(false);
     const ref = useRef(null)
 
@@ -23,8 +23,8 @@ const Dropdown = ({ children, text }: DropdownProps) => {
 
     return (
         <div className="menubarDropdown" ref={ref}>
-            <p onClick={toggleExpanded} >{text}</p>
-            {expanded ? children : null}
+            <p onClick={toggleExpanded} >{props.text}</p>
+            {expanded ? props.children : null}
         </div>
     )
 }
