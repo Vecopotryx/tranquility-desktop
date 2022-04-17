@@ -13,12 +13,12 @@ import CalcIcon from "../assets/img/icons/calculator.svg"
 
 // application components:
 import Notes from "../applications/Notes";
-import ChipPlayer from "../applications/ChipPlayer";
 import Settings from "../applications/settings/Settings";
 import Browser from "../applications/Browser";
 import Terminal from "../applications/Terminal";
 import Clock from "../applications/Clock";
 import Calculator from "../applications/Calculator";
+import Framed from "../applications/Framed";
 import { useWindowList } from "../contexts/WindowContext";
 
 const Menubar = () => {
@@ -31,7 +31,7 @@ const Menubar = () => {
     },
     {
       appName: "Chip Player JS",
-      appComponent: <ChipPlayer />,
+      appComponent: <Framed src="https://mmontag.github.io/chip-player-js/browse/ModArchives" />,
       buttonText: "Chip Player",
       appIcon: ChipPlayerIcon,
     },
@@ -117,9 +117,7 @@ const Menubar = () => {
 
         <span className="openWindowList">
           {windowList.map((app, index) => (
-            <div key={index}>
-              <img className="openWindowListIcon" src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)}></img>
-            </div>
+            <img key={index} className="openWindowListIcon" src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)}></img>
           ))}
         </span>
       </div>
