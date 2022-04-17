@@ -10,6 +10,7 @@ import SettingsIcon from "../assets/img/icons/settings.png"
 import BrowserIcon from "../assets/img/icons/browser.png"
 import ClockIcon from "../assets/img/icons/clock.svg"
 import CalcIcon from "../assets/img/icons/calculator.svg"
+import BookIcon from "../assets/img/icons/book.svg"
 
 // application components:
 import Notes from "../applications/Notes";
@@ -58,6 +59,12 @@ const Menubar = () => {
       appComponent: <Calculator />,
       buttonText: "Calculator",
       appIcon: CalcIcon,
+    },
+    {
+      appName: "Svelte Ebook Reader",
+      appComponent: <Framed src="https://vecopotryx.github.io/svelte-ebook-reader" />,
+      buttonText: "Ebook Reader",
+      appIcon: BookIcon,
     },
   ];
   const handleOpen = useWindowList().handleOpen;
