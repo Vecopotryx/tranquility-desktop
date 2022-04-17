@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react'
-import { useOnClickOutside } from 'usehooks-ts';
+import { useState } from 'react'
+import useOnclickOutside from "react-cool-onclickoutside";
 import "../assets/styles/componentStyles/Menubar.css";
 
 interface DropdownProps {
@@ -9,17 +9,12 @@ interface DropdownProps {
 
 const Dropdown = (props: DropdownProps) => {
     const [expanded, setExpanded] = useState(false);
-    const ref = useRef(null)
 
     function toggleExpanded() {
         setExpanded(!expanded);
     }
 
-    const handleClickOutside = () => {
-        setExpanded(false);
-    }
-
-    useOnClickOutside(ref, handleClickOutside);
+    const ref = useOnclickOutside(() => setExpanded(false));
 
     return (
         <div className="menubarDropdown" ref={ref}>
@@ -29,4 +24,4 @@ const Dropdown = (props: DropdownProps) => {
     )
 }
 
-export default Dropdown
+export default Dropdown;
