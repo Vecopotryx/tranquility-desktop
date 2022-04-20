@@ -30,45 +30,6 @@ export const GlobalStyles = createGlobalStyle(
       font-family: ${settings.font === "retro" ? "retro" : ""};
     }
 
-    .titlebar,
-    .titlebarUnfocused {
-      height: ${settings.scale * 0.7}cm;
-      color: ${theme.titlebarTextColor};
-      background: ${theme.titlebarBackground};
-      text-align: ${theme.titlebarTextAlignment};
-    }
-
-    .titlebar > button {
-      color: ${theme.titlebarTextColor};
-      line-height: ${settings.scale * 0.7}cm;
-      font-size: ${settings.scale * 15}px;
-    }
-
-    .appName {
-      font-size: ${settings.scale * 15}px;
-      line-height: ${settings.scale * 0.7}cm;
-    }
-    .titlebarUnfocused {
-      color: ${theme.unfocusedText};
-      background: ${theme.unfocusedTitlebarBackground};
-    }
-
-    .titlebarUnfocused > button {
-      font-size: ${settings.scale * 15}px;
-      line-height: ${settings.scale * 0.7}cm;
-      color: ${theme.unfocusedText};
-    }
-
-    .collapseWindow {
-      float: ${theme.collapseWindowPosition};
-      color: ${theme.text};
-    }
-
-    .closeWindow {
-      float: ${theme.closeWindowPosition};
-      color: ${theme.text};
-    }
-
     .appWindow {
       border-radius: ${theme.borderRadius};
       border: ${theme.border};
