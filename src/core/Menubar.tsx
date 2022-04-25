@@ -61,8 +61,8 @@ const Menubar = () => {
       appIcon: CalcIcon,
     },
     {
-      appName: "Svelte Ebook Reader",
-      appComponent: <Framed src="https://vecopotryx.github.io/svelte-ebook-reader" />,
+      appName: "Essence Reader",
+      appComponent: <Framed src="https://vecopotryx.github.io/essence-reader" />,
       buttonText: "Ebook Reader",
       appIcon: BookIcon,
     },
