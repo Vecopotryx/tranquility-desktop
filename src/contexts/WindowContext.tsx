@@ -23,7 +23,11 @@ export const WindowContext = React.createContext<WindowContextProps>({
   windowList: [{}],
 } as WindowContextProps);
 
-export const WindowListProvider: React.FC = ({ children }) => {
+interface WindowListProviderProps {
+  children?: React.ReactNode;
+}
+
+export const WindowListProvider: React.FC<WindowListProviderProps> = ({ children }) => {
   const [windowListState, setWindowListState] = React.useState<WindowListTypes[]>([]);
   const [highestIndex, setHighestIndex] = React.useState(0);
 
