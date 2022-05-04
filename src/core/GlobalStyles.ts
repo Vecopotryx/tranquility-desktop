@@ -35,6 +35,7 @@ export const GlobalStyles = createGlobalStyle(
       border: ${theme.border};
       background-color: ${theme.background};
       background-color: rgba(${theme.background}, ${settings.opacity});
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .appWindow,
@@ -57,6 +58,7 @@ export const GlobalStyles = createGlobalStyle(
       backdrop-filter: ${settings.connectedMenubar
         ? "blur(10px)"
         : "none"};
+      transition: background-color 0.3s;
     }
 
     .menubarLeft,
@@ -72,6 +74,7 @@ export const GlobalStyles = createGlobalStyle(
       backdrop-filter: ${settings.connectedMenubar
         ? "none"
         : "blur(10px)"};
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .menubarList {
