@@ -35,7 +35,12 @@ export const SettingsContext = React.createContext<SettingsContextProps>({
   customizeSettings: DefaultSettings,
 } as SettingsContextProps);
 
-export const SettingsProvider: React.FC = ({ children }) => {
+
+interface SettingsProviderProps {
+  children?: React.ReactNode;
+}
+
+export const SettingsProvider: React.FC<SettingsProviderProps> = ({ children }) => {
   const [currentSettings, setCurrentSettings] = React.useState<SettingsTypes>(
     DefaultSettings
   );
