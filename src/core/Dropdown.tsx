@@ -1,11 +1,23 @@
 import { useState } from 'react'
 import useOnclickOutside from "react-cool-onclickoutside";
-import "../assets/styles/componentStyles/Menubar.css";
+import styled from "styled-components";
 
 interface DropdownProps {
     children: JSX.Element;
     text: string;
 }
+
+const MenubarDropdown = styled.div`
+  float: left;
+  user-select: none;
+  text-decoration: none;
+  cursor: pointer;
+
+  >* {
+    padding-right: ${p => p.theme.scale * 5}px;
+    color: ${p => p.theme.colors.text};
+  }
+`
 
 const Dropdown = (props: DropdownProps) => {
     const [expanded, setExpanded] = useState(false);
@@ -17,10 +29,10 @@ const Dropdown = (props: DropdownProps) => {
     const ref = useOnclickOutside(() => setExpanded(false));
 
     return (
-        <div className="menubarDropdown" ref={ref}>
+        <MenubarDropdown ref={ref}>
             <p onClick={toggleExpanded} >{props.text}</p>
             {expanded ? props.children : null}
-        </div>
+        </MenubarDropdown>
     )
 }
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import "../assets/styles/componentStyles/Menubar.css";
+import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
+import styled from "styled-components";
 
 // application icons:
 import ChipPlayerIcon from "../assets/img/icons/ChipPlayerJS.png"
@@ -21,6 +21,98 @@ import Clock from "../applications/Clock";
 import Calculator from "../applications/Calculator";
 import Framed from "../applications/Framed";
 import { useWindowList } from "../contexts/WindowContext";
+
+const MenubarDiv = styled.div`
+width: calc(100% - 16px);
+margin: 8px;
+position: absolute;
+
+& div {
+  padding-left: 0.2%;
+  padding-right: 0.2%;
+  user-select: none;
+}
+`
+
+const MenubarLeftRight = styled.div`
+  font-size: ${p => p.theme.scale * 16}px;
+  background-color: rgba(${p => p.theme.colors.background + "," + p.theme.opacity});
+  color: ${p => p.theme.colors.text};
+  height: ${p => p.theme.scale * 0.7}cm;
+  border-radius: ${p => p.theme.borderRadius}px;
+  line-height: ${p => p.theme.scale * 0.7}cm;
+
+  transition: background-color 0.3s, color 0.3s;
+
+  >* {
+    margin-right: 1%;
+  }
+`
+/* 
+background-color: ${settings.connectedMenubar
+  ? "transparent"
+  : "rgba(" + theme.colors.background + "," + settings.opacity + ")"};
+
+//backdrop-filter: ${settings.connectedMenubar
+  //? "none"
+  //: "blur(10px)"};
+*/
+
+const MenubarList = styled.div`
+  position: absolute;
+  width: ${p => p.theme.scale * 4}cm;
+  background-color: ${p => "rgba(" +
+    p.theme.colors.background +
+    "," +
+    p.theme.opacity +
+    ")"};
+  border-radius: ${p => p.theme.borderRadius}px;
+`
+
+const MenubarButton = styled.button`
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 3%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  float: right;
+  outline: none;
+  color: ${p => p.theme.colors.text};
+  font-size: ${p => p.theme.scale * 15}px;
+
+  > img {
+    float: left;
+    padding-right: 3%;
+    width: ${p => p.theme.scale * 0.7}cm;
+
+  }
+`
+
+const OpenWindowList = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: ${p => p.theme.scale * 0.7}cm;
+`
+
+const OpenWindowListIcon = styled.img`
+  margin-left: 0.2vw;
+  vertical-align: middle;
+  height: ${p => p.theme.scale * 0.6}cm;
+
+  &:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s;
+  }
+`
+//font-family: ${settings.font === "retro" ? "retro" : ""};
+
+/*bottom: ${settings.bottomMenubar
+? (settings.scale * 0.7) + "cm"
+: null};*/
 
 const Menubar = () => {
   const AppButtons = [
@@ -90,46 +182,43 @@ const Menubar = () => {
   ];
 
 
+
   return (
-    <div className="menubar">
-      <div className="menubarLeft">
+    <MenubarDiv>
+      <MenubarLeftRight style={{ float: "left" }}>
         <Dropdown text="Applications">
-          <div className="menubarList">
+          <MenubarList>
             {AppButtons.map((appButton, index) => (
               <div key={index}>
-                <button
-                  className="menubarButton"
+                <MenubarButton
                   onClick={() =>
                     handleOpen(appButton.appName, appButton.appComponent, appButton.appIcon)
                   }
                 >
                   <img src={appButton.appIcon} alt=""></img>
                   {appButton.buttonText}
-                </button>
+                </MenubarButton>
               </div>
             ))}
-          </div>
+          </MenubarList>
         </Dropdown>
 
         <Dropdown text="Options">
-          <div className="menubarList">
-            <button
-              className="menubarButton"
-              onClick={() => handleOpen("Settings", <Settings />, SettingsIcon)}
-            >
+          <MenubarList>
+            <MenubarButton onClick={() => handleOpen("Settings", <Settings />, SettingsIcon)} >
               Settings
-            </button>
-          </div>
+            </MenubarButton>
+          </MenubarList>
         </Dropdown>
 
-        <span className="openWindowList">
+        <OpenWindowList>
           {windowList.map((app, index) => (
-            <img key={index} className="openWindowListIcon" src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)}></img>
+            <OpenWindowListIcon key={index} src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)} />
           ))}
-        </span>
-      </div>
+        </OpenWindowList>
+      </MenubarLeftRight>
 
-      <div className="menubarRight" onClick={() => handleOpen("Clock", <Clock />, ClockIcon)}>
+      <MenubarLeftRight style={{ float: "right" }} onClick={() => handleOpen("Clock", <Clock />, ClockIcon)}>
         <p>
           {days[time.getDay()]}{" "}
           {time.toLocaleTimeString([], {
@@ -137,8 +226,8 @@ const Menubar = () => {
             minute: "2-digit",
           })}
         </p>
-      </div>
-    </div>
+      </MenubarLeftRight>
+    </MenubarDiv>
   );
 };
 

@@ -64,7 +64,7 @@ const Window = styled(Rnd) <{ focused: boolean, index: number }>`
   overflow: hidden;
   transition: filter 0.2s;
   backdrop-filter: blur(10px);
-  border-radius: ${p => p.theme.borderRadius};
+  border-radius: ${p => p.theme.borderRadius}px;
   border: ${p => p.theme.border};
   color: ${p => p.focused ? p.theme.colors.text : p.theme.colors.unfocusedText};
   background-color: rgba(${p => p.theme.colors.background + ", " + p.theme.opacity});
@@ -84,7 +84,7 @@ const AppContent = styled.div<{ collapsed: boolean }>`
   display: ${p => p.collapsed ? "none" : "block"};
   height: calc(100% - ${p => p.theme.scale * 0.7}cm);
 
-  & { 
+  >* { 
     cursor: default;
   }
 `

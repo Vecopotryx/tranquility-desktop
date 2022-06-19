@@ -30,62 +30,6 @@ export const GlobalStyles = createGlobalStyle(
       font-family: ${settings.font === "retro" ? "retro" : ""};
     }
 
-    .menubar {
-      height: ${settings.scale * 0.7}cm;
-      background-color: ${settings.connectedMenubar
-      ? "rgba(" + theme.colors.background + "," + settings.opacity + ")"
-      : "transparent"};
-      border-radius: ${theme.colors.borderRadius};
-      bottom: ${settings.bottomMenubar ? "0" : ""};
-      backdrop-filter: ${settings.connectedMenubar
-      ? "blur(10px)"
-      : "none"};
-      transition: background-color 0.3s;
-    }
-
-    .menubarLeft,
-    .menubarRight {
-      font-size: ${settings.scale * 16}px;
-      background-color: ${settings.connectedMenubar
-      ? "transparent"
-      : "rgba(" + theme.colors.background + "," + settings.opacity + ")"};
-      color: ${theme.colors.text};
-      height: ${settings.scale * 0.7}cm;
-      border-radius: ${theme.borderRadius};
-      line-height: ${settings.scale * 0.7}cm;
-      backdrop-filter: ${settings.connectedMenubar
-      ? "none"
-      : "blur(10px)"};
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .menubarList {
-      width: ${settings.scale * 4}cm;
-      background-color: ${"rgba(" +
-    theme.background +
-    "," +
-    settings.opacity +
-    ")"};
-      border-radius: ${theme.borderRadius};
-      bottom: ${settings.bottomMenubar
-      ? (settings.scale * 0.7) + "cm"
-      : null};
-    }
-
-    .menubarDropdown > * {
-      padding-right: ${settings.scale * 5}px;
-      color: ${theme.text};
-    }
-
-    .menubarButton {
-      font-size: ${settings.scale * 15}px;
-      font-family: ${settings.font === "retro" ? "retro" : ""};
-      color: ${theme.text};
-    }
-
-    .menubarButton > img {
-      width: ${settings.scale * 0.7}cm;
-    }
     .settingsPreviews {
       border-radius: ${theme.borderRadius};
     }
@@ -94,11 +38,6 @@ export const GlobalStyles = createGlobalStyle(
     .defaultBackgroundHolder > img,
     .aboutContainer > div {
       border-radius: ${theme.borderRadius};
-    }
-
-    .openWindowList {
-      color: ${theme.text};
-      height: ${settings.scale * 0.7}cm;
     }
 
     .loadingSpinner {
@@ -114,14 +53,6 @@ export const GlobalStyles = createGlobalStyle(
     .terminalInput {
       caret-color: ${theme === darkTheme ? "white" : "black"};
       color: ${theme === darkTheme ? "white" : "black"};
-    }
-
-    .openWindowListIcon {
-      height: ${settings.scale * 0.6}cm;
-    }
-
-    .openWindowList > div {
-      height: ${settings.scale * 0.8}cm;
     }
 
     .settings > button {
