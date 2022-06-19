@@ -1,8 +1,9 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import defaultBackground1 from "../../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
 import defaultBackground2 from "../../assets/img/backgrounds/patrick-robert-doyle-r4PxPNSIzHw-unsplash.jpg";
 import defaultBackground3 from "../../assets/img/backgrounds/kyle-bushnell-wjrlOqZCvCM-unsplash.jpg";
 import defaultBackground4 from "../../assets/img/backgrounds/nasa-Q1p7bh3SHj8-unsplash.jpg";
+import styled from "styled-components";
 
 interface SettingsTypes {
   theme: string;
@@ -19,6 +20,44 @@ interface BackgroundPickerProps {
   settings: SettingsTypes;
   setSettings: Dispatch<SetStateAction<SettingsTypes>>;
 }
+
+const DefaultBackgroundHolder = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 0.2cm;
+  grid-row-gap: 0.2cm;
+  width:50%;
+
+  & img {
+    height: 4cm;
+    object-fit: cover;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+`;
+
+const CurrentBackgroundPreview = styled.img`
+  object-fit: cover;
+  float: left;
+  width: 49%;
+  margin-right: 1%;
+  height: 8.2cm;
+  border-radius: 5px;
+`
+
+const BackgroundOptions = styled.div`
+  text-align: center;
+
+  & label {
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+
+  & label & * {
+    margin-left: 0.2cm;
+  }
+`
 
 const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
   const [unsplashTerm, setUnsplashTerm] = useState("");
@@ -63,22 +102,16 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
   };
 
   return (
-    <div className="backgroundPicker">
-      <div className="backpickerImages">
-        <img
-          className="currentBackgroundPreview"
-          src={settings.background.replace("url(", "").replace(")", "")}
-          alt=""
-        ></img>
-        <div className="defaultBackgroundHolder">
-          <DefaultBackground background={defaultBackground1} />
-          <DefaultBackground background={defaultBackground2} />
-          <DefaultBackground background={defaultBackground3} />
-          <DefaultBackground background={defaultBackground4} />
-        </div>
-      </div>
+    <div style={{ padding: "2%", userSelect: "none" }}>
+      <CurrentBackgroundPreview src={settings.background.replace("url(", "").replace(")", "")} />
+      <DefaultBackgroundHolder>
+        <DefaultBackground background={defaultBackground1} />
+        <DefaultBackground background={defaultBackground2} />
+        <DefaultBackground background={defaultBackground3} />
+        <DefaultBackground background={defaultBackground4} />
+      </DefaultBackgroundHolder>
       <br />
-      <div className="backgroundOptions">
+      <BackgroundOptions>
         <label>
           Random from Unsplash:
           <input
@@ -94,7 +127,7 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
         <label>
           Upload from computer: <input type="file" onChange={onImageChange} />
         </label>
-      </div>
+      </BackgroundOptions>
     </div>
   );
 };

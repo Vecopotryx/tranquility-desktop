@@ -1,9 +1,10 @@
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import darkPreview from "../../assets/img/preview-dark.svg";
 import lightPreview from "../../assets/img/preview-light.svg";
 import classicPreview from "../../assets/img/preview-classic.svg";
 import "../../assets/styles/componentStyles/Settings.css";
 import defaultBackground1 from "../../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
+import styled from 'styled-components';
 
 interface SettingsTypes {
   theme: string;
@@ -20,6 +21,30 @@ interface CustomizationProps {
   settings: SettingsTypes;
   setSettings: Dispatch<SetStateAction<SettingsTypes>>;
 }
+
+
+const ThemePreviews = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1%;
+
+  & div {
+    display: inline-block;
+    text-align: center;
+  }
+`;
+
+const OtherSettings = styled.div`
+  text-align: center;
+  margin: auto;
+
+  & div {
+    display: inline-block;
+    margin-right: 2%;
+    margin-left: 2%;
+    text-align: center;
+  }
+`;
 
 const Customization = ({ settings, setSettings }: CustomizationProps) => {
   const setDefaultSettings = () => {
@@ -71,18 +96,12 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     return (
       <div>
         <div
-          className="settingsPreviews"
-          style={{ backgroundImage: settings.background }}
+          style={{ backgroundSize: "cover", backgroundImage: settings.background, borderRadius: "5px", width: "100%" }}
           onClick={() => updateSettings("theme", theme.toLowerCase())}
         >
-          <img
-            className="settingsThemePreview"
-            src={image}
-            width="100%"
-            alt={theme.toLowerCase()}
-          ></img>
+          <img src={image} width="100%" alt={theme.toLowerCase()} />
         </div>
-        <label className="settingsThemeRadios">
+        <label>
           <input
             type="radio"
             value={theme.toLowerCase()}
@@ -96,14 +115,14 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
   };
 
   return (
-    <div className="customization">
-      <div className={"themePreviews"}>
+    <div style={{ padding: "2%", userSelect: "none" }}>
+      <ThemePreviews>
         <ThemePreview theme={"Light"} image={lightPreview} />
         <ThemePreview theme={"Dark"} image={darkPreview} />
         <ThemePreview theme={"Classic"} image={classicPreview} />
-      </div>
-      <div className="otherSettings">
-        <div className="fontSettings">
+      </ThemePreviews>
+      <OtherSettings>
+        <div>
           <h2>Font</h2>
           <label>
             <input
@@ -125,7 +144,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             <p style={{ fontFamily: "retro" }}>Retro</p>
           </label>
         </div>
-        <div className="menubarSettings">
+        <div>
           <h2>Menubar</h2>
           <label>
             Connected Menubar
@@ -150,7 +169,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
           </label>
           <br />
         </div>
-        <div className="miscSettings">
+        <div>
           <h2>Misc</h2>
           <label>
             UI Scale
@@ -158,7 +177,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
               type="range"
               min="5"
               max="30"
-              value={settings.scale * 10}
+              defaultValue={settings.scale * 10}
               step="1"
               onChange={(e) =>
                 updateSettings("scale", Number(e.target.value) / 10)
@@ -173,7 +192,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
               type="range"
               min="1"
               max="10"
-              value={settings.opacity * 10}
+              defaultValue={settings.opacity * 10}
               step="1"
               onChange={(e) =>
                 updateSettings("opacity", Number(e.target.value) / 10)
@@ -182,7 +201,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             <p>{settings.opacity}</p>
           </label>
         </div>
-        <div className="miscSettings2">
+        <div>
           <h2>Misc 2</h2>
           <label>
             Use cookies/localStorage
@@ -197,7 +216,7 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             Revert to default settings
           </button>
         </div>
-      </div>
+      </OtherSettings>
     </div>
   );
 };
