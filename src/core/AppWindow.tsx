@@ -1,6 +1,5 @@
 import React from "react";
 import { Rnd } from "react-rnd";
-import "../assets/styles/componentStyles/AppWindow.css";
 import styled from 'styled-components';
 
 interface AppWindowProps {
@@ -14,7 +13,7 @@ interface AppWindowProps {
   handleFocus: (appId: number) => void;
 }
 
-const TBButton = styled.button<{ place: string }>`
+const TBButton = styled.button<{ action: string }>`
   background: none;
   border: none;
   margin: 0 10px 0 10px;
@@ -22,7 +21,7 @@ const TBButton = styled.button<{ place: string }>`
   cursor: pointer;
   font-size: 18px;
   transition: transform 0.2s;
-  float: ${(props) => props.place};
+  float: ${p => p.action === "close" ? p.theme.titlebarAlignment.closePos : p.theme.titlebarAlignment.collapsePos};
 
   &:hover {
     transform: scale(1.5);
@@ -32,13 +31,13 @@ const TBButton = styled.button<{ place: string }>`
 const Titlebar = styled.div<{ focused: boolean }>`
   width: 100%;
   user-select: none;
-  background: ${p => p.focused ? p.theme.titlebarBackground : p.theme.unfocusedTitlebarBackground};
-  color: ${p => p.focused ? p.theme.text : p.theme.unfocusedText};
-  text-align: ${p => p.theme.titlebarTextAlignment};
+  background: ${p => p.focused ? p.theme.colors.titlebarBg : p.theme.colors.unfocusedTitlebarBg};
+  color: ${p => p.focused ? p.theme.colors.titlebarText : p.theme.colors.unfocusedText};
+  text-align: ${p => p.theme.titlebarAlignment.textPos};
   height: 0.7cm;
 
   & button {
-    color: ${p => p.focused ? p.theme.text : p.theme.unfocusedText};
+    color: ${p => p.focused ? p.theme.colors.titlebarText : p.theme.colors.unfocusedText};
   }
 
   & p {
@@ -54,6 +53,40 @@ const InternalFrameOverlay = styled.div`
   top: 0.7cm;
   left: 0;
   display: block;
+`
+
+
+const Window = styled(Rnd) <{ focused: boolean, index: number }>`
+  min-height: ${p => p.theme.scale * 0.7}cm;
+  min-width: 1cm;
+  display: block;
+  box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  transition: filter 0.2s;
+  backdrop-filter: blur(10px);
+  border-radius: ${p => p.theme.borderRadius};
+  border: ${p => p.theme.border};
+  color: ${p => p.focused ? p.theme.colors.text : p.theme.colors.unfocusedText};
+  background-color: rgba(${p => p.theme.colors.background + ", " + p.theme.opacity});
+  transition: background-color 0.3s, color 0.3s;
+  z-index: ${p => p.index};
+`
+
+const AppWrapper = styled.div`
+  display: block;
+  height: 100%;
+  width: 100%;
+`
+
+const AppContent = styled.div<{ collapsed: boolean }>`
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: ${p => p.collapsed ? "none" : "block"};
+  height: calc(100% - ${p => p.theme.scale * 0.7}cm);
+
+  & { 
+    cursor: default;
+  }
 `
 
 const AppWindow = (props: AppWindowProps) => {
@@ -100,14 +133,14 @@ const AppWindow = (props: AppWindowProps) => {
 
   return (
     <>
-      <Rnd
-        className="appWindow"
-        style={{ zIndex: props.index }}
+      <Window
+        focused={props.isFocused}
+        index={props.index}
         maxHeight={dimensions.maxHeight}
-        ref={(c) => {
+        ref={(c: Rnd) => {
           rndRef = c;
         }}
-        cancel={"." + TBButton.styledComponentId + ", .appContent>*"}
+        cancel={"." + TBButton.styledComponentId + ", ." + AppContent.styledComponentId + " >*"}
         onResizeStart={() => {
           handleResizeOrDrag(true);
         }}
@@ -132,23 +165,20 @@ const AppWindow = (props: AppWindowProps) => {
           height: dimensions.storedHeight,
         }}
       >
-        <div className="appWrapper" onMouseEnter={() => props.handleFocus(props.appId)}>
+        <AppWrapper onMouseEnter={() => props.handleFocus(props.appId)}>
           <Titlebar focused={props.isFocused}>
-            <TBButton place="left" onClick={() => props.handleClose(props.appId)}> × </TBButton>
+            <TBButton action="close" onClick={() => props.handleClose(props.appId)}> × </TBButton>
             <p>{props.title}</p>
-            <TBButton place="right" onClick={() => updateCollapse()}>
+            <TBButton action="collapse" onClick={() => updateCollapse()}>
               {isCollapsed ? "▼" : "▲"}
             </TBButton>
           </Titlebar>
-          <div
-            className="appContent"
-            style={{ display: isCollapsed ? "none" : "block" }}
-          >
+          <AppContent collapsed={isCollapsed}>
             {frameOverlay && <InternalFrameOverlay />}
             {props.children}
-          </div>
-        </div>
-      </Rnd>
+          </AppContent>
+        </AppWrapper>
+      </Window>
     </>
   );
 };

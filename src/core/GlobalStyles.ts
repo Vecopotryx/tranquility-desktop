@@ -26,38 +26,20 @@ export const GlobalStyles = createGlobalStyle(
 
     body {
       background-image: ${settings.background};
-      color: ${theme.text};
+      color: ${theme.colors.text};
       font-family: ${settings.font === "retro" ? "retro" : ""};
-    }
-
-    .appWindow {
-      border-radius: ${theme.borderRadius};
-      border: ${theme.border};
-      background-color: ${theme.background};
-      background-color: rgba(${theme.background}, ${settings.opacity});
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .appWindow,
-    .appContent {
-      min-height: ${settings.scale * 0.7}cm;
-      min-width: ${settings.scale * 4}cm;
-    }
-
-    .appContent {
-      height: calc(100% - ${settings.scale * 0.7}cm);
     }
 
     .menubar {
       height: ${settings.scale * 0.7}cm;
       background-color: ${settings.connectedMenubar
-        ? "rgba(" + theme.background + "," + settings.opacity + ")"
-        : "transparent"};
-      border-radius: ${theme.borderRadius};
+      ? "rgba(" + theme.colors.background + "," + settings.opacity + ")"
+      : "transparent"};
+      border-radius: ${theme.colors.borderRadius};
       bottom: ${settings.bottomMenubar ? "0" : ""};
       backdrop-filter: ${settings.connectedMenubar
-        ? "blur(10px)"
-        : "none"};
+      ? "blur(10px)"
+      : "none"};
       transition: background-color 0.3s;
     }
 
@@ -65,29 +47,29 @@ export const GlobalStyles = createGlobalStyle(
     .menubarRight {
       font-size: ${settings.scale * 16}px;
       background-color: ${settings.connectedMenubar
-        ? "transparent"
-        : "rgba(" + theme.background + "," + settings.opacity + ")"};
-      color: ${theme.text};
+      ? "transparent"
+      : "rgba(" + theme.colors.background + "," + settings.opacity + ")"};
+      color: ${theme.colors.text};
       height: ${settings.scale * 0.7}cm;
       border-radius: ${theme.borderRadius};
       line-height: ${settings.scale * 0.7}cm;
       backdrop-filter: ${settings.connectedMenubar
-        ? "none"
-        : "blur(10px)"};
+      ? "none"
+      : "blur(10px)"};
       transition: background-color 0.3s, color 0.3s;
     }
 
     .menubarList {
       width: ${settings.scale * 4}cm;
       background-color: ${"rgba(" +
-      theme.background +
-      "," +
-      settings.opacity +
-      ")"};
+    theme.background +
+    "," +
+    settings.opacity +
+    ")"};
       border-radius: ${theme.borderRadius};
       bottom: ${settings.bottomMenubar
-        ? (settings.scale * 0.7) + "cm"
-        : null};
+      ? (settings.scale * 0.7) + "cm"
+      : null};
     }
 
     .menubarDropdown > * {
@@ -121,8 +103,8 @@ export const GlobalStyles = createGlobalStyle(
 
     .loadingSpinner {
       filter: ${theme === lightTheme || theme === classicTheme
-        ? "invert(1)"
-        : ""};
+      ? "invert(1)"
+      : ""};
     }
 
     .githubIcon {
@@ -163,44 +145,84 @@ export const GlobalStyles = createGlobalStyle(
   `
 );
 
-export const lightTheme = {
-  background: "255, 255, 255",
-  text: "#121212",
-  unfocusedText: "gray",
-  titlebarTextColor: "#121212",
-  titlebarBackground: "linear-gradient(to right, white, lightgray)",
-  unfocusedTitlebarBackground: "linear-gradient(to right, white, lightgray)",
-  collapseWindowPosition: "right",
-  closeWindowPosition: "left",
-  titlebarTextAlignment: "center",
-  borderRadius: "5px",
+interface themeInterface {
+  colors: {
+    background: string,
+    text: string,
+    unfocusedText: string,
+    titlebarText: string,
+    titlebarBg: string,
+    unfocusedTitlebarBg: string
+  };
+  titlebarAlignment: {
+    collapsePos: string,
+    closePos: string,
+    textPos: string
+  };
+  border: string,
+  borderRadius: number;
+  opacity: number;
+  scale: number;
+}
+
+export const lightTheme: themeInterface = {
+  colors: {
+    background: "255, 255, 255",
+    text: "#121212",
+    unfocusedText: "gray",
+    titlebarText: "#121212",
+    titlebarBg: "linear-gradient(to right, white, lightgray)",
+    unfocusedTitlebarBg: "linear-gradient(to right, white, lightgray)",
+  },
+  titlebarAlignment: {
+    collapsePos: "right",
+    closePos: "left",
+    textPos: "center"
+  },
+  border: "none",
+  borderRadius: 5,
+  opacity: 0.8,
+  scale: 1
 };
 
-export const darkTheme = {
-  background: "9, 10, 12",
-  text: "#fff",
-  unfocusedText: "darkgray",
-  titlebarTextColor: "#fff",
-  titlebarBackground: "linear-gradient(to right, #090a0c, gray)",
-  unfocusedTitlebarBackground: "linear-gradient(to right, #090a0c, gray)",
-  collapseWindowPosition: "right",
-  closeWindowPosition: "left",
-  titlebarTextAlignment: "center",
-  borderRadius: "5px",
+export const darkTheme: themeInterface = {
+  colors: {
+    background: "9, 10, 12",
+    text: "#fff",
+    unfocusedText: "darkgray",
+    titlebarText: "#fff",
+    titlebarBg: "linear-gradient(to right, #090a0c, gray)",
+    unfocusedTitlebarBg: "linear-gradient(to right, #090a0c, gray)",
+  },
+  titlebarAlignment: {
+    collapsePos: "right",
+    closePos: "left",
+    textPos: "center"
+  },
+  border: "none",
+  borderRadius: 5,
+  opacity: 0.8,
+  scale: 1
 };
 
-export const classicTheme = {
-  background: "169, 169, 169",
-  text: "#121212",
-  unfocusedText: "#303030",
-  titlebarTextColor: "#fff",
-  titlebarBackground: "#00008B",
-  unfocusedTitlebarBackground: "#606060",
-  collapseWindowPosition: "right",
-  closeWindowPosition: "right",
-  titlebarTextAlignment: "left",
-  borderRadius: "0px",
+export const classicTheme: themeInterface = {
+  colors: {
+    background: "169, 169, 169",
+    text: "#121212",
+    unfocusedText: "#303030",
+    titlebarText: "#fff",
+    titlebarBg: "#00008B",
+    unfocusedTitlebarBg: "#606060",
+  },
+  titlebarAlignment: {
+    collapsePos: "right",
+    closePos: "right",
+    textPos: "left"
+  },
   border: "2px outset lightgray",
+  borderRadius: 0,
+  opacity: 0.8,
+  scale: 1
 };
 
 export const getTheme = (theme: string) => {
