@@ -93,13 +93,6 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     document.documentElement.style.setProperty('--bgopacity', Opacity.toString());
   }
 
-  const toggleLocalStorage = (event: { target: HTMLInputElement }) => {
-    updateSettings("usingLocalStorage", event.target.checked);
-    if (!event.target.checked) {
-      localStorage.clear();
-    }
-  };
-
   interface Props {
     themeIn: string;
     image: string;
@@ -201,17 +194,12 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
         </div>
         <div>
           <h2>Misc 2</h2>
-          <label>
-            Use cookies/localStorage
-            <input
-              type="checkbox"
-              checked={settings.usingLocalStorage}
-              onChange={toggleLocalStorage}
-            ></input>
-          </label>
-          <br />
           <button onClick={setDefaultSettings}>
             Revert to default settings
+          </button>
+          <br />
+          <button onClick={() => localStorage.clear()}>
+            ⚠️ Clear localStorage
           </button>
         </div>
       </OtherSettings>
