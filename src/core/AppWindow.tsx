@@ -31,13 +31,13 @@ const TBButton = styled.button<{ action: string }>`
 const Titlebar = styled.div<{ focused: boolean }>`
   width: 100%;
   user-select: none;
-  background: ${p => p.focused ? p.theme.colors.titlebarBg : p.theme.colors.unfocusedTitlebarBg};
-  color: ${p => p.focused ? p.theme.colors.titlebarText : p.theme.colors.unfocusedText};
+  background: ${p => p.focused ? "var(--titlebarBg)" : "var(--unfocusedTitlebarBg)"};
+  color: ${p => p.focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
   text-align: ${p => p.theme.titlebarAlignment.textPos};
   height: 0.7cm;
 
   & button {
-    color: ${p => p.focused ? p.theme.colors.titlebarText : p.theme.colors.unfocusedText};
+    color: ${p => p.focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
   }
 
   & p {
@@ -64,10 +64,10 @@ const Window = styled(Rnd) <{ focused: boolean, index: number }>`
   overflow: hidden;
   transition: filter 0.2s;
   backdrop-filter: blur(10px);
-  border-radius: ${p => p.theme.borderRadius}px;
-  border: ${p => p.theme.border};
-  color: ${p => p.focused ? p.theme.colors.text : p.theme.colors.unfocusedText};
-  background-color: rgba(${p => p.theme.colors.background + ", " + p.theme.opacity});
+  border-radius: var(--borderRadius);
+  border: var(--border);
+  color: var(--primary-color);
+  background-color: rgba(var(--primary-bg), var(--bgopacity));
   transition: background-color 0.3s, color 0.3s;
   z-index: ${p => p.index};
 `

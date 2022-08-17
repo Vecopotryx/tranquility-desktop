@@ -36,10 +36,10 @@ position: absolute;
 
 const MenubarLeftRight = styled.div`
   font-size: ${p => p.theme.scale * 16}px;
-  background-color: rgba(${p => p.theme.colors.background + "," + p.theme.opacity});
-  color: ${p => p.theme.colors.text};
+  background-color: rgba(var(--primary-bg), var(--bgopacity));
+  color: var(--primary-color);
   height: ${p => p.theme.scale * 0.7}cm;
-  border-radius: ${p => p.theme.borderRadius}px;
+  border-radius: var(--borderRadius);
   line-height: ${p => p.theme.scale * 0.7}cm;
 
   transition: background-color 0.3s, color 0.3s;
@@ -61,12 +61,8 @@ background-color: ${settings.connectedMenubar
 const MenubarList = styled.div`
   position: absolute;
   width: ${p => p.theme.scale * 4}cm;
-  background-color: ${p => "rgba(" +
-    p.theme.colors.background +
-    "," +
-    p.theme.opacity +
-    ")"};
-  border-radius: ${p => p.theme.borderRadius}px;
+  background-color: rgba(var(--primary-bg), var(--bgopacity));
+  border-radius: var(--borderRadius);
 `
 
 const MenubarButton = styled.button`
@@ -80,7 +76,7 @@ const MenubarButton = styled.button`
   align-items: center;
   float: right;
   outline: none;
-  color: ${p => p.theme.colors.text};
+  color: var(--primary-color);
   font-size: ${p => p.theme.scale * 15}px;
 
   > img {

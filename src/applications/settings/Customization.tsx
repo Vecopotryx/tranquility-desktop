@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import darkPreview from "../../assets/img/preview-dark.svg";
 import lightPreview from "../../assets/img/preview-light.svg";
 import classicPreview from "../../assets/img/preview-classic.svg";
@@ -80,6 +80,13 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     }
   };
 
+  const [theme, setTheme] = useState<string | null>(document.documentElement.getAttribute("data-theme"));
+  const updateTheme = (theme: string) => {
+    setTheme(theme);
+    document.documentElement.setAttribute("data-theme", theme);
+    updateSettings("theme", theme)
+  }
+  
   const toggleLocalStorage = (event: { target: HTMLInputElement }) => {
     updateSettings("usingLocalStorage", event.target.checked);
     if (!event.target.checked) {
@@ -88,27 +95,27 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
   };
 
   interface Props {
-    theme: string;
+    themeIn: string;
     image: string;
   }
 
-  const ThemePreview = ({ theme, image }: Props) => {
+  const ThemePreview = ({ themeIn, image }: Props) => {
     return (
       <div>
         <div
           style={{ backgroundSize: "cover", backgroundImage: settings.background, borderRadius: "5px", width: "100%" }}
-          onClick={() => updateSettings("theme", theme.toLowerCase())}
+          onClick={() => updateTheme(themeIn.toLocaleLowerCase())}
         >
-          <img src={image} width="100%" alt={theme.toLowerCase()} />
+          <img src={image} width="100%" alt={themeIn.toLowerCase()} />
         </div>
         <label>
           <input
             type="radio"
-            value={theme.toLowerCase()}
-            checked={settings.theme === theme.toLowerCase()}
-            onChange={(e) => updateSettings("theme", e.target.value)}
+            value={themeIn.toLowerCase()}
+            checked={theme === themeIn.toLocaleLowerCase()}
+            onChange={(e) => updateTheme(e.target.value)}
           />
-          {theme}
+          {themeIn}
         </label>
       </div>
     );
@@ -117,9 +124,9 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
   return (
     <div style={{ padding: "2%", userSelect: "none" }}>
       <ThemePreviews>
-        <ThemePreview theme={"Light"} image={lightPreview} />
-        <ThemePreview theme={"Dark"} image={darkPreview} />
-        <ThemePreview theme={"Classic"} image={classicPreview} />
+        <ThemePreview themeIn={"Light"} image={lightPreview} />
+        <ThemePreview themeIn={"Dark"} image={darkPreview} />
+        <ThemePreview themeIn={"Classic"} image={classicPreview} />
       </ThemePreviews>
       <OtherSettings>
         <div>
