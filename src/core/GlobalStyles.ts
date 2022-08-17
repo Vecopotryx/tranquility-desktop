@@ -41,7 +41,6 @@ export const GlobalStyles = createGlobalStyle(
     }
 
     .terminalInput {
-      caret-color: ${theme === darkTheme ? "white" : "black"};
       color: ${theme === darkTheme ? "white" : "black"};
     }
 
@@ -65,7 +64,6 @@ interface themeInterface {
     closePos: string,
     textPos: string
   };
-  scale: number;
 }
 
 export const lightTheme: themeInterface = {
@@ -73,8 +71,7 @@ export const lightTheme: themeInterface = {
     collapsePos: "right",
     closePos: "left",
     textPos: "center"
-  },
-  scale: 1
+  }
 };
 
 export const darkTheme: themeInterface = {
@@ -82,8 +79,7 @@ export const darkTheme: themeInterface = {
     collapsePos: "right",
     closePos: "left",
     textPos: "center"
-  },
-  scale: 1
+  }
 };
 
 export const classicTheme: themeInterface = {
@@ -91,8 +87,7 @@ export const classicTheme: themeInterface = {
     collapsePos: "right",
     closePos: "right",
     textPos: "left"
-  },
-  scale: 1
+  }
 };
 
 export const getTheme = (theme: string) => {

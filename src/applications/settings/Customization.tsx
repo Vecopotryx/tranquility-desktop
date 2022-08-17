@@ -185,21 +185,6 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
         <div>
           <h2>Misc</h2>
           <label>
-            UI Scale
-            <input
-              type="range"
-              min="5"
-              max="30"
-              defaultValue={settings.scale * 10}
-              step="1"
-              onChange={(e) =>
-                updateSettings("scale", Number(e.target.value) / 10)
-              }
-            ></input>
-            <p>{settings.scale}</p>
-          </label>
-          <br />
-          <label>
             Opacity
             <input
               type="range"
@@ -233,16 +218,5 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     </div>
   );
 };
-/*
-Perhaps at a later date:
-        <label>
-          Button Placement
-          <select>
-            <option value="RDE">RDE</option>
-            <option value="redmond">Redmond</option>
-            <option value="cupertino">Cupertino</option>
-          </select>
-        </label>
-*/
 
 export default Customization;

@@ -35,12 +35,12 @@ position: absolute;
 `
 
 const MenubarLeftRight = styled.div`
-  font-size: ${p => p.theme.scale * 16}px;
+  font-size: 16px;
   background-color: rgba(var(--primary-bg), var(--bgopacity));
   color: var(--primary-color);
-  height: ${p => p.theme.scale * 0.7}cm;
+  height: 0.7cm;
   border-radius: var(--borderRadius);
-  line-height: ${p => p.theme.scale * 0.7}cm;
+  line-height: 0.7cm;
 
   transition: background-color 0.3s, color 0.3s;
 
@@ -60,7 +60,7 @@ background-color: ${settings.connectedMenubar
 
 const MenubarList = styled.div`
   position: absolute;
-  width: ${p => p.theme.scale * 4}cm;
+  width: 4cm;
   background-color: rgba(var(--primary-bg), var(--bgopacity));
   border-radius: var(--borderRadius);
 `
@@ -77,12 +77,12 @@ const MenubarButton = styled.button`
   float: right;
   outline: none;
   color: var(--primary-color);
-  font-size: ${p => p.theme.scale * 15}px;
+  font-size: 15px;
 
   > img {
     float: left;
     padding-right: 3%;
-    width: ${p => p.theme.scale * 0.7}cm;
+    width: 0.7cm;
 
   }
 `
@@ -91,24 +91,19 @@ const OpenWindowList = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: ${p => p.theme.scale * 0.7}cm;
+  height: 0.7cm;
 `
 
 const OpenWindowListIcon = styled.img`
   margin-left: 0.2vw;
   vertical-align: middle;
-  height: ${p => p.theme.scale * 0.6}cm;
+  height: 0.6cm;
 
   &:hover {
     transform: scale(1.2);
     transition: transform 0.2s;
   }
 `
-//font-family: ${settings.font === "retro" ? "retro" : ""};
-
-/*bottom: ${settings.bottomMenubar
-? (settings.scale * 0.7) + "cm"
-: null};*/
 
 const Menubar = () => {
   const AppButtons = [
