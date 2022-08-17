@@ -86,7 +86,13 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     document.documentElement.setAttribute("data-theme", theme);
     updateSettings("theme", theme)
   }
-  
+
+  const [opacity, setOpacity] = useState<number | null>(Number(document.documentElement.style.getPropertyValue("--bgopacity")));
+  const updateOpacity = (Opacity: number) => {
+    setOpacity(Opacity);
+    document.documentElement.style.setProperty('--bgopacity', Opacity.toString());
+  }
+
   const toggleLocalStorage = (event: { target: HTMLInputElement }) => {
     updateSettings("usingLocalStorage", event.target.checked);
     if (!event.target.checked) {
@@ -199,13 +205,13 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
               type="range"
               min="1"
               max="10"
-              defaultValue={settings.opacity * 10}
+              value={opacity ? opacity * 10 : 10}
               step="1"
               onChange={(e) =>
-                updateSettings("opacity", Number(e.target.value) / 10)
+                updateOpacity(Number(e.target.value) / 10)
               }
             ></input>
-            <p>{settings.opacity}</p>
+            <p>{opacity}</p>
           </label>
         </div>
         <div>

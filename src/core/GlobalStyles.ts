@@ -65,7 +65,6 @@ interface themeInterface {
     closePos: string,
     textPos: string
   };
-  opacity: number;
   scale: number;
 }
 
@@ -75,7 +74,6 @@ export const lightTheme: themeInterface = {
     closePos: "left",
     textPos: "center"
   },
-  opacity: 0.8,
   scale: 1
 };
 
@@ -85,7 +83,6 @@ export const darkTheme: themeInterface = {
     closePos: "left",
     textPos: "center"
   },
-  opacity: 0.8,
   scale: 1
 };
 
@@ -95,7 +92,6 @@ export const classicTheme: themeInterface = {
     closePos: "right",
     textPos: "left"
   },
-  opacity: 0.8,
   scale: 1
 };
 
