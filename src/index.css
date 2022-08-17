@@ -13,3 +13,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --bgopacity: 0.8;
+  /* Default theme: */
+  --primary-bg: 255, 255, 255;
+  --primary-color: #121212;
+  --titlebarText: #121212;
+  --unfocused-color: darkgray;
+  --titlebarBg: linear-gradient(to right, white, lightgray);
+  --unfocusedTitlebarBg: linear-gradient(to right, white, lightgray);
+  --border: none;
+  --borderRadius: 5px;
+}
+
+[data-theme="dark"] {
+  --primary-bg: 9, 10, 12;
+  --primary-color: #e9e9e9;
+  --unfocused-color: darkgray;
+  --titlebarText: #fff;
+  --titlebarBg: linear-gradient(to right, #090a0c, gray);
+  --unfocusedTitlebarBg: linear-gradient(to right, #090a0c, gray);
+  --border: none;
+  --borderRadius: 5px;
+}
+
+[data-theme="classic"] {
+  --primary-bg: 120, 120, 120;
+  --primary-color: #000;
+  --unfocused-color: #303030;
+  --titlebarText: #fff;
+  --titlebarBg: #00008B;
+  --unfocusedTitlebarBg: #606060;
+  --border: 2px outset lightgray;
+  --borderRadius: 0;
+}
