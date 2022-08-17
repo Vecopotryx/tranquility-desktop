@@ -14,7 +14,7 @@ const MenubarDropdown = styled.div`
   cursor: pointer;
 
   >* {
-    padding-right: ${p => p.theme.scale * 5}px;
+    padding-right: 5px;
     color: var(--primary-color);
   }
 `

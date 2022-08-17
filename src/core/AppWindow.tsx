@@ -57,7 +57,7 @@ const InternalFrameOverlay = styled.div`
 
 
 const Window = styled(Rnd) <{ focused: boolean, index: number }>`
-  min-height: ${p => p.theme.scale * 0.7}cm;
+  min-height: 0.7cm;
   min-width: 1cm;
   display: block;
   box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
@@ -82,7 +82,7 @@ const AppContent = styled.div<{ collapsed: boolean }>`
   overflow-y: auto;
   overflow-x: hidden;
   display: ${p => p.collapsed ? "none" : "block"};
-  height: calc(100% - ${p => p.theme.scale * 0.7}cm);
+  height: calc(100% - 0.7cm);
 
   >* { 
     cursor: default;
