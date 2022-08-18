@@ -41,22 +41,14 @@ const MenubarLeftRight = styled.div`
   height: 0.7cm;
   border-radius: var(--borderRadius);
   line-height: 0.7cm;
-
+  display: flex;
+  flex-wrap: nowrap;
   transition: background-color 0.3s, color 0.3s;
 
-  >* {
-    margin-right: 1%;
+  > p {
+    margin: 0;
   }
 `
-/* 
-background-color: ${settings.connectedMenubar
-  ? "transparent"
-  : "rgba(" + theme.colors.background + "," + settings.opacity + ")"};
-
-//backdrop-filter: ${settings.connectedMenubar
-  //? "none"
-  //: "blur(10px)"};
-*/
 
 const MenubarList = styled.div`
   position: absolute;
