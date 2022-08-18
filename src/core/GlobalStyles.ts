@@ -26,34 +26,7 @@ export const GlobalStyles = createGlobalStyle(
 
     body {
       background-image: ${settings.background};
-      color: var(--primary-color);
       font-family: ${settings.font === "retro" ? "retro" : ""};
-    }
-
-    .loadingSpinner {
-      filter: ${theme === lightTheme || theme === classicTheme
-      ? "invert(1)"
-      : ""};
-    }
-
-    .githubIcon {
-      filter: ${theme === darkTheme ? "invert(1)" : ""};
-    }
-
-    .terminalInput {
-      color: ${theme === darkTheme ? "white" : "black"};
-    }
-
-    .settings > button {
-      font-family: ${settings.font === "retro" ? "retro" : ""};
-    }
-
-    .settings > button:hover {
-      filter: ${theme === darkTheme ? "brightness(2)" : "brightness(0.1)"};
-    }
-
-    textarea {
-      color: ${theme === darkTheme ? "white" : "black"};
     }
   `
 );

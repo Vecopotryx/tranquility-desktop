@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import Customization from "./Customization";
 import BackgroundPicker from "./BackgroundPicker";
 import About from "./About";
@@ -33,7 +33,7 @@ const Settings = () => {
         {openSettings === setting ? (
           <h2>{setting}</h2>
         ) : (
-          <button onClick={() => setOpenSettings(setting)}>{setting}</button>
+          <button style={{fontFamily: "inherit"}} onClick={() => setOpenSettings(setting)}>{setting}</button>
         )}
       </>
     );

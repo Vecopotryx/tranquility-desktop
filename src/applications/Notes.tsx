@@ -79,7 +79,7 @@ export const Notes = () => {
       </div>
       <div style={{ width: "100%", padding: "0.5em" }}>
         <h1>{selected != null ? selected.title : null}</h1>
-        <textarea style={{ height: "100%", width: "100%" }} key={selected?.id} value={selected?.content} onChange={e => updateText(e.target.value, selected?.id)} ></textarea>
+        <textarea style={{ height: "100%", width: "100%", color: "var(--primary-color)" }} key={selected?.id} value={selected?.content} onChange={e => updateText(e.target.value, selected?.id)} ></textarea>
       </div>
     </div>
   )
