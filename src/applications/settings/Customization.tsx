@@ -84,19 +84,21 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
   const updateTheme = (theme: string) => {
     setTheme(theme);
     document.documentElement.setAttribute("data-theme", theme);
-    updateSettings("theme", theme)
+    localStorage.setItem("theme", theme);
   }
 
   const [opacity, setOpacity] = useState<number | null>(Number(document.documentElement.style.getPropertyValue("--bgopacity")));
   const updateOpacity = (Opacity: number) => {
     setOpacity(Opacity);
     document.documentElement.style.setProperty('--bgopacity', Opacity.toString());
+    localStorage.setItem("opacity", Opacity.toString());
   }
 
   const [font, setFont] = useState<string | null>(document.documentElement.style.getPropertyValue("--font"));
   const updateFont = (font: string) => {
     setFont(font);
     document.documentElement.style.setProperty('--font', font === "modern" ? "" : font);
+    localStorage.setItem("font", font);
   }
 
   interface Props {
