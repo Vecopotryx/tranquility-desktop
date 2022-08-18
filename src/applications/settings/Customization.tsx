@@ -93,6 +93,12 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     document.documentElement.style.setProperty('--bgopacity', Opacity.toString());
   }
 
+  const [font, setFont] = useState<string | null>(document.documentElement.style.getPropertyValue("--font"));
+  const updateFont = (font: string) => {
+    setFont(font);
+    document.documentElement.style.setProperty('--font', font === "modern" ? "" : font);
+  }
+
   interface Props {
     themeIn: string;
     image: string;
@@ -134,8 +140,8 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             <input
               type="radio"
               value="modern"
-              checked={settings.font === "modern"}
-              onChange={(e) => updateSettings("font", e.target.value)}
+              checked={font === "modern" || font === ""}
+              onChange={(e) => updateFont(e.target.value)}
             />
             <p style={{ fontFamily: "Sans-serif" }}>Modern</p>
           </label>
@@ -144,8 +150,8 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             <input
               type="radio"
               value="retro"
-              checked={settings.font === "retro"}
-              onChange={(e) => updateSettings("font", e.target.value)}
+              checked={font === "retro"}
+              onChange={(e) => updateFont(e.target.value)}
             />
             <p style={{ fontFamily: "retro" }}>Retro</p>
           </label>

@@ -1,5 +1,4 @@
 import { createGlobalStyle, css } from "styled-components";
-import perfectDOS from "../assets/styles/Perfect_DOS_VGA_437_Win.ttf";
 
 interface SettingsTypes {
   theme: string;
@@ -19,14 +18,8 @@ interface Props {
 
 export const GlobalStyles = createGlobalStyle(
   ({ settings, theme }: Props) => css`
-    @font-face {
-      font-family: "retro";
-      src: local("perfect-dos"), url(${perfectDOS}) format("truetype");
-    }
-
     body {
       background-image: ${settings.background};
-      font-family: ${settings.font === "retro" ? "retro" : ""};
     }
   `
 );
