@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const Terminal = (props: any) => {
   let currentInput = "";
@@ -16,8 +16,7 @@ const Terminal = (props: any) => {
           onKeyUp={(e) => {
             if (e.key === "Enter") handleInput();
           }}
-          style={{ border: "none", background: "transparent" }}
-          className="terminalInput"
+          style={{ border: "none", background: "transparent", color: "var(--primary-color)" }}
           ref={inputRef}
         ></input>
       </div>
@@ -42,7 +41,7 @@ const Terminal = (props: any) => {
         handleCommand(<Neofetch />);
         break;
       case "exit":
-        if(props.id !== null){
+        if (props.id !== null) {
           props.handleClose(props.id);
         }
         break;
