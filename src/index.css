@@ -1,22 +1,23 @@
+@font-face {
+  font-family: "retro";
+  src: local("perfect-dos"), url(./assets/styles/Perfect_DOS_VGA_437_Win.ttf) format("truetype");
+}
+
 body {
   background-color: black;
   overflow: hidden;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--primary-color)
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 :root {
   --bgopacity: 0.8;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   /* Default theme: */
   --primary-bg: 255, 255, 255;
   --primary-color: #121212;
