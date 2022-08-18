@@ -21,7 +21,7 @@ const TBButton = styled.button<{ action: string }>`
   cursor: pointer;
   font-size: 18px;
   transition: transform 0.2s;
-  float: ${p => p.action === "close" ? p.theme.titlebarAlignment.closePos : p.theme.titlebarAlignment.collapsePos};
+  float: ${p => p.action === "close" ? "var(--titlebarCloseAlign)" : "right"};
 
   &:hover {
     transform: scale(1.5);
@@ -33,7 +33,7 @@ const Titlebar = styled.div<{ focused: boolean }>`
   user-select: none;
   background: ${p => p.focused ? "var(--titlebarBg)" : "var(--unfocusedTitlebarBg)"};
   color: ${p => p.focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
-  text-align: ${p => p.theme.titlebarAlignment.textPos};
+  text-align: var(--titlebarTextAlign);
   height: 0.7cm;
 
   & button {

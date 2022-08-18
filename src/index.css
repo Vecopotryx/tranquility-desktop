@@ -27,6 +27,8 @@ body {
   --unfocusedTitlebarBg: linear-gradient(to right, white, lightgray);
   --border: none;
   --borderRadius: 5px;
+  --titlebarCloseAlign: left;
+  --titlebarTextAlign: center;
 }
 
 [data-theme="dark"] {
@@ -49,4 +51,6 @@ body {
   --unfocusedTitlebarBg: #606060;
   --border: 2px outset lightgray;
   --borderRadius: 0;
+  --titlebarCloseAlign: right;
+  --titlebarTextAlign: left;
 }
