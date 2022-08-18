@@ -25,35 +25,19 @@ export const GlobalStyles = createGlobalStyle(
 );
 
 interface themeInterface {
-  titlebarAlignment: {
-    collapsePos: string,
-    closePos: string,
-    textPos: string
-  };
+
 }
 
 export const lightTheme: themeInterface = {
-  titlebarAlignment: {
-    collapsePos: "right",
-    closePos: "left",
-    textPos: "center"
-  }
+
 };
 
 export const darkTheme: themeInterface = {
-  titlebarAlignment: {
-    collapsePos: "right",
-    closePos: "left",
-    textPos: "center"
-  }
+
 };
 
 export const classicTheme: themeInterface = {
-  titlebarAlignment: {
-    collapsePos: "right",
-    closePos: "right",
-    textPos: "left"
-  }
+
 };
 
 export const getTheme = (theme: string) => {
