@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction, useState } from "react";
 import darkPreview from "../../assets/img/preview-dark.svg";
 import lightPreview from "../../assets/img/preview-light.svg";
 import classicPreview from "../../assets/img/preview-classic.svg";
-import "../../assets/styles/componentStyles/Settings.css";
 import defaultBackground1 from "../../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
 import styled from 'styled-components';
 
