@@ -1,61 +1,83 @@
-import React, { useState } from "react";
-import "../../assets/styles/componentStyles/Settings.css";
+import { useState } from "react";
+import styled from "styled-components";
 import githubIcon from "../../assets/img/github.svg";
 import LogoSideView from "../../assets/img/LogoSideView.png";
+
+const AboutContainer = styled.div`
+  text-align: center;
+  user-select: none;
+  
+  > a {
+    text-decoration: underline blue;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    
+    > img {
+      height: 1.5rem;
+      vertical-align: text-top;
+      margin-right: 0.5ch;      
+    }
+  }
+`
+
+const InfoBox = styled.p`
+  display: inline-block;
+  text-align: left;
+  margin-top: 0;
+  padding-left: 0.5cm;
+  padding-right: 0.5cm;
+  width: 75%;
+  border: 1px solid gray;
+  border-radius: var(--borderRadius);
+  line-height: 1.3cm;
+
+  span {
+    float: right;
+  }
+`
+
+const CreditBox = styled(InfoBox)`
+  cursor: pointer;
+  
+  span {
+    transition: transform 0.3s;
+  }
+`
 
 const About = () => {
   const [creditsVisible, setCreditsVisible] = useState(false);
   return (
-    <div className="aboutContainer">
-      <img src={LogoSideView} width="15%" alt="Logo"></img>
+    <AboutContainer>
+      <img src={LogoSideView} style={{ height: "10rem" }} alt="Logo"></img>
       <br />
 
-      <div>
-        <p className="aboutLeft">Project</p>
-        <p className="aboutRight">Retro Desktop Environment</p>
-      </div>
-
-      <div
-        className="credits"
-        style={{ height: creditsVisible ? "3cm" : "1.3cm" }}
-        onClick={() => setCreditsVisible(!creditsVisible)}
-      >
-          
-        <div style={{ height: "1cm" }}>
-          <p className="aboutLeft">Credits</p>
-          <p
-            className="aboutRight"
-            style={{ transform: creditsVisible ? "rotate(270deg)" : "" }}
-          >
-            {">"}
-          </p>
-        </div>
-
+      <InfoBox>Project <span>Retro Desktop Environment</span></InfoBox>
+      <CreditBox onClick={() => setCreditsVisible(!creditsVisible)}>
+        Credits <span style={{ transform: creditsVisible ? "rotate(270deg)" : "" }}>{">"}</span>
         {creditsVisible && <CreditsList />}
-      </div>
-      
+      </CreditBox>
+
       <br />
       <a
         href="https://github.com/Vecopotryx/retro-desktop-environment"
         target="_blank"
         rel="noopener noreferrer"
-        style={{ textDecoration: "none" }}
       >
         <img
           src={githubIcon}
-          width="32px"
           alt="githubIcon"
           className="githubIcon"
         ></img>
-        <p> GitHub Repository</p>
+        GitHub Repository
       </a>
-    </div>
+    </AboutContainer>
   );
 };
 
 const CreditsList = () => {
   return (
-    <div className="creditsList">
+    <>
+      <br />
       <p>
         • Vecopotryx -{" "}
         <a
@@ -77,7 +99,7 @@ const CreditsList = () => {
           Chip Player JS
         </a>
       </p>
-    </div>
+    </>
   );
 };
 
