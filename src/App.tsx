@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { GlobalStyles, getTheme } from "./core/GlobalStyles";
-import { ThemeProvider } from "styled-components";
+import { useEffect } from "react";
+import { GlobalStyles } from "./core/GlobalStyles";
 import { useSettings } from "./contexts/SettingsContext";
-import WindowManager from "./core/WindowManager";
-import "./assets/styles/StaticStyles.css";
 import { WindowListProvider } from "./contexts/WindowContext";
+import WindowManager from "./core/WindowManager";
 import Menubar from "./core/Menubar";
+import "./assets/styles/StaticStyles.css";
 
 function App() {
   const settings = useSettings().customizeSettings;
@@ -19,15 +18,13 @@ function App() {
   }, [setSettings]);
 
   return (
-    <ThemeProvider theme={getTheme(settings.theme)}>
-      <div>
-        <GlobalStyles settings={settings} />
-        <WindowListProvider>
-          <Menubar />
-          <WindowManager />
-        </WindowListProvider>
-      </div>
-    </ThemeProvider>
+    <>
+      <GlobalStyles settings={settings} />
+      <WindowListProvider>
+        <Menubar />
+        <WindowManager />
+      </WindowListProvider>
+    </>
   );
 }
 

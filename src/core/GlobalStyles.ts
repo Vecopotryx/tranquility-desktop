@@ -13,40 +13,12 @@ interface SettingsTypes {
 
 interface Props {
   settings: SettingsTypes;
-  theme: any;
 }
 
 export const GlobalStyles = createGlobalStyle(
-  ({ settings, theme }: Props) => css`
+  ({ settings }: Props) => css`
     body {
       background-image: ${settings.background};
     }
   `
 );
-
-interface themeInterface {
-
-}
-
-export const lightTheme: themeInterface = {
-
-};
-
-export const darkTheme: themeInterface = {
-
-};
-
-export const classicTheme: themeInterface = {
-
-};
-
-export const getTheme = (theme: string) => {
-  switch (theme) {
-    case "dark":
-      return darkTheme;
-    case "classic":
-      return classicTheme;
-    default:
-      return lightTheme;
-  }
-};
