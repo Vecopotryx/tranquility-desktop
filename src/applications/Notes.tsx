@@ -1,4 +1,42 @@
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect } from 'react'
+import styled from 'styled-components';
+
+const NoteList = styled.div`
+  width: 5cm;
+  border-right: 1px solid gray;
+  text-align: center;
+  user-select: none;
+`
+
+const NoteEntry = styled.div`
+  display: flex;
+  justify-content: center;
+  transition: transform 0.2s;
+
+  :hover {
+      transform: scale(1.1);
+  }
+
+  > h4, button {
+    margin: 0;
+    cursor: pointer;
+  }
+`
+
+const SelectedNote = styled.div`
+  width: 100%;
+  padding: 0.5em;
+
+  > textarea {
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    height: 80%;
+    width: 100%;
+    color: var(--primary-color);
+  }
+`
 
 export const Notes = () => {
 
@@ -65,22 +103,20 @@ export const Notes = () => {
   // TODO: Make notes save across sessions? Also solve issues arising from having two note windows up at the same time?
 
   return (
-    <div style={{ overflow: "hidden", height: "100%", display: "flex" }}>
-      <div style={{ width: "5cm", borderRight: "1px solid gray", textAlign: "center" }}>
+    <div style={{ height: "100%", display: "flex" }}>
+      <NoteList>
         <h2 onClick={addNote}>Add new note</h2>
         {notes.map((note) =>
-          <Fragment key={note.id}>
-            <h4 style={{ display: "inline" }} onClick={() => setSelected(note)}>{note.title}</h4>
-            <button style={{ float: "right" }} onClick={() => removeNote(note.id)}>×</button>
-            <br />
-            <br />
-          </Fragment>
+          <NoteEntry key={note.id}>
+            <h4 onClick={() => setSelected(note)}>{note.title}</h4>
+            <button onClick={() => removeNote(note.id)}>×</button>
+          </NoteEntry>
         )}
-      </div>
-      <div style={{ width: "100%", padding: "0.5em" }}>
-        <h1>{selected != null ? selected.title : null}</h1>
-        <textarea style={{ height: "100%", width: "100%", color: "var(--primary-color)" }} key={selected?.id} value={selected?.content} onChange={e => updateText(e.target.value, selected?.id)} ></textarea>
-      </div>
+      </NoteList>
+      <SelectedNote >
+        {selected && <h1>{selected.title}</h1>}
+        <textarea value={selected?.content} onChange={e => updateText(e.target.value, selected?.id)} />
+      </SelectedNote>
     </div>
   )
 }

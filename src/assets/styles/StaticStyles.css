@@ -20,10 +20,3 @@ body {
 p {
   display: inline;
 }
-
-textarea {
-  background: transparent;
-  border: none;
-  outline: none;
-  resize: none;
-}
