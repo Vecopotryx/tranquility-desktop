@@ -17,7 +17,7 @@ const ThemePreviews = styled.div`
 
 const ThemeImage = styled.img`
     background-size: cover;
-    background-image: url("https://source.unsplash.com/2560x1408/?water");
+    background-image: var(--backgroundImg);
     border-radius: var(--borderRadius);
     width: 100%;
 `

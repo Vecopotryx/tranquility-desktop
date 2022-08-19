@@ -1,25 +1,9 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import defaultBackground1 from "../../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
 import defaultBackground2 from "../../assets/img/backgrounds/patrick-robert-doyle-r4PxPNSIzHw-unsplash.jpg";
 import defaultBackground3 from "../../assets/img/backgrounds/kyle-bushnell-wjrlOqZCvCM-unsplash.jpg";
 import defaultBackground4 from "../../assets/img/backgrounds/nasa-Q1p7bh3SHj8-unsplash.jpg";
 import styled from "styled-components";
-
-interface SettingsTypes {
-  theme: string;
-  scale: number;
-  connectedMenubar: boolean;
-  bottomMenubar: boolean;
-  opacity: number;
-  font: string;
-  usingLocalStorage: boolean;
-  background: string;
-}
-
-interface BackgroundPickerProps {
-  settings: SettingsTypes;
-  setSettings: Dispatch<SetStateAction<SettingsTypes>>;
-}
 
 const DefaultBackgroundHolder = styled.div`
   display: grid;
@@ -59,7 +43,7 @@ const BackgroundOptions = styled.div`
   }
 `
 
-const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
+const BackgroundPicker = () => {
   const [unsplashTerm, setUnsplashTerm] = useState("");
 
   const onImageChange = (event: { target: HTMLInputElement }) => {
@@ -69,8 +53,10 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
     }
   };
 
-  const setBackground = (value: string) => {
-    setSettings({ ...settings, background: "url(" + value + ") " });
+  const [background, setBackground] = useState<string>(document.documentElement.style.getPropertyValue("--backgroundImg") || defaultBackground1);
+  const updateBackground = (value: string) => {
+    setBackground(value);
+    document.documentElement.style.setProperty('--backgroundImg', "url(" + value + ") ");
   };
 
   const unsplashHandler = () => {
@@ -84,7 +70,7 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
       (unsplashTerm === "" ? "nature" : unsplashTerm) +
       "/" +
       d.getTime();
-    setBackground(newImage);
+    updateBackground(newImage);
   };
 
   const handleUnsplashInput = (event: { target: HTMLInputElement }) => {
@@ -96,14 +82,14 @@ const BackgroundPicker = ({ settings, setSettings }: BackgroundPickerProps) => {
       <img
         src={background}
         alt=""
-        onClick={() => setBackground(background)}
+        onClick={() => updateBackground(background)}
       ></img>
     );
   };
 
   return (
     <div style={{ padding: "2%", userSelect: "none" }}>
-      <CurrentBackgroundPreview src={settings.background.replace("url(", "").replace(")", "")} />
+      <CurrentBackgroundPreview src={background.replace("url(", "").replace(")", "")} />
       <DefaultBackgroundHolder>
         <DefaultBackground background={defaultBackground1} />
         <DefaultBackground background={defaultBackground2} />

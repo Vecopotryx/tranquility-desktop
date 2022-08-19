@@ -18,7 +18,8 @@ interface Props {
 export const GlobalStyles = createGlobalStyle(
   ({ settings }: Props) => css`
     body {
-      background-image: ${settings.background};
     }
   `
 );
+
+//       background-image: ${settings.background};
