@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 
 export const Notes = () => {
 
@@ -69,12 +69,12 @@ export const Notes = () => {
       <div style={{ width: "5cm", borderRight: "1px solid gray", textAlign: "center" }}>
         <h2 onClick={addNote}>Add new note</h2>
         {notes.map((note) =>
-          <>
-            <h4 style={{ display: "inline" }} key={note.id} onClick={() => setSelected(note)}>{note.title}</h4>
-            <button className="closeWindow" style={{ float: "right" }} onClick={() => removeNote(note.id)}>×</button>
+          <Fragment key={note.id}>
+            <h4 style={{ display: "inline" }} onClick={() => setSelected(note)}>{note.title}</h4>
+            <button style={{ float: "right" }} onClick={() => removeNote(note.id)}>×</button>
             <br />
             <br />
-          </>
+          </Fragment>
         )}
       </div>
       <div style={{ width: "100%", padding: "0.5em" }}>
