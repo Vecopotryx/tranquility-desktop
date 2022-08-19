@@ -50,6 +50,8 @@ const BackgroundPicker = () => {
     if (event.target.files && event.target.files[0]) {
       let newImage = URL.createObjectURL(event.target.files[0]);
       setBackground(newImage);
+      document.documentElement.style.setProperty('--backgroundImg', "url(" + newImage + ") ");
+      // Don't store URL since it is temporary
     }
   };
 
@@ -57,6 +59,8 @@ const BackgroundPicker = () => {
   const updateBackground = (value: string) => {
     setBackground(value);
     document.documentElement.style.setProperty('--backgroundImg', "url(" + value + ") ");
+    localStorage.setItem("backgroundImg", "url(" + value + ") ");
+    // TODO: Fix storing Unsplash images results in random from search term when reloading
   };
 
   const unsplashHandler = () => {
