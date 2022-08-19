@@ -44,6 +44,7 @@ const MenubarLeftRight = styled.div`
   display: flex;
   flex-wrap: nowrap;
   transition: background-color 0.3s, color 0.3s;
+  backdrop-filter: blur(10px);
 
   > p {
     margin: 0;
@@ -55,6 +56,7 @@ const MenubarList = styled.div`
   width: 4cm;
   background-color: rgba(var(--primary-bg), var(--bgopacity));
   border-radius: var(--borderRadius);
+  backdrop-filter: blur(10px);
 `
 
 const MenubarButton = styled.button`
