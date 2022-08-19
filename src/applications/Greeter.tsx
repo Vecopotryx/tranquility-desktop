@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSettings } from "../contexts/SettingsContext";
 import Logo from "../assets/img/LogoSideView.png";
 import BackgroundPicker from "./settings/BackgroundPicker";
 import styled from "styled-components";
@@ -33,9 +32,6 @@ const GreeterContainer = styled.div`
 
 const Greeter = (props: any) => {
   const [currentScreen, setCurrentScreen] = useState("greeting");
-
-  const settings = useSettings().customizeSettings;
-  const setSettings = useSettings().setCustomizeSettings;
 
   const Greeting = () => {
     return (
@@ -82,7 +78,7 @@ const Greeter = (props: any) => {
     return (
       <>
         <h1>Lets pick a background</h1>
-        <BackgroundPicker settings={settings} setSettings={setSettings} />
+        <BackgroundPicker />
         <ForwardBackButtons previous="theme" next="complete" />
       </>
     );

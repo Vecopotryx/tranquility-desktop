@@ -36,7 +36,7 @@ const Settings = () => {
         return <Customization settings={settings} setSettings={setSettings} />;
       case "background":
         return (
-          <BackgroundPicker settings={settings} setSettings={setSettings} />
+          <BackgroundPicker />
         );
       case "about":
         return <About />;

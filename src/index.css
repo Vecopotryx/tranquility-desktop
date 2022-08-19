@@ -6,6 +6,7 @@
 body {
   background-color: black;
   background-size: 103%;
+  background-image: var(--backgroundImg);
   overflow: hidden;
   margin: 0;
   font-family: var(--font);
@@ -23,6 +24,7 @@ p {
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  --backgroundImg: url("./assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg");
   /* Default theme: */
   --primary-bg: 255, 255, 255;
   --primary-color: #121212;
