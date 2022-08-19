@@ -1,9 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import darkPreview from "../../assets/img/preview-dark.svg";
-import lightPreview from "../../assets/img/preview-light.svg";
-import classicPreview from "../../assets/img/preview-classic.svg";
 import defaultBackground1 from "../../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
 import styled from 'styled-components';
+import ThemePicker from "./ThemePicker";
 
 interface SettingsTypes {
   theme: string;
@@ -21,17 +19,6 @@ interface CustomizationProps {
   setSettings: Dispatch<SetStateAction<SettingsTypes>>;
 }
 
-
-const ThemePreviews = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 1%;
-
-  & div {
-    display: inline-block;
-    text-align: center;
-  }
-`;
 
 const OtherSettings = styled.div`
   text-align: center;
@@ -79,13 +66,6 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     }
   };
 
-  const [theme, setTheme] = useState<string | null>(document.documentElement.getAttribute("data-theme"));
-  const updateTheme = (theme: string) => {
-    setTheme(theme);
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }
-
   const [opacity, setOpacity] = useState<number | null>(Number(document.documentElement.style.getPropertyValue("--bgopacity")));
   const updateOpacity = (Opacity: number) => {
     setOpacity(Opacity);
@@ -100,40 +80,9 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
     localStorage.setItem("font", font);
   }
 
-  interface Props {
-    themeIn: string;
-    image: string;
-  }
-
-  const ThemePreview = ({ themeIn, image }: Props) => {
-    return (
-      <div>
-        <div
-          style={{ backgroundSize: "cover", backgroundImage: settings.background, borderRadius: "5px", width: "100%" }}
-          onClick={() => updateTheme(themeIn.toLocaleLowerCase())}
-        >
-          <img src={image} width="100%" alt={themeIn.toLowerCase()} />
-        </div>
-        <label>
-          <input
-            type="radio"
-            value={themeIn.toLowerCase()}
-            checked={theme === themeIn.toLocaleLowerCase()}
-            onChange={(e) => updateTheme(e.target.value)}
-          />
-          {themeIn}
-        </label>
-      </div>
-    );
-  };
-
   return (
     <div style={{ padding: "2%", userSelect: "none" }}>
-      <ThemePreviews>
-        <ThemePreview themeIn={"Light"} image={lightPreview} />
-        <ThemePreview themeIn={"Dark"} image={darkPreview} />
-        <ThemePreview themeIn={"Classic"} image={classicPreview} />
-      </ThemePreviews>
+      <ThemePicker />
       <OtherSettings>
         <div>
           <h2>Font</h2>
