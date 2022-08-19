@@ -5,12 +5,17 @@
 
 body {
   background-color: black;
+  background-size: 103%;
   overflow: hidden;
   margin: 0;
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--primary-color)
+}
+
+p {
+  display: inline;
 }
 
 :root {

@@ -4,7 +4,6 @@ import { useSettings } from "./contexts/SettingsContext";
 import { WindowListProvider } from "./contexts/WindowContext";
 import WindowManager from "./core/WindowManager";
 import Menubar from "./core/Menubar";
-import "./assets/styles/StaticStyles.css";
 
 function App() {
   const settings = useSettings().customizeSettings;
