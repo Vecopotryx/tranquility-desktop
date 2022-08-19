@@ -28,16 +28,16 @@ const TBButton = styled.button<{ action: string }>`
   }
 `;
 
-const Titlebar = styled.div<{ focused: boolean }>`
+const Titlebar = styled.div<{ $focused: boolean }>`
   width: 100%;
   user-select: none;
-  background: ${p => p.focused ? "var(--titlebarBg)" : "var(--unfocusedTitlebarBg)"};
-  color: ${p => p.focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
+  background: ${p => p.$focused ? "var(--titlebarBg)" : "var(--unfocusedTitlebarBg)"};
+  color: ${p => p.$focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
   text-align: var(--titlebarTextAlign);
   height: 0.7cm;
 
   & button {
-    color: ${p => p.focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
+    color: ${p => p.$focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
   }
 
   & p {
@@ -56,7 +56,7 @@ const InternalFrameOverlay = styled.div`
 `
 
 
-const Window = styled(Rnd) <{ focused: boolean, index: number }>`
+const Window = styled(Rnd) <{ index: number }>`
   min-height: 0.7cm;
   min-width: 1cm;
   display: block;
@@ -134,7 +134,6 @@ const AppWindow = (props: AppWindowProps) => {
   return (
     <>
       <Window
-        focused={props.isFocused}
         index={props.index}
         maxHeight={dimensions.maxHeight}
         ref={(c: Rnd) => {
@@ -166,7 +165,7 @@ const AppWindow = (props: AppWindowProps) => {
         }}
       >
         <AppWrapper onMouseEnter={() => props.handleFocus(props.appId)}>
-          <Titlebar focused={props.isFocused}>
+          <Titlebar $focused={props.isFocused}>
             <TBButton action="close" onClick={() => props.handleClose(props.appId)}> × </TBButton>
             <p>{props.title}</p>
             <TBButton action="collapse" onClick={() => updateCollapse()}>
