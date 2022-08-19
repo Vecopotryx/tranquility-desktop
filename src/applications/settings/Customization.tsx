@@ -1,24 +1,6 @@
-import { Dispatch, SetStateAction, useState } from "react";
-import defaultBackground1 from "../../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
+import { useState } from "react";
 import styled from 'styled-components';
 import ThemePicker from "./ThemePicker";
-
-interface SettingsTypes {
-  theme: string;
-  scale: number;
-  connectedMenubar: boolean;
-  bottomMenubar: boolean;
-  opacity: number;
-  font: string;
-  usingLocalStorage: boolean;
-  background: string;
-}
-
-interface CustomizationProps {
-  settings: SettingsTypes;
-  setSettings: Dispatch<SetStateAction<SettingsTypes>>;
-}
-
 
 const OtherSettings = styled.div`
   text-align: center;
@@ -32,38 +14,8 @@ const OtherSettings = styled.div`
   }
 `;
 
-const Customization = ({ settings, setSettings }: CustomizationProps) => {
+const Customization = () => {
   const setDefaultSettings = () => {
-    const defaultSettings = {
-      theme: "dark",
-      scale: 1,
-      connectedMenubar: false,
-      bottomMenubar: false,
-      opacity: 1,
-      font: "modern",
-      usingLocalStorage: settings.usingLocalStorage,
-      background: settings.background,
-    };
-    setSettings(defaultSettings);
-    localStorage.clear();
-  };
-
-  const updateSettings = (
-    property: string,
-    value: string | boolean | number
-  ) => {
-    let newSettings = { ...settings, [property]: value };
-    setSettings(newSettings);
-    if (newSettings.usingLocalStorage) {
-      localStorage.setItem(
-        "settings",
-        JSON.stringify({
-          ...newSettings,
-          background:
-            "url(" + defaultBackground1 + ")",
-        })
-      );
-    }
   };
 
   const [opacity, setOpacity] = useState<number | null>(Number(document.documentElement.style.getPropertyValue("--bgopacity")));
@@ -112,10 +64,6 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             Connected Menubar
             <input
               type="checkbox"
-              checked={settings.connectedMenubar}
-              onChange={(e) =>
-                updateSettings("connectedMenubar", e.target.checked)
-              }
             ></input>
           </label>
           <br />
@@ -123,10 +71,6 @@ const Customization = ({ settings, setSettings }: CustomizationProps) => {
             Bottom Menubar
             <input
               type="checkbox"
-              checked={settings.bottomMenubar}
-              onChange={(e) =>
-                updateSettings("bottomMenubar", e.target.checked)
-              }
             ></input>
           </label>
           <br />
