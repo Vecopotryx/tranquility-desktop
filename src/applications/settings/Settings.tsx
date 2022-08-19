@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Customization from "./Customization";
 import BackgroundPicker from "./BackgroundPicker";
 import About from "./About";
-import { useSettings } from "../../contexts/SettingsContext";
 
 const ButtonHolder = styled.div`
   > button {
@@ -27,13 +26,10 @@ const ButtonHolder = styled.div`
 const Settings = () => {
   const [openSettings, setOpenSettings] = useState("Customization");
 
-  const settings = useSettings().customizeSettings;
-  const setSettings = useSettings().setCustomizeSettings;
-
   const OpenedSettings = (): ReactElement => {
     switch (openSettings.toLowerCase()) {
       case "customization":
-        return <Customization settings={settings} setSettings={setSettings} />;
+        return <Customization />;
       case "background":
         return (
           <BackgroundPicker />
