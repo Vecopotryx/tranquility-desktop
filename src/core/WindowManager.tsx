@@ -1,6 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 import { useWindowList } from "../contexts/WindowContext";
 import AppWindow from "./AppWindow";
+
+const FrameOverlay = styled.div<{ $visible: boolean, index: number }>`
+  height: 100%;
+  width: 100%;
+  background: rgba(34, 34, 34, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: ${p => p.$visible ? "block" : "none"};
+`
 
 const WindowManager = () => {
   const windowList = useWindowList().windowList;
@@ -19,13 +30,7 @@ const WindowManager = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: frameOverlay.visible ? "block" : "none",
-          zIndex: frameOverlay.index,
-        }}
-        className="frameOverlay"
-      />
+      <FrameOverlay $visible={frameOverlay.visible} index={frameOverlay.index} />
       <div className="WindowContainer">
         {windowList.map((appWindow) => (
           <AppWindow
