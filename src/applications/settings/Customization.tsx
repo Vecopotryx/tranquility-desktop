@@ -5,9 +5,11 @@ import ThemePicker from "./ThemePicker";
 const OtherSettings = styled.div`
   text-align: center;
   margin: auto;
-
-  & div {
-    display: inline-block;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  > div {
+    min-width: 20%;
     margin-right: 2%;
     margin-left: 2%;
     text-align: center;
@@ -61,23 +63,6 @@ const Customization = () => {
             />
             <p style={{ fontFamily: "retro" }}>Retro</p>
           </label>
-        </div>
-        <div>
-          <h2>Menubar</h2>
-          <label>
-            Connected Menubar
-            <input
-              type="checkbox"
-            ></input>
-          </label>
-          <br />
-          <label>
-            Bottom Menubar
-            <input
-              type="checkbox"
-            ></input>
-          </label>
-          <br />
         </div>
         <div>
           <h2>Misc</h2>
