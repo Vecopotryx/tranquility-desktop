@@ -50,16 +50,16 @@ const BackgroundPicker = () => {
     if (event.target.files && event.target.files[0]) {
       let newImage = URL.createObjectURL(event.target.files[0]);
       setBackground(newImage);
-      document.documentElement.style.setProperty('--backgroundImg', "url(" + newImage + ") ");
+      document.documentElement.style.setProperty('--backgroundImg', "url(" + newImage + ")");
       // Don't store URL since it is temporary
     }
   };
 
-  const [background, setBackground] = useState<string>(document.documentElement.style.getPropertyValue("--backgroundImg") || defaultBackground1);
+  const [background, setBackground] = useState<string>(document.documentElement.style.getPropertyValue("--backgroundImg").slice(4, -1).replace(/\\/g, ''));
   const updateBackground = (value: string) => {
     setBackground(value);
-    document.documentElement.style.setProperty('--backgroundImg', "url(" + value + ") ");
-    localStorage.setItem("backgroundImg", "url(" + value + ") ");
+    document.documentElement.style.setProperty('--backgroundImg', "url(" + value + ")");
+    localStorage.setItem("backgroundImg", "url(" + value + ")");
     // TODO: Fix storing Unsplash images results in random from search term when reloading
   };
 
@@ -93,7 +93,7 @@ const BackgroundPicker = () => {
 
   return (
     <div style={{ padding: "2%", userSelect: "none" }}>
-      <CurrentBackgroundPreview src={background.replace("url(", "").replace(")", "")} />
+      <CurrentBackgroundPreview src={background} />
       <DefaultBackgroundHolder>
         <DefaultBackground background={defaultBackground1} />
         <DefaultBackground background={defaultBackground2} />
