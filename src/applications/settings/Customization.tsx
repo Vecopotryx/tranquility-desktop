@@ -16,9 +16,13 @@ const OtherSettings = styled.div`
 
 const Customization = () => {
   const setDefaultSettings = () => {
+    updateOpacity(0.8);
+    updateFont("modern");
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
   };
 
-  const [opacity, setOpacity] = useState<number | null>(Number(document.documentElement.style.getPropertyValue("--bgopacity")));
+  const [opacity, setOpacity] = useState<number | null>(Number(document.documentElement.style.getPropertyValue("--bgopacity")) || 0.8);
   const updateOpacity = (Opacity: number) => {
     setOpacity(Opacity);
     document.documentElement.style.setProperty('--bgopacity', Opacity.toString());
