@@ -99,6 +99,36 @@ const OpenWindowListIcon = styled.img`
   }
 `
 
+const InlineClock = () => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+  }, []);
+
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return (
+    <p>
+      {days[time.getDay()]}{" "}
+      {time.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}
+    </p>
+  )
+}
+
 const Menubar = () => {
   const AppButtons = [
     {
@@ -148,26 +178,6 @@ const Menubar = () => {
   const handleFocus = useWindowList().handleFocus;
   const windowList = useWindowList().windowList;
 
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-  }, []);
-
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-
-
   return (
     <MenubarDiv>
       <MenubarLeftRight style={{ float: "left" }}>
@@ -204,13 +214,7 @@ const Menubar = () => {
       </MenubarLeftRight>
 
       <MenubarLeftRight style={{ float: "right" }} onClick={() => handleOpen("Clock", <Clock />, ClockIcon)}>
-        <p>
-          {days[time.getDay()]}{" "}
-          {time.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-        </p>
+        <InlineClock />
       </MenubarLeftRight>
     </MenubarDiv>
   );
