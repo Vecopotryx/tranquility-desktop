@@ -23,15 +23,9 @@ import Framed from "../applications/Framed";
 import { useWindowList } from "../contexts/WindowContext";
 
 const MenubarDiv = styled.div`
-width: calc(100% - 16px);
-margin: 8px;
-position: absolute;
-
-& div {
-  padding-left: 0.2%;
-  padding-right: 0.2%;
-  user-select: none;
-}
+  width: calc(100% - 16px);
+  margin: 8px;
+  position: absolute;
 `
 
 const MenubarLeftRight = styled.div`
@@ -43,12 +37,12 @@ const MenubarLeftRight = styled.div`
   line-height: 0.7cm;
   display: flex;
   flex-wrap: nowrap;
+  gap: 0.2em;
   transition: background-color 0.3s, color 0.3s;
   backdrop-filter: blur(10px);
-
-  > p {
-    margin: 0;
-  }
+  padding-left: 0.2%;
+  padding-right: 0.2%;
+  user-select: none;
 `
 
 const MenubarList = styled.div`
@@ -77,7 +71,6 @@ const MenubarButton = styled.button`
     float: left;
     padding-right: 3%;
     width: 0.7cm;
-
   }
 `
 
@@ -118,14 +111,32 @@ const InlineClock = () => {
     "Saturday",
   ];
 
+  const months = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
   return (
-    <p>
-      {days[time.getDay()]}{" "}
-      {time.toLocaleTimeString([], {
+    <Dropdown text={days[time.getDay()] + " " +
+      time.toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
-      })}
-    </p>
+      })}>
+      <MenubarList>
+        <h2 style={{ display: "inline" }}>{time.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })}</h2>
+        <hr style={{border: "1px solid var(--primary-color)"}}></hr>
+        <h3 style={{ display: "inline" }}>{days[time.getDay()]}{" "}</h3>
+        <br/>
+        <p>
+          {months[time.getMonth()]}{" "}
+          {time.getDate()}{" "}
+          {time.getFullYear()}
+        </p>
+      </MenubarList>
+    </Dropdown>
   )
 }
 
@@ -213,7 +224,7 @@ const Menubar = () => {
         </OpenWindowList>
       </MenubarLeftRight>
 
-      <MenubarLeftRight style={{ float: "right" }} onClick={() => handleOpen("Clock", <Clock />, ClockIcon)}>
+      <MenubarLeftRight style={{ float: "right" }} >
         <InlineClock />
       </MenubarLeftRight>
     </MenubarDiv>

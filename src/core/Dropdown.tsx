@@ -8,13 +8,10 @@ interface DropdownProps {
 }
 
 const MenubarDropdown = styled.div`
-  float: left;
   user-select: none;
-  text-decoration: none;
-  cursor: pointer;
 
-  >* {
-    padding-right: 5px;
+  > p {
+    cursor: pointer;
     color: var(--primary-color);
   }
 `
