@@ -19,7 +19,7 @@ const TBButton = styled.button<{ action: string }>`
   margin: 0 10px 0 10px;
   padding: 0;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1em;
   transition: transform 0.2s;
   float: ${p => p.action === "close" ? "var(--titlebarCloseAlign)" : "right"};
 
@@ -35,12 +35,15 @@ const Titlebar = styled.div<{ $focused: boolean }>`
   color: ${p => p.$focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
   text-align: var(--titlebarTextAlign);
   height: 0.7cm;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 
-  & button {
+  > button {
     color: ${p => p.$focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
   }
 
-  & p {
+  > p {
     font-size: 15px;
     line-height: 0.7cm;
   }
@@ -58,7 +61,7 @@ const InternalFrameOverlay = styled.div`
 
 const Window = styled(Rnd) <{ index: number }>`
   min-height: 0.7cm;
-  min-width: 1cm;
+  min-width: 5em;
   display: block;
   box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
   overflow: hidden;
