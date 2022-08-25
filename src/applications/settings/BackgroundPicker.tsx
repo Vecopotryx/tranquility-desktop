@@ -17,7 +17,7 @@ const DefaultBackgroundHolder = styled.div`
     object-fit: cover;
     width: 100%;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: var(--borderRadius);
   }
 `;
 
@@ -27,7 +27,7 @@ const CurrentBackgroundPreview = styled.img`
   width: 49%;
   margin-right: 1%;
   height: 8.2cm;
-  border-radius: 5px;
+  border-radius: var(--borderRadius);
 `
 
 const BackgroundOptions = styled.div`
