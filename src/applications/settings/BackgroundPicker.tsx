@@ -70,7 +70,7 @@ const BackgroundPicker = () => {
     xhr.open('GET', "https://source.unsplash.com/" +
       widthHeight +
       "/?" +
-      (unsplashTerm === "" ? "nature" : unsplashTerm), true);
+      (unsplashTerm === "" ? "nature" : unsplashTerm.replace(/ /g, "-")), true);
     xhr.onreadystatechange = () => {
       updateBackground(xhr.responseURL);
       setFetchingUnsplash(false);
