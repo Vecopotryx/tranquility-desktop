@@ -45,6 +45,8 @@ const BackgroundOptions = styled.div`
 
 const BackgroundPicker = () => {
   const [unsplashTerm, setUnsplashTerm] = useState("");
+  const [fetchingUnsplash, setFetchingUnsplash] = useState(false);
+  const [background, setBackground] = useState<string>(document.documentElement.style.getPropertyValue("--backgroundImg").slice(4, -1).replace(/\\/g, ''));
 
   const onImageChange = (event: { target: HTMLInputElement }) => {
     if (event.target.files && event.target.files[0]) {
@@ -55,7 +57,6 @@ const BackgroundPicker = () => {
     }
   };
 
-  const [background, setBackground] = useState<string>(document.documentElement.style.getPropertyValue("--backgroundImg").slice(4, -1).replace(/\\/g, ''));
   const updateBackground = (value: string) => {
     setBackground(value);
     document.documentElement.style.setProperty('--backgroundImg', "url(" + value + ")");
@@ -63,6 +64,7 @@ const BackgroundPicker = () => {
   };
 
   const unsplashHandler = () => {
+    setFetchingUnsplash(true);
     let widthHeight = window.screen.availWidth + "x" + window.screen.availHeight;
     const xhr = new XMLHttpRequest();
     xhr.open('GET', "https://source.unsplash.com/" +
@@ -71,6 +73,7 @@ const BackgroundPicker = () => {
       (unsplashTerm === "" ? "nature" : unsplashTerm), true);
     xhr.onreadystatechange = () => {
       updateBackground(xhr.responseURL);
+      setFetchingUnsplash(false);
     };
     xhr.send();
   };
@@ -98,6 +101,7 @@ const BackgroundPicker = () => {
         <DefaultBackground background={defaultBackground3} />
         <DefaultBackground background={defaultBackground4} />
       </DefaultBackgroundHolder>
+      {fetchingUnsplash && <progress style={{ width: "47%", position: "absolute", left: "2%" }} />}
       <br />
       <BackgroundOptions>
         <label>
