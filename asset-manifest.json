@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/retro-desktop-environment/static/css/main.273202cb.css",
+    "main.css": "/retro-desktop-environment/static/css/main.252fce99.css",
     "main.js": "/retro-desktop-environment/static/js/main.7e533e22.js",
     "static/media/patrick-robert-doyle-r4PxPNSIzHw-unsplash.jpg": "/retro-desktop-environment/static/media/patrick-robert-doyle-r4PxPNSIzHw-unsplash.aefb82f55602ebb3b2b3.jpg",
     "static/media/kyle-bushnell-wjrlOqZCvCM-unsplash.jpg": "/retro-desktop-environment/static/media/kyle-bushnell-wjrlOqZCvCM-unsplash.2c4641067d986ee45775.jpg",
@@ -17,11 +17,11 @@
     "static/media/calculator.svg": "/retro-desktop-environment/static/media/calculator.45ff5acb0970f122ffed4aff78791d3f.svg",
     "index.html": "/retro-desktop-environment/index.html",
     "static/media/github.svg": "/retro-desktop-environment/static/media/github.16a9304e38fd8167989291ab92544e14.svg",
-    "main.273202cb.css.map": "/retro-desktop-environment/static/css/main.273202cb.css.map",
+    "main.252fce99.css.map": "/retro-desktop-environment/static/css/main.252fce99.css.map",
     "main.7e533e22.js.map": "/retro-desktop-environment/static/js/main.7e533e22.js.map"
   },
   "entrypoints": [
-    "static/css/main.273202cb.css",
+    "static/css/main.252fce99.css",
     "static/js/main.7e533e22.js"
   ]
 }
