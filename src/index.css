@@ -50,7 +50,7 @@ p {
 }
 
 [data-theme="classic"] {
-  --primary-bg: 120, 120, 120;
+  --primary-bg: 220, 220, 220;
   --primary-color: #000;
   --unfocused-color: #303030;
   --titlebarText: #fff;
