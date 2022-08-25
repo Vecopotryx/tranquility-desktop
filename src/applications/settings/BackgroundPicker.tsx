@@ -60,21 +60,19 @@ const BackgroundPicker = () => {
     setBackground(value);
     document.documentElement.style.setProperty('--backgroundImg', "url(" + value + ")");
     localStorage.setItem("backgroundImg", "url(" + value + ")");
-    // TODO: Fix storing Unsplash images results in random from search term when reloading
   };
 
   const unsplashHandler = () => {
-    let widthHeight =
-      window.screen.availWidth + "x" + window.screen.availHeight;
-    let d = new Date();
-    let newImage =
-      "https://source.unsplash.com/" +
+    let widthHeight = window.screen.availWidth + "x" + window.screen.availHeight;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', "https://source.unsplash.com/" +
       widthHeight +
       "/?" +
-      (unsplashTerm === "" ? "nature" : unsplashTerm) +
-      "/" +
-      d.getTime();
-    updateBackground(newImage);
+      (unsplashTerm === "" ? "nature" : unsplashTerm), true);
+    xhr.onreadystatechange = () => {
+      updateBackground(xhr.responseURL);
+    };
+    xhr.send();
   };
 
   const handleUnsplashInput = (event: { target: HTMLInputElement }) => {
