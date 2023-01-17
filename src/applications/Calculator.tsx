@@ -1,7 +1,8 @@
+import Mexp from 'math-expression-evaluator';
 import { useState, useRef } from 'react'
 
 export const Calculator = () => {
-    const mexp = require('math-expression-evaluator');
+    const mexp = new Mexp();
 
     const inputRef = useRef<any>();
     const [result, setResult] = useState("");
@@ -14,7 +15,7 @@ export const Calculator = () => {
             setResult("");
         } else {
             try {
-                setResult(mexp.eval(value));
+                setResult(mexp.eval(value, mexp.tokens, 0).toString());
             } catch { }
         }
     }
