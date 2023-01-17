@@ -2,8 +2,6 @@ import Mexp from 'math-expression-evaluator';
 import { useState, useRef } from 'react'
 
 export const Calculator = () => {
-    const mexp = new Mexp();
-
     const inputRef = useRef<any>();
     const [result, setResult] = useState("");
     const [current, setCurrent] = useState("");
@@ -15,7 +13,9 @@ export const Calculator = () => {
             setResult("");
         } else {
             try {
-                setResult(mexp.eval(value, mexp.tokens, 0).toString());
+                // Mexp 2.0.0 currently causes TypeScript to show syntax errors when building
+                // and has been downgraded to 1.4.0
+                setResult(Mexp.eval(value));
             } catch { }
         }
     }
