@@ -1,5 +1,3 @@
-import defaultBackground from "../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
-
 export const loadTheming = () => {
     const theme = localStorage.getItem("theme");
     const opacity = localStorage.getItem("opacity");
@@ -11,6 +9,6 @@ export const loadTheming = () => {
     if (backgroundImg) {
         document.documentElement.style.setProperty('--backgroundImg', backgroundImg);
     } else {
-        document.documentElement.style.setProperty('--backgroundImg', "url(" + defaultBackground + ")")
+        document.documentElement.style.setProperty('--backgroundImg', "url(https://images.unsplash.com/photo-1589642314445-999ac13b0075?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb)")
     }
 }

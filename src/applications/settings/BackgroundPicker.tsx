@@ -1,8 +1,4 @@
 import { useState } from "react";
-import defaultBackground1 from "../../assets/img/backgrounds/sylvain-mauroux-jYCUBAIUsk8-unsplash.jpg";
-import defaultBackground2 from "../../assets/img/backgrounds/patrick-robert-doyle-r4PxPNSIzHw-unsplash.jpg";
-import defaultBackground3 from "../../assets/img/backgrounds/kyle-bushnell-wjrlOqZCvCM-unsplash.jpg";
-import defaultBackground4 from "../../assets/img/backgrounds/nasa-Q1p7bh3SHj8-unsplash.jpg";
 import styled from "styled-components";
 
 const DefaultBackgroundHolder = styled.div`
@@ -96,10 +92,10 @@ const BackgroundPicker = () => {
     <div style={{ padding: "2%", userSelect: "none" }}>
       <CurrentBackgroundPreview src={background} />
       <DefaultBackgroundHolder>
-        <DefaultBackground background={defaultBackground1} />
-        <DefaultBackground background={defaultBackground2} />
-        <DefaultBackground background={defaultBackground3} />
-        <DefaultBackground background={defaultBackground4} />
+        <DefaultBackground background="https://images.unsplash.com/photo-1589642314445-999ac13b0075?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb" />
+        <DefaultBackground background="https://images.unsplash.com/photo-1622307053412-5404f0c427c0?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb" />
+        <DefaultBackground background="https://images.unsplash.com/photo-1610295409812-12d71b4aa1dd?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb" />
+        <DefaultBackground background="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb" />
       </DefaultBackgroundHolder>
       {fetchingUnsplash && <progress style={{ width: "47%", position: "absolute", left: "2%" }} />}
       <br />
