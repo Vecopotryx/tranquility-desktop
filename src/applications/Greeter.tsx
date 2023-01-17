@@ -37,7 +37,7 @@ const Greeter = (props: any) => {
     return (
       <>
         <img src={Logo} style={{ width: "10%", height: "10%" }} alt=""></img>
-        <h1>Welcome to Retro Desktop Environment</h1>
+        <h1>Welcome to Tranquility Desktop</h1>
         <p>
           Configure themes and other settings by pressing the button below, or close this window to use default settings.
         </p>
@@ -98,7 +98,7 @@ const Greeter = (props: any) => {
           localStorage.setItem("greeted", "true");
           props.handleClose(props.id);
         }}>
-          Start using RDE &#8594;
+          Start using Tranquility &#8594;
         </BottomNavButton>
       </>
     );

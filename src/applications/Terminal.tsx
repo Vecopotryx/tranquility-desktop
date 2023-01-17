@@ -78,14 +78,14 @@ const Terminal = (props: any) => {
 
   const neofetchContent = `
    ____________________ 
-  |  |              |  |      user@RDE
+  |  |              |  |      user@Tranquility
   |[]|              |[]|      --------
-  |  |              |  |      OS: Retro Desktop Enviornment
+  |  |              |  |      OS: Tranquility Desktop
   |  |              |  |      Host: Waygate Miga ST 740
   |  |              |  |      Kernel: 2.0.0
   |  |______________|  |      Packages: 8 (rpt)
   |                    |      Shell: /system/rdsh
-  |     ____________   |      DE: RDE
+  |     ____________   |      DE: Tranquility
   |    | __      |  |  |      WM: RWM
   |    ||  |     |  |  |      CPU: Interola 68040+ (1) @ 230 MHz
   |    ||__|     |  |  |      GPU: 2dfx Vodude 16

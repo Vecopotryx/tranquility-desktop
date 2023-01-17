@@ -51,7 +51,7 @@ const About = () => {
       <img src={LogoSideView} style={{ height: "10rem" }} alt="Logo"></img>
       <br />
 
-      <InfoBox>Project <span>Retro Desktop Environment</span></InfoBox>
+      <InfoBox>Project <span>Tranquility Desktop</span></InfoBox>
       <CreditBox onClick={() => setCreditsVisible(!creditsVisible)}>
         Credits <span style={{ transform: creditsVisible ? "rotate(270deg)" : "" }}>{">"}</span>
         {creditsVisible && <CreditsList />}
@@ -85,7 +85,7 @@ const CreditsList = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Retro Desktop Environment
+          Tranquility Desktop
         </a>
       </p>
       <br />
