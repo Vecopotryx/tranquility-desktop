@@ -1,0 +1,38 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <defs>
+  <linearGradient id="svg_17" x1="0" y1="0" x2="1" y2="0">
+   <stop stop-opacity="0.99219" stop-color="#090a0c" offset="0"/>
+   <stop stop-color="#808080" stop-opacity="0.99609" offset="1"/>
+   <stop stop-opacity="0.99219" stop-color="#808080" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="0" x2="1" y1="0" x1="0" id="svg_18">
+   <stop offset="0" stop-opacity="0.99609" stop-color="#090a0c"/>
+   <stop offset="1" stop-opacity="0.99609" stop-color="#808080"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <title>background</title>
+  <g id="canvasGrid" display="none">
+   <rect id="svg_5" width="100%" height="100%" x="0" y="0" stroke-width="0" fill="url(#gridpattern)"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect fill="#090a0c" x="10.5" y="10" width="115" height="20" id="svg_1" rx="5"/>
+  <rect fill="#090a0c" x="710" y="10" width="80" height="20" id="svg_2" rx="5"/>
+  <rect stroke="#000000" fill="#090a0c" stroke-width="0" x="245" y="142.99998" width="300" height="250" id="svg_3" rx="5"/>
+  <rect fill="url(#svg_17)" stroke="#000" stroke-width="0" x="245" y="141.99998" width="300" height="20" id="svg_4" rx="5"/>
+  <rect fill="url(#svg_18)" stroke="#000" stroke-width="0" x="245" y="152.99998" width="300" height="9.25" id="svg_8"/>
+  <text fill="#ffffff" stroke="#000" stroke-width="0" stroke-opacity="null" x="254" y="184.5" id="svg_9" font-size="15" font-family="Arvo, sans-serif" text-anchor="start" xml:space="preserve">Retro Desktop Environment</text>
+  <text fill="#ffffff" stroke="#000" stroke-width="0" stroke-opacity="null" x="376.5" y="155.5" id="svg_10" font-size="10" font-family="Arvo, sans-serif" text-anchor="start" xml:space="preserve">Window</text>
+  <text fill="#ffffff" stroke="#000" stroke-width="0" stroke-opacity="null" x="527" y="154.5" id="svg_11" font-size="10" font-family="Arvo, sans-serif" text-anchor="start" xml:space="preserve">▲</text>
+  <text fill="#ffffff" stroke="#000" stroke-width="0" stroke-opacity="null" x="252" y="155" id="svg_13" font-size="10" font-family="Arvo, sans-serif" text-anchor="start" xml:space="preserve">×</text>
+  <text fill="#ffffff" stroke="#000" stroke-width="0" stroke-opacity="null" x="13" y="23.5" id="svg_14" font-size="10" font-family="Arvo, sans-serif" text-anchor="start" xml:space="preserve">Applications  Options</text>
+  <text fill="#ffffff" stroke="#000" stroke-width="0" stroke-opacity="null" x="716.5" y="23" id="svg_15" font-size="10" font-family="Arvo, sans-serif" text-anchor="start" xml:space="preserve">Sunday 12:00</text>
+ </g>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="602" width="802" y="-1" x="-1"/>
+ </g>
+</svg>
