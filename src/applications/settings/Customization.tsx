@@ -19,7 +19,6 @@ const OtherSettings = styled.div`
 const Customization = () => {
   const setDefaultSettings = () => {
     updateOpacity(0.8);
-    updateFont("modern");
     document.documentElement.setAttribute("data-theme", "light");
     localStorage.setItem("theme", "light");
   };
@@ -31,39 +30,11 @@ const Customization = () => {
     localStorage.setItem("opacity", Opacity.toString());
   }
 
-  const [font, setFont] = useState<string | null>(document.documentElement.style.getPropertyValue("--font"));
-  const updateFont = (font: string) => {
-    setFont(font);
-    document.documentElement.style.setProperty('--font', font === "modern" ? "" : font);
-    localStorage.setItem("font", font);
-  }
 
   return (
     <div style={{ padding: "2%", userSelect: "none" }}>
       <ThemePicker />
       <OtherSettings>
-        <div>
-          <h2>Font</h2>
-          <label>
-            <input
-              type="radio"
-              value="modern"
-              checked={font === "modern" || font === ""}
-              onChange={(e) => updateFont(e.target.value)}
-            />
-            <p style={{ fontFamily: "Sans-serif" }}>Modern</p>
-          </label>
-          <br />
-          <label>
-            <input
-              type="radio"
-              value="retro"
-              checked={font === "retro"}
-              onChange={(e) => updateFont(e.target.value)}
-            />
-            <p style={{ fontFamily: "retro" }}>Retro</p>
-          </label>
-        </div>
         <div>
           <h2>Misc</h2>
           <label>
