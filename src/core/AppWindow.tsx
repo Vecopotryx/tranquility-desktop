@@ -1,6 +1,7 @@
 import React from "react";
 import { Rnd } from "react-rnd";
 import styled from 'styled-components';
+import { MdClose, MdExpandLess, MdExpandMore } from 'react-icons/md';
 
 interface AppWindowProps {
   children: JSX.Element;
@@ -16,12 +17,11 @@ interface AppWindowProps {
 const TBButton = styled.button<{ action: string }>`
   background: none;
   border: none;
-  margin: 0 10px 0 10px;
-  padding: 0;
   cursor: pointer;
   font-size: 1em;
   transition: transform 0.2s;
   float: ${p => p.action === "close" ? "var(--titlebarCloseAlign)" : "right"};
+  line-height: 0.7cm;
 
   &:hover {
     transform: scale(1.5);
@@ -38,15 +38,13 @@ const Titlebar = styled.div<{ $focused: boolean }>`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-size: 15px;
+  line-height: 0.7cm;
 
   > button {
     color: ${p => p.$focused ? "var(--titlebarText)" : "var(--unfocused-color)"};
   }
 
-  > p {
-    font-size: 15px;
-    line-height: 0.7cm;
-  }
 `;
 
 const InternalFrameOverlay = styled.div`
@@ -65,7 +63,6 @@ const Window = styled(Rnd) <{ index: number }>`
   display: block;
   box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
   overflow: hidden;
-  transition: filter 0.2s;
   backdrop-filter: blur(10px);
   border-radius: var(--borderRadius);
   border: var(--border);
@@ -169,10 +166,10 @@ const AppWindow = (props: AppWindowProps) => {
       >
         <AppWrapper onMouseEnter={() => props.handleFocus(props.appId)}>
           <Titlebar $focused={props.isFocused}>
-            <TBButton action="close" onClick={() => props.handleClose(props.appId)}> × </TBButton>
+            <TBButton action="close" onClick={() => props.handleClose(props.appId)}> <MdClose/> </TBButton>
             <p>{props.title}</p>
             <TBButton action="collapse" onClick={() => updateCollapse()}>
-              {isCollapsed ? "▼" : "▲"}
+              {isCollapsed ? <MdExpandMore/> : <MdExpandLess/>}
             </TBButton>
           </Titlebar>
           <AppContent collapsed={isCollapsed}>
