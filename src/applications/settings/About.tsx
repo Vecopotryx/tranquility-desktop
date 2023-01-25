@@ -59,7 +59,7 @@ const About = () => {
 
       <br />
       <a
-        href="https://github.com/Vecopotryx/retro-desktop-environment"
+        href="https://github.com/vecopotryx/tranquility-desktop"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -81,7 +81,7 @@ const CreditsList = () => {
       <p>
         • Vecopotryx -{" "}
         <a
-          href="https://github.com/Vecopotryx/retro-desktop-environment"
+          href="https://github.com/vecopotryx/tranquility-desktop"
           target="_blank"
           rel="noopener noreferrer"
         >
