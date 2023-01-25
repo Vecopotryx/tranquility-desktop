@@ -1,21 +1,20 @@
 import { useState } from "react";
 import styled from "styled-components";
-import githubIcon from "../../assets/img/github.svg";
 import LogoSideView from "../../assets/img/LogoSideView.png";
+import { GoMarkGithub } from "react-icons/go"
 
 const AboutContainer = styled.div`
   text-align: center;
   user-select: none;
   
   > a {
-    text-decoration: underline blue;
+    text-decoration: underline gray;
     color: var(--primary-color);
     font-size: 1.2rem;
-    
-    > img {
-      height: 1.5rem;
-      vertical-align: text-top;
-      margin-right: 0.5ch;      
+
+    :hover {
+      background-color: rgba(128,128,128,0.5);
+      border-radius: 0.3em;
     }
   }
 `
@@ -58,16 +57,13 @@ const About = () => {
       </CreditBox>
 
       <br />
+      <GoMarkGithub/>
+      {" "}
       <a
         href="https://github.com/vecopotryx/tranquility-desktop"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img
-          src={githubIcon}
-          alt="githubIcon"
-          className="githubIcon"
-        ></img>
         GitHub Repository
       </a>
     </AboutContainer>
