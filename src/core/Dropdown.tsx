@@ -13,6 +13,14 @@ const MenubarDropdown = styled.div`
   > p {
     cursor: pointer;
     color: var(--primary-color);
+    height: 0.7cm;
+    display: inline-block;
+    margin: auto;
+    
+    :hover {
+        border-radius: var(--borderRadius);
+        background-color: rgba(128,128,128,0.5);
+    }
   }
 `
 
