@@ -13,7 +13,6 @@ const MenubarDropdown = styled.div`
   > p {
     cursor: pointer;
     color: var(--primary-color);
-    height: 0.7cm;
     display: inline-block;
     margin: auto;
     

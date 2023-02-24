@@ -14,15 +14,17 @@ const MenubarDiv = styled.div`
   grid-template-columns: auto auto 1fr  auto;
   column-gap: 0.3em;
   padding: 0 0.3em;
-  line-height: 0.6cm;
-  height: 0.7cm;
+  line-height: 0.9cm;
+  height: 0.9cm;
   backdrop-filter: blur(10px);
   background-color: rgba(var(--primary-bg), var(--bgopacity));
+  user-select: none;
 `
 
 const MenubarList = styled.div`
   position: absolute;
   width: 4cm;
+  top: 1cm;
   background-color: rgba(var(--primary-bg), var(--bgopacity));
   border-radius: var(--borderRadius);
   backdrop-filter: blur(10px);
@@ -38,6 +40,7 @@ const MenubarButton = styled.button`
   grid-template-columns: auto 1fr;
   align-items: center;
   color: var(--primary-color);
+  height: 1cm;
   font-size: 0.9em;
   text-align: left;
   :hover {
@@ -59,19 +62,49 @@ const OpenWindowList = styled.span`
   display: flex;
   justify-content: left;
   align-items: center;
-  height: 0.7cm;
+  height: 0.9cm;
+  overflow-x: scroll;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+
 `
 
-const OpenWindowListIcon = styled.img`
-  margin-left: 0.2vw;
-  vertical-align: middle;
-  height: 0.6cm;
+const WindowListItemDiv = styled.div<{isFocused: boolean}>`
+  margin-left: 0.1cm;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 0.4em;
+  background-color: ${p => p.isFocused ? "rgba(var(--contrast-color),0.1)" : ""};
 
   &:hover {
-    transform: scale(1.2);
-    transition: transform 0.2s;
+    background-color: rgba(128,128,128,0.5);
+  }
+
+  > img {
+    vertical-align: text-top;
+    height: 0.5cm;
+    width: 0.5cm;
+    object-fit: contain;
   }
 `
+
+interface WindowListItemProps {
+  title: string;
+  isFocused: boolean;
+  appIcon: string;
+  onClick: () => void;
+}
+
+const WindowListItem = ({title, appIcon, isFocused, onClick}: WindowListItemProps) => {
+  return (
+    <WindowListItemDiv onClick={onClick} isFocused={isFocused}>
+      <img src={appIcon} alt={title}  />
+      {title}
+    </WindowListItemDiv>
+  )
+}
 
 const InlineClock = () => {
   const [time, setTime] = useState(new Date());
@@ -157,7 +190,7 @@ const Menubar = () => {
 
       <OpenWindowList>
         {windowList.map((app) => 
-            <OpenWindowListIcon key={app.id} src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)} />
+          <WindowListItem key={app.id} title={app.title} isFocused={app.isFocused} appIcon={app.appIcon} onClick={() => handleFocus(app.id)}/>
         )}
       </OpenWindowList>
 

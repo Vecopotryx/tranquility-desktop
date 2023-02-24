@@ -33,6 +33,7 @@ p {
   --borderRadius: 5px;
   --titlebarCloseAlign: left;
   --titlebarTextAlign: center;
+  --contrast-color: 0,0,0;
 }
 
 [data-theme="dark"] {
@@ -44,6 +45,7 @@ p {
   --unfocusedTitlebarBg: linear-gradient(to right, #090a0c, gray);
   --border: none;
   --borderRadius: 5px;
+  --contrast-color: 255,255,255;
 }
 
 [data-theme="classic"] {
