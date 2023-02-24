@@ -69,7 +69,7 @@ const OpenWindowList = styled.span`
 
 `
 
-const WindowListItemDiv = styled.div<{isFocused: boolean}>`
+const WindowListItemDiv = styled.div<{ isFocused: boolean }>`
   margin-left: 0.1cm;
   cursor: pointer;
   white-space: nowrap;
@@ -97,10 +97,10 @@ interface WindowListItemProps {
   onClick: () => void;
 }
 
-const WindowListItem = ({title, appIcon, isFocused, onClick}: WindowListItemProps) => {
+const WindowListItem = ({ title, appIcon, isFocused, onClick }: WindowListItemProps) => {
   return (
     <WindowListItemDiv onClick={onClick} isFocused={isFocused}>
-      <img src={appIcon} alt={title}  />
+      <img src={appIcon} alt={title} />
       {title}
     </WindowListItemDiv>
   )
@@ -130,7 +130,7 @@ const InlineClock = () => {
   ];
 
   return (
-    <Dropdown text={days[time.getDay()] + " " +
+    <Dropdown text={months[time.getMonth()] + " " + time.getDate() + " " +
       time.toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
@@ -159,7 +159,7 @@ const Menubar = () => {
   const handleOpen = useWindowList().handleOpen;
   const handleFocus = useWindowList().handleFocus;
   const windowList = useWindowList().windowList;
-  
+
 
   return (
     <MenubarDiv>
@@ -189,8 +189,8 @@ const Menubar = () => {
       </Dropdown>
 
       <OpenWindowList>
-        {windowList.map((app) => 
-          <WindowListItem key={app.id} title={app.title} isFocused={app.isFocused} appIcon={app.appIcon} onClick={() => handleFocus(app.id)}/>
+        {windowList.map((app) =>
+          <WindowListItem key={app.id} title={app.title} isFocused={app.isFocused} appIcon={app.appIcon} onClick={() => handleFocus(app.id)} />
         )}
       </OpenWindowList>
 
