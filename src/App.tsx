@@ -3,6 +3,7 @@ import { WindowListProvider } from "./contexts/WindowContext";
 import { loadTheming } from "./services/settings-loader";
 import WindowManager from "./core/WindowManager";
 import Menubar from "./core/Menubar";
+import { AppContextProvider } from "./contexts/AppContext";
 
 function App() {
   useEffect(() => {
@@ -11,8 +12,10 @@ function App() {
 
   return (
     <WindowListProvider>
-      <Menubar />
-      <WindowManager />
+      <AppContextProvider>
+        <Menubar />
+        <WindowManager />
+      </AppContextProvider>
     </WindowListProvider>
   );
 }

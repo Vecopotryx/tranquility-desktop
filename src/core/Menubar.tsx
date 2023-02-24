@@ -1,26 +1,10 @@
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import styled from "styled-components";
-
-// application icons:
-import ChipPlayerIcon from "../assets/img/icons/ChipPlayerJS.png"
-import TerminalIcon from "../assets/img/icons/terminal.png"
-import NotesIcon from "../assets/img/icons/notes.png"
-import SettingsIcon from "../assets/img/icons/settings.png"
-import BrowserIcon from "../assets/img/icons/browser.png"
-import ClockIcon from "../assets/img/icons/clock.svg"
-import CalcIcon from "../assets/img/icons/calculator.svg"
-import BookIcon from "../assets/img/icons/book.svg"
-
-// application components:
-import Notes from "../applications/Notes";
-import Settings from "../applications/settings/Settings";
-import Browser from "../applications/Browser";
-import Terminal from "../applications/Terminal";
-import Clock from "../applications/Clock";
-import Calculator from "../applications/Calculator";
-import Framed from "../applications/Framed";
+import SettingsIcon from "../assets/img/icons/settings.png";
 import { useWindowList } from "../contexts/WindowContext";
+import { useAppList } from "../contexts/AppContext";
+import Settings from "../applications/settings/Settings";
 
 const MenubarDiv = styled.div`
   width: calc(100% - 0.6em);
@@ -138,53 +122,11 @@ const InlineClock = () => {
 }
 
 const Menubar = () => {
-  const AppButtons = [
-    {
-      appName: "Notes",
-      appComponent: <Notes />,
-      buttonText: "Notes",
-      appIcon: NotesIcon,
-    },
-    {
-      appName: "Chip Player JS",
-      appComponent: <Framed src="https://mmontag.github.io/chip-player-js/browse/ModArchives" />,
-      buttonText: "Chip Player",
-      appIcon: ChipPlayerIcon,
-    },
-    {
-      appName: "Getpost Gavinator",
-      appComponent: <Browser />,
-      buttonText: "Internet",
-      appIcon: BrowserIcon,
-    },
-    {
-      appName: "Terminal",
-      appComponent: <Terminal />,
-      buttonText: "Terminal",
-      appIcon: TerminalIcon,
-    },
-    {
-      appName: "Clock",
-      appComponent: <Clock />,
-      buttonText: "Clock",
-      appIcon: ClockIcon,
-    },
-    {
-      appName: "Calculator",
-      appComponent: <Calculator />,
-      buttonText: "Calculator",
-      appIcon: CalcIcon,
-    },
-    {
-      appName: "Essence Reader",
-      appComponent: <Framed src="https://vecopotryx.github.io/essence-reader" />,
-      buttonText: "Ebook Reader",
-      appIcon: BookIcon,
-    },
-  ];
+  const AppButtons = useAppList().appList;
   const handleOpen = useWindowList().handleOpen;
   const handleFocus = useWindowList().handleFocus;
   const windowList = useWindowList().windowList;
+  
 
   return (
     <MenubarDiv>
@@ -194,7 +136,7 @@ const Menubar = () => {
             <div key={index}>
               <MenubarButton
                 onClick={() =>
-                  handleOpen(appButton.appName, appButton.appComponent, appButton.appIcon)
+                  handleOpen(appButton.name, appButton.component, appButton.appIcon)
                 }
               >
                 <img src={appButton.appIcon} alt=""></img>
@@ -214,9 +156,9 @@ const Menubar = () => {
       </Dropdown>
 
       <OpenWindowList>
-        {windowList.map((app, index) => (
-          <OpenWindowListIcon key={index} src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)} />
-        ))}
+        {windowList.map((app) => 
+            <OpenWindowListIcon key={app.id} src={app.appIcon} alt={app.title} onClick={() => handleFocus(app.id)} />
+        )}
       </OpenWindowList>
 
       <InlineClock />
