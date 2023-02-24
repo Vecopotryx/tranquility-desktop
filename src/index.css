@@ -7,7 +7,8 @@ body {
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--primary-color)
+  color: var(--primary-color);
+  accent-color: var(--accent-color);
 }
 
 p {
@@ -25,6 +26,7 @@ p {
   --primary-color: #121212;
   --titlebarText: #121212;
   --unfocused-color: darkgray;
+  --accent-color: rgb(100, 200, 150);
   --titlebarBg: linear-gradient(to right, white, lightgray);
   --unfocusedTitlebarBg: linear-gradient(to right, white, lightgray);
   --border: none;
