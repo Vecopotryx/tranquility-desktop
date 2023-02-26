@@ -44,12 +44,15 @@ export const WindowListProvider: React.FC<WindowListProviderProps> = ({ children
         title: title,
         component: React.cloneElement(component, { id: newId, handleClose: handleClose }),
         index: highestIndex + 1,
-        isFocused: true,
+        isFocused: false,
         appIcon: appIcon,
       },
     ];
-    setHighestIndex(highestIndex + 1);
-    setWindowListState(newArr);
+    const newWindowList = newArr.map((appWindow) => {
+        if (appWindow.id !== newId) return { ...appWindow, isFocused: false };
+        return { ...appWindow, index: highestIndex + 1, isFocused: true };
+      });
+    setWindowListState(newWindowList);
   };
 
   const handleClose = (appId: number) => {
