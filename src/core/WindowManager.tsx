@@ -20,7 +20,7 @@ const WindowManager = () => {
   const highestIndex = useWindowList().highestIndex;
 
   const updateFrameOverlay = (visible: boolean) => {
-    setFrameOverlay({ visible: visible, index: highestIndex });
+    //setFrameOverlay({ visible: visible, index: highestIndex });
   };
 
   const [frameOverlay, setFrameOverlay] = React.useState({
@@ -37,6 +37,7 @@ const WindowManager = () => {
             key={appWindow.id}
             appId={appWindow.id}
             isFocused={appWindow.isFocused}
+            isIframe={appWindow.isIframe}
             title={appWindow.title}
             index={appWindow.index}
             updateFrameOverlay={updateFrameOverlay}

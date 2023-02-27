@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import Greeter from "../applications/Greeter";
 import Logo from "../assets/img/LogoSideView.png";
+import Framed from '../applications/Framed';
+const FramedType = (<Framed src="" />).type;
+
 
 interface WindowListTypes {
   id: number;
@@ -8,6 +11,7 @@ interface WindowListTypes {
   component: JSX.Element;
   index: number;
   isFocused: boolean;
+  isIframe: boolean;
   appIcon: string;
 }
 
@@ -45,6 +49,7 @@ export const WindowListProvider: React.FC<WindowListProviderProps> = ({ children
         component: React.cloneElement(component, { id: newId, handleClose: handleClose }),
         index: highestIndex + 1,
         isFocused: false,
+        isIframe: component.type === FramedType,
         appIcon: appIcon,
       },
     ];

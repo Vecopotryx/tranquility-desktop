@@ -7,6 +7,7 @@ interface AppWindowProps {
   children: JSX.Element;
   appId: number;
   isFocused: boolean;
+  isIframe: boolean;
   title: string;
   index: number;
   updateFrameOverlay: (visible: boolean) => void;
@@ -128,8 +129,17 @@ const AppWindow = (props: AppWindowProps) => {
 
   const handleResizeOrDrag = (status: boolean) => {
     setFrameOverlay(status);
-    props.updateFrameOverlay(status);
+    //props.updateFrameOverlay(status);
   };
+
+  React.useEffect(() => {
+    if(!props.isFocused && props.isIframe) {
+      setFrameOverlay(true);
+    } else if (props.isIframe) {
+      setFrameOverlay(false);
+    }
+  
+  }, [props.isFocused]);
 
   return (
     <>
@@ -164,7 +174,7 @@ const AppWindow = (props: AppWindowProps) => {
           height: dimensions.storedHeight,
         }}
       >
-        <AppWrapper onMouseEnter={() => props.handleFocus(props.appId)}>
+        <AppWrapper onMouseDown={() => props.handleFocus(props.appId)}>
           <Titlebar $focused={props.isFocused}>
             <TBButton action="close" onClick={() => props.handleClose(props.appId)}> <MdClose/> </TBButton>
             <p>{props.title}</p>
