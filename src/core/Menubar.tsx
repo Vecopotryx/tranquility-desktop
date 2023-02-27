@@ -19,6 +19,7 @@ const MenubarDiv = styled.div`
   backdrop-filter: blur(10px);
   background-color: rgba(var(--primary-bg), var(--bgopacity));
   user-select: none;
+  z-index: 9999;
 `
 
 const MenubarList = styled.div`
@@ -99,6 +100,7 @@ interface WindowListItemProps {
 
 const WindowListItem = ({ title, appIcon, isFocused, onClick }: WindowListItemProps) => {
   return (
+    // On double click close?
     <WindowListItemDiv onClick={onClick} isFocused={isFocused}>
       <img src={appIcon} alt={title} />
       {title}
