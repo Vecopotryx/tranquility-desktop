@@ -174,7 +174,7 @@ const AppWindow = (props: AppWindowProps) => {
           height: dimensions.storedHeight,
         }}
       >
-        <AppWrapper onMouseDown={() => props.handleFocus(props.appId)}>
+        <AppWrapper onPointerDown={() => props.handleFocus(props.appId)}>
           <Titlebar $focused={props.isFocused}>
             <TBButton action="close" onClick={() => props.handleClose(props.appId)}> <MdClose/> </TBButton>
             <p>{props.title}</p>
