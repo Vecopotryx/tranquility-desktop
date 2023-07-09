@@ -5,6 +5,7 @@ export const Calculator = () => {
     const inputRef = useRef<any>();
     const [result, setResult] = useState("");
     const [current, setCurrent] = useState("");
+    const mexp = new Mexp();
 
     const update = (value: string) => {
         setCurrent(value);
@@ -13,9 +14,9 @@ export const Calculator = () => {
             setResult("");
         } else {
             try {
-                // Mexp 2.0.0 currently causes TypeScript to show syntax errors when building
-                // and has been downgraded to 1.4.0
-                setResult(Mexp.eval(value));
+                // mexp doesn't seem to have made optional parameters optional from 2.0, so ignoring the error
+                // @ts-ignore 
+                setResult(mexp.eval(value));
             } catch { }
         }
     }
