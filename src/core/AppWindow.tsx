@@ -58,7 +58,7 @@ const InternalFrameOverlay = styled.div`
 `
 
 
-const Window = styled(Rnd) <{ index: number }>`
+const Window = styled(Rnd) <{ $index: number }>`
   min-height: 0.7cm;
   min-width: 5em;
   display: block;
@@ -70,7 +70,7 @@ const Window = styled(Rnd) <{ index: number }>`
   color: var(--primary-color);
   background-color: rgba(var(--primary-bg), var(--bgopacity));
   transition: background-color 0.3s, color 0.3s;
-  z-index: ${p => p.index};
+  z-index: ${p => p.$index};
 `
 
 const AppWrapper = styled.div`
@@ -79,10 +79,10 @@ const AppWrapper = styled.div`
   width: 100%;
 `
 
-const AppContent = styled.div<{ collapsed: boolean }>`
+const AppContent = styled.div<{ $collapsed: boolean }>`
   overflow-y: auto;
   overflow-x: hidden;
-  display: ${p => p.collapsed ? "none" : "block"};
+  display: ${p => p.$collapsed ? "none" : "block"};
   height: calc(100% - 0.7cm);
 
   >* { 
@@ -144,7 +144,7 @@ const AppWindow = (props: AppWindowProps) => {
   return (
     <>
       <Window
-        index={props.index}
+        $index={props.index}
         maxHeight={dimensions.maxHeight}
         ref={(c: Rnd) => {
           rndRef = c;
@@ -182,7 +182,7 @@ const AppWindow = (props: AppWindowProps) => {
               {isCollapsed ? <MdExpandMore/> : <MdExpandLess/>}
             </TBButton>
           </Titlebar>
-          <AppContent collapsed={isCollapsed}>
+          <AppContent $collapsed={isCollapsed}>
             {frameOverlay && <InternalFrameOverlay />}
             {props.children}
           </AppContent>

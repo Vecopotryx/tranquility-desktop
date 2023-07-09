@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useWindowList } from "../contexts/WindowContext";
 import AppWindow from "./AppWindow";
 
-const FrameOverlay = styled.div<{ $visible: boolean, index: number }>`
+const FrameOverlay = styled.div<{ $visible: boolean, $index: number }>`
   height: 100%;
   width: 100%;
   background: rgba(34, 34, 34, 0.5);
@@ -30,7 +30,7 @@ const WindowManager = () => {
 
   return (
     <>
-      <FrameOverlay $visible={frameOverlay.visible} index={frameOverlay.index} />
+      <FrameOverlay $visible={frameOverlay.visible} $index={frameOverlay.index} />
       <div className="WindowContainer">
         {windowList.map((appWindow) => (
           <AppWindow
