@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import LogoSideView from "../../assets/img/LogoSideView.png";
-import { GoMarkGithub } from "react-icons/go"
+import { BsGithub } from "react-icons/bs"
 
 const AboutContainer = styled.div`
   text-align: center;
@@ -57,7 +57,7 @@ const About = () => {
       </CreditBox>
 
       <br />
-      <GoMarkGithub/>
+      <BsGithub />
       {" "}
       <a
         href="https://github.com/vecopotryx/tranquility-desktop"
