@@ -44,7 +44,8 @@ const MenubarButton = styled.button`
   height: 1cm;
   font-size: 0.9em;
   text-align: left;
-  :hover {
+  
+  &:hover {
     border-radius: var(--borderRadius);
     background-color: rgba(128,128,128,0.5);
   }
