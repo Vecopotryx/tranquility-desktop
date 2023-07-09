@@ -70,14 +70,14 @@ const OpenWindowList = styled.span`
 
 `
 
-const WindowListItemDiv = styled.div<{ isFocused: boolean }>`
+const WindowListItemDiv = styled.div<{ $isFocused: boolean }>`
   margin-left: 0.1cm;
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 0.4em;
-  background-color: ${p => p.isFocused ? "rgba(var(--contrast-color),0.1)" : ""};
+  background-color: ${p => p.$isFocused ? "rgba(var(--contrast-color),0.1)" : ""};
 
   &:hover {
     background-color: rgba(128,128,128,0.5);
@@ -101,7 +101,7 @@ interface WindowListItemProps {
 const WindowListItem = ({ title, appIcon, isFocused, onClick }: WindowListItemProps) => {
   return (
     // On double click close?
-    <WindowListItemDiv onClick={onClick} isFocused={isFocused}>
+    <WindowListItemDiv onClick={onClick} $isFocused={isFocused}>
       <img src={appIcon} alt={title} />
       {title}
     </WindowListItemDiv>
