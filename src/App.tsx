@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { WindowListProvider } from "./contexts/WindowContext";
 import { loadTheming } from "./services/settings-loader";
 import WindowManager from "./core/WindowManager";
-import Menubar from "./core/Menubar";
 import { AppContextProvider } from "./contexts/AppContext";
 import { Panel } from "./core/Panel";
+import { ShortcutList } from "./panelcomponents/ShortcutList";
 
 type Widget = {
   name: string;
@@ -20,8 +20,8 @@ const testPanel = {
   position: "top",
   widgets: [
     {
-      name: "test",
-      component: <div>test</div>,
+      name: "Applications",
+      component: <ShortcutList />
     },
   ],
 };
@@ -44,7 +44,7 @@ function App() {
           />
         ))}
 
-        <Menubar />
+        {/* <Menubar /> */}
         <WindowManager />
       </AppContextProvider>
     </WindowListProvider>
