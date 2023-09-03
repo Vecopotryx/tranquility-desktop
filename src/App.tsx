@@ -7,6 +7,8 @@ import { Panel } from "./core/Panel";
 import { ShortcutList } from "./panelcomponents/ShortcutList";
 import { InlineClock } from "./panelcomponents/InlineClock";
 import { OpenWindowList } from "./panelcomponents/OpenWindowList";
+import Settings from "./applications/settings/Settings";
+import SettingsIcon from "./assets/img/icons/settings.png";
 
 type Widget = {
   name: string;
@@ -24,6 +26,10 @@ const testPanel = {
     {
       name: "Applications",
       component: <ShortcutList text="Applications" />
+    },
+    {
+      name: "Options",
+      component: <ShortcutList text="Options" customList={[{ id: 0, name: "Settings", buttonText: "Settings", component: <Settings />, appIcon: SettingsIcon }]} />
     },
     {
       name: "OpenWindowList",
