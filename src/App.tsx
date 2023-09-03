@@ -6,6 +6,7 @@ import { AppContextProvider } from "./contexts/AppContext";
 import { Panel } from "./core/Panel";
 import { ShortcutList } from "./panelcomponents/ShortcutList";
 import { InlineClock } from "./panelcomponents/InlineClock";
+import { OpenWindowList } from "./panelcomponents/OpenWindowList";
 
 type Widget = {
   name: string;
@@ -23,6 +24,10 @@ const testPanel = {
     {
       name: "Applications",
       component: <ShortcutList />
+    },
+    {
+      name: "OpenWindowList",
+      component: <OpenWindowList /> 
     },
     {
       name: "Clock",
