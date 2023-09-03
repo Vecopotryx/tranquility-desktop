@@ -41,12 +41,27 @@ const MenubarButton = styled.button`
   }
 `;
 
-export const ShortcutList = () => {
-  const AppButtons = useAppList().appList;
+interface ShortcutListProps {
+  text: string;
+  customList?: {
+    id: number;
+    name: string;
+    buttonText: string;
+    component: JSX.Element;
+    appIcon: string;
+  }[];
+}
+
+export const ShortcutList = ({ text, customList }: ShortcutListProps) => {
+  let AppButtons = useAppList().appList;
   const handleOpen = useWindowList().handleOpen;
 
+  if (customList) {
+    AppButtons = customList;
+  }
+
   return (
-    <Dropdown text="Applications">
+    <Dropdown text={text}>
       <MenubarList>
         {AppButtons.map((appButton, index) => (
           <div key={index}>

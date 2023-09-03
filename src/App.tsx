@@ -23,7 +23,7 @@ const testPanel = {
   widgets: [
     {
       name: "Applications",
-      component: <ShortcutList />
+      component: <ShortcutList text="Applications" />
     },
     {
       name: "OpenWindowList",
