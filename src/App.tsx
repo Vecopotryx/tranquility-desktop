@@ -3,10 +3,10 @@ import { WindowListProvider } from "./contexts/WindowContext";
 import { loadTheming } from "./services/settings-loader";
 import WindowManager from "./core/WindowManager";
 import { AppContextProvider } from "./contexts/AppContext";
-import { Panel } from "./core/Panel";
-import { ShortcutList } from "./panelcomponents/ShortcutList";
-import { InlineClock } from "./panelcomponents/InlineClock";
-import { OpenWindowList } from "./panelcomponents/OpenWindowList";
+import { Panel } from "./panels/Panel";
+import { ShortcutList } from "./panels/widgets/ShortcutList";
+import { InlineClock } from "./panels/widgets/InlineClock";
+import { OpenWindowList } from "./panels/widgets/OpenWindowList";
 import Settings from "./applications/settings/Settings";
 import SettingsIcon from "./assets/img/icons/settings.png";
 
