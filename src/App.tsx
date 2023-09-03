@@ -5,6 +5,7 @@ import WindowManager from "./core/WindowManager";
 import { AppContextProvider } from "./contexts/AppContext";
 import { Panel } from "./core/Panel";
 import { ShortcutList } from "./panelcomponents/ShortcutList";
+import { InlineClock } from "./panelcomponents/InlineClock";
 
 type Widget = {
   name: string;
@@ -23,6 +24,10 @@ const testPanel = {
       name: "Applications",
       component: <ShortcutList />
     },
+    {
+      name: "Clock",
+      component: <InlineClock />
+    }
   ],
 };
 
