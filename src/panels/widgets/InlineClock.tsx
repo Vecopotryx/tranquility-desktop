@@ -35,13 +35,17 @@ export const InlineClock = () => {
   ];
 
   return (
-    <h2 style={{ display: "inline" }}>
-      {time.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      })}
-    </h2>
+    <h4 style={{ display: "inline" }}>
+      {months[time.getMonth()] +
+        " " +
+        time.getDate() +
+        " " +
+        time.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })}
+    </h4>
 
     //   <Dropdown text={months[time.getMonth()] + " " + time.getDate() + " " +
     //     time.toLocaleTimeString([], {
