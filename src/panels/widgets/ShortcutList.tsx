@@ -1,6 +1,6 @@
-import { useAppList } from "../contexts/AppContext";
-import { useWindowList } from "../contexts/WindowContext";
-import Dropdown from "../core/Dropdown";
+import { useAppList } from "../../contexts/AppContext";
+import { useWindowList } from "../../contexts/WindowContext";
+import Dropdown from "../Dropdown";
 import styled from "styled-components";
 
 const MenubarList = styled.div`

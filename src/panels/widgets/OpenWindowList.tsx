@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { useWindowList } from "../contexts/WindowContext";
+import { useWindowList } from "../../contexts/WindowContext";
 
 const OpenWindowListDiv = styled.span`
   display: flex;
