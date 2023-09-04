@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import loadingSpinner from '../assets/img/tail-spin.svg';
 
 const Browser = () => {
@@ -19,7 +19,7 @@ const Browser = () => {
 	};
 
 	const YearOptions = () => {
-		let years: number[] = [];
+		const years: number[] = [];
 		for (let i = 1995; i <= 2020; i++) {
 			years.push(i);
 		}

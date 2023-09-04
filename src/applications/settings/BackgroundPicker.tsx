@@ -51,7 +51,7 @@ const BackgroundPicker = () => {
 
 	const onImageChange = (event: { target: HTMLInputElement }) => {
 		if (event.target.files && event.target.files[0]) {
-			let newImage = URL.createObjectURL(event.target.files[0]);
+			const newImage = URL.createObjectURL(event.target.files[0]);
 			setBackground(newImage);
 			document.documentElement.style.setProperty(
 				'--backgroundImg',
@@ -72,7 +72,7 @@ const BackgroundPicker = () => {
 
 	const unsplashHandler = () => {
 		setFetchingUnsplash(true);
-		let widthHeight =
+		const widthHeight =
 			window.screen.availWidth + 'x' + window.screen.availHeight;
 		const xhr = new XMLHttpRequest();
 		xhr.open(

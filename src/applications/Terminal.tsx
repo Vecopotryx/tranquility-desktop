@@ -1,8 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 
-const Terminal = (props: any) => {
+interface TerminalProps {
+	id: number;
+	handleClose: (id: number) => void;
+}
+
+const Terminal = (props: TerminalProps) => {
 	let currentInput = '';
-	const inputRef = useRef<any>();
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const InputLine = () => {
 		return (
@@ -29,7 +34,7 @@ const Terminal = (props: any) => {
 	const [commandHistory, setCommandHistory] = useState<JSX.Element[]>([]);
 
 	useEffect(() => {
-		inputRef.current.focus();
+		inputRef.current?.focus();
 	}, [commandHistory]);
 
 	const handleInput = () => {
@@ -104,7 +109,7 @@ const Terminal = (props: any) => {
 	};
 
 	return (
-		<div style={{ height: '100%' }} onClick={() => inputRef.current.focus()}>
+		<div style={{ height: '100%' }} onClick={() => inputRef.current?.focus()}>
 			{commandHistory.map((element, index) => (
 				<div key={index}>{element}</div>
 			))}

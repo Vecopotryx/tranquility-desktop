@@ -30,7 +30,12 @@ const GreeterContainer = styled.div`
 	text-align: center;
 `;
 
-const Greeter = (props: any) => {
+interface GreeterProps {
+	id: number;
+	handleClose: (id: number) => void;
+}
+
+const Greeter = (props: GreeterProps) => {
 	const [currentScreen, setCurrentScreen] = useState('greeting');
 
 	const Greeting = () => {
