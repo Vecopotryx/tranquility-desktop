@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 
 interface TerminalProps {
-	id: number;
-	handleClose: (id: number) => void;
+	id?: number;
+	handleClose?: (id: number) => void;
 }
 
 const Terminal = (props: TerminalProps) => {
@@ -49,7 +49,7 @@ const Terminal = (props: TerminalProps) => {
 				handleCommand(<Neofetch />);
 				break;
 			case 'exit':
-				if (props.id !== null) {
+				if (props.id !== undefined && props.handleClose !== undefined) {
 					props.handleClose(props.id);
 				}
 				break;

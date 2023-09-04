@@ -31,8 +31,8 @@ const GreeterContainer = styled.div`
 `;
 
 interface GreeterProps {
-	id: number;
-	handleClose: (id: number) => void;
+	id?: number;
+	handleClose?: (id: number) => void;
 }
 
 const Greeter = (props: GreeterProps) => {
@@ -111,7 +111,9 @@ const Greeter = (props: GreeterProps) => {
 					side="right"
 					onClick={() => {
 						localStorage.setItem('greeted', 'true');
-						props.handleClose(props.id);
+						if (props.handleClose && props.id) {
+							props.handleClose(props.id);
+						}
 					}}>
 					Start using Tranquility &#8594;
 				</BottomNavButton>
