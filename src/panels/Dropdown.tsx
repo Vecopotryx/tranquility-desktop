@@ -1,43 +1,62 @@
 import { useState } from 'react';
-import useOnclickOutside from 'react-cool-onclickoutside';
 import styled from 'styled-components';
-
+import {
+	useFloating,
+	offset,
+	flip,
+	shift,
+	useDismiss,
+	useInteractions
+} from '@floating-ui/react';
 interface DropdownProps {
 	children: JSX.Element;
 	text: string;
 }
 
-const MenubarDropdown = styled.div`
+const DropButton = styled.div`
 	user-select: none;
 
-	> p {
-		cursor: pointer;
-		color: var(--primary-color);
-		display: inline-block;
-		margin: auto;
-		white-space: nowrap;
+	cursor: pointer;
+	color: var(--primary-color);
+	display: inline-block;
+	margin: auto;
+	white-space: nowrap;
 
-		&:hover {
-			border-radius: var(--borderRadius);
-			background-color: rgba(128, 128, 128, 0.5);
-		}
+	&:hover {
+		border-radius: var(--borderRadius);
+		background-color: rgba(128, 128, 128, 0.5);
 	}
 `;
 
 const Dropdown = (props: DropdownProps) => {
-	const [expanded, setExpanded] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-	function toggleExpanded() {
-		setExpanded(!expanded);
-	}
+	const { refs, floatingStyles, context } = useFloating({
+		open: isOpen,
+		onOpenChange: setIsOpen,
+		middleware: [offset(4), flip(), shift()]
+	});
 
-	const ref = useOnclickOutside(() => setExpanded(false));
+	const dismiss = useDismiss(context);
 
+	const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
 	return (
-		<MenubarDropdown ref={ref}>
-			<p onClick={toggleExpanded}>{props.text}</p>
-			{expanded ? props.children : null}
-		</MenubarDropdown>
+		<>
+			<DropButton
+				ref={refs.setReference}
+				onClick={() => setIsOpen(!isOpen)}
+				{...getReferenceProps()}>
+				{props.text}
+			</DropButton>
+			{isOpen && (
+				<div
+					ref={refs.setFloating}
+					style={floatingStyles}
+					{...getFloatingProps()}>
+					{props.children}
+				</div>
+			)}
+		</>
 	);
 };
 

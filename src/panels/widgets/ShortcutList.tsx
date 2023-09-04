@@ -3,9 +3,7 @@ import { useWindowList } from '../../contexts/WindowContext';
 import styled from 'styled-components';
 
 const MenubarList = styled.div`
-	position: absolute;
-	width: 4cm;
-	top: 1cm;
+	min-width: 4cm;
 	background-color: rgba(var(--primary-bg), var(--bgopacity));
 	border-radius: var(--borderRadius);
 	backdrop-filter: blur(10px);
