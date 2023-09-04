@@ -17,7 +17,7 @@ const MenubarDropdown = styled.div`
 		margin: auto;
 		white-space: nowrap;
 
-		:hover {
+		&:hover {
 			border-radius: var(--borderRadius);
 			background-color: rgba(128, 128, 128, 0.5);
 		}
