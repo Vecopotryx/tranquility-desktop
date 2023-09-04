@@ -1,21 +1,11 @@
 import styled from 'styled-components';
+import { PanelProps } from './types';
 
-type Widget = {
-	name: string;
-	component: JSX.Element;
-};
-
-interface PanelProps {
-	position: string;
-	widgets: Widget[];
-}
-
-const PanelDiv = styled.div<{ $position: string }>`
-	${(p) => p.$position}: 0;
+const PanelDiv = styled.div<{ $style: PanelProps['style'] }>`
 	position: absolute;
 	display: grid;
 	grid-template-columns: auto auto minmax(0, 1fr) auto;
-	width: calc(100% - 2em);
+	width: calc(${(p) => p.$style?.width} - 2em);
 	margin: 0.5em;
 	column-gap: 0.3em;
 	padding: 0 0.3em;
@@ -25,23 +15,24 @@ const PanelDiv = styled.div<{ $position: string }>`
 	background-color: rgba(var(--primary-bg), var(--bgopacity));
 	user-select: none;
 
+	left: ${(p) => p.$style?.horizontalAlignment === 'left' && '0'};
+	right: ${(p) => p.$style?.horizontalAlignment === 'right' && '0'};
+	top: ${(p) => p.$style?.verticalAlignment === 'top' && '0'};
+	bottom: ${(p) => p.$style?.verticalAlignment === 'bottom' && '0'};
 	${(p) =>
-		(p.$position === 'right' || p.$position === 'left') &&
-		`
-	grid-template-columns: 1fr;
-	overflow-x: hidden;
-	height: calc(100% - 2em);
-	width: 0.9cm;
-	margin: 0.5em;
-	row-gap: 0.3em;
-	padding: 0.3em 0;
-	line-height: 0.9cm;
-  `}
+		p.$style?.horizontalAlignment === 'center' &&
+		'left: 50%; transform: translateX(-50%);'};
+
+	// For centering:
+	margin: ${(p) => {
+		if (p.$style?.horizontalAlignment === 'center') return '0.5em auto';
+		return '0.5em';
+	}};
 `;
 
-export const Panel = ({ position, widgets }: PanelProps) => {
+export const Panel = ({ style, widgets }: PanelProps) => {
 	return (
-		<PanelDiv $position={position}>
+		<PanelDiv $style={style}>
 			{widgets.map((widget, index) => (
 				<div key={index}>{widget.component}</div>
 			))}

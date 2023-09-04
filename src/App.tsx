@@ -10,19 +10,15 @@ import { OpenWindowList } from './panels/widgets/OpenWindowList';
 import Settings from './applications/settings/Settings';
 import SettingsIcon from './assets/img/icons/settings.png';
 import Dropdown from './panels/Dropdown';
-
-type Widget = {
-	name: string;
-	component: JSX.Element;
-};
-
-interface PanelProps {
-	position: string;
-	widgets: Widget[];
-}
+import { PanelProps } from './panels/types';
 
 const testPanel = {
-	position: 'top',
+	style: {
+		horizontalAlignment: 'center',
+		verticalAlignment: 'top',
+		width: '90%', // Default is 100%, but set to 90% for testing of centering
+		height: '10%' // Not used yet
+	},
 	widgets: [
 		{
 			name: 'Applications',
@@ -61,18 +57,36 @@ const testPanel = {
 	]
 };
 
+const testPanel2 = {
+	style: {
+		horizontalAlignment: 'right',
+		verticalAlignment: 'bottom',
+		width: '20%',
+		height: '10%'
+	},
+	widgets: [
+		{
+			name: 'Test',
+			component: <span>This is a second panel</span>
+		}
+	]
+};
+
 function App() {
 	useEffect(() => {
 		loadTheming();
 	}, []);
 
-	const [panelList, setPanelList] = useState<PanelProps[]>([testPanel]);
+	const [panelList, setPanelList] = useState<PanelProps[]>([
+		testPanel,
+		testPanel2
+	]);
 
 	return (
 		<WindowListProvider>
 			<AppContextProvider>
-				{panelList.map(({ position, widgets }, index) => (
-					<Panel key={index} position={position} widgets={widgets} />
+				{panelList.map((panelSettings, index) => (
+					<Panel key={index} {...panelSettings} />
 				))}
 
 				{/* <Menubar /> */}
