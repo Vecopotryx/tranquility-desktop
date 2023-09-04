@@ -6,7 +6,7 @@ const OpenWindowListDiv = styled.span`
 	justify-content: left;
 	align-items: center;
 	height: 0.9cm;
-	overflow-x: scroll;
+	overflow-x: auto;
 	border-left: 1px solid gray;
 	border-right: 1px solid gray;
 `;
@@ -15,8 +15,6 @@ const WindowListItemDiv = styled.div<{ $isFocused: boolean }>`
 	margin-left: 0.1cm;
 	cursor: pointer;
 	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 	padding-right: 0.4em;
 	background-color: ${(p) =>
 		p.$isFocused ? 'rgba(var(--contrast-color),0.1)' : ''};

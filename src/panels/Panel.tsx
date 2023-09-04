@@ -14,7 +14,7 @@ const PanelDiv = styled.div<{ $position: string }>`
 	${(p) => p.$position}: 0;
 	position: absolute;
 	display: grid;
-	grid-template-columns: auto auto 1fr auto;
+	grid-template-columns: auto auto minmax(0, 1fr) auto;
 	width: calc(100% - 2em);
 	margin: 0.5em;
 	column-gap: 0.3em;
