@@ -9,6 +9,7 @@ import { InlineClock } from './panels/widgets/InlineClock';
 import { OpenWindowList } from './panels/widgets/OpenWindowList';
 import Settings from './applications/settings/Settings';
 import SettingsIcon from './assets/img/icons/settings.png';
+import Dropdown from './panels/Dropdown';
 
 type Widget = {
 	name: string;
@@ -25,23 +26,28 @@ const testPanel = {
 	widgets: [
 		{
 			name: 'Applications',
-			component: <ShortcutList text="Applications" />
+			component: (
+				<Dropdown text="Applications">
+					<ShortcutList />
+				</Dropdown>
+			)
 		},
 		{
 			name: 'Options',
 			component: (
-				<ShortcutList
-					text="Options"
-					customList={[
-						{
-							id: 0,
-							name: 'Settings',
-							buttonText: 'Settings',
-							component: <Settings />,
-							appIcon: SettingsIcon
-						}
-					]}
-				/>
+				<Dropdown text="Options">
+					<ShortcutList
+						customList={[
+							{
+								id: 0,
+								name: 'Settings',
+								buttonText: 'Settings',
+								component: <Settings />,
+								appIcon: SettingsIcon
+							}
+						]}
+					/>
+				</Dropdown>
 			)
 		},
 		{

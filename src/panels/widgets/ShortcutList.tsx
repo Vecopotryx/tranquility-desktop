@@ -1,6 +1,5 @@
 import { useAppList } from '../../contexts/AppContext';
 import { useWindowList } from '../../contexts/WindowContext';
-import Dropdown from '../Dropdown';
 import styled from 'styled-components';
 
 const MenubarList = styled.div`
@@ -42,7 +41,6 @@ const MenubarButton = styled.button`
 `;
 
 interface ShortcutListProps {
-	text: string;
 	customList?: {
 		id: number;
 		name: string;
@@ -52,7 +50,7 @@ interface ShortcutListProps {
 	}[];
 }
 
-export const ShortcutList = ({ text, customList }: ShortcutListProps) => {
+export const ShortcutList = ({ customList }: ShortcutListProps) => {
 	let AppButtons = useAppList().appList;
 	const handleOpen = useWindowList().handleOpen;
 
@@ -61,24 +59,18 @@ export const ShortcutList = ({ text, customList }: ShortcutListProps) => {
 	}
 
 	return (
-		<Dropdown text={text}>
-			<MenubarList>
-				{AppButtons.map((appButton, index) => (
-					<div key={index}>
-						<MenubarButton
-							onClick={() =>
-								handleOpen(
-									appButton.name,
-									appButton.component,
-									appButton.appIcon
-								)
-							}>
-							<img src={appButton.appIcon} alt=""></img>
-							{appButton.buttonText}
-						</MenubarButton>
-					</div>
-				))}
-			</MenubarList>
-		</Dropdown>
+		<MenubarList>
+			{AppButtons.map((appButton, index) => (
+				<div key={index}>
+					<MenubarButton
+						onClick={() =>
+							handleOpen(appButton.name, appButton.component, appButton.appIcon)
+						}>
+						<img src={appButton.appIcon} alt=""></img>
+						{appButton.buttonText}
+					</MenubarButton>
+				</div>
+			))}
+		</MenubarList>
 	);
 };
