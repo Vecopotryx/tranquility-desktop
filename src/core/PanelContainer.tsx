@@ -8,11 +8,11 @@ import Dropdown from '../panels/Dropdown';
 import { PanelProps } from '../panels/types';
 import { useState } from 'react';
 
-const testPanel = {
+const defaultPanel = {
 	style: {
 		horizontalAlignment: 'center',
 		verticalAlignment: 'top',
-		width: '90%', // Default is 100%, but set to 90% for testing of centering
+		width: '100%',
 		height: '10%' // Not used yet
 	},
 	widgets: [
@@ -53,23 +53,8 @@ const testPanel = {
 	]
 };
 
-const testPanel2 = {
-	style: {
-		horizontalAlignment: 'right',
-		verticalAlignment: 'bottom',
-		width: '20%',
-		height: '10%'
-	},
-	widgets: [
-		{
-			name: 'Test',
-			component: <span>This is a second panel</span>
-		}
-	]
-};
-
 const PanelContainer = () => {
-	const [panelList] = useState<PanelProps[]>([testPanel, testPanel2]);
+	const [panelList] = useState<PanelProps[]>([defaultPanel]);
 	return (
 		<>
 			{panelList.map((panelSettings, index) => (

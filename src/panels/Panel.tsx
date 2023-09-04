@@ -5,8 +5,7 @@ const PanelDiv = styled.div<{ $style: PanelProps['style'] }>`
 	position: absolute;
 	display: grid;
 	grid-template-columns: auto auto minmax(0, 1fr) auto;
-	width: calc(${(p) => p.$style?.width} - 2em);
-	margin: 0.5em;
+	width: calc(${(p) => p.$style?.width} - 0.6em);
 	column-gap: 0.3em;
 	padding: 0 0.3em;
 	line-height: 0.9cm;
@@ -25,8 +24,8 @@ const PanelDiv = styled.div<{ $style: PanelProps['style'] }>`
 
 	// For centering:
 	margin: ${(p) => {
-		if (p.$style?.horizontalAlignment === 'center') return '0.5em auto';
-		return '0.5em';
+		if (p.$style?.horizontalAlignment === 'center') return '0 auto';
+		return '0';
 	}};
 `;
 
