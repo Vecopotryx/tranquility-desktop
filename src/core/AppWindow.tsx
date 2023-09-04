@@ -10,7 +10,6 @@ interface AppWindowProps {
 	isIframe: boolean;
 	title: string;
 	index: number;
-	updateFrameOverlay: (visible: boolean) => void;
 	handleClose: (appId: number) => void;
 	handleFocus: (appId: number) => void;
 }
