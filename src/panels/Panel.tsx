@@ -4,7 +4,6 @@ import { PanelProps } from './types';
 const PanelDiv = styled.div<{ $style: PanelProps['style'] }>`
 	position: absolute;
 	display: grid;
-	grid-template-columns: auto auto minmax(0, 1fr) auto;
 	width: calc(${(p) => p.$style?.width} - 0.6em);
 	column-gap: 0.3em;
 	padding: 0 0.3em;
@@ -30,8 +29,14 @@ const PanelDiv = styled.div<{ $style: PanelProps['style'] }>`
 `;
 
 export const Panel = ({ style, widgets }: PanelProps) => {
+	const gridTemplateColumns = widgets
+		.map((widget) =>
+			widget.name === 'OpenWindowList' ? 'minmax(0, 1fr)' : 'auto'
+		)
+		.join(' ');
+
 	return (
-		<PanelDiv $style={style}>
+		<PanelDiv $style={style} style={{ gridTemplateColumns }}>
 			{widgets.map((widget, index) => (
 				<div key={index}>{widget.component}</div>
 			))}
