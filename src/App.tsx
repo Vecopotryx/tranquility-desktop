@@ -1,7 +1,9 @@
+import { AppWindow } from "./AppWindow";
+
 function App() {
 	return (
 		<>
-			<h1>Vite + React</h1>
+			<AppWindow />
 		</>
 	);
 }
