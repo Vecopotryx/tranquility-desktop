@@ -4,6 +4,31 @@
 	background-color: white;
 }
 
+.panelContainer {
+	position: absolute;
+}
+
+.top {
+	top: 0;
+}
+
+.bottom {
+	bottom: 0;
+}
+
+.start {
+	left: 0;
+}
+
+.middle {
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+.end {
+	right: 0;
+}
+
 .startSection {
 	justify-content: start;
 }
