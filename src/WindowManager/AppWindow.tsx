@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { Rnd } from "react-rnd";
+import styles from "./Window.module.css";
 import { type WindowObject, useWindowManagerStore } from "./WindowManagerStore";
 
 export const AppWindow = memo(
@@ -11,40 +12,49 @@ export const AppWindow = memo(
 		const focus = useWindowManagerStore((state) => state.focus);
 		const close = useWindowManagerStore((state) => state.close);
 
-		console.log("Rerendered id ", window.id);
 		return (
 			<Rnd
-				style={{
-					backgroundColor: "lightgray",
-					boxShadow: "8px 15px 0px 0px rgba(0, 0, 0, 0.75)",
-					zIndex: window.index,
-				}}
+				style={{ zIndex: window.index }}
+				className={styles.window}
 				onMouseDown={() => focus(window.id)}
+				default={{
+					x:
+						(document.documentElement.clientWidth -
+							document.documentElement.clientWidth / 2) /
+						2,
+					y:
+						(document.documentElement.clientHeight -
+							document.documentElement.clientHeight / 2) /
+						2,
+					width: document.documentElement.clientWidth / 2,
+					height: document.documentElement.clientHeight / 2,
+				}}
 			>
-				<div>
+				<div
+					className={`${styles.titlebar} ${isFocused ? styles.focused : ""}`}
+				>
 					<button type="button" onClick={() => close(window.id)}>
-						x
+						&#x2715;
 					</button>
-					title: {window.app.title}
+					{window.app.title}
 				</div>
-				<div>
-					id: {window.id}
-					<br />
-					index: {window.index}
-					<br />
-					{isFocused ? "focused" : ""}
+				<div
+					className={styles.content}
+					style={{
+						overflow: window.app.type === "iframe" ? "hidden" : "",
+					}}
+				>
+					{window.app.type === "component" ? (
+						window.app.component
+					) : (
+						<iframe
+							title={window.app.title}
+							height="100%"
+							width="100%"
+							src={window.app.url}
+						/>
+					)}
 				</div>
-				{window.app.type === "component" ? (
-					window.app.component
-				) : (
-					<iframe
-						title={window.app.title}
-						height="100%"
-						width="100%"
-						src={window.app.url}
-						style={{ border: "none" }}
-					/>
-				)}
 			</Rnd>
 		);
 	},

@@ -1,0 +1,51 @@
+.window {
+	min-height: 0.7cm;
+	min-width: 5em;
+	display: block;
+	box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
+	overflow: hidden;
+	backdrop-filter: blur(10px);
+	border-radius: 8px;
+	background-color: white;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.content {
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	iframe {
+		border: none;
+	}
+}
+
+.titlebar {
+	width: 100%;
+	user-select: none;
+	text-align: center;
+	height: 0.7cm;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 1em;
+	line-height: 0.7cm;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	background: linear-gradient(to right, white, lightgray);
+	color: gray;
+
+	button {
+		all: unset;
+		width: fit-content;
+		padding: 0 0.5em;
+	}
+
+	button:hover {
+		cursor: pointer;
+	}
+}
+
+.focused {
+	color: black;
+}
