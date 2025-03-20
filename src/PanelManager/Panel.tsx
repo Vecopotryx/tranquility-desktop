@@ -3,6 +3,7 @@ import { useWindowManagerStore } from "../WindowManager/WindowManagerStore";
 import styles from "./Panel.module.css";
 import { InlineClock } from "./Widgets/InlineClock";
 import { WindowList } from "./Widgets/WindowList";
+import { SettingsApp } from "../Applications/Settings";
 
 type PanelItem = {
 	id: string;
@@ -51,16 +52,7 @@ export const Panel = () => {
 				<div className={styles.startSection}>
 					{/* Start section */}
 
-					<button
-						type="button"
-						onClick={() =>
-							open({
-								title: "Hello",
-								type: "component",
-								component: <h1>Hello</h1>,
-							})
-						}
-					>
+					<button type="button" onClick={() => open(SettingsApp)}>
 						Open
 					</button>
 					{panel.startContents.map((obj) =>
