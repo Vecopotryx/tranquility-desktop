@@ -28,15 +28,15 @@ let highestId = 0;
 export const useWindowManagerStore = create<WindowManagerState>()((set) => ({
 	currentlyFocused: 0,
 	windows: [
-		{
-			id: highestId,
-			index: highestIndex,
-			app: {
-				title: "Essence Reader",
-				type: "iframe",
-				url: "https://essence-reader.pages.dev/",
-			},
-		},
+		// {
+		// 	id: highestId,
+		// 	index: highestIndex,
+		// 	app: {
+		// 		title: "Essence Reader",
+		// 		type: "iframe",
+		// 		url: "https://essence-reader.pages.dev/",
+		// 	},
+		// },
 	],
 
 	open: (app) =>
