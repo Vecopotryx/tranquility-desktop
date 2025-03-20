@@ -1,0 +1,25 @@
+.panel {
+	display: grid;
+	gap: 1em;
+	background-color: white;
+}
+
+.startSection {
+	justify-content: start;
+}
+
+.middleSection {
+	justify-content: center;
+}
+
+.endSection {
+	justify-content: end;
+}
+
+.startSection,
+.middleSection,
+.endSection {
+	display: flex;
+	scrollbar-color: gray white;
+	min-width: 0;
+}
