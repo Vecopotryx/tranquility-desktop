@@ -10,6 +10,9 @@ type PanelItem = {
 };
 
 type Panel = {
+	position: "top" | "bottom";
+	align: "start" | "middle" | "end";
+	margin: string;
 	width: string;
 	startContents: PanelItem[];
 	middleContents: PanelItem[];
@@ -17,6 +20,9 @@ type Panel = {
 };
 
 const defaultPanel: Panel = {
+	position: "top",
+	align: "start",
+	margin: "0.5em",
 	width: "100%",
 	startContents: [{ id: "windowlist", component: <WindowList /> }],
 	middleContents: [],
@@ -30,48 +36,53 @@ export const Panel = () => {
 
 	return (
 		<div
-			className={styles.panel}
-			style={{
-				width: panel.width,
-				gridTemplateColumns: panel.middleContents.length
-					? "1fr auto 1fr"
-					: "auto auto auto",
-			}}
+			className={`${styles.panelContainer} ${styles[panel.align]} ${styles[panel.position]}`}
+			style={{ width: panel.width }}
 		>
-			<div className={styles.startSection}>
-				{/* Start section */}
+			<div
+				className={`${styles.panel}`}
+				style={{
+					margin: panel.margin,
+					gridTemplateColumns: panel.middleContents.length
+						? "1fr auto 1fr"
+						: "auto auto auto",
+				}}
+			>
+				<div className={styles.startSection}>
+					{/* Start section */}
 
-				<button
-					type="button"
-					onClick={() =>
-						open({
-							title: "Hello",
-							type: "component",
-							component: <h1>Hello</h1>,
-						})
-					}
-				>
-					Open
-				</button>
-				{panel.startContents.map((obj) =>
-					cloneElement(obj.component, { key: obj.id }),
-				)}
-			</div>
+					<button
+						type="button"
+						onClick={() =>
+							open({
+								title: "Hello",
+								type: "component",
+								component: <h1>Hello</h1>,
+							})
+						}
+					>
+						Open
+					</button>
+					{panel.startContents.map((obj) =>
+						cloneElement(obj.component, { key: obj.id }),
+					)}
+				</div>
 
-			<div className={styles.middleSection}>
-				{/* Middle section */}
+				<div className={styles.middleSection}>
+					{/* Middle section */}
 
-				{panel.middleContents.map((obj) =>
-					cloneElement(obj.component, { key: obj.id }),
-				)}
-			</div>
+					{panel.middleContents.map((obj) =>
+						cloneElement(obj.component, { key: obj.id }),
+					)}
+				</div>
 
-			<div className={styles.endSection}>
-				{/* End section */}
+				<div className={styles.endSection}>
+					{/* End section */}
 
-				{panel.endContents.map((obj) =>
-					cloneElement(obj.component, { key: obj.id }),
-				)}
+					{panel.endContents.map((obj) =>
+						cloneElement(obj.component, { key: obj.id }),
+					)}
+				</div>
 			</div>
 		</div>
 	);
