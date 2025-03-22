@@ -5,6 +5,17 @@
 	button {
 		all: unset;
 		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	button > img {
+		margin-left: auto;
+		height: 1.5em;
+		width: 1.5em;
+		object-fit: contain;
+		padding-right: 0.25em;
 	}
 }
 
