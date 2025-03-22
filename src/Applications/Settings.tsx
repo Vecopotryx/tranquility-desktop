@@ -15,6 +15,30 @@ const About = () => {
 	);
 };
 
+const Customization = () => {
+	const [theme, setTheme] = useState<string | null>(
+		document.documentElement.getAttribute("data-theme") || "light",
+	);
+
+	const updateTheme = (theme: string) => {
+		setTheme(theme);
+		document.documentElement.setAttribute("data-theme", theme);
+		localStorage.setItem("theme", theme);
+	};
+
+	return (
+		<div className={styles.customization}>
+			current: {theme}
+			<button type="button" onClick={() => updateTheme("light")}>
+				Light
+			</button>
+			<button type="button" onClick={() => updateTheme("dark")}>
+				Dark
+			</button>
+		</div>
+	);
+};
+
 const Settings = () => {
 	const [openSettings, setOpenSettings] = useState("about");
 
@@ -22,6 +46,8 @@ const Settings = () => {
 		switch (openSettings) {
 			case "about":
 				return <About />;
+			case "customization":
+				return <Customization />;
 			default:
 				break;
 		}
@@ -31,13 +57,25 @@ const Settings = () => {
 	return (
 		<div className={styles.settings}>
 			<div className={styles.sidebar}>
-				<button type="button" onClick={() => setOpenSettings("theme")}>
+				<button
+					className={openSettings === "customization" ? styles.selected : ""}
+					type="button"
+					onClick={() => setOpenSettings("customization")}
+				>
 					Customization
 				</button>
-				<button type="button" onClick={() => setOpenSettings("background")}>
+				<button
+					className={openSettings === "background" ? styles.selected : ""}
+					type="button"
+					onClick={() => setOpenSettings("background")}
+				>
 					Background
 				</button>
-				<button type="button" onClick={() => setOpenSettings("about")}>
+				<button
+					className={openSettings === "about" ? styles.selected : ""}
+					type="button"
+					onClick={() => setOpenSettings("about")}
+				>
 					About
 				</button>
 			</div>

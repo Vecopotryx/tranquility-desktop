@@ -4,3 +4,19 @@ body {
 	margin: 0;
 	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 }
+
+:root {
+	--background-opacity: 1;
+	/* Default light theme: */
+	--color-background: 255, 255, 255;
+	--color-primary: #121212;
+	--color-unfocused: darkgray;
+	--titlebar-background: linear-gradient(to right, white, lightgray);
+}
+
+[data-theme="dark"] {
+	--color-background: 9, 10, 12;
+	--color-primary: #e9e9e9;
+	--color-unfocused: darkgray;
+	--titlebar-background: linear-gradient(to right, #090a0c, gray);
+}

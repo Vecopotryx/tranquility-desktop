@@ -6,14 +6,16 @@
 	overflow: hidden;
 	backdrop-filter: blur(10px);
 	border-radius: 8px;
-	background-color: white;
+	background-color: rgba(var(--color-background), var(--background-opacity));
 	transition: background-color 0.3s, color 0.3s;
+	color: var(--color-primary);
 }
 
 .content {
 	height: 100%;
 	overflow-y: auto;
 	overflow-x: hidden;
+	cursor: default;
 
 	iframe {
 		border: none;
@@ -32,8 +34,8 @@
 	line-height: 0.7cm;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	background: linear-gradient(to right, white, lightgray);
-	color: gray;
+	background: var(--titlebar-background);
+	color: var(--color-unfocused);
 
 	button {
 		all: unset;
@@ -46,6 +48,6 @@
 	}
 }
 
-.focused {
-	color: black;
+.titlebar.focused {
+	color: var(--color-primary);
 }

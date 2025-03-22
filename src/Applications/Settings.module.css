@@ -13,8 +13,19 @@
 	padding: 0.5em;
 
 	> button {
+		all: unset;
+		color: var(--color-primary);
 		text-align: left;
-		padding-right: 2em;
+		padding: 0.25em 0.5em;
+	}
+
+	> button:hover {
+		cursor: pointer;
+	}
+
+	.selected {
+		background-color: var(--color-primary);
+		color: rgb(var(--color-background));
 	}
 }
 
