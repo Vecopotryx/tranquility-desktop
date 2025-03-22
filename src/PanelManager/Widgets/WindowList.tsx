@@ -1,22 +1,24 @@
 import { useWindowManagerStore } from "../../WindowManager/WindowManagerStore";
+import styles from "../Panel.module.css";
 
-export const WindowList = () => {
+export const WindowList = ({ showTitles }: { showTitles?: boolean }) => {
 	const focus = useWindowManagerStore((state) => state.focus);
 	const windows = useWindowManagerStore((state) => state.windows);
+	const currentlyFocused = useWindowManagerStore(
+		(state) => state.currentlyFocused,
+	);
 
 	return (
-		<div
-			style={{
-				whiteSpace: "nowrap",
-				overflowX: "auto",
-				display: "flex",
-				gap: "0.5em",
-			}}
-		>
+		<div style={{}} className={styles.windowList}>
 			{windows.map((w) => (
-				<button key={w.id} type="button" onClick={() => focus(w.id)}>
+				<button
+					key={w.id}
+					type="button"
+					onClick={() => focus(w.id)}
+					className={w.id === currentlyFocused ? styles.focused : ""}
+				>
 					<img src={w.app.icon} alt="App icon" style={{ height: "1em" }} />
-					{w.app.title}
+					{showTitles ? w.app.title : ""}
 				</button>
 			))}
 		</div>

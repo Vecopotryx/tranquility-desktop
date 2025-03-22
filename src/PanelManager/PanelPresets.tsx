@@ -27,7 +27,7 @@ const defaultPanel: Panel = {
 				</Dropdown>
 			),
 		},
-		{ id: "windowlist", component: <WindowList /> },
+		{ id: "windowlist", component: <WindowList showTitles /> },
 	],
 	middleContents: [],
 	endContents: [{ id: "clock", component: <InlineClock /> }],

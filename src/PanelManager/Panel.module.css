@@ -72,3 +72,14 @@
 	display: flex;
 	justify-content: center;
 }
+
+.windowList {
+	white-space: nowrap;
+	overflow-x: auto;
+	display: flex;
+	gap: 0.5em;
+
+	.focused {
+		background-color: lightgray;
+	}
+}
