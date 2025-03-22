@@ -1,6 +1,11 @@
 .panel {
 	display: grid;
 	background-color: white;
+
+	button {
+		all: unset;
+		cursor: pointer;
+	}
 }
 
 .panelContainer {
