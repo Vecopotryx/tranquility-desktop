@@ -17,6 +17,7 @@ export const AppWindow = memo(
 				style={{ zIndex: window.index }}
 				className={styles.window}
 				onMouseDown={() => focus(window.id)}
+				cancel={`.${styles.titlebar}>button, .${styles.content} >*`}
 				default={{
 					x:
 						(document.documentElement.clientWidth -
