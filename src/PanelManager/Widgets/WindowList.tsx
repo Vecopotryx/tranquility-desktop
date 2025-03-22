@@ -5,7 +5,14 @@ export const WindowList = () => {
 	const windows = useWindowManagerStore((state) => state.windows);
 
 	return (
-		<div style={{ whiteSpace: "nowrap", overflowX: "auto" }}>
+		<div
+			style={{
+				whiteSpace: "nowrap",
+				overflowX: "auto",
+				display: "flex",
+				gap: "0.5em",
+			}}
+		>
 			{windows.map((w) => (
 				<button key={w.id} type="button" onClick={() => focus(w.id)}>
 					{w.app.title}
