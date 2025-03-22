@@ -17,6 +17,7 @@ export type WindowObject = {
 
 export type Application = {
 	title: string;
+	icon: string;
 } & (
 	| { type: "component"; component: JSX.Element }
 	| { type: "iframe"; url: string }

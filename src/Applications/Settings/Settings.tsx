@@ -3,6 +3,7 @@ import styles from "./Settings.module.css";
 import type { Application } from "../../WindowManager/WindowManagerStore";
 import { About } from "./About";
 import { Customization } from "./Customization";
+import icon from "../../assets/img/icons/settings.png";
 
 const Settings = () => {
 	const [openSettings, setOpenSettings] = useState("about");
@@ -53,6 +54,7 @@ const Settings = () => {
 
 export const SettingsApp: Application = {
 	title: "Settings",
+	icon: icon,
 	type: "component",
 	component: <Settings />,
 };

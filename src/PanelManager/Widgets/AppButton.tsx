@@ -8,6 +8,7 @@ export const AppButton = ({ app }: { app: Application }) => {
 
 	return (
 		<button type="button" onClick={() => open(app)}>
+			<img src={app.icon} alt="App icon" />
 			{app.title}
 		</button>
 	);
