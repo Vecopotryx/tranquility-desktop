@@ -5,10 +5,11 @@
 	box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
 	overflow: hidden;
 	backdrop-filter: blur(10px);
-	border-radius: 8px;
 	background-color: rgba(var(--color-background), var(--background-opacity));
 	transition: background-color 0.3s, color 0.3s;
 	color: var(--color-primary);
+	border: var(--window-border);
+	border-radius: var(--window-border-radius, 8px);
 }
 
 .content {
@@ -35,6 +36,8 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	background: var(--titlebar-background);
+	border-bottom: 1px solid gray;
+
 	color: var(--color-unfocused);
 
 	button {
@@ -49,5 +52,6 @@
 }
 
 .titlebar.focused {
-	color: var(--color-primary);
+	color: var(--titlebar-color);
+	background: var(--titlebar-background-focused);
 }

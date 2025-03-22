@@ -28,12 +28,16 @@ const Customization = () => {
 
 	return (
 		<div className={styles.customization}>
-			current: {theme}
+			<h4 style={{ display: "inline" }}>Presets</h4>
+			<br />
 			<button type="button" onClick={() => updateTheme("light")}>
 				Light
 			</button>
 			<button type="button" onClick={() => updateTheme("dark")}>
 				Dark
+			</button>
+			<button type="button" onClick={() => updateTheme("classic")}>
+				Classic
 			</button>
 		</div>
 	);
