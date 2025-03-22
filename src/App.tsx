@@ -1,10 +1,10 @@
-import { Panel } from "./PanelManager/Panel";
+import { PanelManager } from "./PanelManager/PanelManager";
 import { WindowManager } from "./WindowManager/WindowManager";
 
 function App() {
 	return (
 		<>
-			<Panel />
+			<PanelManager />
 			<WindowManager />
 		</>
 	);
