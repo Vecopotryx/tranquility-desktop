@@ -15,6 +15,7 @@ export const WindowList = () => {
 		>
 			{windows.map((w) => (
 				<button key={w.id} type="button" onClick={() => focus(w.id)}>
+					<img src={w.app.icon} alt="App icon" style={{ height: "1em" }} />
 					{w.app.title}
 				</button>
 			))}
