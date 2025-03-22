@@ -1,62 +1,8 @@
 import { type ReactElement, useState } from "react";
 import styles from "./Settings.module.css";
-import Logo from "../assets/img/LogoSideView.png";
-import type { Application } from "../WindowManager/WindowManagerStore";
-import { usePanelManagerStore } from "../PanelManager/PanelManagerStore";
-
-const About = () => {
-	return (
-		<div className={styles.about}>
-			<img src={Logo} alt="Logo" />
-			<div>
-				<span>Project</span>
-				<span>Tranquility Desktop</span>
-			</div>
-		</div>
-	);
-};
-
-const Customization = () => {
-	const [theme, setTheme] = useState<string | null>(
-		document.documentElement.getAttribute("data-theme") || "light",
-	);
-
-	const updateTheme = (theme: string) => {
-		setTheme(theme);
-		document.documentElement.setAttribute("data-theme", theme);
-		localStorage.setItem("theme", theme);
-	};
-
-	const usePanelsPreset = usePanelManagerStore(
-		(state) => state.usePanelsPreset,
-	);
-
-	return (
-		<div className={styles.customization}>
-			<h4 style={{ display: "inline" }}>Window Themes</h4>
-			<br />
-			<button type="button" onClick={() => updateTheme("light")}>
-				Light
-			</button>
-			<button type="button" onClick={() => updateTheme("dark")}>
-				Dark
-			</button>
-			<button type="button" onClick={() => updateTheme("classic")}>
-				Classic
-			</button>
-			<br />
-
-			<h4 style={{ display: "inline" }}>Layout presets</h4>
-			<br />
-			<button type="button" onClick={() => usePanelsPreset("default")}>
-				Default
-			</button>
-			<button type="button" onClick={() => usePanelsPreset("split")}>
-				Split
-			</button>
-		</div>
-	);
-};
+import type { Application } from "../../WindowManager/WindowManagerStore";
+import { About } from "./About";
+import { Customization } from "./Customization";
 
 const Settings = () => {
 	const [openSettings, setOpenSettings] = useState("about");

@@ -1,4 +1,4 @@
-import { SettingsApp } from "../Applications/Settings";
+import { SettingsApp } from "../Applications/Settings/Settings";
 import type { Panel } from "./PanelManagerStore";
 import { AppButton } from "./Widgets/AppButton";
 import { InlineClock } from "./Widgets/InlineClock";
