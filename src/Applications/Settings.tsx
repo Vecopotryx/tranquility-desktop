@@ -2,6 +2,7 @@ import { type ReactElement, useState } from "react";
 import styles from "./Settings.module.css";
 import Logo from "../assets/img/LogoSideView.png";
 import type { Application } from "../WindowManager/WindowManagerStore";
+import { usePanelManagerStore } from "../PanelManager/PanelManagerStore";
 
 const About = () => {
 	return (
@@ -26,9 +27,13 @@ const Customization = () => {
 		localStorage.setItem("theme", theme);
 	};
 
+	const usePanelsPreset = usePanelManagerStore(
+		(state) => state.usePanelsPreset,
+	);
+
 	return (
 		<div className={styles.customization}>
-			<h4 style={{ display: "inline" }}>Presets</h4>
+			<h4 style={{ display: "inline" }}>Window Themes</h4>
 			<br />
 			<button type="button" onClick={() => updateTheme("light")}>
 				Light
@@ -38,6 +43,16 @@ const Customization = () => {
 			</button>
 			<button type="button" onClick={() => updateTheme("classic")}>
 				Classic
+			</button>
+			<br />
+
+			<h4 style={{ display: "inline" }}>Layout presets</h4>
+			<br />
+			<button type="button" onClick={() => usePanelsPreset("default")}>
+				Default
+			</button>
+			<button type="button" onClick={() => usePanelsPreset("split")}>
+				Split
 			</button>
 		</div>
 	);
