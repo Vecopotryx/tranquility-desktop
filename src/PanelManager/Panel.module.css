@@ -1,6 +1,8 @@
 .panel {
 	display: grid;
-	background-color: white;
+	background-color: rgba(var(--color-background));
+	color: var(--color-primary);
+	padding: 0 0.25em;
 
 	button {
 		all: unset;
@@ -8,6 +10,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		padding: 0.1em;
+		user-select: none;
 	}
 
 	button > img {
@@ -60,13 +64,14 @@
 .middleSection,
 .endSection {
 	display: flex;
+	align-items: stretch;
 	scrollbar-color: gray white;
 	min-width: 0;
 	gap: 0.5em;
 }
 
 .dropdown {
-	background-color: white;
+	background-color: rgba(var(--color-background));
 	padding: 0.25em;
 	min-width: 5em;
 	display: flex;
@@ -80,6 +85,6 @@
 	gap: 0.5em;
 
 	.focused {
-		background-color: lightgray;
+		background-color: rgba(128, 128, 128, 0.2);
 	}
 }

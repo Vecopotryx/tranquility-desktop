@@ -35,7 +35,7 @@ export const InlineClock = () => {
 	];
 
 	return (
-		<div>
+		<button type="button">
 			{`${months[time.getMonth()]} ${time.getDate()} ${time.toLocaleTimeString(
 				[],
 				{
@@ -43,6 +43,6 @@ export const InlineClock = () => {
 					minute: "2-digit",
 				},
 			)}`}
-		</div>
+		</button>
 	);
 };
