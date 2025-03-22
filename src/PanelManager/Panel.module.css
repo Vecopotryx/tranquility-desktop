@@ -1,6 +1,5 @@
 .panel {
 	display: grid;
-	gap: 1em;
 	background-color: white;
 }
 

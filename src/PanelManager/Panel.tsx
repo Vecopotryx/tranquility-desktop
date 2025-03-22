@@ -1,40 +1,8 @@
-import { type JSX, cloneElement } from "react";
-import { useWindowManagerStore } from "../WindowManager/WindowManagerStore";
+import { cloneElement } from "react";
 import styles from "./Panel.module.css";
-import { InlineClock } from "./Widgets/InlineClock";
-import { WindowList } from "./Widgets/WindowList";
-import { SettingsApp } from "../Applications/Settings";
+import type { Panel as PanelType } from "./PanelManagerStore";
 
-type PanelItem = {
-	id: string;
-	component: JSX.Element;
-};
-
-type Panel = {
-	position: "top" | "bottom";
-	align: "start" | "middle" | "end";
-	margin: string;
-	width: string;
-	startContents: PanelItem[];
-	middleContents: PanelItem[];
-	endContents: PanelItem[];
-};
-
-const defaultPanel: Panel = {
-	position: "top",
-	align: "start",
-	margin: "0.5em",
-	width: "100%",
-	startContents: [{ id: "windowlist", component: <WindowList /> }],
-	middleContents: [],
-	endContents: [{ id: "clock", component: <InlineClock /> }],
-};
-
-export const Panel = () => {
-	const open = useWindowManagerStore((state) => state.open);
-
-	const panel = defaultPanel;
-
+export const Panel = ({ panel }: { panel: PanelType }) => {
 	return (
 		<div
 			className={`${styles.panelContainer} ${styles[panel.align]} ${styles[panel.position]}`}
@@ -52,9 +20,6 @@ export const Panel = () => {
 				<div className={styles.startSection}>
 					{/* Start section */}
 
-					<button type="button" onClick={() => open(SettingsApp)}>
-						Open
-					</button>
 					{panel.startContents.map((obj) =>
 						cloneElement(obj.component, { key: obj.id }),
 					)}
