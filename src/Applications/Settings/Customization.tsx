@@ -40,6 +40,9 @@ export const Customization = () => {
 			<button type="button" onClick={() => usePanelsPreset("split")}>
 				Split
 			</button>
+			<button type="button" onClick={() => usePanelsPreset("rde")}>
+				RDE
+			</button>
 		</div>
 	);
 };

@@ -33,6 +33,47 @@ const defaultPanel: Panel = {
 	endContents: [{ id: "clock", component: <InlineClock /> }],
 };
 
+// Should match Retro Desktop Environment
+const rdePanel: Panel = {
+	position: "top",
+	align: "start",
+	margin: "0.5em",
+	width: "100%",
+	startContents: [
+		{
+			id: "applications",
+			component: (
+				<Dropdown text="Applications">
+					<AppButton app={SettingsApp} />
+				</Dropdown>
+			),
+		},
+		{
+			id: "file",
+			component: <button type="button">File</button>,
+		},
+		{
+			id: "options",
+			component: (
+				<Dropdown text="Options">
+					<AppButton app={SettingsApp} />
+				</Dropdown>
+			),
+		},
+		{
+			id: "arrange",
+			component: <button type="button">Arrange</button>,
+		},
+		{
+			id: "help",
+			component: <button type="button">?</button>,
+		},
+		{ id: "windowlist", component: <WindowList /> },
+	],
+	middleContents: [],
+	endContents: [{ id: "clock", component: <InlineClock /> }],
+};
+
 const splitPanelPreset: Panel[] = [
 	{
 		position: "top",
@@ -78,6 +119,8 @@ export const getPanelPreset = (name: string): Panel[] => {
 			return [defaultPanel];
 		case "split":
 			return splitPanelPreset;
+		case "rde":
+			return [rdePanel];
 		default:
 			return [defaultPanel];
 	}
