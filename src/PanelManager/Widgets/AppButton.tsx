@@ -8,7 +8,7 @@ export const AppButton = ({ app }: { app: Application }) => {
 
 	return (
 		<button type="button" onClick={() => open(app)}>
-			Open {app.title}
+			{app.title}
 		</button>
 	);
 };
