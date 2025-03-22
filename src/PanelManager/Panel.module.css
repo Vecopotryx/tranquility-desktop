@@ -46,4 +46,13 @@
 	display: flex;
 	scrollbar-color: gray white;
 	min-width: 0;
+	gap: 0.5em;
+}
+
+.dropdown {
+	background-color: white;
+	padding: 0.25em;
+	min-width: 5em;
+	display: flex;
+	justify-content: center;
 }
