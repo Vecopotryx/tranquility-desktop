@@ -31,7 +31,7 @@
 
 .container {
 	border-left: 1px solid gray;
-	width: 100%;
+	width: calc(100% - 1em);
 	padding: 0.5em;
 }
 
@@ -51,4 +51,15 @@
 		justify-content: space-between;
 		width: 80%;
 	}
+}
+
+.backgroundButton {
+	height: 9em;
+	flex: 1;
+	background-size: cover;
+}
+
+.backgroundContainer {
+	display: flex;
+	width: 100%;
 }
