@@ -11,24 +11,24 @@ const ApplicationRow = ({
 
 	return (
 		<tr key={app.title}>
-			<td style={{ display: "flex", alignItems: "center", gap: "0.25em" }}>
-				<img src={app.icon} alt="" style={{ height: "1em" }} />
-				{app.title}
+			<td style={{ width: "50%" }}>
+				<div style={{ display: "flex", alignItems: "center", gap: "0.25em" }}>
+					<img src={app.icon} alt="" style={{ height: "1em" }} />
+					{app.title}
+				</div>
 			</td>
-			<td>
+			<td style={{ width: "50%" }}>
 				{app.type === "component" ? (
 					"Built-in"
 				) : (
-					<>
+					<div style={{ display: "flex", justifyContent: "space-between" }}>
 						External
-						{app.attribution ? (
+						{app.attribution && (
 							<a href={app.attribution} target="_blank" rel="noreferrer">
 								Repo
 							</a>
-						) : (
-							""
 						)}
-					</>
+					</div>
 				)}
 			</td>
 			<td>
@@ -36,7 +36,7 @@ const ApplicationRow = ({
 					onClick={() => (isRemoved ? addApp(app) : removeApp(app))}
 					type="button"
 				>
-					{isRemoved ? "Add" : "Remove"}
+					{isRemoved ? "+" : "-"}
 				</button>
 			</td>
 		</tr>
