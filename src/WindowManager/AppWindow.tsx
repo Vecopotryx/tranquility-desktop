@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { Rnd } from "react-rnd";
 import styles from "./Window.module.css";
 import { type WindowObject, useWindowManagerStore } from "./WindowManagerStore";
@@ -12,12 +12,18 @@ export const AppWindow = memo(
 		const focus = useWindowManagerStore((state) => state.focus);
 		const close = useWindowManagerStore((state) => state.close);
 
+		const [frameOverlay, setFrameOverlay] = useState(false);
+
 		return (
 			<Rnd
 				style={{ zIndex: window.index }}
 				className={styles.window}
 				onMouseDown={() => focus(window.id)}
 				cancel={`.${styles.titlebar}>button, .${styles.content} >*`}
+				onResizeStart={() => setFrameOverlay(true)}
+				onResizeStop={() => setFrameOverlay(false)}
+				onDragStart={() => setFrameOverlay(true)}
+				onDragStop={() => setFrameOverlay(false)}
 				default={{
 					x:
 						(document.documentElement.clientWidth -
@@ -48,12 +54,17 @@ export const AppWindow = memo(
 					{window.app.type === "component" ? (
 						window.app.component
 					) : (
-						<iframe
-							title={window.app.title}
-							height="100%"
-							width="100%"
-							src={window.app.url}
-						/>
+						<>
+							{(frameOverlay === true || !isFocused) && (
+								<div className={styles.frameOverlay} />
+							)}
+							<iframe
+								title={window.app.title}
+								height="100%"
+								width="100%"
+								src={window.app.url}
+							/>
+						</>
 					)}
 				</div>
 			</Rnd>
