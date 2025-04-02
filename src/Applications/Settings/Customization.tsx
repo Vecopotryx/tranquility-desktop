@@ -3,7 +3,7 @@ import { useState } from "react";
 import { usePanelManagerStore } from "../../PanelManager/PanelManagerStore";
 
 export const Customization = () => {
-	const [theme, setTheme] = useState<string | null>(
+	const [_, setTheme] = useState<string | null>(
 		document.documentElement.getAttribute("data-theme") || "light",
 	);
 
@@ -16,6 +16,10 @@ export const Customization = () => {
 	const usePanelsPreset = usePanelManagerStore(
 		(state) => state.usePanelsPreset,
 	);
+
+	const toggleFont = () => {
+		document.body.classList.toggle("retro-font");
+	};
 
 	return (
 		<div className={styles.customization}>
@@ -42,6 +46,10 @@ export const Customization = () => {
 			</button>
 			<button type="button" onClick={() => usePanelsPreset("rde")}>
 				RDE
+			</button>
+			<br />
+			<button onClick={toggleFont} type="button">
+				Toggle Retro Font
 			</button>
 		</div>
 	);

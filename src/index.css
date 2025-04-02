@@ -7,6 +7,19 @@ body {
 	background-size: 100%;
 }
 
+.retro-font {
+	font-family: IBM VGA, monospace;
+	font-size: 120%;
+}
+
+@font-face {
+	/* From: https://int10h.org/oldschool-pc-fonts/ by VileR */
+	font-family: "IBM VGA";
+	src: url(./assets/Web437_IBM_VGA_9x16.woff) format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
 :root {
 	--background-opacity: 1;
 	--background-image: url(https://images.unsplash.com/photo-1589642314445-999ac13b0075?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb);
