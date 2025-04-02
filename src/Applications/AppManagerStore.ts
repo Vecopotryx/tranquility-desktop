@@ -7,7 +7,7 @@ export type Application = {
 	icon: string;
 } & (
 	| { type: "component"; component: JSX.Element }
-	| { type: "iframe"; url: string }
+	| { type: "iframe"; url: string; attribution?: string }
 );
 
 interface AppManagerState {
