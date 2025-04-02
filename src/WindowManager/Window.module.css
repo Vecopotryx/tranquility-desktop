@@ -13,7 +13,7 @@
 }
 
 .content {
-	height: 100%;
+	height: calc(100% - 0.7cm);
 	overflow-y: auto;
 	overflow-x: hidden;
 	cursor: default;
@@ -54,4 +54,11 @@
 .titlebar.focused {
 	color: var(--titlebar-color);
 	background: var(--titlebar-background-focused);
+}
+
+.frameOverlay {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	display: block;
 }
