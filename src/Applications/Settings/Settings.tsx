@@ -4,6 +4,7 @@ import type { Application } from "../../WindowManager/WindowManagerStore";
 import { About } from "./About";
 import { Customization } from "./Customization";
 import icon from "../../assets/img/icons/settings.png";
+import { Background } from "./Background";
 
 const Settings = () => {
 	const [openSettings, setOpenSettings] = useState("about");
@@ -12,6 +13,8 @@ const Settings = () => {
 		switch (openSettings) {
 			case "about":
 				return <About />;
+			case "background":
+				return <Background />;
 			case "customization":
 				return <Customization />;
 			default:

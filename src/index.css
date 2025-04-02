@@ -3,10 +3,13 @@ body {
 	overflow: hidden;
 	margin: 0;
 	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+	background-image: var(--background-image);
+	background-size: 100%;
 }
 
 :root {
 	--background-opacity: 1;
+	--background-image: url(https://images.unsplash.com/photo-1589642314445-999ac13b0075?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb);
 	/* Default light theme: */
 	--color-background: 255, 255, 255;
 	--color-primary: #121212;
