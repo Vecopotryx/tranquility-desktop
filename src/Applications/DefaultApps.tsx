@@ -1,4 +1,5 @@
 import type { Application } from "./AppManagerStore";
+import { ClockApp } from "./Clock/Clock";
 
 const EssenceReader: Application = {
 	title: "Essence Reader",
@@ -16,4 +17,8 @@ const ChipPlayerJS: Application = {
 	attribution: "https://github.com/mmontag/chip-player-js",
 };
 
-export const defaultApps: Application[] = [EssenceReader, ChipPlayerJS];
+export const defaultApps: Application[] = [
+	EssenceReader,
+	ChipPlayerJS,
+	ClockApp,
+];
