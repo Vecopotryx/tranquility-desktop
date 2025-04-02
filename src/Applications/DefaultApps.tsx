@@ -17,8 +17,17 @@ const ChipPlayerJS: Application = {
 	attribution: "https://github.com/mmontag/chip-player-js",
 };
 
+const AmigaBoingBalls: Application = {
+	title: "Amiga Boing Balls",
+	icon: "https://johnmattsson.github.io/AmigaBoingBalls/static/favicon.png",
+	type: "iframe",
+	url: "https://johnmattsson.github.io/AmigaBoingBalls/index.html",
+	attribution: "https://github.com/johnmattsson/AmigaBoingBalls",
+};
+
 export const defaultApps: Application[] = [
 	EssenceReader,
 	ChipPlayerJS,
+	AmigaBoingBalls,
 	ClockApp,
 ];
