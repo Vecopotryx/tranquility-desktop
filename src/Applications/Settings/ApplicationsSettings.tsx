@@ -1,12 +1,51 @@
-import { useAppManagerStore } from "../AppManagerStore";
+import { type Application, useAppManagerStore } from "../AppManagerStore";
 import { defaultApps } from "../DefaultApps";
 import styles from "./Settings.module.css";
+
+const ApplicationRow = ({
+	app,
+	isRemoved,
+}: { app: Application; isRemoved: boolean }) => {
+	const removeApp = useAppManagerStore((state) => state.removeApp);
+	const addApp = useAppManagerStore((state) => state.addApp);
+
+	return (
+		<tr key={app.title}>
+			<td style={{ display: "flex", alignItems: "center", gap: "0.25em" }}>
+				<img src={app.icon} alt="" style={{ height: "1em" }} />
+				{app.title}
+			</td>
+			<td>
+				{app.type === "component" ? (
+					"Built-in"
+				) : (
+					<>
+						External
+						{app.attribution ? (
+							<a href={app.attribution} target="_blank" rel="noreferrer">
+								Repo
+							</a>
+						) : (
+							""
+						)}
+					</>
+				)}
+			</td>
+			<td>
+				<button
+					onClick={() => (isRemoved ? addApp(app) : removeApp(app))}
+					type="button"
+				>
+					{isRemoved ? "Add" : "Remove"}
+				</button>
+			</td>
+		</tr>
+	);
+};
 
 export const ApplicationsSettings = () => {
 	const list = useAppManagerStore((state) => state.apps);
 	const removedDefaults = defaultApps.filter((obj) => !list.includes(obj));
-	const addApp = useAppManagerStore((state) => state.addApp);
-	const removeApp = useAppManagerStore((state) => state.removeApp);
 
 	return (
 		<div className={styles.applicationsSettings}>
@@ -20,20 +59,7 @@ export const ApplicationsSettings = () => {
 				</thead>
 				<tbody>
 					{list.map((app) => (
-						<tr key={app.title}>
-							<td
-								style={{ display: "flex", alignItems: "center", gap: "0.25em" }}
-							>
-								<img src={app.icon} alt="" style={{ height: "1em" }} />
-								{app.title}
-							</td>
-							<td>{app.type === "component" ? "Built-in" : "External"}</td>
-							<td>
-								<button onClick={() => removeApp(app)} type="button">
-									Remove
-								</button>
-							</td>
-						</tr>
+						<ApplicationRow key={app.title} app={app} isRemoved={false} />
 					))}
 				</tbody>
 			</table>
@@ -43,24 +69,7 @@ export const ApplicationsSettings = () => {
 					<table>
 						<tbody>
 							{removedDefaults.map((app) => (
-								<tr key={app.title}>
-									<td
-										style={{
-											display: "flex",
-											alignItems: "center",
-											gap: "0.25em",
-										}}
-									>
-										<img src={app.icon} alt="" style={{ height: "1em" }} />
-										{app.title}
-									</td>
-									<td>{app.type === "component" ? "Built-in" : "External"}</td>
-									<td>
-										<button onClick={() => addApp(app)} type="button">
-											Add
-										</button>
-									</td>
-								</tr>
+								<ApplicationRow key={app.title} app={app} isRemoved={true} />
 							))}
 						</tbody>
 					</table>
