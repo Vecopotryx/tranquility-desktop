@@ -5,12 +5,15 @@ import { Customization } from "./Customization";
 import icon from "../../assets/img/icons/settings.png";
 import { Background } from "./Background";
 import type { Application } from "../AppManagerStore";
+import { ApplicationsSettings } from "./ApplicationsSettings";
 
 const Settings = () => {
 	const [openSettings, setOpenSettings] = useState("about");
 
 	const OpenedSettings = (): ReactElement => {
 		switch (openSettings) {
+			case "applications":
+				return <ApplicationsSettings />;
 			case "about":
 				return <About />;
 			case "background":

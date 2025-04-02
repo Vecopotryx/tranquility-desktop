@@ -1,4 +1,3 @@
-import { SettingsApp } from "./Settings/Settings";
 import type { Application } from "./AppManagerStore";
 
 const EssenceReader: Application = {
@@ -8,4 +7,4 @@ const EssenceReader: Application = {
 	url: "https://essence-reader.pages.dev",
 };
 
-export const defaultApps: Application[] = [SettingsApp, EssenceReader];
+export const defaultApps: Application[] = [EssenceReader];
