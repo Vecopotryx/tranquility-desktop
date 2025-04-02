@@ -1,5 +1,5 @@
-import type { JSX } from "react";
 import { create } from "zustand";
+import type { Application } from "../Applications/AppManagerStore";
 
 interface WindowManagerState {
 	windows: WindowObject[];
@@ -14,14 +14,6 @@ export type WindowObject = {
 	index: number;
 	app: Application;
 };
-
-export type Application = {
-	title: string;
-	icon: string;
-} & (
-	| { type: "component"; component: JSX.Element }
-	| { type: "iframe"; url: string }
-);
 
 let highestIndex = 0;
 let highestId = 0;

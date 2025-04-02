@@ -1,6 +1,7 @@
 import { SettingsApp } from "../Applications/Settings/Settings";
 import type { Panel } from "./PanelManagerStore";
 import { AppButton } from "./Widgets/AppButton";
+import { AppList } from "./Widgets/AppList";
 import { Dropdown } from "./Widgets/Dropdown";
 import { InlineClock } from "./Widgets/InlineClock";
 import { WindowList } from "./Widgets/WindowList";
@@ -15,7 +16,7 @@ const defaultPanel: Panel = {
 			id: "applications",
 			component: (
 				<Dropdown text="Applications">
-					<AppButton app={SettingsApp} />
+					<AppList />
 				</Dropdown>
 			),
 		},
@@ -44,7 +45,7 @@ const rdePanel: Panel = {
 			id: "applications",
 			component: (
 				<Dropdown text="Applications">
-					<AppButton app={SettingsApp} />
+					<AppList />
 				</Dropdown>
 			),
 		},
@@ -85,7 +86,7 @@ const splitPanelPreset: Panel[] = [
 				id: "applications",
 				component: (
 					<Dropdown text="Applications">
-						<AppButton app={SettingsApp} />
+						<AppList />
 					</Dropdown>
 				),
 			},

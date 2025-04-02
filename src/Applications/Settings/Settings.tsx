@@ -1,10 +1,10 @@
 import { type ReactElement, useState } from "react";
 import styles from "./Settings.module.css";
-import type { Application } from "../../WindowManager/WindowManagerStore";
 import { About } from "./About";
 import { Customization } from "./Customization";
 import icon from "../../assets/img/icons/settings.png";
 import { Background } from "./Background";
+import type { Application } from "../AppManagerStore";
 
 const Settings = () => {
 	const [openSettings, setOpenSettings] = useState("about");
@@ -26,6 +26,13 @@ const Settings = () => {
 	return (
 		<div className={styles.settings}>
 			<div className={styles.sidebar}>
+				<button
+					className={openSettings === "applications" ? styles.selected : ""}
+					type="button"
+					onClick={() => setOpenSettings("applications")}
+				>
+					Applications
+				</button>
 				<button
 					className={openSettings === "customization" ? styles.selected : ""}
 					type="button"
