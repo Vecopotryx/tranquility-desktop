@@ -17,7 +17,7 @@ export const WindowList = ({ showTitles }: { showTitles?: boolean }) => {
 					onClick={() => focus(w.id)}
 					className={w.id === currentlyFocused ? styles.focused : ""}
 				>
-					<img src={w.app.icon} alt="" style={{ height: "1em" }} />
+					<img src={w.app.icon} alt="" />
 					{showTitles ? w.app.title : ""}
 				</button>
 			))}

@@ -20,6 +20,7 @@ export const Dropdown = (props: DropdownProps) => {
 	const { refs, floatingStyles, context } = useFloating({
 		open: isOpen,
 		onOpenChange: setIsOpen,
+		placement: "bottom-end",
 		middleware: [offset(4), flip(), shift()],
 	});
 
