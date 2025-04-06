@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Dropdown } from "./Dropdown";
 
 export const InlineClock = () => {
 	const [time, setTime] = useState(new Date());
@@ -35,14 +36,29 @@ export const InlineClock = () => {
 	];
 
 	return (
-		<button type="button">
-			{`${months[time.getMonth()]} ${time.getDate()} ${time.toLocaleTimeString(
+		<Dropdown
+			text={`${months[time.getMonth()]} ${time.getDate()} ${time.toLocaleTimeString(
 				[],
 				{
 					hour: "2-digit",
 					minute: "2-digit",
 				},
 			)}`}
-		</button>
+		>
+			<div>
+				<h3 style={{ display: "inline" }}>
+					{time.toLocaleTimeString([], {
+						hour: "2-digit",
+						minute: "2-digit",
+						second: "2-digit",
+					})}
+				</h3>
+				<br />
+				<span>
+					{days[time.getDay()]} {months[time.getMonth()]} {time.getDate()}{" "}
+					{time.getFullYear()}
+				</span>
+			</div>
+		</Dropdown>
 	);
 };
