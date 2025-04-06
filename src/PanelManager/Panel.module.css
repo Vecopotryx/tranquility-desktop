@@ -2,22 +2,22 @@
 	display: grid;
 	background-color: rgba(var(--color-background));
 	color: var(--color-primary);
-	padding: 0 0.25em;
+	padding: 0;
 
 	button {
 		all: unset;
 		cursor: pointer;
-		display: flex;
-		justify-content: center;
+		display: grid;
+		grid-template-columns: auto 1fr;
 		align-items: center;
-		padding: 0.1em;
+		padding: 0.1em 0.25em;
 		user-select: none;
 	}
 
 	button > img {
 		margin-left: auto;
-		height: 1.5em;
-		width: 1.5em;
+		height: 1.1em;
+		width: 1.1em;
 		object-fit: contain;
 		padding-right: 0.25em;
 	}
@@ -74,8 +74,11 @@
 	background-color: rgba(var(--color-background));
 	padding: 0.25em;
 	min-width: 5em;
+}
+
+.appList {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 }
 
 .windowList {
