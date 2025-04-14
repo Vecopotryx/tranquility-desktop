@@ -84,3 +84,17 @@
 		padding: 20px;
 	}
 }
+
+.addAppPopup {
+	background-color: rgb(var(--color-background));
+	border: 1px solid gray;
+	display: flex;
+	justify-content: center;
+	padding: 0.5em;
+
+	label {
+		display: grid;
+		gap: 0.5em;
+		grid-template-columns: auto 1fr;
+	}
+}
