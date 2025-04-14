@@ -47,6 +47,10 @@
 		padding: 0 0.5em;
 	}
 
+	:last-child {
+		justify-self: end;
+	}
+
 	button:hover {
 		cursor: pointer;
 	}

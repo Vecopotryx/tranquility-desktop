@@ -90,4 +90,9 @@
 	.focused {
 		background-color: rgba(128, 128, 128, 0.2);
 	}
+
+	.minimized {
+		filter: brightness(0.6);
+		color: var(--color-unfocused);
+	}
 }
