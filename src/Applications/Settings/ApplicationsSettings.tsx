@@ -1,6 +1,13 @@
+import { useState } from "react";
 import { type Application, useAppManagerStore } from "../AppManagerStore";
 import { defaultApps } from "../DefaultApps";
 import styles from "./Settings.module.css";
+import {
+	offset,
+	useDismiss,
+	useFloating,
+	useInteractions,
+} from "@floating-ui/react";
 
 const ApplicationRow = ({
 	app,
@@ -43,6 +50,102 @@ const ApplicationRow = ({
 	);
 };
 
+const AddAppPopup = () => {
+	const addApp = useAppManagerStore((state) => state.addApp);
+
+	const [isOpen, setIsOpen] = useState(false);
+	const [url, setUrl] = useState("");
+	const [title, setTitle] = useState("");
+
+	const handleURLInput = (event: { target: HTMLInputElement }) => {
+		setUrl(event.target.value);
+	};
+
+	const handleTitleInput = (event: { target: HTMLInputElement }) => {
+		setTitle(event.target.value);
+	};
+
+	const assembleApp = (): Application => {
+		const link = url.indexOf("://") === -1 ? `https://${url}` : url;
+		const hostname = new URL(link).hostname;
+		const icon = `https://s2.googleusercontent.com/s2/favicons?domain=${hostname}`;
+		setIsOpen(false);
+		return { title, icon, type: "iframe", url: link };
+	};
+
+	const onAdd = () => {
+		if (url !== "" || title !== "") {
+			addApp(assembleApp());
+		}
+	};
+
+	const { refs, floatingStyles, context } = useFloating({
+		open: isOpen,
+		onOpenChange: setIsOpen,
+		placement: "bottom-end",
+		middleware: [offset(4)],
+	});
+
+	const dismiss = useDismiss(context);
+
+	const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
+
+	return (
+		<>
+			<button
+				ref={refs.setReference}
+				onClick={() => setIsOpen(!isOpen)}
+				{...getReferenceProps()}
+			>
+				+
+			</button>
+			{isOpen && (
+				<div
+					ref={refs.setFloating}
+					style={floatingStyles}
+					{...getFloatingProps()}
+					className={styles.addAppPopup}
+				>
+					<div>
+						<h4 style={{ display: "inline" }}>Add application</h4>
+						<br />
+						<label>
+							Title:
+							<input
+								type="text"
+								onChange={handleTitleInput}
+								onKeyUp={(e) => {
+									if (e.key === "Enter") onAdd();
+								}}
+							/>
+						</label>
+						<br />
+						<label>
+							URL:
+							<input
+								type="text"
+								onChange={handleURLInput}
+								onKeyUp={(e) => {
+									if (e.key === "Enter") onAdd();
+								}}
+							/>
+						</label>
+						<br />
+						<button style={{ width: "100%" }} type="button" onClick={onAdd}>
+							Add
+						</button>
+						<br />
+						<span style={{ fontSize: "90%" }}>
+							Note that many websites block being embedded and therefore might
+							not work in Tranquility Desktop.
+						</span>
+					</div>
+				</div>
+			)}
+		</>
+	);
+};
+
 export const ApplicationsSettings = () => {
 	const list = useAppManagerStore((state) => state.apps);
 	const removedDefaults = defaultApps.filter((obj) => !list.includes(obj));
@@ -54,7 +157,9 @@ export const ApplicationsSettings = () => {
 					<tr>
 						<th>Title</th>
 						<th>Type</th>
-						<th />
+						<th>
+							<AddAppPopup />
+						</th>
 					</tr>
 				</thead>
 				<tbody>
