@@ -1,0 +1,18 @@
+.greeterContainer {
+	padding: 0.5em;
+	text-align: center;
+}
+
+.navbutton {
+	all: unset;
+	margin: auto;
+	width: 5em;
+	font-size: 5em;
+	cursor: pointer;
+	user-select: none;
+	transition: transform 0.2s;
+
+	&:hover {
+		transform: scale(1.25);
+	}
+}
