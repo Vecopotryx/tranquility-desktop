@@ -23,14 +23,17 @@ let highestId = 0;
 
 export const useWindowManagerStore = create<WindowManagerState>()((set) => ({
 	currentlyFocused: 0,
-	windows: [
-		{
-			id: highestId,
-			index: highestIndex,
-			minimized: false,
-			app: GreeterApp,
-		},
-	],
+	windows:
+		localStorage.getItem("greeted") !== "true"
+			? [
+					{
+						id: highestId,
+						index: highestIndex,
+						minimized: false,
+						app: GreeterApp,
+					},
+				]
+			: [],
 
 	open: (app) =>
 		set((state) => {
