@@ -6,12 +6,14 @@ interface WindowManagerState {
 	currentlyFocused: number;
 	open: (app: Application) => void;
 	close: (id: number) => void;
+	minimize: (id: number) => void;
 	focus: (id: number) => void;
 }
 
 export type WindowObject = {
 	id: number;
 	index: number;
+	minimized: boolean;
 	app: Application;
 };
 
@@ -39,6 +41,7 @@ export const useWindowManagerStore = create<WindowManagerState>()((set) => ({
 			const newWindow: WindowObject = {
 				id,
 				index: ++highestIndex,
+				minimized: false,
 				app,
 			};
 
@@ -48,6 +51,14 @@ export const useWindowManagerStore = create<WindowManagerState>()((set) => ({
 	close: (id: number) =>
 		set((state) => ({ windows: state.windows.filter((w) => w.id !== id) })),
 
+	minimize: (id: number) =>
+		set((state) => ({
+			currentlyFocused: -1,
+			windows: state.windows.map((w) =>
+				w.id === id ? { ...w, minimized: true } : w,
+			),
+		})),
+
 	focus: (id: number) =>
 		set((state) => {
 			if (state.currentlyFocused === id) return {};
@@ -55,7 +66,7 @@ export const useWindowManagerStore = create<WindowManagerState>()((set) => ({
 			return {
 				currentlyFocused: id,
 				windows: state.windows.map((w) =>
-					w.id === id ? { ...w, index: ++highestIndex } : w,
+					w.id === id ? { ...w, index: ++highestIndex, minimized: false } : w,
 				),
 			};
 		}),

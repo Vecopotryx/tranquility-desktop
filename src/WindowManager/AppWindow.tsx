@@ -11,12 +11,16 @@ export const AppWindow = memo(
 
 		const focus = useWindowManagerStore((state) => state.focus);
 		const close = useWindowManagerStore((state) => state.close);
+		const minimize = useWindowManagerStore((state) => state.minimize);
 
 		const [frameOverlay, setFrameOverlay] = useState(false);
 
 		return (
 			<Rnd
-				style={{ zIndex: window.index }}
+				style={{
+					zIndex: window.index,
+					display: window.minimized ? "none" : "inherit",
+				}}
 				className={styles.window}
 				onMouseDown={() => focus(window.id)}
 				cancel={`.${styles.titlebar}>button, .${styles.content} >*`}
@@ -44,6 +48,9 @@ export const AppWindow = memo(
 						&#x2715;
 					</button>
 					{window.app.title}
+					<button type="button" onClick={() => minimize(window.id)}>
+						&#x25B2;
+					</button>
 				</div>
 				<div
 					className={styles.content}
@@ -72,5 +79,6 @@ export const AppWindow = memo(
 	},
 	(prev, next) =>
 		prev.window.id === next.window.id &&
-		prev.window.index === next.window.index,
+		prev.window.index === next.window.index &&
+		prev.window.minimized === next.window.minimized,
 );
