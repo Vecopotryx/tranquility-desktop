@@ -16,8 +16,8 @@
 
 	button > img {
 		margin-left: auto;
-		height: 1.1em;
-		width: 1.1em;
+		height: 1em;
+		width: 1em;
 		object-fit: contain;
 		padding-right: 0.25em;
 	}

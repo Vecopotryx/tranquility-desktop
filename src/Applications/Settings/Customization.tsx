@@ -25,28 +25,31 @@ export const Customization = () => {
 		<div className={styles.customization}>
 			<h4 style={{ display: "inline" }}>Window Themes</h4>
 			<br />
-			<button type="button" onClick={() => updateTheme("light")}>
-				Light
-			</button>
-			<button type="button" onClick={() => updateTheme("dark")}>
-				Dark
-			</button>
-			<button type="button" onClick={() => updateTheme("classic")}>
-				Classic
-			</button>
+			<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
+				<button type="button" onClick={() => updateTheme("light")}>
+					Light
+				</button>
+				<button type="button" onClick={() => updateTheme("dark")}>
+					Dark
+				</button>
+				<button type="button" onClick={() => updateTheme("classic")}>
+					Classic
+				</button>
+			</div>
 			<br />
-
 			<h4 style={{ display: "inline" }}>Layout presets</h4>
-			<br />
-			<button type="button" onClick={() => usePanelsPreset("default")}>
-				Default
-			</button>
-			<button type="button" onClick={() => usePanelsPreset("split")}>
-				Split
-			</button>
-			<button type="button" onClick={() => usePanelsPreset("rde")}>
-				RDE
-			</button>
+
+			<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
+				<button type="button" onClick={() => usePanelsPreset("default")}>
+					Default
+				</button>
+				<button type="button" onClick={() => usePanelsPreset("split")}>
+					Split
+				</button>
+				<button type="button" onClick={() => usePanelsPreset("rde")}>
+					Retro Desktop Environment
+				</button>
+			</div>
 			<br />
 			<button onClick={toggleFont} type="button">
 				Toggle Retro Font
