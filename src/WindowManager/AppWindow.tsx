@@ -25,7 +25,7 @@ export const AppWindow = memo(
 			<Rnd
 				style={{
 					zIndex: window.index,
-					display: window.minimized ? "none" : "inherit",
+					display: window.minimized ? "none" : "grid",
 				}}
 				className={styles.window}
 				onMouseDown={() => focus(window.id)}
