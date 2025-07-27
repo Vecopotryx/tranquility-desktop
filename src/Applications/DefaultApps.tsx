@@ -1,5 +1,6 @@
 import type { Application } from "./AppManagerStore";
 import { ClockApp } from "./Clock/Clock";
+import { TerminalApp } from "./Terminal/Terminal";
 
 const EssenceReader: Application = {
 	title: "Essence Reader",
@@ -30,4 +31,5 @@ export const defaultApps: Application[] = [
 	ChipPlayerJS,
 	AmigaBoingBalls,
 	ClockApp,
+	TerminalApp,
 ];
