@@ -1,7 +1,8 @@
 .window {
 	min-height: 0.7cm;
 	min-width: 5em;
-	display: block;
+	display: grid !important;
+	grid-template-rows: auto 1fr;
 	box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
 	overflow: hidden;
 	backdrop-filter: blur(10px);
@@ -13,9 +14,7 @@
 }
 
 .content {
-	height: calc(100% - 0.7cm);
-	overflow-y: auto;
-	overflow-x: hidden;
+	overflow: hidden;
 	cursor: default;
 
 	iframe {
@@ -38,7 +37,6 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	background: var(--titlebar-background);
 	border-bottom: 1px solid gray;
-
 	color: var(--color-unfocused);
 
 	button {

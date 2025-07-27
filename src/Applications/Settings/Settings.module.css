@@ -33,6 +33,7 @@
 	border-left: 1px solid gray;
 	width: calc(100% - 1em);
 	padding: 0.5em;
+	overflow: auto;
 }
 
 .about {

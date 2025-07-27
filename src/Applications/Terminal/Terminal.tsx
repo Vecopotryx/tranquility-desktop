@@ -107,6 +107,7 @@ const Terminal = () => {
 	return (
 		<div
 			onClick={() => inputRef.current?.focus()}
+			className={styles.terminalContainer}
 			onKeyDown={() => inputRef.current?.focus()}
 		>
 			{commandHistory.map((entry) => (

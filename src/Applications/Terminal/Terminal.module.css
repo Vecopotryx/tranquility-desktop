@@ -9,3 +9,8 @@
 		color: var(--color-primary);
 	}
 }
+
+.terminalContainer {
+	height: 100%;
+	overflow-y: auto;
+}
