@@ -1,18 +1,8 @@
 import styles from "./Settings.module.css";
-import { useState } from "react";
 import { usePanelManagerStore } from "../../PanelManager/PanelManagerStore";
+import { ThemePicker } from "./ThemePicker";
 
 export const Customization = () => {
-	const [_, setTheme] = useState<string | null>(
-		document.documentElement.getAttribute("data-theme") || "light",
-	);
-
-	const updateTheme = (theme: string) => {
-		setTheme(theme);
-		document.documentElement.setAttribute("data-theme", theme);
-		localStorage.setItem("theme", theme);
-	};
-
 	const usePanelsPreset = usePanelManagerStore(
 		(state) => state.usePanelsPreset,
 	);
@@ -23,23 +13,19 @@ export const Customization = () => {
 
 	return (
 		<div className={styles.customization}>
-			<h4 style={{ display: "inline" }}>Window Themes</h4>
+			<h4 style={{ display: "inline" }}>Theme</h4>
 			<br />
-			<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
-				<button type="button" onClick={() => updateTheme("light")}>
-					Light
-				</button>
-				<button type="button" onClick={() => updateTheme("dark")}>
-					Dark
-				</button>
-				<button type="button" onClick={() => updateTheme("classic")}>
-					Classic
-				</button>
-			</div>
+			<ThemePicker />
 			<br />
 			<h4 style={{ display: "inline" }}>Layout presets</h4>
 
-			<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
+			<div
+				style={{
+					display: "grid",
+					gridTemplateColumns: "1fr 1fr 1fr",
+					gap: "0.5em",
+				}}
+			>
 				<button type="button" onClick={() => usePanelsPreset("default")}>
 					Default
 				</button>
