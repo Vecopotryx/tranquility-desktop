@@ -78,6 +78,12 @@ const Terminal = () => {
 			handleCommand(currentInput.trim());
 			setCurrentInput("");
 		}
+		if (e.key === "ArrowUp") {
+			const latestCommand = commandHistory[commandHistory.length - 1];
+			if (latestCommand) {
+				setCurrentInput(latestCommand.command);
+			}
+		}
 	};
 
 	const handleCommand = (input: string) => {
