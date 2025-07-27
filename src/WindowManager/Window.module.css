@@ -1,7 +1,7 @@
 .window {
 	min-height: 0.7cm;
 	min-width: 5em;
-	display: grid !important;
+	display: grid;
 	grid-template-rows: auto 1fr;
 	box-shadow: 8px 15px 0px 0px rgba(0, 0, 0, 0.75);
 	overflow: hidden;
@@ -19,7 +19,6 @@
 
 	iframe {
 		border: none;
-		margin-top: -1px;
 	}
 }
 
