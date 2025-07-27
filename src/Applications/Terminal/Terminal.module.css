@@ -1,0 +1,11 @@
+.inputLine {
+	display: grid;
+	gap: 1ch;
+	grid-template-columns: auto 1fr;
+
+	input {
+		all: unset;
+		background-color: transparent;
+		color: var(--color-primary);
+	}
+}
