@@ -1,7 +1,13 @@
-import { memo, useState } from "react";
+import { createContext, memo, useState } from "react";
 import { Rnd } from "react-rnd";
 import styles from "./Window.module.css";
 import { type WindowObject, useWindowManagerStore } from "./WindowManagerStore";
+
+type AppWindowInfo = {
+	id: number;
+};
+
+export const AppWindowInfoContext = createContext<AppWindowInfo | null>(null);
 
 export const AppWindow = memo(
 	({ window }: { window: WindowObject }) => {
@@ -59,7 +65,9 @@ export const AppWindow = memo(
 					}}
 				>
 					{window.app.type === "component" ? (
-						window.app.component
+						<AppWindowInfoContext.Provider value={{ id: window.id }}>
+							{window.app.component}
+						</AppWindowInfoContext.Provider>
 					) : (
 						<>
 							{(frameOverlay === true || !isFocused) && (
