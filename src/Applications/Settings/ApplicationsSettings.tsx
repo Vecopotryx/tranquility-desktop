@@ -136,7 +136,7 @@ const AddAppPopup = () => {
 						</button>
 						<br />
 						<span style={{ fontSize: "90%" }}>
-							Note that many websites block being embedded and therefore might
+							Note that many websites block being embedded and might therefore
 							not work in Tranquility Desktop.
 						</span>
 					</div>

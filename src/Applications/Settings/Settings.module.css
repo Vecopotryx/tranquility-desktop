@@ -81,8 +81,27 @@
 
 .customization {
 	text-align: center;
-	button {
-		padding: 20px;
+}
+
+.themePicker {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.5em;
+	margin-bottom: 1em;
+
+	.themePreview {
+		all: unset;
+		background: var(--background-image);
+		background-position: center;
+		background-size: cover;
+		border-radius: var(--window-border-radius, 8px);
+		cursor: pointer;
+	}
+
+	.themePreviewImg {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
 	}
 }
 
