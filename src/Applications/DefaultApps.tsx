@@ -1,4 +1,5 @@
 import type { Application } from "./AppManagerStore";
+import { BrowserApp } from "./Browser/Browser";
 import { ClockApp } from "./Clock/Clock";
 import { TerminalApp } from "./Terminal/Terminal";
 
@@ -32,4 +33,5 @@ export const defaultApps: Application[] = [
 	AmigaBoingBalls,
 	ClockApp,
 	TerminalApp,
+	BrowserApp,
 ];
