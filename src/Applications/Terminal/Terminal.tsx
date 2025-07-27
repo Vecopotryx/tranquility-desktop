@@ -1,7 +1,9 @@
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useContext, useEffect, useRef, useState } from "react";
 import type { Application } from "../AppManagerStore";
 import styles from "./Terminal.module.css";
 import icon from "../../assets/img/icons/terminal.png";
+import { AppWindowInfoContext } from "../../WindowManager/AppWindow";
+import { useWindowManagerStore } from "../../WindowManager/WindowManagerStore";
 
 interface CommandEntry {
 	timestamp: number;
@@ -38,11 +40,13 @@ const commands = new Map<string, (args: string[]) => ReactNode>([
 				Available commands: <br />
 				neofetch - Display system info <br />
 				clear - Clear the terminal <br />
-				help - Show this help message
+				help - Show this help message <br />
+				exit - Close the terminal window
 			</p>
 		),
 	],
 	["clear", () => null],
+	["exit", () => null],
 ]);
 
 const Prompt = () => {
@@ -52,6 +56,9 @@ const Prompt = () => {
 const Terminal = () => {
 	const [commandHistory, setCommandHistory] = useState<CommandEntry[]>([]);
 	const [currentInput, setCurrentInput] = useState<string>("");
+	const appWindowInfo = useContext(AppWindowInfoContext);
+	const close = useWindowManagerStore((state) => state.close);
+
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	// Auto-focus input on mount and on adding new
@@ -80,6 +87,12 @@ const Terminal = () => {
 		if (commands.has(command)) {
 			if (command === "clear") {
 				setCommandHistory([]);
+				return;
+			}
+			if (command === "exit") {
+				if (appWindowInfo) {
+					close(appWindowInfo.id);
+				}
 				return;
 			}
 			output = commands.get(command)!(args);
