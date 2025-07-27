@@ -3,7 +3,7 @@
 	text-align: center;
 }
 
-.navbutton {
+.startButton {
 	all: unset;
 	margin: auto;
 	width: 5em;
@@ -15,4 +15,27 @@
 	&:hover {
 		transform: scale(1.25);
 	}
+}
+
+.prevButton,
+.nextButton {
+	all: unset;
+	position: fixed;
+	bottom: 0;
+
+	cursor: pointer;
+	transition: transform 0.2s;
+	font-size: 2em;
+	padding: 1em;
+
+	&:hover {
+		transform: scale(1.25);
+	}
+}
+
+.prevButton {
+	left: 0;
+}
+.nextButton {
+	right: 0;
 }
