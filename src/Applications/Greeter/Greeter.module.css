@@ -1,6 +1,7 @@
 .greeterContainer {
 	padding: 0.5em;
 	text-align: center;
+	overflow-y: auto;
 }
 
 .startButton {
@@ -22,7 +23,6 @@
 	all: unset;
 	position: fixed;
 	bottom: 0;
-
 	cursor: pointer;
 	transition: transform 0.2s;
 	font-size: 2em;

@@ -9,7 +9,7 @@ import { useWindowManagerStore } from "../../WindowManager/WindowManagerStore";
 const GreetingScreen = ({ onNext }: { onNext: () => void }) => {
 	return (
 		<>
-			<img src={icon} style={{ width: "10%", height: "10%" }} alt="" />
+			<img src={icon} height={100} alt="" />
 			<h1>Welcome to Tranquility Desktop</h1>
 			<p>
 				Configure themes and other settings by pressing the button below, or
