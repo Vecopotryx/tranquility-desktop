@@ -16,7 +16,11 @@
 .content {
 	overflow: hidden;
 	cursor: default;
-
+	display: flex;
+	flex-direction: column;
+	> div {
+		height: 100%;
+	}
 	iframe {
 		border: none;
 	}
