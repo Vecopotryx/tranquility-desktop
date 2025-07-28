@@ -50,7 +50,19 @@ export const useWindowManagerStore = create<WindowManagerState>()((set) => ({
 		}),
 
 	close: (id: number) =>
-		set((state) => ({ windows: state.windows.filter((w) => w.id !== id) })),
+		set((state) => {
+			const remaining = state.windows.filter((w) => w.id !== id);
+			if (remaining.length === 0) {
+				return { windows: [], currentlyFocused: -1 };
+			}
+
+			// Move focus to new highest index window.
+			const highestIndexWindow = remaining.reduce(
+				(max, window) => (window.index > max.index ? window : max),
+				remaining[0],
+			);
+			return { windows: remaining, currentlyFocused: highestIndexWindow.id };
+		}),
 
 	minimize: (id: number) =>
 		set((state) => ({
