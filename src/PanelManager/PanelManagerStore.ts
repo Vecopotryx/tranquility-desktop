@@ -19,11 +19,11 @@ export type Panel = {
 
 interface PanelManagerState {
 	panels: Panel[];
-	usePanelsPreset: (name: string) => void;
+	setPanelsPreset: (name: string) => void;
 }
 
 export const usePanelManagerStore = create<PanelManagerState>()((set) => ({
 	panels: getPanelPreset("default"),
-	usePanelsPreset: (name: string) =>
+	setPanelsPreset: (name: string) =>
 		set(() => ({ panels: getPanelPreset(name) })),
 }));
