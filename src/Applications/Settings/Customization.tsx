@@ -4,8 +4,8 @@ import { ThemePicker } from "./ThemePicker";
 import { useState } from "react";
 
 export const Customization = () => {
-	const usePanelsPreset = usePanelManagerStore(
-		(state) => state.usePanelsPreset,
+	const setPanelsPreset = usePanelManagerStore(
+		(state) => state.setPanelsPreset,
 	);
 
 	const toggleFont = () => {
@@ -41,13 +41,13 @@ export const Customization = () => {
 					gap: "0.5em",
 				}}
 			>
-				<button type="button" onClick={() => usePanelsPreset("default")}>
+				<button type="button" onClick={() => setPanelsPreset("default")}>
 					Default
 				</button>
-				<button type="button" onClick={() => usePanelsPreset("split")}>
+				<button type="button" onClick={() => setPanelsPreset("split")}>
 					Split
 				</button>
-				<button type="button" onClick={() => usePanelsPreset("rde")}>
+				<button type="button" onClick={() => setPanelsPreset("rde")}>
 					Retro Desktop Environment
 				</button>
 			</div>
