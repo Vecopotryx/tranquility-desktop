@@ -11,6 +11,7 @@
 	flex-direction: column;
 	gap: 0.25em;
 	padding: 0.5em;
+	user-select: none;
 
 	> button {
 		all: unset;
@@ -34,6 +35,7 @@
 	width: calc(100% - 1em);
 	padding: 0.5em;
 	overflow: auto;
+	text-align: center;
 }
 
 .about {
@@ -55,14 +57,26 @@
 }
 
 .backgroundButton {
+	all: unset;
 	height: 9em;
 	flex: 1;
 	background-size: cover;
+	border-radius: var(--window-border-radius);
+	cursor: pointer;
 }
 
 .backgroundContainer {
-	display: flex;
+	display: grid;
 	width: 100%;
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 0.2cm;
+	grid-row-gap: 0.2cm;
+
+	& img {
+		object-fit: cover;
+	}
+
+	margin-bottom: 1em;
 }
 
 .applicationsSettings {
@@ -73,7 +87,7 @@
 
 	td,
 	th {
-		border: 1px solid #dddddd;
+		border: 1px solid gray;
 		text-align: left;
 		padding: 0.5em;
 	}
