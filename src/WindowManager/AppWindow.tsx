@@ -1,4 +1,5 @@
 import { createContext, memo, useState } from "react";
+import { MdClose, MdExpandLess } from "react-icons/md";
 import { Rnd } from "react-rnd";
 import styles from "./Window.module.css";
 import { useWindowManagerStore, type WindowObject } from "./WindowManagerStore";
@@ -51,11 +52,11 @@ export const AppWindow = memo(
 					className={`${styles.titlebar} ${isFocused ? styles.focused : ""}`}
 				>
 					<button type="button" onClick={() => close(window.id)}>
-						&#x2715;
+						<MdClose />
 					</button>
 					{window.app.title}
 					<button type="button" onClick={() => minimize(window.id)}>
-						&#x25B2;
+						<MdExpandLess />
 					</button>
 				</div>
 				<div
