@@ -3,7 +3,10 @@ import styles from "./Settings.module.css";
 const BackgroundButton = ({
 	background,
 	updateBackground,
-}: { background: string; updateBackground: (value: string) => void }) => {
+}: {
+	background: string;
+	updateBackground: (value: string) => void;
+}) => {
 	return (
 		<button
 			className={styles.backgroundButton}

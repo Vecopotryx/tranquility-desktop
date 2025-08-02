@@ -1,11 +1,11 @@
 import { type ReactElement, useState } from "react";
-import styles from "./Settings.module.css";
-import { About } from "./About";
-import { Customization } from "./Customization";
 import icon from "../../assets/img/icons/settings.png";
-import { Background } from "./Background";
 import type { Application } from "../AppManagerStore";
+import { About } from "./About";
 import { ApplicationsSettings } from "./ApplicationsSettings";
+import { Background } from "./Background";
+import { Customization } from "./Customization";
+import styles from "./Settings.module.css";
 
 const Settings = () => {
 	const [openSettings, setOpenSettings] = useState("about");

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import styles from "./Settings.module.css";
-import lightPreview from "../../assets/img/preview-light.svg";
-import darkPreview from "../../assets/img/preview-dark.svg";
 import classicPreview from "../../assets/img/preview-classic.svg";
+import darkPreview from "../../assets/img/preview-dark.svg";
+import lightPreview from "../../assets/img/preview-light.svg";
+import styles from "./Settings.module.css";
 
 interface ThemePreviewProps {
 	theme: string;

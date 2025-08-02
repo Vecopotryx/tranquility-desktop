@@ -1,6 +1,6 @@
 import { useAppManagerStore } from "../../Applications/AppManagerStore";
-import { AppButton } from "./AppButton";
 import styles from "../Panel.module.css";
+import { AppButton } from "./AppButton";
 
 export const AppList = () => {
 	const list = useAppManagerStore((state) => state.apps);

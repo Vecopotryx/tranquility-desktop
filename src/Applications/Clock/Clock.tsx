@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Application } from "../AppManagerStore";
 import icon from "../../assets/img/icons/clock.svg";
+import type { Application } from "../AppManagerStore";
 
 const Clock = () => {
 	const [time, setTime] = useState(new Date());

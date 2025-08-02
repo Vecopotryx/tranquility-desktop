@@ -1,7 +1,7 @@
 import { createContext, memo, useState } from "react";
 import { Rnd } from "react-rnd";
 import styles from "./Window.module.css";
-import { type WindowObject, useWindowManagerStore } from "./WindowManagerStore";
+import { useWindowManagerStore, type WindowObject } from "./WindowManagerStore";
 
 type AppWindowInfo = {
 	id: number;

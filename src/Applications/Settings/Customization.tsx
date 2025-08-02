@@ -1,7 +1,7 @@
-import styles from "./Settings.module.css";
-import { usePanelManagerStore } from "../../PanelManager/PanelManagerStore";
-import { ThemePicker } from "./ThemePicker";
 import { useState } from "react";
+import { usePanelManagerStore } from "../../PanelManager/PanelManagerStore";
+import styles from "./Settings.module.css";
+import { ThemePicker } from "./ThemePicker";
 
 export const Customization = () => {
 	const setPanelsPreset = usePanelManagerStore(
