@@ -8,7 +8,9 @@ body {
 }
 
 .retro-font {
-	font-family: IBM VGA, monospace;
+	font-family:
+		IBM VGA,
+		monospace;
 	font-size: 120%;
 }
 

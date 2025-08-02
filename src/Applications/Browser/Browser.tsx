@@ -1,7 +1,7 @@
 import { useState } from "react";
+import icon from "../../assets/img/icons/browser.png";
 import loadingSpinner from "../../assets/img/tail-spin.svg";
 import type { Application } from "../AppManagerStore";
-import icon from "../../assets/img/icons/browser.png";
 import styles from "./Browser.module.css";
 
 const YearOptions = () => {

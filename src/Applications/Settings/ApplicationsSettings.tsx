@@ -1,18 +1,21 @@
-import { useState } from "react";
-import { type Application, useAppManagerStore } from "../AppManagerStore";
-import { defaultApps } from "../DefaultApps";
-import styles from "./Settings.module.css";
 import {
 	offset,
 	useDismiss,
 	useFloating,
 	useInteractions,
 } from "@floating-ui/react";
+import { useState } from "react";
+import { type Application, useAppManagerStore } from "../AppManagerStore";
+import { defaultApps } from "../DefaultApps";
+import styles from "./Settings.module.css";
 
 const ApplicationRow = ({
 	app,
 	isRemoved,
-}: { app: Application; isRemoved: boolean }) => {
+}: {
+	app: Application;
+	isRemoved: boolean;
+}) => {
 	const removeApp = useAppManagerStore((state) => state.removeApp);
 	const addApp = useAppManagerStore((state) => state.addApp);
 

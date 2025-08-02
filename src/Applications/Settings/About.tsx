@@ -1,5 +1,5 @@
-import styles from "./Settings.module.css";
 import Logo from "../../assets/img/LogoSideView.png";
+import styles from "./Settings.module.css";
 
 export const About = () => {
 	return (

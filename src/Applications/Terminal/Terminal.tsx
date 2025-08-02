@@ -1,9 +1,9 @@
 import { type ReactNode, useContext, useEffect, useRef, useState } from "react";
-import type { Application } from "../AppManagerStore";
-import styles from "./Terminal.module.css";
 import icon from "../../assets/img/icons/terminal.png";
 import { AppWindowInfoContext } from "../../WindowManager/AppWindow";
 import { useWindowManagerStore } from "../../WindowManager/WindowManagerStore";
+import type { Application } from "../AppManagerStore";
+import styles from "./Terminal.module.css";
 
 interface CommandEntry {
 	timestamp: number;
@@ -111,6 +111,7 @@ const Terminal = () => {
 	};
 
 	return (
+		// biome-ignore lint/a11y/noStaticElementInteractions: We want to allow clicking on the window to quickly focus the input box.
 		<div
 			onClick={() => inputRef.current?.focus()}
 			className={styles.terminalContainer}

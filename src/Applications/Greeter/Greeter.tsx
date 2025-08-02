@@ -1,10 +1,10 @@
-import type { Application } from "../AppManagerStore";
-import icon from "../../assets/img/LogoSideView.png";
 import { useContext, useState } from "react";
-import styles from "./Greeter.module.css";
-import { ThemePicker } from "../Settings/ThemePicker";
+import icon from "../../assets/img/LogoSideView.png";
 import { AppWindowInfoContext } from "../../WindowManager/AppWindow";
 import { useWindowManagerStore } from "../../WindowManager/WindowManagerStore";
+import type { Application } from "../AppManagerStore";
+import { ThemePicker } from "../Settings/ThemePicker";
+import styles from "./Greeter.module.css";
 
 const GreetingScreen = ({ onNext }: { onNext: () => void }) => {
 	return (
@@ -25,7 +25,10 @@ const GreetingScreen = ({ onNext }: { onNext: () => void }) => {
 const ThemeScreen = ({
 	onPrev,
 	onNext,
-}: { onPrev: () => void; onNext: () => void }) => {
+}: {
+	onPrev: () => void;
+	onNext: () => void;
+}) => {
 	return (
 		<>
 			<h2>Lets choose a theme</h2>
@@ -43,7 +46,10 @@ const ThemeScreen = ({
 const DoneScreen = ({
 	onPrev,
 	onNext,
-}: { onPrev: () => void; onNext: () => void }) => {
+}: {
+	onPrev: () => void;
+	onNext: () => void;
+}) => {
 	return (
 		<>
 			<h2>Setup complete!</h2>
