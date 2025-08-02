@@ -37,25 +37,27 @@
 	white-space: nowrap;
 	overflow: hidden;
 	font-size: 1em;
-	line-height: 0.7cm;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	background: var(--titlebar-background);
 	border-bottom: 1px solid gray;
 	color: var(--color-unfocused);
+	align-items: center;
 
 	button {
 		all: unset;
 		width: fit-content;
 		padding: 0 0.5em;
+		transition: transform 0.2s;
+		display: inline-flex;
+		&:hover {
+			cursor: pointer;
+			transform: scale(1.5);
+		}
 	}
 
 	:last-child {
 		justify-self: end;
-	}
-
-	button:hover {
-		cursor: pointer;
 	}
 }
 
