@@ -5,6 +5,7 @@ import {
 	useInteractions,
 } from "@floating-ui/react";
 import { useState } from "react";
+import { BsGithub } from "react-icons/bs";
 import { type Application, useAppManagerStore } from "../AppManagerStore";
 import { defaultApps } from "../DefaultApps";
 import styles from "./Settings.module.css";
@@ -34,8 +35,13 @@ const ApplicationRow = ({
 					<div style={{ display: "flex", justifyContent: "space-between" }}>
 						External
 						{app.attribution && (
-							<a href={app.attribution} target="_blank" rel="noreferrer">
-								Repo
+							<a
+								href={app.attribution}
+								target="_blank"
+								rel="noreferrer"
+								className={styles.attributionLink}
+							>
+								<BsGithub />
 							</a>
 						)}
 					</div>
