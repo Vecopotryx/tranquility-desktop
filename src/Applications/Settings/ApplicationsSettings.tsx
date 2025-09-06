@@ -24,7 +24,7 @@ const ApplicationRow = ({
 		<tr key={app.title}>
 			<td style={{ width: "50%" }}>
 				<div style={{ display: "flex", alignItems: "center", gap: "0.25em" }}>
-					<img src={app.icon} alt="" style={{ height: "1em" }} />
+					<img src={app.icon} alt="" style={{ width: "1em" }} />
 					{app.title}
 				</div>
 			</td>
